@@ -19,7 +19,7 @@
 ## TP-2: Bazni benchmark (prije treninga)
 
 Pokrenuti AgentMujo-Bench protiv BAZE u sva 4 profila
-(thinking/non-thinking × full/Q8) i zabilježiti svih 10 kategorija.
+(thinking/non-thinking × full/Q8) i zabilježiti svih 16 kategorija (v0.2).
 Ovo je nulta tačka — bez nje se napredak ne može mjeriti.
 Bosanski kvalitet posebno: ako baza zadovoljava, `bosnian-core` ostaje odgođen.
 

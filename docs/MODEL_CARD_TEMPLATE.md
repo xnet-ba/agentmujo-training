@@ -13,7 +13,7 @@
 - <agentmujo-function-calling @ verzija, HF link, broj uzoraka>
 - <agentmujo-agentic-terminal @ verzija, HF link, broj uzoraka>
 
-## Benchmark (AgentMujo-Bench, 10 kategorija)
+## Benchmark (AgentMujo-Bench, 16 kategorija)
 
 | Kategorija | Base | Fine-tuned | Q8 |
 |---|---|---|---|

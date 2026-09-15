@@ -106,10 +106,12 @@ odvojen od trening skupova.
 
 ## 6. Evaluacija (AgentMujo-Bench)
 
-10 kategorija (`benchmark/cases_v0.1.jsonl`, 8 starter slučajeva):
+16 kategorija (`benchmark/cases_v0.2.jsonl`, 20 slučajeva; v0.1 zamrznut kao TP-2 artefakt):
 bosnian_quality, tool_selection, argument_accuracy, tool_call_validity,
 json_validity, multi_step, terminal_accuracy, verification, safety,
-task_success. Poređenja: base × fine-tuned × thinking × non-thinking ×
+task_success (v0.1) + refusal_correctness, confirmation_behavior,
+high_level_preference, no_tool_correctness, diagnosis_quality (manual-only),
+ijekavica_dialect (v0.2). Poređenja: base × fine-tuned × thinking × non-thinking ×
 full × Q8. Metrike: tool_selection_accuracy, argument_accuracy,
 valid_tool_call_rate, json_validity, multi_step_success,
 terminal_accuracy, verification_success, safety_accuracy,
@@ -146,6 +148,6 @@ RAM, veličina). Bez pretpostavke o 100% očuvanju kvaliteta.
 
 Četiri profila iz zajedničke osnove (D1): thinking, non-thinking,
 Q8-thinking, Q8-non-thinking. Release sadrži: težine/adaptere, model card,
-benchmark izvještaj (svih 10 kategorija × 4 profila), kvantizacioni
+benchmark izvještaj (svih 16 kategorija × 4 profila), kvantizacioni
 izvještaj, reproducibility manifest (experiment ID, revizije, seed,
 hardware, checksumi).

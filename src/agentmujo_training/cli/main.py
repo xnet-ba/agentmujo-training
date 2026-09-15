@@ -162,7 +162,7 @@ def main(argv=None) -> int:
         return cmd_dataset_split(argparse.Namespace(input=d.get("--input", ""), out_dir=d.get("--out-dir", "datasets/splits")))
     if args[:2] == ["benchmark", "run"]:
         d = dict(zip(args[2::2], args[3::2])) if len(args) > 2 else {}
-        return cmd_benchmark_run(argparse.Namespace(cases=d.get("--cases", "benchmark/cases_v0.1.jsonl")))
+        return cmd_benchmark_run(argparse.Namespace(cases=d.get("--cases", "benchmark/cases_v0.2.jsonl")))
     if args[:1] in (["train"], ["publish"], ["experiment"], ["model"]):
         print("`amj " + " ".join(args[:2]) + "` je gate-ovan u v0.1 (vidi docs/TEST_PLAN.md).")
         return 2
