@@ -31,15 +31,20 @@ def cmd_doctor(_args) -> int:
         print("  hf login: AKTIVAN")
     else:
         print("  hf login: NEAKTIVAN (pokrenuti `hf auth login`; token se ne lijepi u kod)")
-    # Kaggle auth — samo postojanje, nikada vrijednosti
+    # Kaggle auth — samo postojanje, nikada vrijednosti.
+    # Mehanizmi (noviji prvi): KAGGLE_API_TOKEN / ~/.kaggle/access_token
+    # (moderni KGAT_ Bearer), zatim legacy kaggle.json / KAGGLE_USERNAME+KEY.
     import os
     kaggle_json = Path.home() / ".kaggle" / "kaggle.json"
-    if kaggle_json.exists():
-        print("  kaggle auth: KAGGL_JSON PRISUTAN (~/.kaggle/kaggle.json)")
+    access_token = Path.home() / ".kaggle" / "access_token"
+    if os.environ.get("KAGGLE_API_TOKEN") or access_token.exists():
+        print("  kaggle auth: API-TOKEN PRISUTAN (KAGGLE_API_TOKEN ili ~/.kaggle/access_token)")
+    elif kaggle_json.exists():
+        print("  kaggle auth: LEGACY PRISUTAN (~/.kaggle/kaggle.json)")
     elif os.environ.get("KAGGLE_USERNAME") and os.environ.get("KAGGLE_KEY"):
-        print("  kaggle auth: ENV PRISUTAN (KAGGLE_USERNAME/KAGGLE_KEY postavljeni)")
+        print("  kaggle auth: LEGACY ENV PRISUTAN (KAGGLE_USERNAME/KAGGLE_KEY postavljeni)")
     else:
-        print("  kaggle auth: NEDOSTAJE (kaggle.json ili KAGGLE_USERNAME/KAGGLE_KEY; "
+        print("  kaggle auth: NEDOSTAJE (KAGGLE_API_TOKEN ili kaggle.json; "
               "vidi docs/KAGGLE_WORKER.md)")
     # GPU — očekivan samo na workeru, WARN na Oracleu
     try:

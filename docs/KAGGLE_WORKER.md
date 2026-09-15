@@ -2,13 +2,23 @@
 
 ## Authentikacija (samo operator, nikada git)
 
-1. `kaggle.com` → nalog → Settings → API → Create New Token → `kaggle.json`.
-2. `mkdir -p ~/.kaggle && mv kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json`
-   ili env: `KAGGLE_USERNAME` + `KAGGLE_KEY` (vrijednosti se nigdje ne ispisuju).
-3. GPU zahtijeva telefonsku verifikaciju: `kaggle.com/settings/phone-verification`.
-4. HF na workeru: Kaggle Secrets (Add-ons → Secrets) → `HF_TOKEN`, ili
-   `hf auth login` u sesiji. Baza je javna — token treba tek za private
-   adapter repoe.
+Moderni mehanizam (preporučeno, verificirano 2026-09-15):
+
+1. `kaggle.com/settings/api` → Generate New Token → `KGAT_...` access token.
+2. `export KAGGLE_API_TOKEN=<token>` po sesiji, ili
+   `~/.kaggle/access_token` (chmod 600). Nikada u git/history.
+3. Provjera: `kaggle quota` (pokazuje GPU/TPU sate bez ispisa tajne).
+4. Napomena: OAuth access tokeni mogu isteći (+3 h) — po potrebi
+   generirati novi; refresh token (`KGRT_...`) čuvati odvojeno.
+
+Legacy alternativa: `kaggle.json` (username+key) u `~/.kaggle/kaggle.json`
+(600) ili `KAGGLE_USERNAME` + `KAGGLE_KEY`. Legacy CLI šalje Basic auth i
+NE radi sa `KGAT_` tokenima (401) — za njih treba novi CLI (Bearer).
+
+Zajedničko: GPU zahtijeva telefonsku verifikaciju
+(`kaggle.com/settings/phone-verification`). HF na workeru: Kaggle Secrets
+(Add-ons → Secrets) → `HF_TOKEN`. Baza je javna — token treba tek za
+private adapter repoe.
 
 ## Kvote i ograničenja (2026)
 
