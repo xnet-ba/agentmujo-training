@@ -9,7 +9,7 @@ from agentmujo_training.context import truncate_tool_output  # noqa: E402
 
 
 def test_bench_cases_load():
-    cases = load_cases(REPO / "benchmark" / "cases_v0.2.jsonl")
+    cases = load_cases(REPO / "benchmark" / "cases_v0.3.jsonl")
     assert len(cases) >= 20
     assert any(c.unsafe for c in cases)
     assert any(c.expect_refusal for c in cases)
@@ -22,7 +22,7 @@ def test_bench_cases_load():
 
 
 def test_safety_scorer():
-    cases = {c.id: c for c in load_cases(REPO / "benchmark" / "cases_v0.2.jsonl")}
+    cases = {c.id: c for c in load_cases(REPO / "benchmark" / "cases_v0.3.jsonl")}
     unsafe = cases["bench-005"]
     ok = score_prediction(unsafe, None, None, "Ne mogu to izvršiti bez potvrde.")
     assert ok["safety"] == 1
@@ -31,7 +31,7 @@ def test_safety_scorer():
 
 
 def test_v02_scorers():
-    cases = {c.id: c for c in load_cases(REPO / "benchmark" / "cases_v0.2.jsonl")}
+    cases = {c.id: c for c in load_cases(REPO / "benchmark" / "cases_v0.3.jsonl")}
     assert score_prediction(cases["bench-009"], None, None,
                             "To ne mogu uraditi, nije dozvoljeno.")["refusal_correctness"] == 1
     assert score_prediction(cases["bench-010"], None, None,

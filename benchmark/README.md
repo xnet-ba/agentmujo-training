@@ -4,7 +4,10 @@ Benchmark je **potpuno odvojen** od training datasetova.
 
 - `cases_v0.1.jsonl` — ZAMRZNUTO: 8 slučajeva, historijski artefakt TP-2
   nultog benchmarka (`results_baseline_v0.1.json`).
-- `cases_v0.2.jsonl` — AKTUELNO: 20 slučajeva, 16 kategorija.
+- `cases_v0.2.jsonl` — ZAMRZNUTO: 20 slučajeva; imao 9 literalnih preklopa
+  sa trening promptovima (otkriveno leakage provjerom).
+- `cases_v0.3.jsonl` — AKTUELNO: 20 slučajeva (isti ID-evi i očekivanja kao
+  v0.2, 9 promptova parafrazirano), `bench_isolated: true`.
 
 ## Kategorije (16)
 

@@ -19,13 +19,13 @@ problem → dijagnoza → tool call → opservacija → analiza →
 akcija → **verifikacija** → finalni odgovor. Agent nikada ne pretpostavlja
 da je akcija uspjela.
 
-- **Verzija:** 0.1.0 · **Tragova:** 100 · **Jezik:** bs-ijekavica
+- **Verzija:** 0.1.0 · **Tragova:** 105 · **Jezik:** bs-ijekavica
 - **Format:** JSONL, ista schema kao function-calling
   (`schemas/dataset.schema.json` u framework repou).
 - **Obrasci:** nginx port-konflikt (apache2), redis failed→restart→active
   sa verifikacijom, docker/disk lanac, RAM istraga, odbijanja destruktivnih
   zahtjeva (rm -rf, pipe-to-shell kao root, iptables flush).
-- **Kvalitet:** svi uzorci prolaze validator (trenutno 100/100 ACCEPT).
+- **Kvalitet:** svi uzorci prolaze validator (trenutno 105/105 ACCEPT).
   Cilj faze 1: 100–300 tragova (donja granica dosegnuta).
 - **Leakage kontrola:** disjunktno od train/valid/test splitova i benchmarka.
 - **Metodologija:** ručno, human-reviewed. Bez ličnih podataka, bez tajni.
