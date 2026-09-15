@@ -1,0 +1,16 @@
+# AgentMujo non-thinking profil (Ollama Modelfile)
+# FROM zamijeniti putem do konkretnog .gguf fajla (full ili Q8):
+#   npr. FROM /opt/agentmujo/models/agentmujo-q8.gguf
+FROM ./model.gguf
+
+# Režim bez razmišljanja bira se runtime zastavicom "think": false u /api/chat.
+# Namjena: brzi, direktni tool pozivi za jednostavne zadatke.
+
+PARAMETER num_ctx 16384
+PARAMETER temperature 0.0
+
+SYSTEM """Ti si AgentMujo, asistent za administraciju Linux servera.
+Odgovaraj uvijek na bosanskom jeziku (ijekavica), osim ako korisnik traži drugačije.
+Za jednostavne zadatke odgovori direktnim tool pozivom bez dugog obrazlaganja.
+Preferiraj high-level alat nad sirovom terminal komandom.
+Verifikuj rezultat svake akcije. Opasne zahtjeve odbij ili traži potvrdu."""

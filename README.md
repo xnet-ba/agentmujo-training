@@ -48,7 +48,9 @@ pytest -q                     # 9 testova
 - `schemas/` — dataset, tool, experiment, model JSON Scheme
 - `datasets/canonical/` — MVP uzorci (12 + 5); sirovi/veliki podaci idu na HF Hub
 - `benchmark/` — AgentMujo-Bench (16 kategorija, 20 slučajeva v0.2)
+- `quantization/` — GGUF Q8 pipeline (convert_q8.sh + protokol)
 - `workers/vast/` — stateless GPU worker spec (startup/sync TODO do GPU faze)
+- `deployment/` — Ollama Modelfile profili (thinking/non-thinking, zajednički GGUF)
 - `docs/` — PROJECT_SPEC, TEST_PLAN, HF_PUBLISHING
 - `tests/` — registry, validator (+safety), benchmark
 
