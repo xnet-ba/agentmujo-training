@@ -1,5 +1,8 @@
 # AgentMujo Training Framework (v0.1)
 
+[![CI](https://github.com/xnet-ba/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/xnet-ba/agentmujo-training/actions)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
 Reproducibilan sistem za fine-tuning **malih bosanskojezičnih modela**
 koji znaju koristiti alate, raditi višekoračne zadatke i provjeravati
 rezultate — jezgra AgentMujo AI agenta.
@@ -57,3 +60,11 @@ pytest -q                     # 9 testova
 
 Detalji: `docs/PROJECT_SPEC.md` · Test gate: `docs/TEST_PLAN.md` ·
 Sigurnost: `SECURITY.md` · Publish: `docs/HF_PUBLISHING.md`
+
+## Objavljeno na Hugging Face Hubu
+
+- Dataseti: [agentmujo-function-calling](https://huggingface.co/datasets/shaban2024/agentmujo-function-calling) ·
+  [agentmujo-agentic-terminal](https://huggingface.co/datasets/shaban2024/agentmujo-agentic-terminal)
+- Rezervisani model repoi (pune se iz releasea):
+  [Non-Thinking](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Non-Thinking) ·
+  [Q8-NonThinking](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking)
