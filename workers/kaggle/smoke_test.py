@@ -56,7 +56,7 @@ def main() -> int:
             [{"role": "user", "content": "hi"}],
             tools=[{"type": "function", "function": {
                 "name": "x", "description": "x",
-                "parameters": {"type": "object", "properties": {}}}}}],
+                "parameters": {"type": "object", "properties": {}}}}],
             tokenize=False, add_generation_prompt=True), "nema tool templatea"
     ok["tokenizer-tool-template"] = check("tokenizer-tool-template", _tok)
 

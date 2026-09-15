@@ -37,3 +37,18 @@ def test_notebook_valid():
     assert "kaggle.json" not in blob.lower() or True
     # production training zaključan (ASCII prefix jer JSON escapa č/ž)
     assert "namjerno zaklju" in blob
+
+
+def test_worker_code_parses():
+    """Regresija: sav worker kod (ukljucujuci notebook celije) mora proci ast.parse."""
+    import ast
+    for py in (REPO / "workers" / "kaggle").glob("*.py"):
+        ast.parse(py.read_text(encoding="utf-8"))
+    nb = json.loads((REPO / "training" / "notebooks" / "qwen35_2b_training.ipynb").read_text())
+    for cell in nb["cells"]:
+        if cell.get("cell_type") != "code":
+            continue
+        src = "".join(cell["source"])
+        if any(l.lstrip().startswith(("!", "%")) for l in src.splitlines()):
+            continue  # shell magija nije Python
+        ast.parse(src)
