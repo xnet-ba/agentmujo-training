@@ -17,7 +17,7 @@ Ručno dizajniran kanonski skup za **function calling na bosanskom jeziku
 (ijekavica)**, dio [AgentMujo Training Frameworka](https://github.com/xnet-ba/agentmujo-training)
 (`configs/tools.yaml` je Single Source of Truth za alate).
 
-- **Verzija:** 0.1.0 · **Uzoraka:** 36 · **Jezik:** bs-ijekavica
+- **Verzija:** 0.1.0 · **Uzoraka:** 66 · **Jezik:** bs-ijekavica
 - **Format:** JSONL; svaki red: `id, version, language, task, difficulty,
   enable_thinking, messages[] (user/assistant/tool + tool_calls[]), metadata{}`
   (schema: `schemas/dataset.schema.json` u framework repou).
@@ -26,7 +26,7 @@ Ručno dizajniran kanonski skup za **function calling na bosanskom jeziku
 - **Posebno:** sadrži no-tool uzorke (opća pitanja bez poziva alata) i
   odbijanja opasnih zahtjeva (curl|bash, /etc/shadow, iptables -F).
 - **Kvalitet:** svi uzorci prolaze validator (GOLD/SILVER/BRONZE/REJECT);
-  v0.1 je 100% ACCEPT (36 GOLD). Cilj faze 1: 100–300 uzoraka.
+  trenutno 66/66 ACCEPT. Cilj faze 1: 100–300 uzoraka.
 - **Leakage kontrola:** train/valid/test split 80/10/10 je hash-deterministički
   i disjunktan; benchmark (`AgentMujo-Bench`) je potpuno odvojen skup.
 - **Metodologija:** ručno, human-reviewed. Bez ličnih podataka, bez tajni.
