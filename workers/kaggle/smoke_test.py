@@ -64,9 +64,13 @@ def main() -> int:
 
     def _load():
         nonlocal model
-        # 4-bit da smoke sigurno stane i na 15-16 GB (T4/P100); trening ide bf16/QLoRA po configu
+        # 4-bit da smoke sigurno stane i na 15-16 GB (T4/P100); trening ide bf16/QLoRA po configu.
+        # Napomena (transformers>=5): kvantizacija ide preko BitsAndBytesConfig,
+        # direktni kwarg load_in_4bit više ne postoji.
+        from transformers import BitsAndBytesConfig
         model = AutoModelForCausalLM.from_pretrained(
-            a.model, load_in_4bit=True, device_map="auto", trust_remote_code=True)
+            a.model, quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+            device_map="auto", trust_remote_code=True)
     ok["model-load-4bit"] = check("model-load-4bit", _load)
     if model is None:
         return _finish(ok)

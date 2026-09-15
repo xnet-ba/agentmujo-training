@@ -96,7 +96,9 @@ def _train_lora(cfg: dict, out: Path) -> dict:
         ds = ds.select(range(min(cfg["max_samples"], len(ds))))
     model_kwargs: dict = {"trust_remote_code": True}
     if cfg.get("load_in_4bit"):
-        model_kwargs["load_in_4bit"] = True
+        # transformers>=5: bez direktnog load_in_4bit kwarga (uklonjen)
+        from transformers import BitsAndBytesConfig
+        model_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True)
     else:
         model_kwargs.update({"torch_dtype": "bfloat16", "device_map": "auto"})
     model = AutoModelForCausalLM.from_pretrained(cfg["model_name"], **model_kwargs)
