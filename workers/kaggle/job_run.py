@@ -94,6 +94,15 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                       split=cfg.get("split", "train"))
     if cfg.get("max_samples"):
         ds = ds.select(range(min(cfg["max_samples"], len(ds))))
+    # Kanonski messages[] -> nativni Qwen chat tekst (tool_calls u <tool_call> XML).
+    # add_generation_prompt=False: uzorci su kompletne konverzacije sa finalnim odgovorom.
+    import sys as _sys
+    from pathlib import Path as _P
+    _sys.path.insert(0, str(_P(__file__).resolve().parents[2] / "src"))
+    from agentmujo_training.training import sample_to_chatml
+    ds = ds.map(lambda r: {"text": tok.apply_chat_template(
+        sample_to_chatml(r), tokenize=False, add_generation_prompt=False)},
+        remove_columns=[c for c in ds.column_names if c != "text"])
     model_kwargs: dict = {"trust_remote_code": True}
     if cfg.get("load_in_4bit"):
         # transformers>=5: bez direktnog load_in_4bit kwarga (uklonjen)
