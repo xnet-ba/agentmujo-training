@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "n": 12,
+    "non_empty_rate": 1.0,
+    "no_ekavian_rate": 0.833
+  },
+  "results": [
+    {
+      "id": "bp-01",
+      "category": "znanje",
+      "prompt": "Objasni ukratko šta je fotosinteza.",
+      "text": "Fotosinteza je biološki proces kojim biljke (u suradnji sa korijenjem i stabljikom) pretvaraju ugljikov dioksid i vodu u glukozu i kisik. Ovaj proces se odvija u ćelijama koje sadrže **klora** (slično kao u lišću), poznatim kao **kloroplasti** unutar **hlorofila** (plave boje).\n\nUkratko: biljke koriste sunčevu energiju da stvaraju hranu i otpuštaju kisik koji je potreban životinjama.",
+      "latency_s": 13.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 386
+      },
+      "error": null
+    },
+    {
+      "id": "bp-02",
+      "category": "generacija",
+      "prompt": "Napiši kratku čestitku za rođendan na bosanskom jeziku.",
+      "text": "Sretno ti rođendan! 💛 Želim ti puno sreće, zdravlja i ljubavi u svakom trenutku. Želim da ti se svidi svaki dan! 🎂🎉",
+      "latency_s": 4.1,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 115
+      },
+      "error": null
+    },
+    {
+      "id": "bp-03",
+      "category": "rječnik",
+      "prompt": "Koja je razlika između riječi 'vrijeme' i 'vrijednost'?",
+      "text": "U kontekstu našeg razgovora, riječi **vrijeme** i **vrijednost** imaju odvajani značaj, ali mogu se i pomiješati u svakodnevnom govoru.\n\nEvo ključnih razlika:\n\n1.  **Vrijeme (Time/Gear time): Određuje koliko je vremena potrebno**\n2.  **Vrijednost (Worth/Quality/Price): Određuje koliko vrijedi ili koliko je cjenovno značajno**\n\nNa primjer, ako kupite automobil:\n*  **Vrijeme** je to koliko vam traje put do radnje (npr. 1 sat).\n*  **Vrijednost** je cijena u kojoj se taj automobil može kupiti ili prodaju (npr. 10.000 EUR).\n\nU književnosti i filozofiji, *vrijednost* često označava nešto što je odlično, vrijedno pažnje ili moralno dobro, dok *vrijeme* označava apsolutni vremenski okvir.",
+      "latency_s": 16.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 689
+      },
+      "error": null
+    },
+    {
+      "id": "bp-04",
+      "category": "prevod",
+      "prompt": "Prevedi na bosanski jezik: 'The server needs more memory.'",
+      "text": "Serveru treba više memorije.",
+      "latency_s": 1.0,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 28
+      },
+      "error": null
+    },
+    {
+      "id": "bp-05",
+      "category": "registar",
+      "prompt": "Objasni djetetu šta je internet.",
+      "text": "Dobar dan! Rado ću ti objasniti internet.\n\nZamislite internet kao **ogroman, vrućeg mješovitog bazena** koji se sastoji od milijuna malih, ali moćnih loptica koje se neprestano kreću.\n\nEvo jednostavnog objašnjenja:\n\n* Šta točno je? Internet je **sve veze** koje povezuju sve ono što imate u svetu: telefone, računar, televizore, televizor i čak i staru staru elektroniku poput TV-a.\n* Kako radi? Kada imate neki telefon, računar ili TV, oni su povezani na jedan taj veliki bazen. Kada vi na svom telefonu kliknete na nešto, to šalje \"poruku\" koja putuje kroz ove veze do tvog računara, a onda ti se vrati.\n* Šta to koristiš? Upravo zato što su ove veze povezane, moguće je da se **svi** svi u svijetu povezuju s tobom. To znači da možemo:\n  * Da gledamo filmove na drugim telefonima ili računarem.\n  * Da slamo i primamo poruke (kao na Facebooku, Instagramu ili WhatsAppu).\n  * Da gledamo videoigre s prijateljima na drugih kompjuterima.\n  * Da kupujemo",
+      "latency_s": 20.4,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 953
+      },
+      "error": null
+    },
+    {
+      "id": "bp-06",
+      "category": "ijekavica-zamka",
+      "prompt": "Sastavi tri rečenice sa riječju 'mlijeko'.",
+      "text": "1. Mlijeko je prirodni proizvod koji se dobija iz stoke.\n2. Zdrava i svežom mlijekom treba piti svakodnevno.\n3. Mlijeko se često koristi u kuhanju i pripremi hrane.",
+      "latency_s": 3.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 164
+      },
+      "error": null
+    },
+    {
+      "id": "bp-07",
+      "category": "rječnik",
+      "prompt": "Šta znači riječ 'džep'?",
+      "text": "Riječ **džep** (ili u modernoj gramatici *džep*) znači **dno** ili **dno udubine** u nekoj vodi ili u nekom prostoru.\n\nKada se koristi u kontekstu riječi poput \"džep rijeke\", to označava donji dio tjelesne vode. Ako se misli na dno udubine u šumi, planini ili na nekom dnu, to je točno definicija.\n\n*Primjer:* \"Džep je vode od 2 metra.\" (Ovo označava dno vode).",
+      "latency_s": 8.4,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 361
+      },
+      "error": null
+    },
+    {
+      "id": "bp-08",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratku vijest o vremenskoj prognozi za Sarajevo.",
+      "text": "Danas u Sarajevu očekujemo sunčano i toplo vrijeme. Najviša temperatura očekuje se oko 30°C u toku dana, dok će noći biti toplije, oko 18°C. Izbjegavajte izravno sunce i preporučujemo nosite jaku odjeću.",
+      "latency_s": 4.6,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 203
+      },
+      "error": null
+    },
+    {
+      "id": "bp-09",
+      "category": "gramatika",
+      "prompt": "Objasni razliku između 'da li' i 'je li' u bosanskom jeziku.",
+      "text": "U bosanskom jeziku, riječi \"da li\" i \"je li\" imaju istu pravnu funkciju, ali se razlikuju u **gramatičnom položaju** i **sastojanju** u rečenici.\n\nEvo ključnih razlika:\n\n1.  **Gramatički položaj (Kada se koriste?)**\n*  **Da li** se koristi kao **samostalni zahtjev** (neizgovorno). Ona se umjesto da bude predložak za pitanje, sama radi ulogu pitanja.\n*  **Je li** se koristi kao **predložak zahteva** (izgovorno). Ona se mora biti uz neko drugo izraženje ili izraz (npr. \"Da li si...\", \"Ali li...\", \"Uživao li si...\").\n\n2.  **Kontekst i pravila**\n*  **Da li** se može koristiti u bilo kojoj situaciji gdje se traži odgovor (upitanje).\n*  **Je li** **NE MOŽE** koristiti samostalno kao pitanje. Ako ga stavite samostalno, rečenica postaje nepravilna ili zvuči pogrešno (npr. \"Da li imao si\" nije ispravno, to bi trebalo biti \"Da li si imao",
+      "latency_s": 18.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 839
+      },
+      "error": null
+    },
+    {
+      "id": "bp-10",
+      "category": "sažimanje",
+      "prompt": "Sažmi u dvije rečenice: 'Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds. Danas pokreće većinu servera, superračunara i Android telefona.'",
+      "text": "Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds, a danas pokriva većinu servera, superračunara i Android telefona.",
+      "latency_s": 3.5,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 150
+      },
+      "error": null
+    },
+    {
+      "id": "bp-11",
+      "category": "gramatika",
+      "prompt": "Koji padež je upotrijebljen u rečenici 'Vidim kuću'?",
+      "text": "Rečenica \"Vidim kuću\" koristi padež **diktal (diktalni padež) u obliku množine (diktalni padež množine - \"kuća\" je množina, ali u ovom kontekstu riječ je o samom objektu koji je vidljiv, pa se to može smatrati i jednim padežnim oblikom u nekim kontekstima, ali točno je da se radi o diktalu, ali ne i množinom u smislu \"nešto\" - \"kuća\" je jedinstveno).\n\nNe, nije množina, nego **diktalni padež** (diktalni padež množine).\n\nObjašnjenje:\n*Rečenica:* \"Vidim **kuću**.\"\n*Značenje:* Uvijek je vidljivost (kako da se vidi nešto).\n*Padež:* **Diktalni padež množine** (diktalni padež množine).\n\nTočan odgovor je: **Diktalni padež množine** (ili jednostavno **diktalni padež**).",
+      "latency_s": 16.0,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 669
+      },
+      "error": null
+    },
+    {
+      "id": "bp-12",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratko uputstvo za kuhanje kafe na bosanskom jeziku.",
+      "text": "Evo kratkog uputstva za kuhanje kafe na bosanskom jeziku:\n\n* **Priprema zrna i vruće vode** – Ubacite svezine kafe u zdjelu za kavu, dodajte vodu koja je zagrijana i dobro pomiješajte.\n* **Spremanje** – Stavite zdjelu na vruću vodu na pećnicu ili na toplo mjesto oko sat vremena.\n* **Kuvanje** – Kada voda počne da se hladi, umetnite zrna u zdjelu. Dodajte slatko (čak i malo šećera ili meda) i poklopite.\n* **Čuvanje** – Ostavite kafu da se kuva dok ne postane tamnija i mekša.\n\nKada želite, izvadite zdjelu i prelijte kafu u čašu. Uživajte u svom ukusu! ☕",
+      "latency_s": 13.1,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme",
+          "ume",
+          "kuva"
+        ],
+        "length_chars": 557
+      },
+      "error": null
+    }
+  ]
+}

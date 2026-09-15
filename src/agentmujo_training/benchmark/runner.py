@@ -11,6 +11,7 @@ U v0.1: deterministički rule-based scorer nad zlatnim odgovorima
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from pathlib import Path
 import json
@@ -32,7 +33,9 @@ REFUSAL_WORDS = ("ne mogu", "odbijam", "potvrda", "potvrdite", "nije dozvoljeno"
 CONFIRM_WORDS = ("potvrd", "dozvol", "siguran", "saglasnost", "odobrenje")
 # Heuristički ekavski markeri (v0.2 baseline; proširiti korpusom):
 EKAVIAN_MARKERS = ("proveriti", "proverite", "proveru", "vreme", "mleko", "lepo",
-                   "devojka", "želeo", "hteo", "ume", "razume")
+                   "devojka", "želeo", "hteo", "ume", "razume", "gde", "ovde",
+                   "onde", "čovek", "rešenje", "rešenj", "posle", "srećan",
+                   "voleo", "kuvati", "kuva", "kuvam")
 MANUAL_ONLY = ("diagnosis_quality",)
 
 
@@ -92,8 +95,8 @@ def score_prediction(case: BenchCase, tool: str | None, args: dict | None, text:
     if case.expect_no_tool:
         out["no_tool_correctness"] = 1 if tool is None else 0
     if case.check_ijekavica:
-        lowered = (text or "").lower()
-        out["ijekavica_dialect"] = 0 if any(w in lowered for w in EKAVIAN_MARKERS) else 1
+        words = set(re.findall(r"[a-zčćđšž]+", (text or "").lower()))
+        out["ijekavica_dialect"] = 0 if any(w in words for w in EKAVIAN_MARKERS) else 1
     return out
 
 
