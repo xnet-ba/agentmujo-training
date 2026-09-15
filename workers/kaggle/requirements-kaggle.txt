@@ -10,3 +10,4 @@ huggingface-hub>=0.25
 safetensors>=0.4
 pyyaml>=6.0
 bitsandbytes>=0.43  # QLoRA fallback na T4; ako build zakaže, preći na bf16-LoRA
+torchao>=0.16  # transformers>=5 zahtijeva torchao>0.16 (verificirano na Kaggle T4)
