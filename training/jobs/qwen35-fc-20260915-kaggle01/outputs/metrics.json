@@ -1,0 +1,13 @@
+{
+  "mode": "smoke",
+  "smoke": "PASS",
+  "loss": 3.4286699295043945,
+  "trainable_params": 737280,
+  "trainable_pct": 0.0512,
+  "env": {
+    "python": "3.12",
+    "transformers": "5.17.0",
+    "cuda": "12.8",
+    "gpu": "Tesla T4"
+  }
+}
