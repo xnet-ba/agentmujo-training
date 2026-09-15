@@ -28,8 +28,12 @@ datasets/canonical/*
 !datasets/canonical/*.jsonl
 !datasets/canonical/.gitkeep
 
-# Experiment outputs
-outputs/
+# Experiment outputs (veliki fajlovi NIKADA u git; manifesti DA)
+# Napomena: direktorij se ne smije excludati cijeli jer negacije ne rade unutar excludanih dir-ova.
+**/outputs/*
+!**/outputs/*.json
+!**/outputs/*.txt
+!**/outputs/*.md
 runs/
 wandb/
 logs/*.log

@@ -1,0 +1,8 @@
+{
+  "job_id": "qwen35-fc-20260915-kaggle01",
+  "status": "blocked",
+  "started_at": "2026-09-15T09:49:00Z",
+  "finished_at": "2026-09-15T10:20:00Z",
+  "gpu": null,
+  "error": "Kaggle kernel v1+v2 ERROR: sesija bez GPU i bez interneta (enable_gpu/enable_internet iz metadata nisu primijenjeni). Vjerovatni uzrok: telefonska verifikacija naloga ili API ignorira akcelerator. Sljedece: rucno ukljuciti GPU+Internet u Kaggle UI."
+}
