@@ -88,6 +88,7 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import LoraConfig
     from trl import SFTTrainer, SFTConfig
+    import inspect as _inspect
 
     tok = AutoTokenizer.from_pretrained(cfg["model_name"], trust_remote_code=True)
     ds = load_dataset(cfg["dataset"], revision=cfg.get("dataset_revision"),
@@ -116,25 +117,36 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                           target_modules=cfg.get("target_modules",
                                                  ["q_proj", "k_proj", "v_proj", "o_proj"]),
                           task_type="CAUSAL_LM")
-    args = SFTConfig(
-        output_dir=str(out / "checkpoints"), seed=cfg.get("seed", 42),
-        per_device_train_batch_size=cfg.get("per_device_train_batch_size", 1),
-        gradient_accumulation_steps=cfg.get("gradient_accumulation_steps", 16),
-        learning_rate=cfg.get("learning_rate", 2e-4),
-        num_train_epochs=cfg.get("num_train_epochs", 1),
-        warmup_ratio=cfg.get("warmup_ratio", 0.05),
-        weight_decay=cfg.get("weight_decay", 0.0),
-        logging_steps=cfg.get("logging_steps", 10),
-        save_steps=cfg.get("save_steps", 100),
-        save_total_limit=cfg.get("save_total_limit", 2),
-        gradient_checkpointing=cfg.get("gradient_checkpointing", True),
-        bf16=not cfg.get("load_in_4bit", False),
-        max_seq_length=cfg.get("max_seq_length", 4096),
-        dataset_text_field="text",
-        resume_from_checkpoint=cfg.get("resume_from_checkpoint"),
-    )
-    trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
-                         peft_config=peft_cfg, processing_class=tok)
+    # TRL API varira po verzijama — proslijedi samo podržane SFTConfig ključeve
+    # (npr. warmup_ratio ne postoji u svim verzijama) umjesto da run padne.
+    wanted = {
+        "output_dir": str(out / "checkpoints"), "seed": cfg.get("seed", 42),
+        "per_device_train_batch_size": cfg.get("per_device_train_batch_size", 1),
+        "gradient_accumulation_steps": cfg.get("gradient_accumulation_steps", 16),
+        "learning_rate": cfg.get("learning_rate", 2e-4),
+        "num_train_epochs": cfg.get("num_train_epochs", 1),
+        "warmup_ratio": cfg.get("warmup_ratio", 0.05),
+        "weight_decay": cfg.get("weight_decay", 0.0),
+        "logging_steps": cfg.get("logging_steps", 10),
+        "save_steps": cfg.get("save_steps", 100),
+        "save_total_limit": cfg.get("save_total_limit", 2),
+        "gradient_checkpointing": cfg.get("gradient_checkpointing", True),
+        "bf16": not cfg.get("load_in_4bit", False),
+        "max_seq_length": cfg.get("max_seq_length", 4096),
+        "dataset_text_field": "text",
+        "resume_from_checkpoint": cfg.get("resume_from_checkpoint"),
+    }
+    supported = set(_inspect.signature(SFTConfig.__init__).parameters)
+    dropped = sorted(k for k in wanted if k not in supported)
+    if dropped:
+        print(f"WARN: TRL {SFTConfig} ne podržava {dropped} — izbačeno (kvota se ne troši na pad)")
+    args = SFTConfig(**{k: v for k, v in wanted.items() if k in supported})
+    try:
+        trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
+                             peft_config=peft_cfg, processing_class=tok)
+    except TypeError:  # starije TRL verzije: tokenizer= umjesto processing_class=
+        trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
+                             peft_config=peft_cfg, tokenizer=tok)
     trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
     trainer.save_model(str(out / "adapter"))
     tr = {"train_loss": float(trainer.state.log_history[-1].get("loss", 0.0))}
