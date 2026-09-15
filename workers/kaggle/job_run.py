@@ -75,6 +75,8 @@ def main() -> int:
         print(f"JOB {meta['job_id']} DONE")
         return 0
     except Exception as e:
+        import traceback as _tb
+        (out / "error_traceback.txt").write_text(_tb.format_exc()[-20000:])
         status.update({"status": "failed", "finished_at": _utcnow(),
                        "error": f"{type(e).__name__}: {e}"})
         _write(out / "status.json", status)

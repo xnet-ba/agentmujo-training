@@ -1,0 +1,9 @@
+{
+  "job_id": "qwen35-fc-20260915-kaggle02",
+  "status": "failed",
+  "started_at": "2026-09-15T12:13:16+00:00",
+  "gpu": "Tesla T4",
+  "error": "AttributeError: 'functools.partial' object has no attribute '__func__'",
+  "cuda": "12.8",
+  "finished_at": "2026-09-15T12:14:01+00:00"
+}
