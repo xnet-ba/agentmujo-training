@@ -38,8 +38,10 @@ logs/*.log
 .env
 *.env
 *token*.json
+kaggle.json
+*.key
 *secret*
- credentials.json
+credentials.json
 
 # OS / editor
 .DS_Store

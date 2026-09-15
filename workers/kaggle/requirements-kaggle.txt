@@ -1,0 +1,12 @@
+# Kaggle worker dependencies — SAMO ono što Kaggle env nema ili treba pin.
+# torch/CUDA se NE instaliraju (koristi se preinstallirani torch ~2.6 / CUDA 12.5).
+# Python na Kaggleu: 3.11.
+transformers>=4.57
+datasets>=3.0
+peft>=0.12
+trl>=0.12
+accelerate>=0.33
+huggingface-hub>=0.25
+safetensors>=0.4
+pyyaml>=6.0
+bitsandbytes>=0.43  # QLoRA fallback na T4; ako build zakaže, preći na bf16-LoRA

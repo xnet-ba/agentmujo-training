@@ -1,0 +1,28 @@
+# PRODUCTION config — faza 2 (agentic/terminal, nastavak na fazu 1).
+# NE pokretati dok smoke + dev + bench gate ne budu zeleni (docs/TEST_PLAN.md).
+mode: sft
+model_name: null  # POPUNITI artefaktom faze 1 (najbolji adapter/checkpoint)
+model_revision: null
+dataset: shaban2024/agentmujo-agentic-terminal
+dataset_revision: null  # OBAVEZNO pinovati SHA prije runa
+split: train
+max_samples: null
+output_dir: outputs/agentic-prod
+max_seq_length: 8192   # multi-step tragovi su duži (dijagnoza->verifikacija)
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 1.0e-4  # niži LR za nastavak treninga (manji forgetting)
+num_train_epochs: 3
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 10
+save_steps: 50
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+seed: 42
+resume_from_checkpoint: null

@@ -1,0 +1,13 @@
+{
+  "id": "USERNAME/qwen35-2b-smoke",
+  "title": "AgentMujo Qwen3.5-2B smoke (ephemeral worker)",
+  "code_file": "qwen35_2b_training.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": []
+}
