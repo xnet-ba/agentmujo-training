@@ -1,0 +1,29 @@
+# AgentMujo Training Framework — projektna konfiguracija (v0.1)
+project: agentmujo-training
+version: 0.1.0
+language_primary: bs-ijekavica
+github_repo: xnet-ba/agentmujo-training   # predloženo; kreirati ako ne postoji
+hf_org_or_user: shaban2024  # aktivan HF nalog (login 2026-09-15)
+hf_datasets:
+  - shaban2024/agentmujo-function-calling@d6eaa42356e718e10bcf803d9301347c59144d76  # v0.1.0
+  - shaban2024/agentmujo-agentic-terminal@1ea2a43a7426aa4421700803db22e814b7aba25a  # v0.1.0
+hf_models_reserved:  # postojeći prazni repoi od 2026-09-14, REUSE kao deployment mete
+  - shaban2024/Qwen3.5-2B-BOS-Non-Thinking
+  - shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking
+
+# Source of truth:
+#   GitHub -> kod, scheme, config, skripte, evaluacija, dokumentacija, testovi
+#   Hugging Face Hub -> dataseti, modeli, adapteri, benchmark artefakti
+model_lineage:
+  - alphaedge-ai/Qwen3.5-2B-bos-32768   # baza (frozen, ne trenirati bosanski od nule)
+  - function-calling-sft                # faza 1
+  - agentic-terminal-sft                # faza 2
+  - eval/benchmark -> najbolji checkpoint -> merge -> Q8 -> release
+
+deployment_profiles:
+  # Thinking i non-thinking DIJELE iste težine; razlikuju se samo po
+  # `enable_thinking` zastavici chat templatea i sampling parametrima.
+  - { name: thinking,     enable_thinking: true,  note: "planiranje/reasoning/tool-use/verifikacija" }
+  - { name: non-thinking, enable_thinking: false, note: "brzi direktni tool call" }
+  - { name: q8-thinking,     quant: Q8_0, enable_thinking: true }
+  - { name: q8-non-thinking, quant: Q8_0, enable_thinking: false }

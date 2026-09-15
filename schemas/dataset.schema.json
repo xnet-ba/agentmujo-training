@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentmujo.ai/schemas/dataset.schema.json",
+  "title": "AgentMujo canonical dataset sample",
+  "type": "object",
+  "required": ["id", "version", "language", "task", "difficulty", "messages", "metadata"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^amj-[a-z0-9-]+-[0-9]{4,}$" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "language": { "type": "string", "enum": ["bs", "bs-ijekavica", "en"] },
+    "task": {
+      "type": "string",
+      "enum": ["function-calling", "tool-selection", "argument-generation", "agentic-terminal", "verification", "safety", "bosnian-core"]
+    },
+    "difficulty": { "type": "string", "enum": ["easy", "medium", "hard"] },
+    "enable_thinking": { "type": "boolean" },
+    "messages": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["role", "content"],
+        "properties": {
+          "role": { "type": "string", "enum": ["system", "user", "assistant", "tool"] },
+          "content": { "type": "string", "minLength": 1 },
+          "tool_calls": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "arguments"],
+              "properties": {
+                "name": { "type": "string" },
+                "arguments": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["source", "quality_tier", "verification_status"],
+      "properties": {
+        "source": { "type": "string" },
+        "quality_tier": { "type": "string", "enum": ["GOLD", "SILVER", "BRONZE"] },
+        "verification_status": { "type": "string", "enum": ["verified", "unverified", "human-reviewed"] },
+        "author": { "type": "string" }
+      }
+    }
+  }
+}

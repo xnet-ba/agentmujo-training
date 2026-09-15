@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: AgentMujo Training Framework
+version: 0.1.0
+date-released: 2026-09-15
+license: Apache-2.0
+repository-code: https://github.com/xnet-ba/agentmujo-training
+keywords:
+  - large-language-models
+  - fine-tuning
+  - bosnian-language
+  - function-calling
+  - ai-agents
+authors:
+  - name: AgentMujo Team

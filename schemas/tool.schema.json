@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentmujo.ai/schemas/tool.schema.json",
+  "title": "AgentMujo canonical tool definition",
+  "type": "object",
+  "required": ["name", "description", "policy", "parameters"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,40}$" },
+    "description": { "type": "string", "minLength": 10 },
+    "policy": { "type": "string", "enum": ["allow", "confirmation_required", "deny"] },
+    "parameters": {
+      "type": "object",
+      "required": ["type", "properties"],
+      "properties": {
+        "type": { "const": "object" },
+        "properties": { "type": "object" },
+        "required": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

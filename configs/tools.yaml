@@ -1,0 +1,104 @@
+# CANONICAL TOOL REGISTRY — Single Source of Truth za
+# trening, generisanje dataseta, runtime, evaluaciju i benchmark.
+# Svi opisi su JSON Schema kompatibilni.
+version: 0.1.0
+policy_classes: [allow, confirmation_required, deny]
+preference_rule: >-
+  Model MORA preferirati high-level tool kada postoji (npr. service_restart
+  umjesto terminal("systemctl restart ...")). Terminal je low-level/fallback.
+
+tools:
+  - name: service_status
+    description: Vrati status systemd servisa.
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        service: { type: string, description: "Ime servisa, npr. nginx" }
+      required: [service]
+
+  - name: service_restart
+    description: Restartuj systemd servis. Mutacija — traži potvrdu.
+    policy: confirmation_required
+    parameters:
+      type: object
+      properties:
+        service: { type: string }
+      required: [service]
+
+  - name: service_logs
+    description: Vrati zadnje log linije servisa (journalctl).
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        service: { type: string }
+        lines: { type: integer, default: 50, minimum: 1, maximum: 500 }
+      required: [service]
+
+  - name: disk_usage
+    description: Vrati iskorištenost diska (df).
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        path: { type: string, default: "/" }
+      required: []
+
+  - name: memory_usage
+    description: Vrati iskorištenost memorije.
+    policy: allow
+    parameters:
+      type: object
+      properties: {}
+      required: []
+
+  - name: cpu_usage
+    description: Vrati opterećenje CPU-a.
+    policy: allow
+    parameters:
+      type: object
+      properties: {}
+      required: []
+
+  - name: process_list
+    description: Lista pokrenutih procesa (ogranicena, sortirana).
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        limit: { type: integer, default: 20, minimum: 1, maximum: 100 }
+        sort_by: { type: string, default: "cpu", enum: [cpu, memory, pid, name] }
+      required: []
+
+  - name: network_status
+    description: Osnovni status mreže i interfejsa.
+    policy: allow
+    parameters:
+      type: object
+      properties: {}
+      required: []
+
+  - name: port_check
+    description: Provjeri koji proces sluša na datom portu.
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        port: { type: integer, minimum: 1, maximum: 65535 }
+      required: [port]
+
+  - name: terminal
+    description: >-
+      Low-level fallback: izvrši shell komandu SAMO kroz Policy Engine.
+      Preferirati high-level tool uvijek kada postoji.
+    policy: confirmation_required
+    parameters:
+      type: object
+      properties:
+        command: { type: string, description: "Shell komanda" }
+        timeout_s: { type: integer, default: 30, minimum: 1, maximum: 300 }
+      required: [command]
+
+# Rezervisano za kasnije faze (samo deklaracija imena, bez schema dok ne budu specifikovani):
+future_tools: [package_manager, backup, docker, tailscale, users, cron, filesystem, security]

@@ -1,0 +1,17 @@
+# Faza 2: Agentic/Terminal SFT (LoRA, nastavak na fazu 1) — SKELETON.
+experiment_id: amj-agentic-sft-v0.1
+base_model: <artefakt faze 1: najbolji checkpoint/adapters>
+base_revision: null
+method: lora
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lr: 1.0e-4
+epochs: 3
+batch_size: 1
+grad_accum: 16
+max_seq_len: 16384   # multi-step tragovi su duži
+seed: 42
+dataset: agentmujo-agentic-terminal@0.1.0
+notes: Multi-step (dijagnoza -> akcija -> opservacija -> verifikacija). Terminal samo kao fallback.

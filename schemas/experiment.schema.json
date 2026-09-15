@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentmujo.ai/schemas/experiment.schema.json",
+  "title": "AgentMujo experiment manifest (reproducibility)",
+  "type": "object",
+  "required": ["experiment_id", "base_model", "base_revision", "dataset", "training_config", "git_commit", "seed", "hardware"],
+  "properties": {
+    "experiment_id": { "type": "string" },
+    "base_model": { "type": "string" },
+    "base_revision": { "type": "string" },
+    "dataset": { "type": "object" },
+    "training_config": { "type": "object" },
+    "git_commit": { "type": "string" },
+    "seed": { "type": "integer" },
+    "hardware": { "type": "object" },
+    "metrics_train": { "type": "object" },
+    "metrics_eval": { "type": "object" },
+    "artifacts": { "type": "array", "items": { "type": "string" } },
+    "checksums": { "type": "object" }
+  }
+}

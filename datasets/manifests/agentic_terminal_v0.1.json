@@ -1,0 +1,1 @@
+{"counts":{"by_task":{"agentic-terminal":15},"total":15},"dataset":"agentmujo-agentic-terminal","file":"datasets/canonical/agentic_terminal_v0.1.jsonl","language":"bs-ijekavica","note":"Serija 2: +10 tragova (redis recovery sa verifikacijom, docker/disk lanac, odbijanja). Cilj faze 1 ostaje 100-300 po skupu.","version":"0.1.0"}

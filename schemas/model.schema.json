@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentmujo.ai/schemas/model.schema.json",
+  "title": "AgentMujo model manifest (HF publish gate)",
+  "type": "object",
+  "required": ["model_id", "base_model", "base_revision", "license", "training", "datasets", "benchmark", "quantization"],
+  "properties": {
+    "model_id": { "type": "string" },
+    "base_model": { "type": "string" },
+    "base_revision": { "type": "string" },
+    "license": { "type": "string" },
+    "training": { "type": "object" },
+    "datasets": { "type": "array", "items": { "type": "string" } },
+    "benchmark": { "type": "object" },
+    "quantization": { "type": "object" },
+    "limitations": { "type": "string" }
+  }
+}

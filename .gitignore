@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# HF / ML artifacts (nikada u git!)
+*.safetensors
+*.bin
+*.pt
+*.gguf
+/tokenizer*.json
+/model-*.json
+/hf-cache/
+*.ckpt/
+
+# Datasets (veliki fajlovi idu na HF Hub, ne u git)
+datasets/raw/*
+!datasets/raw/.gitkeep
+datasets/cleaned/*
+!datasets/cleaned/.gitkeep
+datasets/canonical/*
+!datasets/canonical/*.jsonl
+!datasets/canonical/.gitkeep
+
+# Experiment outputs
+outputs/
+runs/
+wandb/
+logs/*.log
+
+# Secrets — NIKADA commit!
+.env
+*.env
+*token*.json
+*secret*
+ credentials.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
