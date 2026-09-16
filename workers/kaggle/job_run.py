@@ -130,6 +130,12 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                           target_modules=cfg.get("target_modules",
                                                  ["q_proj", "k_proj", "v_proj", "o_proj"]),
                           task_type="CAUSAL_LM")
+    if cfg.get("base_adapter"):
+        # Faza 2+: nastavak treninga na postojecem adapteru (npr. /kaggle/input/.../outputs/adapter)
+        from peft import PeftModel
+        model = PeftModel.from_pretrained(model, cfg["base_adapter"], is_trainable=True)
+        peft_cfg = None
+        print(f"INFO: nastavljam sa adaptera {cfg['base_adapter']}")
     # TRL API varira po verzijama — proslijedi samo podržane SFTConfig ključeve
     # (npr. warmup_ratio ne postoji u svim verzijama) umjesto da run padne.
     wanted = {

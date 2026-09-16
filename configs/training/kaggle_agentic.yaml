@@ -1,0 +1,33 @@
+# AGENTIC config — faza 2: nastavak LoRA treninga na dev3 adapteru.
+# NE pokretati dok faza 1 eval ne bude stabilan (jeste: 0.83-1.0 osim no-tool).
+experiment_id: qwen35-agentic-01
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+# Adapter prethodne faze — na Kaggleu apsolutna /kaggle/input putanja
+# (kernel_sources u metadati), lokalno bilo koji path do adapter dir-a.
+base_adapter: /kaggle/input/qwen35-fc-dev3/agentmujo-training/training/jobs/qwen35-fc-20260916-kaggle04/outputs/adapter
+dataset: shaban2024/agentmujo-agentic-terminal
+dataset_revision: 72e42d32fa5260efdb4c2a39963389729763db8e  # pin iz configs/datasets.yaml
+split: train
+max_samples: null      # cijeli train split (88)
+output_dir: outputs/agentic-01
+max_seq_length: 8192   # multi-step tragovi su duži
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16  # efektivni batch 16
+learning_rate: 1.0e-4  # niži LR za nastavak (manji forgetting faze 1)
+num_train_epochs: 3    # 88/16*3 ≈ 17 koraka
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 10
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16             # mora odgovarati adapteru faze 1 (samo dokumentacija)
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 42
+resume_from_checkpoint: null

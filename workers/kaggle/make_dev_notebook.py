@@ -21,6 +21,8 @@ def main() -> int:
     ap.add_argument("job_id")
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--kernel-id", default="admiragic/qwen35-fc-dev")
+    ap.add_argument("--input-kernels", default="",
+                    help="zarezom odvojeni kernel inputi, npr. admiragic/qwen35-fc-dev3")
     a = ap.parse_args()
 
     jdir = REPO / "training" / "jobs" / a.job_id
@@ -85,12 +87,14 @@ def main() -> int:
     out = Path(a.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "qwen35_dev.ipynb").write_text(json.dumps(nb, indent=1, ensure_ascii=False))
+    inputs = [k.strip() for k in a.input_kernels.split(",") if k.strip()]
     (out / "kernel-metadata.json").write_text(json.dumps({
         "id": a.kernel_id, "title": a.kernel_id.split("/")[-1],
         "code_file": "qwen35_dev.ipynb", "language": "python",
         "kernel_type": "notebook", "is_private": True,
         "enable_gpu": True, "enable_internet": True,
-        "dataset_sources": [], "competition_sources": [], "kernel_sources": [],
+        "dataset_sources": [], "competition_sources": [],
+        "kernel_sources": inputs,
     }, indent=2))
     # sintaksna provjera code ćelija
     import ast
