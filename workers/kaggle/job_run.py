@@ -163,7 +163,9 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                              peft_config=peft_cfg, tokenizer=tok)
     trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
     trainer.save_model(str(out / "adapter"))
-    tr = {"train_loss": float(trainer.state.log_history[-1].get("loss", 0.0))}
+    losses = [e.get("loss") for e in trainer.state.log_history if e.get("loss") is not None]
+    tr = {"train_loss": float(losses[-1]) if losses else 0.0,
+          "train_loss_mean": float(sum(losses) / len(losses)) if losses else 0.0}
     metrics = {"mode": "sft", **tr,
                "eval": {"note": "AgentMujo-Bench (8 kategorija A-H) pokrenuti "
                                 "nakon treninga; rule-based dio ovdje, manual/LLM-sudija na Oracleu"}}
