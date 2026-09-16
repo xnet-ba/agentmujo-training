@@ -5,7 +5,7 @@ language_primary: bs-ijekavica
 github_repo: xnet-ba/agentmujo-training   # predloženo; kreirati ako ne postoji
 hf_org_or_user: shaban2024  # aktivan HF nalog (login 2026-09-15)
 hf_datasets:
-  - shaban2024/agentmujo-function-calling@b1c2426869c0247b80eeb88c3e48c9898cb50e2c  # v0.1.0
+  - shaban2024/agentmujo-function-calling@af98997edc265e0392cae65ae4b4c616973d5328  # v0.1.0
   - shaban2024/agentmujo-agentic-terminal@72e42d32fa5260efdb4c2a39963389729763db8e  # v0.1.0
 hf_models_reserved:  # postojeći prazni repoi od 2026-09-14, REUSE kao deployment mete
   - shaban2024/Qwen3.5-2B-BOS-Non-Thinking

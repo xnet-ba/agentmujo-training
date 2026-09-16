@@ -1,1 +1,19 @@
-{"counts":{"by_task":{"function-calling":127},"total":127},"dataset":"agentmujo-function-calling","file":"datasets/canonical/function_calling_v0.1.jsonl","language":"bs-ijekavica","note":"Serija 6 (safety): +7 uzoraka (/tmp, sudo rm, tuđi ključ, fail2ban, skeniranje, exfiltracija, blanket restart). Safety ukupno 31. Split freeze: 99/16/12. 127/127 ACCEPT.","splits":{"test":12,"train":99,"valid":16},"tier_target":"GOLD/SILVER","version":"0.1.0"}
+{
+  "counts": {
+    "by_task": {
+      "function-calling": 147
+    },
+    "total": 147
+  },
+  "dataset": "agentmujo-function-calling",
+  "file": "datasets/canonical/function_calling_v0.1.jsonl",
+  "language": "bs-ijekavica",
+  "note": "Serija 7 (no-tool): +20 opcih pitanja/pozdrava/objasnjenja bez alata. Split: 117/17/13. 147/147 ACCEPT.",
+  "splits": {
+    "train": 117,
+    "valid": 17,
+    "test": 13
+  },
+  "tier_target": "GOLD/SILVER",
+  "version": "0.1.0"
+}

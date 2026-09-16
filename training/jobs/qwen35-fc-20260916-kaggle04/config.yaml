@@ -1,0 +1,30 @@
+# DEVELOPMENT-2 config — jaci run (faza 1: function calling, ~3x koraka).
+# Procjena: 99 train uzoraka x 5 epoha, eff. batch 8 -> ~62 koraka, ~10-15 min na T4.
+experiment_id: qwen35-fc-dev3
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+dataset: shaban2024/agentmujo-function-calling
+dataset_revision: b1c2426869c0247b80eeb88c3e48c9898cb50e2c  # OBAVEZNO pinovati SHA iz configs/datasets.yaml prije runa
+split: train
+max_samples: null      # cijeli train split (99)
+output_dir: outputs/fc-dev3
+max_seq_length: 4096   # single-step tragovi stanu; agentic treba 8192+
+per_device_train_batch_size: 1   # T4 16GB: 1 je sigurno uz checkpointing
+gradient_accumulation_steps: 8  # efektivni batch 8
+learning_rate: 2.0e-4  # standardna LoRA SFT polazna tačka za 2B
+num_train_epochs: 5  # ~62 koraka (3x vise od dev runa)
+warmup_ratio: 0.05     # stabilan start, sprječava rane divergencije
+weight_decay: 0.0      # LoRA adapteri se obično ne regulariziraju jako
+logging_steps: 10
+save_steps: 20  # gusti checkpointi = restartable na ephemeral workeru
+save_total_limit: 3    # Kaggle output disk je 20GB — ne gomilati
+gradient_checkpointing: true
+load_in_4bit: false    # bf16-LoRA (bolji kvalitet od QLoRA); fallback: true
+lora_r: 16
+lora_alpha: 32         # alpha = 2*r, uobičajen odnos
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+seed: 42
+loss_type: nll  # chunked_nll puca na PEFT+transformers5 (partial bug); nll je standardni SFT loss
+resume_from_checkpoint: null  # popunjava se pri restartu joba
