@@ -62,7 +62,7 @@ def main() -> int:
         "            pad_token_id=tok.eos_token_id)",
         "        text = tok.decode(out[0][inp.input_ids.shape[1]:], skip_special_tokens=True)",
         "        m = FUNC_RE.search(text or '')",
-        "        tool, args = (m.group(1), None) if not m else (m.group(1), {})",
+        "        tool, args = (None, None) if not m else (m.group(1), {})",
         "        if m:",
         "            args = {}",
         "            for k, v in PARAM_RE.findall(text):",
