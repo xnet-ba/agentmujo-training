@@ -95,6 +95,23 @@ def _lib_versions() -> dict:
     return out
 
 
+def _resolve_adapter(path: str) -> str:
+    """Vrati dir sa adapter_config.json; ako zadana putanja ne postoji,
+    pretrazi /kaggle/input/**/outputs/adapter (kernel output mount varira)."""
+    import glob as _glob
+    from pathlib import Path as _P
+    if (_P(path) / "adapter_config.json").exists():
+        return path
+    cands = sorted(_glob.glob("/kaggle/input/**/outputs/adapter", recursive=True))
+    cands = [c for c in cands if (_P(c) / "adapter_config.json").exists()]
+    if not cands:
+        raise ValueError(f"adapter nije pronadjen: {path} (ni glob /kaggle/input/**/outputs/adapter)")
+    if len(cands) > 1:
+        print(f"WARN: vise adaptera {cands} — uzimam prvi")
+    print(f"INFO: adapter resolve {path} -> {cands[0]}")
+    return cands[0]
+
+
 def _train_lora(cfg: dict, out: Path) -> dict:
     """Minimalni LoRA SFT (TRL) sa resume podrškom; vraća metrike."""
     from datasets import load_dataset
@@ -131,11 +148,14 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                                                  ["q_proj", "k_proj", "v_proj", "o_proj"]),
                           task_type="CAUSAL_LM")
     if cfg.get("base_adapter"):
-        # Faza 2+: nastavak treninga na postojecem adapteru (npr. /kaggle/input/.../outputs/adapter)
+        # Faza 2+: nastavak treninga na postojecem adapteru.
+        # Putanja varira (/kaggle/input/notebooks/... vs /kaggle/input/...),
+        # pa se nedostajuca putanja trazi globom po /kaggle/input.
         from peft import PeftModel
-        model = PeftModel.from_pretrained(model, cfg["base_adapter"], is_trainable=True)
+        adapter_path = _resolve_adapter(cfg["base_adapter"])
+        model = PeftModel.from_pretrained(model, adapter_path, is_trainable=True)
         peft_cfg = None
-        print(f"INFO: nastavljam sa adaptera {cfg['base_adapter']}")
+        print(f"INFO: nastavljam sa adaptera {adapter_path}")
     # TRL API varira po verzijama — proslijedi samo podržane SFTConfig ključeve
     # (npr. warmup_ratio ne postoji u svim verzijama) umjesto da run padne.
     wanted = {

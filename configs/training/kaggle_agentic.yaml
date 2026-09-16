@@ -4,9 +4,10 @@ experiment_id: qwen35-agentic-01
 mode: sft
 model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
 model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
-# Adapter prethodne faze — na Kaggleu apsolutna /kaggle/input putanja
-# (kernel_sources u metadati), lokalno bilo koji path do adapter dir-a.
-base_adapter: /kaggle/input/qwen35-fc-dev3/agentmujo-training/training/jobs/qwen35-fc-20260916-kaggle04/outputs/adapter
+# Adapter prethodne faze — apsolutna /kaggle/input putanja (kernel_sources
+# u metadati; tacan mount je /kaggle/input/notebooks/<user>/<slug>/...).
+# job_run dodatno globa /kaggle/input/**/outputs/adapter ako path ne postoji.
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-fc-dev3/agentmujo-training/training/jobs/qwen35-fc-20260916-kaggle04/outputs/adapter
 dataset: shaban2024/agentmujo-agentic-terminal
 dataset_revision: 72e42d32fa5260efdb4c2a39963389729763db8e  # pin iz configs/datasets.yaml
 split: train
