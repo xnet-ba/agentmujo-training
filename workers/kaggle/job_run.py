@@ -67,7 +67,8 @@ def main() -> int:
                     "finished_at": _utcnow(), "status": "done",
                     "env": {"python": platform.python_version(),
                             "torch": torch.__version__,
-                            "cuda": torch.version.cuda, "gpu": status["gpu"]}}
+                            "cuda": torch.version.cuda, "gpu": status["gpu"],
+                            **_lib_versions()}}
         _write(out / "manifest.json", manifest)
         _write(out / "metrics.json", metrics)
         status.update({"status": "done", "finished_at": manifest["finished_at"], "error": None})
@@ -82,6 +83,16 @@ def main() -> int:
         _write(out / "status.json", status)
         print(f"JOB {meta.get('job_id', '?')} FAILED: {e}")
         return 1
+
+
+def _lib_versions() -> dict:
+    out = {}
+    for lib in ("transformers", "peft", "trl", "accelerate", "datasets"):
+        try:
+            out[lib] = __import__(lib).__version__
+        except Exception:
+            out[lib] = None
+    return out
 
 
 def _train_lora(cfg: dict, out: Path) -> dict:
@@ -134,6 +145,7 @@ def _train_lora(cfg: dict, out: Path) -> dict:
         "save_total_limit": cfg.get("save_total_limit", 2),
         "gradient_checkpointing": cfg.get("gradient_checkpointing", True),
         "bf16": not cfg.get("load_in_4bit", False),
+        "loss_type": cfg.get("loss_type", "nll"),
         "max_seq_length": cfg.get("max_seq_length", 4096),
         "dataset_text_field": "text",
         "resume_from_checkpoint": cfg.get("resume_from_checkpoint"),

@@ -25,4 +25,5 @@ lora_alpha: 32         # alpha = 2*r, uobičajen odnos
 lora_dropout: 0.05
 target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
 seed: 42
+loss_type: nll  # chunked_nll puca na PEFT+transformers5 (partial bug); nll je standardni SFT loss
 resume_from_checkpoint: null  # popunjava se pri restartu joba
