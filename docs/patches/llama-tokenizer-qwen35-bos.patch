@@ -1,0 +1,25 @@
+diff --git a/conversion/base.py b/conversion/base.py
+index d2d80be..1601872 100644
+--- a/conversion/base.py
++++ b/conversion/base.py
+@@ -1618,6 +1618,9 @@ class TextModel(ModelBase):
+         if chkhsh == "d4540891389ea895b53b399da6ac824becc30f2fba0e9ddbb98f92e55ca0e97c":
+             # ref: https://huggingface.co/Qwen/Qwen3-Embedding-0.6B
+             res = "qwen2"
++        if chkhsh == "3307159a20fcb0208cc6fbe0a7adbb882d8ab464496cd3adadabc897f1b2496c":
++            # ref: alphaedge-ai/Qwen3.5-2B-bos-32768 (trimmed vocab; standard Qwen pretokenizer)
++            res = "qwen35"
+         if chkhsh == "1444df51289cfa8063b96f0e62b1125440111bc79a52003ea14b6eac7016fd5f":
+             # ref: https://huggingface.co/openbmb/MiniCPM-V-4_6
+             res = "qwen35"
+@@ -1859,6 +1862,10 @@ class TextModel(ModelBase):
+             # ref: https://huggingface.co/poolside/Laguna-XS.2
+             res = "laguna"
+ 
++        if chkhsh == "3307159a20fcb0208cc6fbe0a7adbb882d8ab464496cd3adadabc897f1b2496c":
++            # ref: alphaedge-ai/Qwen3.5-2B-bos-32768 (trimmed vocab; standard Qwen pretokenizer)
++            res = "qwen35"
++
+         if res is None:
+             logger.warning("\n")
+             logger.warning("**************************************************************************************")

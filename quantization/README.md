@@ -29,7 +29,16 @@ Zahtijeva: `hf` CLI, Python 3.10+, C/C++ toolchain + cmake za llama.cpp
 build (jednokratno). Konverzija 2B modela je CPU-izvodljiva (nekoliko
 minuta); puni trening i dalje ide na Vast GPU.
 
-## Pravila
+## Kritične napomene (verificirano 2026-09-17)
+
+- Konverzija MORA sa `--no-mtp`: checkpoint nema MTP tenzore; bez zastavice
+  konverter upiše `block_count=25` + `nextn_predict_layers` i Ollama odbija
+  fajl (`blk.24.attn_norm.weight not found`). Ispravno: 24 bloka, 320 tenzora.
+- Trimmed vokabular treba tokenizer patch
+  (`docs/patches/llama-tokenizer-qwen35-bos.patch`) — inače konverter ne
+  prepoznaje pretokenizer.
+- `quantization/patch_gguf.py` postoji kao zadnja linija odbrane za
+  metapodatke (korišten dijagnostički; primarni put je ispravna konverzija).
 
 - Nikada ne kvantizirati neevaluirani checkpoint (eval → merge → quant → re-eval).
 - Svaki GGUF dobija SHA256 manifest pored fajla.
