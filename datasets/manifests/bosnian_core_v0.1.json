@@ -1,13 +1,13 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 70
+      "bosnian-core": 120
     },
-    "total": 70
+    "total": 120
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 2: +40 (priroda, gramatika, prijevodi, svakodnevica). Ukupno 70/70 ACCEPT.",
+  "note": "Serija 3: +50 (vise-turni dijalozi, priroda, vrline; uhvacena cirilica -> novi validator gate). 120/120 ACCEPT.",
   "version": "0.1.0"
 }

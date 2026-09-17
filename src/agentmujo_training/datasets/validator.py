@@ -74,7 +74,11 @@ def validate_sample(
     if "assistant" not in roles:
         errors.append("nedostaje assistant poruka")
 
-    # 3. tool validation
+    # 2b. language purity: bosanski uzorci moraju biti latinica/ijekavica
+    if str(sample.get("language", "")).startswith("bs"):
+        blob_all = json.dumps(msgs, ensure_ascii=False)
+        if re.search(r"[Ѐ-џ]", blob_all):
+            return ValidationResult(sid, "REJECT", "REJECT", 0.0, ["cirilica u bs uzorku"])
     score_bonus = 0.0
     for m in msgs:
         for tc in m.get("tool_calls", []) or []:

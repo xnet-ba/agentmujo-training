@@ -45,6 +45,23 @@ def test_safety_deny_rejected():
     assert res.verdict == "REJECT"
 
 
+def test_cyrillic_rejected():
+    from agentmujo_training.datasets.validator import validate_sample
+    reg = _reg()
+    seen: set[str] = set()
+    bad = {
+        "id": "amj-fc-7777", "version": "0.1.0", "language": "bs-ijekavica",
+        "task": "function-calling", "difficulty": "easy",
+        "messages": [
+            {"role": "user", "content": "Zdravo"},
+            {"role": "assistant", "content": "Здраво"},  # cirilica
+        ],
+        "metadata": {"source": "t", "quality_tier": "GOLD", "verification_status": "verified"},
+    }
+    res = validate_sample(bad, set(reg.names()), seen, reg.validate_call)
+    assert res.verdict == "REJECT"
+
+
 def test_refusal_sample_accepted():
     """Korisnik smije tražiti opasnu stvar — bitno je da je asistent odbio."""
     from agentmujo_training.datasets.validator import validate_sample
