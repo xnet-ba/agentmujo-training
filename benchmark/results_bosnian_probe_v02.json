@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "n": 12,
+    "non_empty_rate": 1.0,
+    "no_ekavian_rate": 0.75
+  },
+  "results": [
+    {
+      "id": "bp-01",
+      "category": "znanje",
+      "prompt": "Objasni ukratko šta je fotosinteza.",
+      "text": "Fotosinteza je proces u biljki gde se ugljikovi oksid iz sunčeve energije pretvaraju u glukozu i kisik.",
+      "latency_s": 8.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "gde"
+        ],
+        "length_chars": 103
+      },
+      "error": null
+    },
+    {
+      "id": "bp-02",
+      "category": "generacija",
+      "prompt": "Napiši kratku čestitku za rođendan na bosanskom jeziku.",
+      "text": "Nakon rođenja, a ne na rođendan! Kratka čestitka na bosanskom: \"Dobrodošao/a, rodilac, novorođenčadi!\" — to je sve.",
+      "latency_s": 7.1,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 115
+      },
+      "error": null
+    },
+    {
+      "id": "bp-03",
+      "category": "rječnik",
+      "prompt": "Koja je razlika između riječi 'vrijeme' i 'vrijednost'?",
+      "text": "Riječ \"vrijeme\" se odnosi na vrijeme i vreme (određeno stanje). Riječ \"vrijednost\" se odnosi na vrijednost (određena vrijednost).",
+      "latency_s": 8.0,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 129
+      },
+      "error": null
+    },
+    {
+      "id": "bp-04",
+      "category": "prevod",
+      "prompt": "Prevedi na bosanski jezik: 'The server needs more memory.'",
+      "text": "Prevođenjem ne mogu riješiti nulti problem — server treba održavanje (logovi, opterećenje, prošlost). Reci šta tačno te zanima da nađemo rješenje.",
+      "latency_s": 7.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 146
+      },
+      "error": null
+    },
+    {
+      "id": "bp-05",
+      "category": "registar",
+      "prompt": "Objasni djetetu šta je internet.",
+      "text": "Pribavljam definiciju.\n\n<tool_call>\n<function=doc_provide>\n<parameter=text>\ninternet — mreža koja povezuje sve uređaje da se pošalju i dolaze datoteke.\n</parameter>\n</function>\n</tool_call>",
+      "latency_s": 10.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 189
+      },
+      "error": null
+    },
+    {
+      "id": "bp-06",
+      "category": "ijekavica-zamka",
+      "prompt": "Sastavi tri rečenice sa riječju 'mlijeko'.",
+      "text": "Mlijeko je klasičan izvor zla — uzimao se za sve. Uzrokovalo je vrućice i krivilo sve. Iznenađen, odustao sam od njega, a sada mi je teško naći neku drugu hranu.",
+      "latency_s": 8.7,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 161
+      },
+      "error": null
+    },
+    {
+      "id": "bp-07",
+      "category": "rječnik",
+      "prompt": "Šta znači riječ 'džep'?",
+      "text": "U digitalnom svijetu \"džep\" nije fizički džep. Najčešći značenje je: rezervisano mjesto za podatke (backup, cache, logove). Reci šta misliš pa ćemo vidjeti gdje mu sluša.",
+      "latency_s": 4.0,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 170
+      },
+      "error": null
+    },
+    {
+      "id": "bp-08",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratku vijest o vremenskoj prognozi za Sarajevo.",
+      "text": "Vremensku prognozu nemoj generirati sam — to se ne potvrđuje niti ne utječe na rad. Predlažem provjeru službene izvore (Hidrologija ili Hujner) i odluku samo uz potvrdu.",
+      "latency_s": 4.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 169
+      },
+      "error": null
+    },
+    {
+      "id": "bp-09",
+      "category": "gramatika",
+      "prompt": "Objasni razliku između 'da li' i 'je li' u bosanskom jeziku.",
+      "text": "Da li se odnosi na nešto konkretno, a je li se odnosi na opće stanje sistema. Ne mogu odrediti bez konteksta — odgovaram na osnovu pitanja korisnika, a ne na stanje sistema.",
+      "latency_s": 4.4,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 173
+      },
+      "error": null
+    },
+    {
+      "id": "bp-10",
+      "category": "sažimanje",
+      "prompt": "Sažmi u dvije rečenice: 'Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds. Danas pokreće većinu servera, superračunara i Android telefona.'",
+      "text": "Uzrok je tačno izjavljeno — Linux porodica sustava otvorenog koda pokrenuta je od strane Linusa Torvaldsa, a danas služi kao temelj servera, superračunara i Androida.",
+      "latency_s": 5.7,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 166
+      },
+      "error": null
+    },
+    {
+      "id": "bp-11",
+      "category": "gramatika",
+      "prompt": "Koji padež je upotrijebljen u rečenici 'Vidim kuću'?",
+      "text": "Padež je obješen. Rečenica ima obješen padež (predjamak, pretpostavljam).\n\nDakle, padež je obješen.",
+      "latency_s": 4.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 99
+      },
+      "error": null
+    },
+    {
+      "id": "bp-12",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratko uputstvo za kuhanje kafe na bosanskom jeziku.",
+      "text": "Kuhanje kafe je jednostavno — prvo zalepi žlicu u čašu, pa vruću vodu sipaš od vrha do dno.\n\n<tool_call>\n<function=service_status>\n<parameter=service>\ncoffee-maker\n</parameter>\n</function>\n</tool_call>",
+      "latency_s": 9.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 201
+      },
+      "error": null
+    }
+  ]
+}

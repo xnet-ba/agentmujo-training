@@ -2,20 +2,20 @@
   "summary": {
     "n": 12,
     "non_empty_rate": 1.0,
-    "no_ekavian_rate": 0.833
+    "no_ekavian_rate": 0.583
   },
   "results": [
     {
       "id": "bp-01",
       "category": "znanje",
       "prompt": "Objasni ukratko šta je fotosinteza.",
-      "text": "Fotosinteza je biološki proces kojim biljke (u suradnji sa korijenjem i stabljikom) pretvaraju ugljikov dioksid i vodu u glukozu i kisik. Ovaj proces se odvija u ćelijama koje sadrže **klora** (slično kao u lišću), poznatim kao **kloroplasti** unutar **hlorofila** (plave boje).\n\nUkratko: biljke koriste sunčevu energiju da stvaraju hranu i otpuštaju kisik koji je potreban životinjama.",
-      "latency_s": 13.2,
+      "text": "Fotosinteza je proces u biljkama u kojem one koriste sunčevu energiju, vodu i ugljični dioksid da bi proizvedle hranljive tvari (glukozu) i otpustile kisik. Ukratko, to je način na koji biljke \"hrane\" sebe i pretvaraju sunčevu energiju u formu koju životinje mogu koristiti.",
+      "latency_s": 9.2,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 386
+        "length_chars": 274
       },
       "error": null
     },
@@ -23,13 +23,15 @@
       "id": "bp-02",
       "category": "generacija",
       "prompt": "Napiši kratku čestitku za rođendan na bosanskom jeziku.",
-      "text": "Sretno ti rođendan! 💛 Želim ti puno sreće, zdravlja i ljubavi u svakom trenutku. Želim da ti se svidi svaki dan! 🎂🎉",
-      "latency_s": 4.1,
+      "text": "Zdravo! Evo kratke čestitke na rođendan na bosanskom jeziku:\n\n\"Dragi [Ime],\nsretno ti rođendan! Želim ti da budeš uvek motiviran, srećan i da te sve životne okolnosti prate u pravo smjeru. Želim ti mnogo uspješnih godina.\"\n\nAko želiš da prilagodim tekst nečemu specifičnom (npr. neki poklon ili osobnu priču), slobodno napiši i ja ću ti pomoći.",
+      "latency_s": 8.2,
       "auto": {
         "non_empty": 1,
-        "no_ekavian": 1,
-        "ekavian_hits": [],
-        "length_chars": 115
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "srećan"
+        ],
+        "length_chars": 344
       },
       "error": null
     },
@@ -37,15 +39,15 @@
       "id": "bp-03",
       "category": "rječnik",
       "prompt": "Koja je razlika između riječi 'vrijeme' i 'vrijednost'?",
-      "text": "U kontekstu našeg razgovora, riječi **vrijeme** i **vrijednost** imaju odvajani značaj, ali mogu se i pomiješati u svakodnevnom govoru.\n\nEvo ključnih razlika:\n\n1.  **Vrijeme (Time/Gear time): Određuje koliko je vremena potrebno**\n2.  **Vrijednost (Worth/Quality/Price): Određuje koliko vrijedi ili koliko je cjenovno značajno**\n\nNa primjer, ako kupite automobil:\n*  **Vrijeme** je to koliko vam traje put do radnje (npr. 1 sat).\n*  **Vrijednost** je cijena u kojoj se taj automobil može kupiti ili prodaju (npr. 10.000 EUR).\n\nU književnosti i filozofiji, *vrijednost* često označava nešto što je odlično, vrijedno pažnje ili moralno dobro, dok *vrijeme* označava apsolutni vremenski okvir.",
-      "latency_s": 16.9,
+      "text": "Najjednostavnije je reći da se ove dvije riječi koriste u kontekstu koja su **suprotna jedna drugoj** u smislu vrijednosti i značenja.\n\n* **Vrijeme** se odnosi na **vrijeme** (vremensko razdoblje). To je ono što je potrebno ili koje je dostupno.\n* **Vrijednost** se odnosi na **vrijednost** (potencijal, cijenjenost). To je ono što može biti potrebno.\n\nNije to pitanje o vremenu ili cijeni, već pitanje o **vremenu** (vremensko okruženje) i **vrijednosti** (vremensko stanje).\n\nEvo kratkog primjera kako se to razlikuje:\n* **Vrijeme** je vrijeme kada je potrebno nešto učiniti.\n* **Vrijednost** je to vrijeme kada je nešto potrebno učiniti.\n\nUkratko: \"Vrijeme\" znači **vrijeme** (vremensko okruženje), a \"vrijednost\" znači **vrijednost** (vremensko stanje).",
+      "latency_s": 16.1,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 0,
         "ekavian_hits": [
           "vreme"
         ],
-        "length_chars": 689
+        "length_chars": 757
       },
       "error": null
     },
@@ -53,13 +55,13 @@
       "id": "bp-04",
       "category": "prevod",
       "prompt": "Prevedi na bosanski jezik: 'The server needs more memory.'",
-      "text": "Serveru treba više memorije.",
-      "latency_s": 1.0,
+      "text": "Serviseru treba više memorije.",
+      "latency_s": 0.9,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 28
+        "length_chars": 30
       },
       "error": null
     },
@@ -67,13 +69,13 @@
       "id": "bp-05",
       "category": "registar",
       "prompt": "Objasni djetetu šta je internet.",
-      "text": "Dobar dan! Rado ću ti objasniti internet.\n\nZamislite internet kao **ogroman, vrućeg mješovitog bazena** koji se sastoji od milijuna malih, ali moćnih loptica koje se neprestano kreću.\n\nEvo jednostavnog objašnjenja:\n\n* Šta točno je? Internet je **sve veze** koje povezuju sve ono što imate u svetu: telefone, računar, televizore, televizor i čak i staru staru elektroniku poput TV-a.\n* Kako radi? Kada imate neki telefon, računar ili TV, oni su povezani na jedan taj veliki bazen. Kada vi na svom telefonu kliknete na nešto, to šalje \"poruku\" koja putuje kroz ove veze do tvog računara, a onda ti se vrati.\n* Šta to koristiš? Upravo zato što su ove veze povezane, moguće je da se **svi** svi u svijetu povezuju s tobom. To znači da možemo:\n  * Da gledamo filmove na drugim telefonima ili računarem.\n  * Da slamo i primamo poruke (kao na Facebooku, Instagramu ili WhatsAppu).\n  * Da gledamo videoigre s prijateljima na drugih kompjuterima.\n  * Da kupujemo",
-      "latency_s": 20.4,
+      "text": "Dobar dan! Svjet je pun internetom, pa sam u tome volim.\n\n**Internet** je toliko veliki i ogroman \"elektronski šum\" (ili mreža) koji povezuje sve što imamo i sve što imamo na svemiru.\n\nOvo je jednostavan način da ga zamisliš:\n\n1.  **Mreža telefona i računala** – To su ti telefoni i računar koji si kupio ili na kome si učenik. Oni imaju \"ulje\" (kabel ili radija) koje ih povezuje sa drugima.\n2.  **Ostale stvari** – Internet se koristi i da gledaš priče, slušaš muziku, igraš igre, gledaš filmove, pišeš poruke prijateljima ili tražiš odgovore na pitanja u školi.\n\nKada si učenik u školi, koristiš internet samo da bi na računaru pronašao odgovor na pitanje u učionici. Kada si učenik na putu u školu, koristiš internet da bi na telefonu pronašao put do škole. Kada si učenik u školi, koristiš internet da bi upisao radni list ili da pogledaš priče s prijateljima u svemiru.\n\nInternet je kao **ogromna bibli",
+      "latency_s": 17.7,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 953
+        "length_chars": 908
       },
       "error": null
     },
@@ -81,13 +83,13 @@
       "id": "bp-06",
       "category": "ijekavica-zamka",
       "prompt": "Sastavi tri rečenice sa riječju 'mlijeko'.",
-      "text": "1. Mlijeko je prirodni proizvod koji se dobija iz stoke.\n2. Zdrava i svežom mlijekom treba piti svakodnevno.\n3. Mlijeko se često koristi u kuhanju i pripremi hrane.",
-      "latency_s": 3.9,
+      "text": "Ovo su tri rečenice koje koriste riječ \"mlijeko\":\n\n1. Pijem svaki dan čašu svježeg mlijeka za zdravlje.\n2. Prvo mlijeko iz kantarije je najbolje za kuhanje.\n3. Mlijeko sadrži mnoge korisne vitamine i minerale.",
+      "latency_s": 4.8,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 164
+        "length_chars": 209
       },
       "error": null
     },
@@ -95,13 +97,13 @@
       "id": "bp-07",
       "category": "rječnik",
       "prompt": "Šta znači riječ 'džep'?",
-      "text": "Riječ **džep** (ili u modernoj gramatici *džep*) znači **dno** ili **dno udubine** u nekoj vodi ili u nekom prostoru.\n\nKada se koristi u kontekstu riječi poput \"džep rijeke\", to označava donji dio tjelesne vode. Ako se misli na dno udubine u šumi, planini ili na nekom dnu, to je točno definicija.\n\n*Primjer:* \"Džep je vode od 2 metra.\" (Ovo označava dno vode).",
-      "latency_s": 8.4,
+      "text": "Riječ **džep** (od latinske riječi *jupra* ili engleske riječi *pouch*) znači **sakija** ili **zaljevac** u humanološkom smislu. To je dio lica, obično na donjem dijelu tijela, u kojem se nalazi dno, a na kojem se nalazi prst.\n\nU većini ljudi, džep se nalazi ispod palca (pale) na prstu, a u nekim slučajevima i na zglobu. Ona se sastoji od kožnog folija koji su se stisnuli oko kose i prsta. Džep je ključan dio ljudske anatomije jer mu omogućava da se nosi i čuvaju različite stvari, poput novca, uređaja, naočara, štitika ili čak i male stvari poput rublja.",
+      "latency_s": 11.8,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 361
+        "length_chars": 560
       },
       "error": null
     },
@@ -109,13 +111,15 @@
       "id": "bp-08",
       "category": "ijekavica-zamka",
       "prompt": "Napiši kratku vijest o vremenskoj prognozi za Sarajevo.",
-      "text": "Danas u Sarajevu očekujemo sunčano i toplo vrijeme. Najviša temperatura očekuje se oko 30°C u toku dana, dok će noći biti toplije, oko 18°C. Izbjegavajte izravno sunce i preporučujemo nosite jaku odjeću.",
-      "latency_s": 4.6,
+      "text": "Sarajevo je danas prognozirano sa **tečnim, blago oblačnim** i **vrlo toplim** vremenskim uslovima. Najviša temperature iznose oko **22°C** do **23°C** tokom dana, a najniža do **18°C** u noći. Vjetar je moderan i blagi, a padanj kiše nije očekivano. Preporuka za obuću je lepljiva, a za odijevanje zimi i toplije obuća.",
+      "latency_s": 7.2,
       "auto": {
         "non_empty": 1,
-        "no_ekavian": 1,
-        "ekavian_hits": [],
-        "length_chars": 203
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 320
       },
       "error": null
     },
@@ -123,13 +127,13 @@
       "id": "bp-09",
       "category": "gramatika",
       "prompt": "Objasni razliku između 'da li' i 'je li' u bosanskom jeziku.",
-      "text": "U bosanskom jeziku, riječi \"da li\" i \"je li\" imaju istu pravnu funkciju, ali se razlikuju u **gramatičnom položaju** i **sastojanju** u rečenici.\n\nEvo ključnih razlika:\n\n1.  **Gramatički položaj (Kada se koriste?)**\n*  **Da li** se koristi kao **samostalni zahtjev** (neizgovorno). Ona se umjesto da bude predložak za pitanje, sama radi ulogu pitanja.\n*  **Je li** se koristi kao **predložak zahteva** (izgovorno). Ona se mora biti uz neko drugo izraženje ili izraz (npr. \"Da li si...\", \"Ali li...\", \"Uživao li si...\").\n\n2.  **Kontekst i pravila**\n*  **Da li** se može koristiti u bilo kojoj situaciji gdje se traži odgovor (upitanje).\n*  **Je li** **NE MOŽE** koristiti samostalno kao pitanje. Ako ga stavite samostalno, rečenica postaje nepravilna ili zvuči pogrešno (npr. \"Da li imao si\" nije ispravno, to bi trebalo biti \"Da li si imao",
-      "latency_s": 18.2,
+      "text": "U bosanskom jeziku, razlika između \"da li\" i \"je li\" nije u gramatičkom pravilu, već u **sastojanju slučaja** (sastojanja) koje određuje značenje riječi.\n\nEvo ključne razlike:\n\n1.  **Da li**\n*Značenje: \"Da li je?\" (Da li postoji li?)\n*Zašto je to tako? Iako se u rečici \"da li\" pojavljuje riječ \"li\", zapravo se radi o izrazu \"da li\" koji služi kao **objažnjivač** (objažnjivač znači \"da li\" ili \"ili\"). On se koristi za postavljanje pitanja o **postojanju** nešto ili nečemu.\n*Primjer:* \"Da li imaš knjigu?\" (Da li postoji li knjiga?)\n*Uzročno-posljedični odnos:* \"Da li će doći?\" (Da li će doći? – pitanje o mogućnosti postojanja događaja)\n\n2.  **Je li**\n*Značenje: \"Je li?\" (Je li?)\n*Zašto je to tako? Iako se u rečici \"je li\" pojavljuje riječ \"li\", zapravo se radi o izrazu \"je",
+      "latency_s": 17.7,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 839
+        "length_chars": 781
       },
       "error": null
     },
@@ -137,13 +141,13 @@
       "id": "bp-10",
       "category": "sažimanje",
       "prompt": "Sažmi u dvije rečenice: 'Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds. Danas pokreće većinu servera, superračunara i Android telefona.'",
-      "text": "Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds, a danas pokriva većinu servera, superračunara i Android telefona.",
-      "latency_s": 3.5,
+      "text": "Linus Torvalds je osničio Linux, što je danas sustav na kojem pokreće većinu servera i superračunara te puno Android telefona.",
+      "latency_s": 3.0,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 1,
         "ekavian_hits": [],
-        "length_chars": 150
+        "length_chars": 126
       },
       "error": null
     },
@@ -151,13 +155,15 @@
       "id": "bp-11",
       "category": "gramatika",
       "prompt": "Koji padež je upotrijebljen u rečenici 'Vidim kuću'?",
-      "text": "Rečenica \"Vidim kuću\" koristi padež **diktal (diktalni padež) u obliku množine (diktalni padež množine - \"kuća\" je množina, ali u ovom kontekstu riječ je o samom objektu koji je vidljiv, pa se to može smatrati i jednim padežnim oblikom u nekim kontekstima, ali točno je da se radi o diktalu, ali ne i množinom u smislu \"nešto\" - \"kuća\" je jedinstveno).\n\nNe, nije množina, nego **diktalni padež** (diktalni padež množine).\n\nObjašnjenje:\n*Rečenica:* \"Vidim **kuću**.\"\n*Značenje:* Uvijek je vidljivost (kako da se vidi nešto).\n*Padež:* **Diktalni padež množine** (diktalni padež množine).\n\nTočan odgovor je: **Diktalni padež množine** (ili jednostavno **diktalni padež**).",
-      "latency_s": 16.0,
+      "text": "U rečenici \"Vidim kuću\", padež je **diktalni (diktalni padež, a u ovom slučaju pretpostavljen je i gramatički diktalni padež jer se riječ \"kuća\" ne mijenja, ali se vidi u kontekstu glagola vidjeti koji podrazumijeva privremenu ili diktalni padež ako bi se mogla promijeniti). U ovom slučaju, riječ \"kuća\" ostaje nesmjješena, što znači da je riječ o **diktalnom padežu** (ili jednostavnom padežu ako je riječ o glagolu vidjeti u ovom kontekstu).\n\nDa bismo bili precizniji:\n1.  **Glagol** je \"vidjeti\".\n2.  **Predmet** je \"kuća\".\n3.  **Vidim** je prvo lice, sadašnjeg vremena, jednine.\n\nAko se riječ \"kuća\" u ovom kontekstu može promijeniti (npr. ako bi se moglo reći \"vidim *moguću* kuću\" ili u nekom specifičnom kontekstu), onda bi to bio **diktalni padež** (npr. *vidim kuću*, a ne *vidim moguću kuću* u obliku ",
+      "latency_s": 17.5,
       "auto": {
         "non_empty": 1,
-        "no_ekavian": 1,
-        "ekavian_hits": [],
-        "length_chars": 669
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 812
       },
       "error": null
     },
@@ -165,17 +171,15 @@
       "id": "bp-12",
       "category": "ijekavica-zamka",
       "prompt": "Napiši kratko uputstvo za kuhanje kafe na bosanskom jeziku.",
-      "text": "Evo kratkog uputstva za kuhanje kafe na bosanskom jeziku:\n\n* **Priprema zrna i vruće vode** – Ubacite svezine kafe u zdjelu za kavu, dodajte vodu koja je zagrijana i dobro pomiješajte.\n* **Spremanje** – Stavite zdjelu na vruću vodu na pećnicu ili na toplo mjesto oko sat vremena.\n* **Kuvanje** – Kada voda počne da se hladi, umetnite zrna u zdjelu. Dodajte slatko (čak i malo šećera ili meda) i poklopite.\n* **Čuvanje** – Ostavite kafu da se kuva dok ne postane tamnija i mekša.\n\nKada želite, izvadite zdjelu i prelijte kafu u čašu. Uživajte u svom ukusu! ☕",
-      "latency_s": 13.1,
+      "text": "Evo kratkog uputstva za kuhanje kafe:\n\n1. **Priprema zalogaja**\nUzmi čašu ili tegle, dodaj kavu, vodu (ili vruću vodu ako je potrebno) i šećer ili mlijeko prema ukusu. Ako koristiš tegle, zagrij ih na srednjoj temperaturi.\n\n2. **Kuhanje**\nVrati tegle na vodu ili na plin, dok se voda ne zagrije. Kada voda počne kretati, stavi tegle u sud sa čašom (ako koristiš tegle) ili direktno u sud sa vodom.\n\n3. **Kliziće**\nSkriv tegle u kliziće (koji se nalaze na dnu tegla) ili stavi ih u čašu. Pusti ih klizići oko 1 do 2 minute kako bi se savluka (kava) uštedela.\n\n4. **Povlačenje**\nPovuci tegle iz klizića, a zatim ih izvadite iz čaše. Kava će sada biti spremna za pije.\n\nSretno u kuvanju!",
+      "latency_s": 16.0,
       "auto": {
         "non_empty": 1,
         "no_ekavian": 0,
         "ekavian_hits": [
-          "vreme",
-          "ume",
           "kuva"
         ],
-        "length_chars": 557
+        "length_chars": 684
       },
       "error": null
     }

@@ -22,7 +22,32 @@ ekavizama. Slijedi ručna ocjena svakog odgovora
 | bp-11 | padež "kuću" | OK | **pogrešno** ("diktalni padež" ne postoji; tačno: akuzativ), samouvjereno | NE |
 | bp-12 | kuhanje kafe | NE ("Kuvanje", "kuva") + besmislen recept | NE | NE |
 
-## Zaključak
+## Re-proba na fine-tuniranom modelu (v0.2, 2026-09-17) — FORGETTING
+
+Isti 12 promptova na `agentmujo-q8` (Q8 think-adapter merge).
+Automatika: 12/12 non-empty, no_ekavian 0.58–0.75 (uzorak šuma na temp 0.7).
+
+Ručna ocjena (poređenje sa bazom):
+
+- bp-01: "gde" (ekavizam!), sadržaj slabiji nego baza.
+- bp-02 (čestitka): "Dobrodošao, rodilac, novorođenčadi!" — besmislica.
+- bp-04 (prevod): **odbija prevesti** ("Prevođenjem ne mogu riješiti nulti problem") —
+  over-refusal prenesen iz safety treninga na benigni zahtjev.
+- bp-05/12: **forsira tool pozive** u brbljanje (`doc_provide` halucinirani alat,
+  `service_status(coffee-maker)`).
+- bp-06: "Mlijeko je klasičan izvor zla" — besmislica.
+- bp-11: "padež je obješen" — besmislica (baza je bar griješila samouvjereno).
+
+## Revidirana preporuka: bosnian-core je sada POTREBAN
+
+Uski tool SFT izazvao je **katastrofalno zaboravljanje općeg bosanskog**:
+tečnost izvan distribucije alata je uništena, a refusal se prelijeva na
+benigne zahtjeve. Odluka o odgodi se POVLAČI. Sljedeće:
+
+1. `agentmujo-bosnian-core`: opći razgovor, znanje, gramatika, prijevodi
+   (nekoliko stotina uzoraka, bez alata).
+2. Joint re-trening sa bosnian-core udjelom (replay protiv forgettinga).
+3. Re-proba: cilj vratiti tečnost uz zadržane tool metrike.
 
 1. **Operativni bosanski radi:** kratki prevodi, sažeci i statusne
    poruke (bp-04, bp-10) su tačni i čista ijekavica. To je 90% onoga što
@@ -33,7 +58,11 @@ ekavizama. Slijedi ručna ocjena svakog odgovora
 3. Heuristika je pooštrena: granice riječi (lažni "vreme"⊂"vremena"
    eliminiran) + 13 novih markera (gde/ovde/čovek/posle/kuvati...).
 
-## Preporuka: bosnian-core ostaje ODGOĐEN
+## Preporuka (2026-09-15, HISTORIJSKA — povučena 2026-09-17): bosnian-core ODGOĐEN
+
+> Ova odluka je vrijedila za BAZU. Re-proba na fine-tuniranom modelu
+> (vidi gore) pokazala je catastrophic forgetting — odluka se POVLAČI,
+> bosnian-core postaje obavezan (vidi "Revidirana preporuka").
 
 Poseban jezički skup se NE pravi. Umjesto toga:
 

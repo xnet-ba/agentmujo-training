@@ -37,12 +37,12 @@ PROMPTS = [
 ]
 
 
-def query(prompt: str, timeout: int = 300) -> tuple[str, float]:
+def query(prompt: str, timeout: int = 300, model: str = "qwen3.5-2b-bos-q8:latest") -> tuple[str, float]:
     t0 = time.time()
     req = urllib.request.Request(
         "http://127.0.0.1:11434/api/chat",
         data=json.dumps({
-            "model": "qwen3.5-2b-bos-q8:latest",
+            "model": model,
             "messages": [{"role": "system", "content": SYSTEM},
                          {"role": "user", "content": prompt}],
             "think": False, "stream": False,
@@ -67,11 +67,16 @@ def auto_score(text: str) -> dict:
 
 
 def main() -> int:
-    out_path = REPO / "benchmark" / "results_bosnian_probe.json"
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", default="qwen3.5-2b-bos-q8:latest")
+    ap.add_argument("--out", default=str(REPO / "benchmark" / "results_bosnian_probe.json"))
+    a = ap.parse_args()
+    out_path = Path(a.out)
     results = []
     for pid, cat, prompt in PROMPTS:
         try:
-            text, lat = query(prompt)
+            text, lat = query(prompt, model=a.model)
             scores = auto_score(text)
             err = None
         except Exception as e:
