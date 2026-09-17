@@ -1,0 +1,1 @@
+{"counts":{"agentic":34,"function_calling":35,"safety":31,"total":100},"dataset":"agentmujo-rebalance-01","file":"datasets/canonical/joint_rebalance_v0.1.jsonl","language":"bs-ijekavica","method":"deterministicki uzorak (seed 7) iz postojecih skupova","note":"Rebalans nakon regresija faze 2 (argument/refusal/safety).","version":"0.1.0"}

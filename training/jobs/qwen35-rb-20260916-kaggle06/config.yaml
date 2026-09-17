@@ -1,0 +1,30 @@
+# REBALANCE config — kratki nastavak na agentic adapter (ispravka regresija).
+experiment_id: qwen35-rebalance-01
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-agentic/agentmujo-training/training/jobs/qwen35-ag-20260916-kaggle05/outputs/adapter
+dataset: shaban2024/agentmujo-rebalance-01
+dataset_revision: f737df9c8a41268afd9f6fde8e0d1b1589825e79  # pinовано 2026-09-16
+split: train
+max_samples: null
+output_dir: outputs/rebalance-01
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5  # upola od faze 2 — samo korekcija, ne novi smjer
+num_train_epochs: 2
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 10
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 42
+resume_from_checkpoint: null
