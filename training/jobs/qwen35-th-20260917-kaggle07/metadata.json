@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-th-20260917-kaggle07",
+  "created_at": "2026-09-17T08:47:32+00:00",
+  "base_model": "alphaedge-ai/Qwen3.5-2B-bos-32768",
+  "base_revision": "2f89b8332c352d01adebd88bba5d8a2f7adf8bd6",
+  "dataset": "shaban2024/agentmujo-thinking",
+  "dataset_revision": "47b766e62193ce27e47e3ca3bca5ee0074b3aa55",
+  "training_config": "/home/ubuntu/agentmujo-training/configs/training/kaggle_thinking.yaml",
+  "seed": 42,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}

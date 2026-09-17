@@ -1,0 +1,1 @@
+{"counts":{"by_task":{"agentic-terminal":10,"function-calling":15},"total":25},"dataset":"agentmujo-thinking","file":"datasets/canonical/thinking_v0.1.jsonl","language":"bs-ijekavica","note":"Serija 8: eksplicitni <think> tragovi (safety/refusal/dijagnoza/verifikacija). Ciljani alignment run.","version":"0.1.0"}
