@@ -121,8 +121,17 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     import inspect as _inspect
 
     tok = AutoTokenizer.from_pretrained(cfg["model_name"], trust_remote_code=True)
-    ds = load_dataset(cfg["dataset"], revision=cfg.get("dataset_revision"),
-                      split=cfg.get("split", "train"))
+    # Eksplicitni json load preko hf:// (deterministicki, imun na repo builder
+    # inference razlike medju verzijama datasets liba); fallback na repo stil.
+    from datasets import load_dataset
+    repo, rev = cfg["dataset"], cfg.get("dataset_revision") or "main"
+    try:
+        ds = load_dataset("json", split=cfg.get("split", "train"),
+                          data_files=f"hf://datasets/{repo}@{rev}/data/*.jsonl")
+    except Exception as e:
+        print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
+        ds = load_dataset(repo, revision=cfg.get("dataset_revision"),
+                          split=cfg.get("split", "train"))
     if cfg.get("max_samples"):
         ds = ds.select(range(min(cfg["max_samples"], len(ds))))
     # Kanonski messages[] -> nativni Qwen chat tekst (tool_calls u <tool_call> XML).
