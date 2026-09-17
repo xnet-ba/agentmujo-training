@@ -65,6 +65,8 @@ def main() -> int:
         "        prompt = tok.apply_chat_template(",
         "            [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': c.prompt}],",
         f"            tokenize=False, add_generation_prompt=True, enable_thinking={think_flag}),",
+        "        if not isinstance(prompt, str):  # sablon ponekad vrati listu",
+        "            prompt = tok.decode(prompt) if all(isinstance(x, int) for x in prompt) else ''.join(map(str, prompt))",
         "        inp = tok([prompt], return_tensors='pt').to(model.device)",
         "        out = model.generate(**inp, max_new_tokens=%d, temperature=0.0, do_sample=False," % max_tok,
         "            pad_token_id=tok.eos_token_id)",
