@@ -1,0 +1,9 @@
+{
+  "job_id": "qwen35-jt-20260917-kaggle08",
+  "status": "done",
+  "started_at": "2026-09-17T11:42:43+00:00",
+  "gpu": "Tesla T4",
+  "error": null,
+  "cuda": "12.8",
+  "finished_at": "2026-09-17T11:51:16+00:00"
+}
