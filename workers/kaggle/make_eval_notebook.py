@@ -23,10 +23,15 @@ def main() -> int:
     ap.add_argument("--kernel-id", default="admiragic/qwen35-fc-eval")
     ap.add_argument("--input-kernel", default="admiragic/qwen35-fc-dev")
     ap.add_argument("--max-tokens", type=int, default=256)
+    ap.add_argument("--think", action="store_true",
+                    help="eval u thinking rezimu (think=true, vise tokena)")
     a = ap.parse_args()
 
+    think_flag = "True" if a.think else "False"
+    max_tok = a.max_tokens * (2 if a.think else 1)
     gen_cell = "\n".join([
         "# 3. Eval: baza + adapter -> bench -> eval_report.json",
+        f"# REZIM: {'THINKING' if a.think else 'NON-THINKING'}",
         "import glob, json, re, sys, time",
         "sys.path.insert(0, 'agentmujo-training/src')",
         "from agentmujo_training.benchmark.runner import load_cases, score_prediction",
@@ -59,9 +64,9 @@ def main() -> int:
         "    for c in cases:",
         "        prompt = tok.apply_chat_template(",
         "            [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': c.prompt}],",
-        "            tokenize=False, add_generation_prompt=True)",
+        f"            tokenize=False, add_generation_prompt=True, enable_thinking={think_flag}),",
         "        inp = tok([prompt], return_tensors='pt').to(model.device)",
-        "        out = model.generate(**inp, max_new_tokens=%d, temperature=0.0, do_sample=False," % a.max_tokens,
+        "        out = model.generate(**inp, max_new_tokens=%d, temperature=0.0, do_sample=False," % max_tok,
         "            pad_token_id=tok.eos_token_id)",
         "        text = tok.decode(out[0][inp.input_ids.shape[1]:], skip_special_tokens=True)",
         "        m = FUNC_RE.search(text or '')",
@@ -83,7 +88,7 @@ def main() -> int:
         "print(json.dumps(summary, indent=2, ensure_ascii=False))",
         "Path = __import__('pathlib').Path",
         "Path('/kaggle/working/eval_report.json').write_text(",
-        "    json.dumps({'job': '%s', 'adapter': ADAPTER, 'summary': summary, 'results': results}," % a.job_id,
+        "    json.dumps({'job': '%s', 'mode': '%s', 'adapter': ADAPTER, 'summary': summary, 'results': results}," % (a.job_id, 'thinking' if a.think else 'non-thinking'),
         "                 indent=2, ensure_ascii=False))",
         "print(f'vrijeme: {time.time()-t0:.0f}s')",
     ])
