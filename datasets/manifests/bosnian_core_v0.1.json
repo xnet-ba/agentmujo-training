@@ -1,1 +1,13 @@
-{"counts":{"by_task":{"bosnian-core":30},"total":30},"dataset":"agentmujo-bosnian-core","file":"datasets/canonical/bosnian_core_v0.1.jsonl","language":"bs-ijekavica","note":"Serija 1: opci razgovor, tacno znanje, gramatika, prijevodi EN<->BS (replay protiv forgettinga).","version":"0.1.0"}
+{
+  "counts": {
+    "by_task": {
+      "bosnian-core": 70
+    },
+    "total": 70
+  },
+  "dataset": "agentmujo-bosnian-core",
+  "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
+  "language": "bs-ijekavica",
+  "note": "Serija 2: +40 (priroda, gramatika, prijevodi, svakodnevica). Ukupno 70/70 ACCEPT.",
+  "version": "0.1.0"
+}
