@@ -37,7 +37,7 @@ models:
 # NAPOMENA: Q8 repo card trenutno tvrdi base_model Qwen/Qwen3.5-4B + MIT —
 # netačan placeholder, ispraviti pri releaseu (baza je Qwen3.5-2B-bos, Apache-2.0).
 deployment_repos:
-  - { profile: non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Non-Thinking, hf_revision: b8c7db1d49a5ccd70c05f3cab138d12a61dc45ea, status: v0.1-live }
-  - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: 4fc161c89f606af9d76c78e88d9359bfb84595ea, status: v0.1-live }
+  - { profile: non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Non-Thinking, hf_revision: b8c7db1d49a5ccd70c05f3cab138d12a61dc45ea, status: v0.2-live (think-alignment) }
+  - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: d096db3b290f47b54b39f0a2a7b2dd9a2cd41ef0, status: v0.2-live (think-alignment) }
   - { profile: thinking, hf_repo: null, status: to-create-at-release }
   - { profile: q8-thinking, hf_repo: null, status: to-create-at-release }
