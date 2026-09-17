@@ -1,0 +1,1 @@
+{"counts":{"agentic-terminal":88,"bosnian-core":90,"function-calling":117,"total":295},"dataset":"agentmujo-joint-01","file":"datasets/splits/joint_train_v0.1.jsonl","language":"bs-ijekavica","method":"train splitovi + shuffle seed 11","note":"Joint mix protiv forgettinga (samo train; test/valid cisti).","version":"0.1.0"}
