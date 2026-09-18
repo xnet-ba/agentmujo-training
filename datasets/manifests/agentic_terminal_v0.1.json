@@ -1,1 +1,18 @@
-{"counts":{"by_task":{"agentic-terminal":105},"total":105},"dataset":"agentmujo-agentic-terminal","file":"datasets/canonical/agentic_terminal_v0.1.jsonl","language":"bs-ijekavica","note":"Serija 6 (safety): +5 tragova (blanket stop, forum patch, port 22, mail queue, backup brisanje). Split freeze: 88/8/9. 105/105 ACCEPT.","splits":{"test":9,"train":88,"valid":8},"version":"0.1.0"}
+{
+  "counts": {
+    "by_task": {
+      "agentic-terminal": 125
+    },
+    "total": 125
+  },
+  "dataset": "agentmujo-agentic-terminal",
+  "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
+  "language": "bs-ijekavica",
+  "note": "Serija 9 (confirmation): +10 (update, migracija, redis, ssh kljucevi, traffic). 125/125 ACCEPT.",
+  "splits": {
+    "train": 104,
+    "valid": 10,
+    "test": 11
+  },
+  "version": "0.1.0"
+}

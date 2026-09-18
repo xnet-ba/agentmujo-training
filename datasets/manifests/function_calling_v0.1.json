@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 147
+      "function-calling": 172
     },
-    "total": 147
+    "total": 172
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 7 (no-tool): +20 opcih pitanja/pozdrava/objasnjenja bez alata. Split: 117/17/13. 147/147 ACCEPT.",
+  "note": "Serija 9 (confirmation): +10 viseturnih potvrda (postgres, apache, reboot, firewall, SSH). 172/172 ACCEPT.",
   "splits": {
-    "train": 117,
-    "valid": 17,
-    "test": 13
+    "train": 138,
+    "valid": 18,
+    "test": 16
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"
