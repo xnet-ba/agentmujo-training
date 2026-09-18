@@ -85,7 +85,8 @@ def cmd_dataset_validate(args) -> int:
     from agentmujo_training.tools import ToolRegistry
     from agentmujo_training.datasets import validate_file
     reg = ToolRegistry.from_yaml(REPO_ROOT / "configs" / "tools.yaml")
-    report = validate_file(args.input, set(reg.names()), reg.validate_call)
+    report = validate_file(args.input, set(reg.names()), reg.validate_call,
+                           allow_duplicates=getattr(args, "allow_duplicates", False))
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 0 if report["rejected"] == 0 else 1
 
@@ -264,7 +265,10 @@ def main(argv=None) -> int:
             ns.registry = args[3]
         return cmd_tools_validate(ns)
     if args[:2] == ["dataset", "validate"]:
-        ns = argparse.Namespace(input=args[3] if args[2:3] == ["--input"] else (args[2] if len(args) > 2 else ""))
+        allow_dup = "--allow-duplicates" in args
+        rest = [x for x in args if x != "--allow-duplicates"]
+        ns = argparse.Namespace(input=rest[3] if rest[2:3] == ["--input"] else (rest[2] if len(rest) > 2 else ""),
+                                allow_duplicates=allow_dup)
         return cmd_dataset_validate(ns)
     if args[:2] == ["dataset", "stats"]:
         ns = argparse.Namespace(input=args[3] if args[2:3] == ["--input"] else (args[2] if len(args) > 2 else ""))

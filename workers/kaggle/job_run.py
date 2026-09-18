@@ -125,9 +125,10 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     # inference razlike medju verzijama datasets liba); fallback na repo stil.
     from datasets import load_dataset
     repo, rev = cfg["dataset"], cfg.get("dataset_revision") or "main"
+    data_glob = cfg.get("data_file", "data/*.jsonl")
     try:
         ds = load_dataset("json", split=cfg.get("split", "train"),
-                          data_files=f"hf://datasets/{repo}@{rev}/data/*.jsonl")
+                          data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
     except Exception as e:
         print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
         ds = load_dataset(repo, revision=cfg.get("dataset_revision"),

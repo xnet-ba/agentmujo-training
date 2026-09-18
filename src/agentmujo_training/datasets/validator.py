@@ -29,6 +29,9 @@ HIGH_LEVEL_TOOLS = {
     "memory_usage", "cpu_usage", "process_list", "network_status", "port_check",
 }
 
+# Namjerni upsampling (joint mixevi): postavlja validate_file(allow_duplicates=True).
+_ALLOW_DUP = False
+
 
 def _norm(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip().lower())
@@ -106,9 +109,9 @@ def validate_sample(
     if "terminal" in used and used & HIGH_LEVEL_TOOLS:
         score_bonus -= 0.2
 
-    # 5. duplicate detection
+    # 5. duplicate detection (preskace se uz allow_duplicates za namjerni upsampling)
     h = sample_hash(sample)
-    if h in seen_hashes:
+    if h in seen_hashes and not _ALLOW_DUP:
         return ValidationResult(sid, "REJECT", "REJECT", 0.0, ["duplikat uzorka"])
     seen_hashes.add(h)
 
@@ -128,7 +131,10 @@ def validate_sample(
     return ValidationResult(sid, "ACCEPT", tier, round(score, 2))
 
 
-def validate_file(path: str | Path, tool_names: set[str], validate_args=None) -> dict[str, Any]:
+def validate_file(path: str | Path, tool_names: set[str], validate_args=None,
+                  allow_duplicates: bool = False) -> dict[str, Any]:
+    global _ALLOW_DUP
+    _ALLOW_DUP = allow_duplicates
     seen: set[str] = set()
     results: list[ValidationResult] = []
     for line in Path(path).read_text(encoding="utf-8").splitlines():
