@@ -1,0 +1,30 @@
+# CONFIRMATION-ALIGNMENT config — kratki nastavak na joint adapter.
+experiment_id: qwen35-confirm-01
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-joint/agentmujo-training/training/jobs/qwen35-jt-20260917-kaggle08/outputs/adapter
+dataset: shaban2024/agentmujo-confirmation
+dataset_revision: 7445d76b52a3c41db701d683c8085e9bf1e3f9f5  # pinovano 2026-09-18
+split: train
+max_samples: null
+output_dir: outputs/confirm-01
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+num_train_epochs: 4
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 10
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 42
+resume_from_checkpoint: null
