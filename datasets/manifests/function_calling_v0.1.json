@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 182
+      "function-calling": 192
     },
-    "total": 182
+    "total": 192
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 10: +10 confirmation+tricky (tihi restart, blanket potvrda, uslovni plan). Split 146/19/17. 182/182 ACCEPT.",
+  "note": "Serija 11 (tool-choice): +10 terminal-redirect/port/status disambiguacija. Split 152/21/19. 192/192 ACCEPT.",
   "splits": {
-    "train": 146,
+    "train": 152,
     "valid": 19,
-    "test": 17
+    "test": 19
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"

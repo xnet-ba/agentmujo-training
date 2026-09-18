@@ -1,16 +1,16 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 135
+      "agentic-terminal": 141
     },
-    "total": 135
+    "total": 141
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 10: +10 (read-only mod, rollback, blanket potvrda). Split 113/11/11. 135/135 ACCEPT.",
+  "note": "Serija 11: +6 (dvokoracni status->log, hipoteze). Split 119/11/11. 141/141 ACCEPT.",
   "splits": {
-    "train": 113,
+    "train": 119,
     "valid": 11,
     "test": 11
   },
