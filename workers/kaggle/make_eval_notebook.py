@@ -3,7 +3,7 @@
 Kaggle kernel outputa -> AgentMujo-Bench v0.3 -> eval_report.json.
 
 Upotreba: python workers/kaggle/make_eval_notebook.py <train-job-id> \
-  --cases benchmark/cases_v0.3.jsonl --out-dir /tmp/kaggle_eval \
+  --cases benchmark/cases_v0.4.jsonl --out-dir /tmp/kaggle_eval \
   --kernel-id admiragic/qwen35-fc-eval --input-kernel admiragic/qwen35-fc-dev
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ REPO = Path(__file__).resolve().parents[2]
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("job_id")
-    ap.add_argument("--cases", default="benchmark/cases_v0.3.jsonl")
+    ap.add_argument("--cases", default="benchmark/cases_v0.4.jsonl")
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--kernel-id", default="admiragic/qwen35-fc-eval")
     ap.add_argument("--input-kernel", default="admiragic/qwen35-fc-dev")

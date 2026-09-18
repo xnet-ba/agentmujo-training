@@ -22,7 +22,7 @@ def _user_texts(path: Path) -> set[str]:
 def test_no_literal_bench_overlap():
     """Nijedan bench prompt ne smije doslovno postojati u trening podacima."""
     bench = {c.prompt.strip().lower()
-             for c in load_cases(REPO / "benchmark" / "cases_v0.3.jsonl")}
+             for c in load_cases(REPO / "benchmark" / "cases_v0.4.jsonl")}
     train = (_user_texts(REPO / "datasets" / "canonical" / "function_calling_v0.1.jsonl")
              | _user_texts(REPO / "datasets" / "canonical" / "agentic_terminal_v0.1.jsonl"))
     assert not (bench & train), f"kontaminacija bencha: {bench & train}"

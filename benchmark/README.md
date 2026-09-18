@@ -6,8 +6,9 @@ Benchmark je **potpuno odvojen** od training datasetova.
   nultog benchmarka (`results_baseline_v0.1.json`).
 - `cases_v0.2.jsonl` — ZAMRZNUTO: 20 slučajeva; imao 9 literalnih preklopa
   sa trening promptovima (otkriveno leakage provjerom).
-- `cases_v0.3.jsonl` — AKTUELNO: 20 slučajeva (isti ID-evi i očekivanja kao
-  v0.2, 9 promptova parafrazirano), `bench_isolated: true`.
+- `cases_v0.3.jsonl` — ZAMRZNUTO: 20 slučajeva (parafraze nakon decontaminacije).
+- `cases_v0.4.jsonl` — AKTUELNO: 40 slučajeva (2–8 po kategoriji),
+  `bench_isolated: true` (3 literalna preklopa uhvaćena i parafrazirana pri kreiranju).
 
 ## Kategorije (16)
 
