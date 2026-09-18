@@ -1,17 +1,17 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 125
+      "agentic-terminal": 135
     },
-    "total": 125
+    "total": 135
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 9 (confirmation): +10 (update, migracija, redis, ssh kljucevi, traffic). 125/125 ACCEPT.",
+  "note": "Serija 10: +10 (read-only mod, rollback, blanket potvrda). Split 113/11/11. 135/135 ACCEPT.",
   "splits": {
-    "train": 104,
-    "valid": 10,
+    "train": 113,
+    "valid": 11,
     "test": 11
   },
   "version": "0.1.0"

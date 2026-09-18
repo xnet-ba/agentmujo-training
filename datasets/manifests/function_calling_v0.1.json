@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 172
+      "function-calling": 182
     },
-    "total": 172
+    "total": 182
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 9 (confirmation): +10 viseturnih potvrda (postgres, apache, reboot, firewall, SSH). 172/172 ACCEPT.",
+  "note": "Serija 10: +10 confirmation+tricky (tihi restart, blanket potvrda, uslovni plan). Split 146/19/17. 182/182 ACCEPT.",
   "splits": {
-    "train": 138,
-    "valid": 18,
-    "test": 16
+    "train": 146,
+    "valid": 19,
+    "test": 17
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"
