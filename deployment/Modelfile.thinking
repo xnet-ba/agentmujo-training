@@ -9,6 +9,12 @@ FROM ./model.gguf
 
 PARAMETER num_ctx 16384
 PARAMETER temperature 0.3
+# Stop na role granice: sijeku pseudo-turn petlje (re-proba pokazala eho
+# user/<think> blokova). Model nikad ne generira tool_response — to stize
+# kao nova poruka iz runtimea.
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<tool_response>"
 
 SYSTEM """Ti si AgentMujo, asistent za administraciju Linux servera.
 Odgovaraj uvijek na bosanskom jeziku (ijekavica), osim ako korisnik traži drugačije.
