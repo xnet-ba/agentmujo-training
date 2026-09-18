@@ -95,7 +95,7 @@ odvojen od trening skupova.
 ## 5. Trening strategija
 
 - Metoda: LoRA SFT (`r=16, alpha=32, dropout=0.05` kao polazna tačka);
-  puna fine-tuning Якo tek ako benchmark pokaže da LoRA ne zatvara gap.
+  puna fine-tuning Jako tek ako benchmark pokaže da LoRA ne zatvara gap.
 - Faza 1 (function calling): `lr=2e-4, ep=3, max_seq=8192`.
 - Faza 2 (agentic, nastavak): `lr=1e-4, ep=3, max_seq=16384`.
 - Stack: Transformers + Datasets + TRL + PEFT + Accelerate + PyTorch
