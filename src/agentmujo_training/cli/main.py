@@ -230,6 +230,31 @@ def cmd_evaluate(args) -> int:
     return cmd_benchmark_run(argparse.Namespace(cases=args.cases))
 
 
+def cmd_policy_check(args) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    import json as _json
+    from agentmujo_training.policy import PolicyEngine, execute
+    from agentmujo_training.tools import ToolRegistry
+    reg = ToolRegistry.from_yaml(REPO_ROOT / "configs" / "tools.yaml")
+    eng = PolicyEngine(reg)
+    try:
+        call = _json.loads(args.call)
+        tool, call_args = call.get("tool", ""), call.get("arguments", {})
+    except Exception as e:
+        print(f"FAIL: neispravan JSON poziva: {e}")
+        return 2
+    d = eng.decide(tool, call_args)
+    print(f"odluka: {d.verdict} ({d.reason})")
+    r = execute(tool, call_args, d, dry_run=not args.execute,
+                confirmed=args.confirmed)
+    print(f"izvrsavanje: ok={r.ok} dry_run={r.dry_run}")
+    if r.output:
+        print(r.output[:1000])
+    if r.reason:
+        print(f"razlog: {r.reason}")
+    return 0 if (d.verdict != "deny") else 1
+
+
 def cmd_stub(name: str):
     def _fn(_args) -> int:
         print(f"`amj {name}` je namjerno onemogućen u v0.1: prvo validatori + benchmark moraju biti zeleni.")
@@ -292,6 +317,12 @@ def main(argv=None) -> int:
         d = dict(zip(args[2::2], args[3::2])) if len(args) > 2 else {}
         job = args[2] if len(args) > 2 and not args[2].startswith("--") else d.get("--job-id", "")
         return cmd_artifacts_fetch(argparse.Namespace(job_id=job, from_hf=d.get("--from-hf")))
+    if args[:2] == ["policy", "check"]:
+        # amj policy check '{"tool":"service_status","arguments":{"service":"nginx"}}' [--execute] [--confirmed]
+        import json as _json
+        call = args[2] if len(args) > 2 and args[2].startswith("{") else "{}"
+        return cmd_policy_check(argparse.Namespace(
+            call=call, execute="--execute" in args, confirmed="--confirmed" in args))
     if args[:2] == ["evaluate", "run"] or args[:1] == ["evaluate"]:
         rest = args[2:] if args[:1] == ["evaluate"] else args[2:]
         d = dict(zip(rest[::2], rest[1::2])) if rest else {}

@@ -44,7 +44,7 @@ pytest -q                     # 9 testova
 
 - `configs/` — project, models (pinovane revizije), datasets, tools, training
 - `src/agentmujo_training/` — cli (`amj`), tools, datasets, benchmark,
-  context, registry, training/, evaluation/
+  context, registry, policy (Policy Engine + Executor), training/, evaluation/
 - `schemas/` — dataset, tool, experiment, model JSON Scheme
 - `datasets/canonical/` — MVP uzorci (12 + 5); sirovi/veliki podaci idu na HF Hub
 - `benchmark/` — AgentMujo-Bench (16 kategorija, 20 slučajeva v0.2)
