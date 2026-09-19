@@ -35,6 +35,14 @@ private adapter repoe.
 - `status.json` (`failed` + `finished_at`) je signal za resume; nikada se
   ne pretpostavlja da sesija traje do kraja treninga.
 
+## Eval tokom treninga (overfitting detekcija)
+
+Config polja `eval_file` (hf:// putanja do zamrznutog valid fajla ili lokalni
+path) + `eval_steps` uključuju validaciju u `SFTTrainer`. Metrike
+(`eval_loss_final/min`, `train_eval_gap`) idu u `metrics.json` + manifest.
+Pravilo: ako `eval_loss` raste dok `train_loss` pada 2 evaluacije zaredom —
+stop, ne objavljuj adapter.
+
 ## Artefakti (source of truth: Oracle/Hub)
 
 - Worker vraća: `status.json`, `metrics.json` (8 kategorija A–H iz taska:

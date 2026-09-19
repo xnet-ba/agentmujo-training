@@ -60,3 +60,16 @@ def test_registry_build():
     assert "## Lineage adaptera" in md
     assert "qwen35-jt4-20260918-kaggle12" in md
     assert "task=" in md
+
+
+def test_summarize_history():
+    import sys
+    sys.path.insert(0, str(REPO / "workers" / "kaggle"))
+    import job_run
+    s = job_run._summarize_history([
+        {"loss": 1.0, "epoch": 0}, {"loss": 0.5, "epoch": 1},
+        {"eval_loss": 0.8}, {"loss": 0.4}, {"eval_loss": 0.9}])
+    assert s["train_loss"] == 0.4
+    assert s["eval_loss_final"] == 0.9
+    assert s["eval_loss_min"] == 0.8
+    assert s["train_eval_gap"] == round(0.9 - 0.4, 4)  # eval raste, train pada = overfitting signal

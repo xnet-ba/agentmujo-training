@@ -95,6 +95,20 @@ def _lib_versions() -> dict:
     return out
 
 
+def _summarize_history(log_history: list[dict]) -> dict:
+    """Train/eval krivulje iz trainer loga — osnova za overfitting detekciju."""
+    tr = [e["loss"] for e in log_history if e.get("loss") is not None]
+    ev = [e["eval_loss"] for e in log_history if e.get("eval_loss") is not None]
+    out = {"train_loss": float(tr[-1]) if tr else 0.0,
+           "train_loss_mean": float(sum(tr) / len(tr)) if tr else 0.0}
+    if ev:
+        out["eval_loss_final"] = float(ev[-1])
+        out["eval_loss_min"] = float(min(ev))
+        if tr:
+            out["train_eval_gap"] = round(float(ev[-1]) - float(tr[-1]), 4)
+    return out
+
+
 def _resolve_adapter(path: str) -> str:
     """Vrati dir sa adapter_config.json; ako zadana putanja ne postoji,
     pretrazi /kaggle/input/**/outputs/adapter (kernel output mount varira)."""
@@ -135,6 +149,18 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                           split=cfg.get("split", "train"))
     if cfg.get("max_samples"):
         ds = ds.select(range(min(cfg["max_samples"], len(ds))))
+    # Validacija na zamrznutom valid splitu (overfitting detekcija).
+    eval_ds = None
+    if cfg.get("eval_file"):
+        from datasets import load_dataset as _load
+        if cfg["eval_file"].startswith("hf://"):
+            eval_ds = _load("json", split="train", data_files=cfg["eval_file"])
+        else:
+            eval_ds = _load("json", split="train", data_files=cfg["eval_file"])
+        from agentmujo_training.training import sample_to_chatml as _c2
+        eval_ds = eval_ds.map(lambda r: {"text": tok.apply_chat_template(
+            _c2(r), tokenize=False, add_generation_prompt=False)},
+            remove_columns=[c for c in eval_ds.column_names if c != "text"])
     # Kanonski messages[] -> nativni Qwen chat tekst (tool_calls u <tool_call> XML).
     # add_generation_prompt=False: uzorci su kompletne konverzacije sa finalnim odgovorom.
     import sys as _sys
@@ -182,6 +208,8 @@ def _train_lora(cfg: dict, out: Path) -> dict:
         "gradient_checkpointing": cfg.get("gradient_checkpointing", True),
         "bf16": not cfg.get("load_in_4bit", False),
         "loss_type": cfg.get("loss_type", "nll"),
+        "eval_strategy": "steps" if eval_ds is not None else "no",
+        "eval_steps": cfg.get("eval_steps", 25),
         "max_seq_length": cfg.get("max_seq_length", 4096),
         "dataset_text_field": "text",
         "resume_from_checkpoint": cfg.get("resume_from_checkpoint"),
@@ -193,15 +221,15 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     args = SFTConfig(**{k: v for k, v in wanted.items() if k in supported})
     try:
         trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
+                             eval_dataset=eval_ds,
                              peft_config=peft_cfg, processing_class=tok)
     except TypeError:  # starije TRL verzije: tokenizer= umjesto processing_class=
         trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
+                             eval_dataset=eval_ds,
                              peft_config=peft_cfg, tokenizer=tok)
     trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
     trainer.save_model(str(out / "adapter"))
-    losses = [e.get("loss") for e in trainer.state.log_history if e.get("loss") is not None]
-    tr = {"train_loss": float(losses[-1]) if losses else 0.0,
-          "train_loss_mean": float(sum(losses) / len(losses)) if losses else 0.0}
+    tr = _summarize_history(trainer.state.log_history)
     metrics = {"mode": "sft", **tr,
                "eval": {"note": "AgentMujo-Bench (8 kategorija A-H) pokrenuti "
                                 "nakon treninga; rule-based dio ovdje, manual/LLM-sudija na Oracleu"}}
