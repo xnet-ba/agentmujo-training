@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "n": 12,
+    "non_empty_rate": 1.0,
+    "no_ekavian_rate": 0.75
+  },
+  "results": [
+    {
+      "id": "bp-01",
+      "category": "znanje",
+      "prompt": "Objasni ukratko šta je fotosinteza.",
+      "text": "Fotosinteza je biološki proces kojim biljke, alge i neki drugi organizmi pretvaraju energiju sunčevog svjetla u kemijsku energiju (glukozu), koristeći ugljikov dioksid i vodu kao supstrat. Ovaj proces se odvija u kloroplastima i ključno je za održavanje života na Zemlji jer osigurava hranu i kisik.",
+      "latency_s": 16.1,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 299
+      },
+      "error": null
+    },
+    {
+      "id": "bp-02",
+      "category": "generacija",
+      "prompt": "Napiši kratku čestitku za rođendan na bosanskom jeziku.",
+      "text": "Sretno rođendan! 🎉 Želim ti puno sreće, zdravlja i uspjeha u svakom danu. Želim ti da budeš uvijek u smislu, a da ti se sve ostvaruje. Hvala ti što si postao/la moj asistent! 🥂",
+      "latency_s": 11.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 176
+      },
+      "error": null
+    },
+    {
+      "id": "bp-03",
+      "category": "rječnik",
+      "prompt": "Koja je razlika između riječi 'vrijeme' i 'vrijednost'?",
+      "text": "Riječi **vrijeme** i **vrijednost** imaju vrlo sličan zvučni oblik, ali imaju potpuno različita značenja i primjene u svakodnevnom govoru.\n\nEvo ključnih razlika:\n\n1.  **Vrijeme (Time / Time period) – Vremenski okvir**\n*Značenje:* Odnosi se na **vrijeme** kao period, trenutak ili opseg.\n*Primjeri:*\n* \"Kada je vrijeme?\" (Kada je trenutak?)\n* \"Vrijeme je važno.\" (Vrijeme je opseg.)\n* \"Uzmi vrijeme za posao.\" (Uzmi vrijeme za rad.)\n\n2.  **Vrijednost (Quality / Value) – Cijena ili značaj**\n*Značenje:* Odnosi se na **vrijednost** kao kvalitetu, vrijednost, cijenu ili važnost.\n*Primjeri:*\n* \"Ovo je vrijedna knjiga.\" (Ovo je knjiga s visokom vrijednošću.)\n* \"Tvoje vrijeme je vrijedno.\" (Tvoje vrijeme ima veliku vrijednost.)\n* \"Cijena vrijednosti.\" (Cijena koju vrijedi nešto.)\n\n**Sažetak razlike u primjeni (",
+      "latency_s": 65.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 810
+      },
+      "error": null
+    },
+    {
+      "id": "bp-04",
+      "category": "prevod",
+      "prompt": "Prevedi na bosanski jezik: 'The server needs more memory.'",
+      "text": "Serveru treba više memorije.",
+      "latency_s": 0.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 28
+      },
+      "error": null
+    },
+    {
+      "id": "bp-05",
+      "category": "registar",
+      "prompt": "Objasni djetetu šta je internet.",
+      "text": "Dobar dan!\n\nInternet je kao **velika, bezbrižna mreža** koja povezuje sve ono što imamo na Zemlji.\n\nMogu ti to objasniti jednostavno:\n\n1.  **Kako to radi? (Ključna ideja - \"Ključevi\")**\nZa da se nešto poveže na internet, moramo imati dva ključa:\n*Prvi ključ:* **Internet** (to je mreža).\n*Drugi ključ:* **Ključ za mrežu** (to je **Internet**).\nAko imamo oba ključa, možemo da se povežemo i da koristimo internet.\n\n2.  **Šta to zapravo znači? (Praktično objašnjenje za djetetu) **\nZamisli da je internet kao **velika, neprestana igraonica** ili **veliki šalter** u gradu.\n* Kada se neko priključi na internet, on postaje **član** te igreonice.\n* On može da gleda **filmove** (video), da čita **knjige** (tekst), da igra **igračke** (igru) ili da razgovara sa **drugima** (komunikacija).\n* Internet je samo **mreža** koja omogućava da se sve to radi od",
+      "latency_s": 23.1,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 850
+      },
+      "error": null
+    },
+    {
+      "id": "bp-06",
+      "category": "ijekavica-zamka",
+      "prompt": "Sastavi tri rečenice sa riječju 'mlijeko'.",
+      "text": "Evo tri rečenice sa riječju \"mlijeko\":\n\n1. Mlijeko je prirodni proizvod koji se dobija iz mliječne žitarice.\n2. Svaka djevojčica treba da pije dovoljno mlijeka za zdravlje.\n3. Mlijeko se koristi za pripremu raznih jela i pića.",
+      "latency_s": 9.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 226
+      },
+      "error": null
+    },
+    {
+      "id": "bp-07",
+      "category": "rječnik",
+      "prompt": "Šta znači riječ 'džep'?",
+      "text": "Riječ **džep** (iz grčke riječi *zēp*) znači **džep** ili **puka** (u smislu \"mjesto za nošenje stvari\").\n\nU svakodnevnom govoru, džep se najčešće odnosi na:\n* **Džep** (u smislu \"puka\" ili \"mjesto za nošenje stvari\").\n* **Džep** (u smislu \"puka\" ili \"mjesto za nošenje stvari\").\n\nU kontekstu **džepa** (u smislu \"puka\" ili \"mjesto za nošenje stvari\"), džep se najčešće odnosi na:\n* **Džep** (u smislu \"puka\" ili \"mjesto za nošenje stvari\").\n* **Džep** (u smislu \"puka\" ili \"mjesto za nošenje stvari\").\n\nU kontekstu **džepa** (u smislu \"puka\" ili \"mjesto za nošenje stvari\"), džep se najčešće odnosi na:\n* **Džep** (u smislu \"puka\" ili \"mjesto za nošenje stvari\").\n* **Džep** (u smislu \"puka\" ili \"mjesto",
+      "latency_s": 29.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 704
+      },
+      "error": null
+    },
+    {
+      "id": "bp-08",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratku vijest o vremenskoj prognozi za Sarajevo.",
+      "text": "Sarajevo će danas imati **srednju temperaturu od oko 18°C** i **srednju vlažnost od 65% ujutro** (18°C).\n\n**Ključne vremenske promjene tokom dana su sledeće (od 18:00 do 22:00h, prema najnovijim podacima za 2024. godinu, uzimajući u obzir obične varijacije za ovu sezonu i lokalnu klimu u Sarajevu u ovom periodu, gdje se često javljaju kratke kišne kiše ili oblačne oblake uveče, a temperatura se može blago smanjiti u noći na oko 16°C, a ujutro na 19°C, uz mogućnost kratkih kišnih kiša uveče ako je vazduh vlažan. Ukoliko ste tražili specifičnu prognozu za danas, obično se očekuje stabilno vreme sa mogućim kratkim kišnim kišama uveče, a temperatura će biti blago viša ujutro i blago niža uveče. Preporučuje se nositi jaku jaknu i čarape ako je hladno ujutro ili ako se očekuju kratke kišne kiše uveče. Ako ste traž",
+      "latency_s": 33.1,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "vreme"
+        ],
+        "length_chars": 819
+      },
+      "error": null
+    },
+    {
+      "id": "bp-09",
+      "category": "gramatika",
+      "prompt": "Objasni razliku između 'da li' i 'je li' u bosanskom jeziku.",
+      "text": "U bosanskom jeziku, riječi **da li** i **je li** imaju vrlo specifične funkcije koje se razlikuju u kontekstu pitanja.\n\nEvo ključnih razlika:\n\n1.  **Da li** se koristi za **pitanja o činjenicama, stavovima ili činjeničnim stavovima** (faktima).\n2.  **Je li** se koristi za **pitanja o stanju, situaciji ili mogućnostima** (često se naziva \"pitanje o stanju\").\n\n**Primeri za razumijevanje razlike u kontekstu (npr. \"Da li je došao?\" vs. \"Da li je došao?\")**\n\n*Scenario: Čovjek je došao.*\n\n* **Da li je došao?:** Ovo je pitanje o **stanju** (da li je došao ili nije došao).\n* **Da li je došao?:** Ovo je pitanje o **činjenici** (da li je došao ili nije došao).\n\n**Praktičan savjet za korištenje (Ključna razlika u gramatici pitanja i odgovora):\n\n* **Da li** se koristi u **pitanju** (pitanje se postavljamo) i u **odgovoru** (od",
+      "latency_s": 34.4,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 826
+      },
+      "error": null
+    },
+    {
+      "id": "bp-10",
+      "category": "sažimanje",
+      "prompt": "Sažmi u dvije rečenice: 'Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds. Danas pokreće većinu servera, superračunara i Android telefona.'",
+      "text": "Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds, a danas pokreće većinu servera, superračunara i Android telefona.",
+      "latency_s": 4.5,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 150
+      },
+      "error": null
+    },
+    {
+      "id": "bp-11",
+      "category": "gramatika",
+      "prompt": "Koji padež je upotrijebljen u rečenici 'Vidim kuću'?",
+      "text": "U rečenici \"Vidim kuću\" padež je **dijelitelj** (ili **dijelitelni padež**).\n\nOvaj padež se koristi kada je glavni predikat (vidim) povezan s drugim predikom (kuća) koji se nalazi u istom dijelitelnom padežu. U ovom slučaju, \"kuća\" je predmet koji se vidi, a \"vidim\" je glagol koji se koristi u obliku \"vidim\" (dijelitelni oblik glagola).\n\nDijeliteljni padež se obično označava na kraju riječi s nastavkom **u** (npr. *u kući*, *u gradu*, *u vrtu*) ili se može vidjeti i u drugim kontekstima gdje je glavni predikat u obliku \"vidim\" ili \"vidi\".",
+      "latency_s": 20.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 544
+      },
+      "error": null
+    },
+    {
+      "id": "bp-12",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratko uputstvo za kuhanje kafe na bosanskom jeziku.",
+      "text": "Evo kratkog uputstva za kuhanje kafe na bosanskom jeziku:\n\n**Priprema kafe**\n1. **Priprema zrna** – Uzmite sveže zrna kafe i zgnječite ih u mlinu za kavu.\n2. **Priprema vode** – Ulijte vodu u čašu i zagrijte je na vatri dok ne postane topla.\n3. **Priprema čaše** – Ulijte zagrijanu vodu u čašu i dodajte žlicu šećera (ili med).\n4. **Kuhanje** – Dodajte zgnječenju zrna i dobro promiješajte.\n5. **Priprema hrane** – Zagrijte hranu na vatri dok ne postane topla.\n6. **Kuvanje** – Dodajte čašu kafe u hranu i dobro promiješajte.\n7. **Priprema servisa** – Ulijte serviranu hranu u posudu i dodajte žlicu šećera.\n8. **Serviranje** – Predajte serviranu hranu.\n\n**Napomena** – Za najbolji ukus, koristite sveže zrna i zagrijte sve sastojke na vatri.",
+      "latency_s": 51.7,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "kuva"
+        ],
+        "length_chars": 742
+      },
+      "error": null
+    }
+  ]
+}

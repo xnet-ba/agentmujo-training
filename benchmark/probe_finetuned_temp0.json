@@ -1,0 +1,177 @@
+{
+  "summary": {
+    "n": 12,
+    "non_empty_rate": 1.0,
+    "no_ekavian_rate": 1.0
+  },
+  "results": [
+    {
+      "id": "bp-01",
+      "category": "znanje",
+      "prompt": "Objasni ukratko šta je fotosinteza.",
+      "text": "Fotosinteza je proces u biljkama gdje se suncovjski svjetlost pretvara u hranjive tvari (glukozu), a kisik se oslobađa kao odjeća.",
+      "latency_s": 7.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 130
+      },
+      "error": null
+    },
+    {
+      "id": "bp-02",
+      "category": "generacija",
+      "prompt": "Napiši kratku čestitku za rođendan na bosanskom jeziku.",
+      "text": "Najveća čestitka je život! Živi puno, puno veselja i zdravlja!",
+      "latency_s": 2.5,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 62
+      },
+      "error": null
+    },
+    {
+      "id": "bp-03",
+      "category": "rječnik",
+      "prompt": "Koja je razlika između riječi 'vrijeme' i 'vrijednost'?",
+      "text": "Vrijeme je stanje tokom kojeg se događa nešto (npr. sadašnjost, jutro). Vrijednost je vrijednost, cijenjenost — šta je važan ili cijenjen.",
+      "latency_s": 4.8,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 138
+      },
+      "error": null
+    },
+    {
+      "id": "bp-04",
+      "category": "prevod",
+      "prompt": "Prevedi na bosanski jezik: 'The server needs more memory.'",
+      "text": "Server treba više memorije.",
+      "latency_s": 1.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 27
+      },
+      "error": null
+    },
+    {
+      "id": "bp-05",
+      "category": "registar",
+      "prompt": "Objasni djetetu šta je internet.",
+      "text": "Internet je kao most koji povezuje sve na jednoj strani — tu se šaljemo poruke, gledamo filmove i pronađemo stvari. Za djetetstvo je jednostavniji: povezuje se samo sa serverom koji šalje slike i zvuk.",
+      "latency_s": 5.7,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 201
+      },
+      "error": null
+    },
+    {
+      "id": "bp-06",
+      "category": "ijekavica-zamka",
+      "prompt": "Sastavi tri rečenice sa riječju 'mlijeko'.",
+      "text": "Mlijeko je najkvalitetniji protein iz živa bića. Pijem ga svaki dan za snagu. Mlijeko se topi u kruhu za doručak.",
+      "latency_s": 4.6,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 113
+      },
+      "error": null
+    },
+    {
+      "id": "bp-07",
+      "category": "rječnik",
+      "prompt": "Šta znači riječ 'džep'?",
+      "text": "Džep je džep — udubina u koži gdje se nosi novac ili stvari.",
+      "latency_s": 3.3,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 60
+      },
+      "error": null
+    },
+    {
+      "id": "bp-08",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratku vijest o vremenskoj prognozi za Sarajevo.",
+      "text": "Vrijeme u Sarajeu je obično stabilno — provjeravam kratki ciklus.\n\n<tool_call>\n<function=temp_temp_ratio>\n<parameter=ratio>\n5\n</parameter>\n</function>\n</tool_call>",
+      "latency_s": 9.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 163
+      },
+      "error": null
+    },
+    {
+      "id": "bp-09",
+      "category": "gramatika",
+      "prompt": "Objasni razliku između 'da li' i 'je li' u bosanskom jeziku.",
+      "text": "'Da li' provjerava potvrđivanje (da li je nešto urađeno ili ne). 'Je li' provjerava stanje (je li nešto aktivno ili ne). Primjer: 'Da li je server aktivan?' (stanje) vs 'Da li je urađen backup?' (provjera).",
+      "latency_s": 11.3,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 206
+      },
+      "error": null
+    },
+    {
+      "id": "bp-10",
+      "category": "sažimanje",
+      "prompt": "Sažmi u dvije rečenice: 'Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds. Danas pokreće većinu servera, superračunara i Android telefona.'",
+      "text": "Linux je porodica otvorenih sistema započeta od Linusa Torvalda, a danas služi kao osnova za servere, superračunare i mobitele.",
+      "latency_s": 8.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 127
+      },
+      "error": null
+    },
+    {
+      "id": "bp-11",
+      "category": "gramatika",
+      "prompt": "Koji padež je upotrijebljen u rečenici 'Vidim kuću'?",
+      "text": "U rečenici 'Vidim kuću' padež je akuzativ — 'kuća' je predmet koji se gleda.",
+      "latency_s": 6.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 76
+      },
+      "error": null
+    },
+    {
+      "id": "bp-12",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratko uputstvo za kuhanje kafe na bosanskom jeziku.",
+      "text": "Kuhanje kafe: prvo pranje kafe i kocke, pa zagrijavanje vode, zatim mešanje i kuhanje. Kada bude gotovo, ohladiti i filtrirati.",
+      "latency_s": 9.4,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 127
+      },
+      "error": null
+    }
+  ]
+}

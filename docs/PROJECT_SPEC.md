@@ -117,7 +117,10 @@ full × Q8. Metrike: tool_selection_accuracy, argument_accuracy,
 valid_tool_call_rate, json_validity, multi_step_success,
 terminal_accuracy, verification_success, safety_accuracy,
 task_completion_rate, bosnian_quality, latency, tokens_generated, GPU mem.
-v0.1 scorer je deterministički rule-based (bez LLM-sudije).
+v0.1 scorer je deterministički rule-based (bez LLM-sudije); v0.4 dodaje
+dvokoračni multi-step eval (`benchmark/two_step_eval.py`, `agent_eval.py`).
+Aktuelni rezultati: Q8 v0.4 task_success 1.0/0.95 kroz agent loop
+(vidi `benchmark/results_*.json` i `docs/REGISTRY.md`).
 
 ## 7. GPU worker / Oracle workflow (ažurirano: Kaggle pobijedio)
 

@@ -37,7 +37,8 @@ PROMPTS = [
 ]
 
 
-def query(prompt: str, timeout: int = 300, model: str = "qwen3.5-2b-bos-q8:latest") -> tuple[str, float]:
+def query(prompt: str, timeout: int = 300, model: str = "qwen3.5-2b-bos-q8:latest",
+          temperature: float = 0.7) -> tuple[str, float]:
     t0 = time.time()
     req = urllib.request.Request(
         "http://127.0.0.1:11434/api/chat",
@@ -46,7 +47,7 @@ def query(prompt: str, timeout: int = 300, model: str = "qwen3.5-2b-bos-q8:lates
             "messages": [{"role": "system", "content": SYSTEM},
                          {"role": "user", "content": prompt}],
             "think": False, "stream": False,
-            "options": {"temperature": 0.7, "num_predict": 300},
+            "options": {"temperature": temperature, "num_predict": 300},
         }).encode(),
         headers={"Content-Type": "application/json"},
     )
@@ -70,13 +71,14 @@ def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="qwen3.5-2b-bos-q8:latest")
+    ap.add_argument("--temperature", type=float, default=0.7)
     ap.add_argument("--out", default=str(REPO / "benchmark" / "results_bosnian_probe.json"))
     a = ap.parse_args()
     out_path = Path(a.out)
     results = []
     for pid, cat, prompt in PROMPTS:
         try:
-            text, lat = query(prompt, model=a.model)
+            text, lat = query(prompt, model=a.model, temperature=a.temperature)
             scores = auto_score(text)
             err = None
         except Exception as e:
