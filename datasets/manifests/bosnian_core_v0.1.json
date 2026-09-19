@@ -1,13 +1,13 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 120
+      "bosnian-core": 170
     },
-    "total": 120
+    "total": 170
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 3: +50 (vise-turni dijalozi, priroda, vrline; uhvacena cirilica -> novi validator gate). 120/120 ACCEPT.",
+  "note": "Serija 4: +50 (nauka, zivotinje, hrana, vrline; 3 obrnuta prijevoda uhvacena i ispravljena). 170/170 ACCEPT.",
   "version": "0.1.0"
 }
