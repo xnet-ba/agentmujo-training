@@ -1,17 +1,17 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 192
+      "function-calling": 204
     },
-    "total": 192
+    "total": 204
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 11 (tool-choice): +10 terminal-redirect/port/status disambiguacija. Split 152/21/19. 192/192 ACCEPT.",
+  "note": "Serija 12 (args preciznost): +12 tacni brojevi/portovi/putevi. Split 162/23/19. 204/204 ACCEPT.",
   "splits": {
-    "train": 152,
-    "valid": 19,
+    "train": 162,
+    "valid": 23,
     "test": 19
   },
   "tier_target": "GOLD/SILVER",
