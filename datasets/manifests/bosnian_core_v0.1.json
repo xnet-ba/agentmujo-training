@@ -1,13 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 170
+      "bosnian-core": 210
     },
-    "total": 170
+    "total": 210
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 4: +50 (nauka, zivotinje, hrana, vrline; 3 obrnuta prijevoda uhvacena i ispravljena). 170/170 ACCEPT.",
-  "version": "0.1.0"
+  "note": "Serija 5: +40 (nauka, porodica, poste; 4 obrnuta prijevoda + 1 cirilica uhvaceni). 210/210 ACCEPT.",
+  "version": "0.1.0",
+  "splits": {
+    "train": 164,
+    "valid": 26,
+    "test": 20
+  }
 }

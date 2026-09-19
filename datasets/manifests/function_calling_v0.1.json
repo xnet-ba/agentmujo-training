@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 204
+      "function-calling": 254
     },
-    "total": 204
+    "total": 254
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 12 (args preciznost): +12 tacni brojevi/portovi/putevi. Split 162/23/19. 204/204 ACCEPT.",
+  "note": "Serija 13: +50 novi servisi/portovi/putevi, no-tool znanje. 254/254 ACCEPT.",
   "splits": {
-    "train": 162,
-    "valid": 23,
-    "test": 19
+    "train": 202,
+    "valid": 29,
+    "test": 23
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"
