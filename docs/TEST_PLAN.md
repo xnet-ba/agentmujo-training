@@ -1,40 +1,30 @@
-# TEST PLAN — prvi eksperiment (gate prije BILO KAKVOG treninga)
+# TEST PLAN — gateovi (status: SVI ZELENI, održava se)
 
-## TP-0: Statički gate (mora biti zelen — JESTE u v0.1)
+## TP-0: Statički gate — ZELEN
 
-- [x] `pytest -q` → 9/9 zeleno (registry, validator, benchmark, safety)
+- [x] `pytest -q` → 31/31 zeleno (registry, validator, benchmark, safety, policy, agent, leakage)
 - [x] `amj tools validate` → 10 alata, politike ispravne
-- [x] `amj dataset validate` → oba MVP skupa ACCEPT, 0 REJECT
-- [x] `amj benchmark run --cases benchmark/cases_v0.1.jsonl` → 8 slučajeva se učitava
+- [x] `amj dataset validate` → svi skupovi ACCEPT, 0 REJECT
+- [x] `amj benchmark run --cases benchmark/cases_v0.4.jsonl` → 40 slučajeva
 
-## TP-1: Dataset scale-up gate (prije GPU-a)
+## TP-1: Dataset scale-up gate — ZELEN
 
-1. Proširiti function-calling na 100–300 uzoraka, agentic-terminal na
-   100–300 — istim formatom; svaki prolazi validator (GOLD/SILVER cilj).
-2. `amj dataset split` → train/valid/test 80/10/10; provjeriti 0 preklopa
-   ID-eva i hash-eva sadržaja između splitova i benchmarka.
-3. Safety paket: min 30 odbijenih/zatraženih-potvrda slučajeva
-   (rm -rf, mkfs, dd, iptables -F, pipe-to-shell, exfiltracija tajni).
+1. [x] function-calling 192, agentic-terminal 141, bosnian-core 120 (+pogledi).
+2. [x] split freeze + `leakage_report.json` + CI test protiv kontaminacije.
+3. [x] Safety paket: 31+ odbijanja/potvrda.
 
-## TP-2: Bazni benchmark (prije treninga)
+## TP-2: Bazni benchmark — ZELEN
 
-Pokrenuti AgentMujo-Bench protiv BAZE u sva 4 profila
-(thinking/non-thinking × full/Q8) i zabilježiti svih 16 kategorija (v0.2).
-Ovo je nulta tačka — bez nje se napredak ne može mjeriti.
-Bosanski kvalitet posebno: ako baza zadovoljava, `bosnian-core` ostaje odgođen.
+[v] AgentMujo-Bench v0.4 (40 slučajeva) protiv baze; bosnian-core bio odgođen
+pa reaktiviran nakon dokazanog forgettinga (vidi `docs/BOSNIAN_PROBE.md`).
 
-## TP-3: Smoke trening (prvi GPU run, minimalan)
+## TP-3: Smoke/dev trening — ZELEN
 
-- LoRA `r=8`, 1 epoha, 10% podataka, `max_seq=4096`, jedan seed.
-- Uspjeh = loss pada, `valid_tool_call_rate` ne pada ispod baze,
-  adapter se učitava i generiše validan `<tool_call>` format.
-- Tek onda puni run faze 1 (config u `configs/training/`), pa faza 2.
+[v] LoRA SFT na Kaggle T4 kroz job pipeline; eval svakog adaptera prije releasea.
 
-## TP-4: Kvantizacioni gate
+## TP-4: Kvantizacioni gate — ZELEN (Q8 v0.4 live)
 
-Q8 (GGUF Q8_0) → ponoviti cijeli bench → objaviti delta tabelu
-(kvalitet, argument accuracy, latencija, RAM, veličina). Release samo uz
-kompletan izvještaj.
+[v] Full vs Q8 delta tabela u `docs/QUANT_EVAL.md`; release samo uz izvještaj.
 
 ## Abort kriteriji
 

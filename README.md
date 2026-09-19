@@ -1,4 +1,4 @@
-# AgentMujo Training Framework (v0.1)
+# AgentMujo Training Framework
 
 [![CI](https://github.com/xnet-ba/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/xnet-ba/agentmujo-training/actions)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
@@ -7,9 +7,9 @@ Reproducibilan sistem za fine-tuning **malih bosanskojezičnih modela**
 koji znaju koristiti alate, raditi višekoračne zadatke i provjeravati
 rezultate — jezgra AgentMujo AI agenta.
 
-> Status: **framework skeleton, BEZ treninga.** Prvi milestone dokazuje da
-> format, tokenizer, chat template, tool calling, evaluator, benchmark i
-> training pipeline rade — tek onda se širi dataset i pali GPU.
+> Status: **aktivan trening i release ciklus.** Q8 v0.4 je objavljen
+> (task_success 1.0/0.95 kroz agent loop). Svi TEST_PLAN gateovi su zeleni;
+> `amj train` ostaje stub dok se ne odobri sljedeći GPU run.
 
 ## Razumijevanje za 5 minuta
 
@@ -36,8 +36,9 @@ amj model list                # pinovane revizije baze
 amj tools validate            # 10 alata iz registryja
 amj dataset validate --input datasets/canonical/function_calling_v0.1.jsonl
 amj dataset validate --input datasets/canonical/agentic_terminal_v0.1.jsonl
-amj benchmark run --cases benchmark/cases_v0.1.jsonl
-pytest -q                     # 9 testova
+amj benchmark run --cases benchmark/cases_v0.4.jsonl
+amj registry build           # lineage + eval tablice u docs/REGISTRY.md
+pytest -q                     # 31 test
 ```
 
 ## Struktura
@@ -46,8 +47,10 @@ pytest -q                     # 9 testova
 - `src/agentmujo_training/` — cli (`amj`), tools, datasets, benchmark,
   context, registry, policy (Policy Engine + Executor), training/, evaluation/
 - `schemas/` — dataset, tool, experiment, model JSON Scheme
-- `datasets/canonical/` — MVP uzorci (12 + 5); sirovi/veliki podaci idu na HF Hub
-- `benchmark/` — AgentMujo-Bench (16 kategorija, 20 slučajeva v0.2)
+- `datasets/canonical/` — 192 function-calling + 141 agentic-terminal +
+  120 bosnian-core + pogledi (thinking/confirmation/no-tool); sirovi podaci na HF Hubu
+- `datasets/splits/` — zamrznuti train/valid/test + leakage_report.json
+- `benchmark/` — AgentMujo-Bench (16 kategorija, 40 slučajeva v0.4) + agent_eval.py
 - `quantization/` — GGUF Q8 pipeline (convert_q8.sh + protokol)
 - `workers/vast/` — stateless GPU worker spec (startup/sync TODO do GPU faze)
 - `deployment/` — Ollama Modelfile profili (thinking/non-thinking, zajednički GGUF)
@@ -57,16 +60,17 @@ pytest -q                     # 9 testova
 ## Pravila
 
 - Bez tajni u gitu (`hf auth login`, env/credential storage).
-- Bez treninga dok TEST_PLAN gate ne bude zelen (`amj train` je stub u v0.1).
+- GPU runovi samo uz eksplicitno odobrenje (kvota!) i pinovane revizije.
 - Kvalitet > količina: GOLD/SILVER/BRONZE/REJECT, bez leakagea train/test.
+- Uske alignment nastavke ne objavljivati bez joint provjere (osciliraju).
 
 Detalji: `docs/PROJECT_SPEC.md` · Test gate: `docs/TEST_PLAN.md` ·
 Sigurnost: `SECURITY.md` · Publish: `docs/HF_PUBLISHING.md`
 
 ## Objavljeno na Hugging Face Hubu
 
-- Dataseti: [agentmujo-function-calling](https://huggingface.co/datasets/shaban2024/agentmujo-function-calling) ·
-  [agentmujo-agentic-terminal](https://huggingface.co/datasets/shaban2024/agentmujo-agentic-terminal)
-- Rezervisani model repoi (pune se iz releasea):
-  [Non-Thinking](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Non-Thinking) ·
-  [Q8-NonThinking](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking)
+- Dataseti (9): function-calling (192) · agentic-terminal (141) ·
+  bosnian-core (120) · thinking (25) · confirmation (20) ·
+  rebalance-01 · joint-01 · svi pod `shaban2024/agentmujo-*`
+- Modeli: [Q8 v0.4](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking)
+  (task_success 1.0/0.95) · [Non-Thinking full v0.1](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Non-Thinking)
