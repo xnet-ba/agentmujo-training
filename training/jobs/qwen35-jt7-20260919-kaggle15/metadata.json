@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-jt7-20260919-kaggle15",
+  "created_at": "2026-09-19T20:12:16+00:00",
+  "base_model": "alphaedge-ai/Qwen3.5-2B-bos-32768",
+  "base_revision": "2f89b8332c352d01adebd88bba5d8a2f7adf8bd6",
+  "dataset": "shaban2024/agentmujo-joint-01",
+  "dataset_revision": "2be082831a7f298ce86c5d421bb88973b9a811a2",
+  "training_config": "/home/ubuntu/agentmujo-training/configs/training/kaggle_joint7.yaml",
+  "seed": 12,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}
