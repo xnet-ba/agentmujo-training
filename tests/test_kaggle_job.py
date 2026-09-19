@@ -52,3 +52,11 @@ def test_worker_code_parses():
         if any(l.lstrip().startswith(("!", "%")) for l in src.splitlines()):
             continue  # shell magija nije Python
         ast.parse(src)
+
+
+def test_registry_build():
+    from agentmujo_training.registry import build
+    md = build(REPO)
+    assert "## Lineage adaptera" in md
+    assert "qwen35-jt4-20260918-kaggle12" in md
+    assert "task=" in md

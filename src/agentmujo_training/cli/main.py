@@ -278,7 +278,7 @@ def main(argv=None) -> int:
     # Namjerno jednostavan dispatcher (stabilan za v0.1; Typer/Click tek ako zatreba).
     args = sys.argv[1:] if argv is None else argv
     if not args:
-        print("upotreba: amj {doctor|model list|dataset validate|dataset stats|dataset split|tools validate|benchmark run|job create|job status|job validate|artifacts fetch|evaluate|train|experiment show|publish|model quantize}")
+        print("upotreba: amj {doctor|model list|dataset validate|dataset stats|dataset split|tools validate|benchmark run|job create|job status|job validate|artifacts fetch|evaluate|registry build|policy check|train|experiment show|publish|model quantize}")
         return 2
     if args[0] == "doctor":
         return cmd_doctor(None)
@@ -317,6 +317,13 @@ def main(argv=None) -> int:
         d = dict(zip(args[2::2], args[3::2])) if len(args) > 2 else {}
         job = args[2] if len(args) > 2 and not args[2].startswith("--") else d.get("--job-id", "")
         return cmd_artifacts_fetch(argparse.Namespace(job_id=job, from_hf=d.get("--from-hf")))
+    if args[:2] == ["registry", "build"]:
+        sys.path.insert(0, str(REPO_ROOT / "src"))
+        from agentmujo_training.registry import build
+        out = REPO_ROOT / "docs" / "REGISTRY.md"
+        out.write_text(build(REPO_ROOT), encoding="utf-8")
+        print(f"registar: {out}")
+        return 0
     if args[:2] == ["policy", "check"]:
         # amj policy check '{"tool":"service_status","arguments":{"service":"nginx"}}' [--execute] [--confirmed]
         import json as _json
