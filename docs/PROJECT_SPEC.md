@@ -74,7 +74,7 @@ Provjereni metapodaci baze (2026-09-15, `hf models info` + README + config):
 - učitavanje: `AutoModelForCausalLM` za tekst (HF meta spominje i
   `AutoModelForMultimodalLM` — tekstualni put je kanonski za trening);
 - instalirani `transformers 5.16.1` podržava `qwen3_5`; TRL/PEFT/datasets
-  zasad NISU na Oracleu (namjerno — trening ide na Vast GPU).
+  nisu potrebni na Oracleu (control plane; trening ide na Kaggle GPU).
 
 ## 4. Dataseti
 
@@ -99,14 +99,15 @@ odvojen od trening skupova.
 - Faza 1 (function calling): `lr=2e-4, ep=3, max_seq=8192`.
 - Faza 2 (agentic, nastavak): `lr=1e-4, ep=3, max_seq=16384`.
 - Stack: Transformers + Datasets + TRL + PEFT + Accelerate + PyTorch
-  (+ bitsandbytes na Vast GPU ako je podržan).
+  (+ bitsandbytes na Kaggle T4 za QLoRA fallback).
 - **Gate: NIJEDAN GPU run dok validatori + benchmark + TEST_PLAN gate
   ne budu zeleni** (vidi `docs/TEST_PLAN.md`). CLI `train` je namjerno
   stub u v0.1.
 
 ## 6. Evaluacija (AgentMujo-Bench)
 
-16 kategorija (`benchmark/cases_v0.2.jsonl`, 20 slučajeva; v0.1 zamrznut kao TP-2 artefakt):
+16 kategorija (`benchmark/cases_v0.4.jsonl`, 40 slučajeva, 2–8 po kategoriji;
+v0.1–v0.3 zamrznuti kao historija):
 bosnian_quality, tool_selection, argument_accuracy, tool_call_validity,
 json_validity, multi_step, terminal_accuracy, verification, safety,
 task_success (v0.1) + refusal_correctness, confirmation_behavior,
@@ -118,18 +119,22 @@ terminal_accuracy, verification_success, safety_accuracy,
 task_completion_rate, bosnian_quality, latency, tokens_generated, GPU mem.
 v0.1 scorer je deterministički rule-based (bez LLM-sudije).
 
-## 7. Vast / Oracle workflow
+## 7. GPU worker / Oracle workflow (ažurirano: Kaggle pobijedio)
 
 - Oracle (ARM64, 24GB RAM): control plane — kod, config, validatori,
   benchmark, registri, manifesti; NIKADA teški trening.
-- Vast (GPU worker, stateless): povuče pinovani config + dataset snapshot
-  + bazni model → trenira → vrati adaptere, metrike i manifest na HF/Oracle.
+- Kaggle (T4, ephemeral, 30 h/sedmično): povuče pinovani job spec + dataset
+  sa Huba + bazni model → trenira → vrati adaptere, metrike i manifest.
+  12+ jobova uspješno (vidi `docs/REGISTRY.md`). Vast direktorij zadržan
+  kao alternativa (`workers/vast/`, superseded).
 - HF autentikacija: `hf auth login`, token u credential storageu, nikada u gitu.
+- Kaggle autentikacija: `KAGGLE_API_TOKEN` (moderni Bearer) ili legacy
+  `kaggle.json`; GPU traži telefonsku verifikaciju (vidi `docs/KAGGLE_WORKER.md`).
 
 ## 8. GitHub / Hugging Face workflow
 
-- GitHub (`xnet-ba/agentmujo-training`, predloženo — repo još ne postoji,
-  struktura je lokalno pripremljena): kod, scheme, config, testovi, docs.
+- GitHub (`xnet-ba/agentmujo-training`, živ od 2026-09-15, CI zelen):
+  kod, scheme, config, testovi, docs.
 - HF Hub: dataseti (`agentmujo-*`), modeli/adapteri, benchmark artefakti,
   svaki sa karticom (model card: baza, revizija, dataseti, metodologija,
   benchmark, kvantizacija, licence, limitations).

@@ -1,4 +1,9 @@
-# Vast GPU worker — stateless specifikacija (v0.1)
+# Vast GPU worker — stateless specifikacija (v0.1, SUPERSEDED)
+
+> Status 2026-09-18: Vast nikad nije aktiviran — **Kaggle Free GPU je izabran
+> kao worker** (vidi `workers/kaggle/`, 12+ uspješnih jobova). Ovaj direktorij
+> ostaje kao alternativni dizajn; ne brisati dok se ne potvrdi da Kaggle
+> pokriva sve potrebe.
 #
 # Princip: Vast instanca je zamjenjiva. Source of truth su Oracle i/ili
 # Hugging Face Hub. Gubitak instance ne smije značiti gubitak projekta.
