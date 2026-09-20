@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 291
+      "agentic-terminal": 341
     },
-    "total": 291
+    "total": 341
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 20 (+50): HA/consul/NTP/k8s tragovi + prepisan duplikat. 291/291 ACCEPT.",
+  "note": "Serija 21 (+50): HA/consul/NTP/k8s/DNS tragovi + prepisan duplikat. 341/341 ACCEPT.",
   "splits": {
-    "train": 242,
-    "valid": 20,
-    "test": 29
+    "train": 286,
+    "valid": 23,
+    "test": 32
   },
   "version": "0.1.0"
 }

@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 590
+      "bosnian-core": 630
     },
-    "total": 590
+    "total": 630
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serije 11-15 (+220): saobracaj/BiH/zdravlje + 11 prijevoda ispravljeno. 590/590 ACCEPT. NAJVECI.",
+  "note": "Serije 16a/b (+80): saobracaj/BiH/kultura. 630/630 ACCEPT. NAJVECI.",
   "version": "0.1.0",
   "splits": {
-    "train": 461,
-    "valid": 70,
-    "test": 59
+    "train": 493,
+    "valid": 76,
+    "test": 61
   }
 }
