@@ -1,12 +1,12 @@
 # Dataset registar — dataseti žive na HF Hubu, ovdje su samo manifeste i verzije.
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-732-575-75-82, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 80a381a207a9789e3473898c6120238a194b12d3 }
-  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-441-364-35-42, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: c6ecd3c7a0109579799fdc2b5f0985ede7b59804 }
+  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-802-628-86-88, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: a33ad9fba582eac01040c4a51e249187d664cc69 }
+  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-501-414-39-48, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: f50163ea7f71142a8cf1225a479a5c84502cfc53 }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
   - { name: agentmujo-safety,              version: null, status: planned }
-  - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-710-557-86-67, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: 1265dca088fcad797fa9e06280d5a72844832c69 }
+  - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-790-623-92-75, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: 34de1e0a7cc67a8b9c6e8d6eab8a0e12f3e0c90a }
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
 

@@ -8,10 +8,10 @@ Qwen3.5 (Unsloth: ne preporučuje 4-bit trening — veće kvantizacione razlike)
 
 | Kategorija | Minimum | Preporučeno | Sada | Do minimuma |
 |---|---|---|---|---|
-| Bosnian Core | 1.000 | 2.000–3.000 | 710 | +290 |
-| Function Calling | 800 | 1.200 | 732 | +68 |
-| Agentic Behavior | 500 | 800–1.000 | 441 | +59 |
-| **Ukupno** | **2.300** | **4.000+** | **1.883** | **+417** |
+| Bosnian Core | 1.000 | 2.000–3.000 | 790 | +210 |
+| Function Calling | 800 | 1.200 | 802 | +0 |
+| Agentic Behavior | 500 | 800–1.000 | 501 | +0 |
+| **Ukupno** | **2.300** | **4.000+** | **2.093** | **+207** |
 
 ## Pravila iz izvještaja (usvojeno)
 
