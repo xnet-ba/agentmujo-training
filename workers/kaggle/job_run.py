@@ -128,6 +128,10 @@ def _resolve_adapter(path: str) -> str:
 
 def _train_lora(cfg: dict, out: Path) -> dict:
     """Minimalni LoRA SFT (TRL) sa resume podrškom; vraća metrike."""
+    import sys as _sys
+    from pathlib import Path as _P
+    _sys.path.insert(0, str(_P(__file__).resolve().parents[2] / "src"))
+    from agentmujo_training.training import sample_to_chatml
     from datasets import load_dataset
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import LoraConfig
@@ -157,16 +161,13 @@ def _train_lora(cfg: dict, out: Path) -> dict:
             eval_ds = _load("json", split="train", data_files=cfg["eval_file"])
         else:
             eval_ds = _load("json", split="train", data_files=cfg["eval_file"])
-        from agentmujo_training.training import sample_to_chatml as _c2
+        from agentmujo_training.training import sample_to_chatml as _c2  # noqa: već importano gore
         eval_ds = eval_ds.map(lambda r: {"text": tok.apply_chat_template(
             _c2(r), tokenize=False, add_generation_prompt=False)},
             remove_columns=[c for c in eval_ds.column_names if c != "text"])
     # Kanonski messages[] -> nativni Qwen chat tekst (tool_calls u <tool_call> XML).
     # add_generation_prompt=False: uzorci su kompletne konverzacije sa finalnim odgovorom.
-    import sys as _sys
-    from pathlib import Path as _P
-    _sys.path.insert(0, str(_P(__file__).resolve().parents[2] / "src"))
-    from agentmujo_training.training import sample_to_chatml
+    # (sys.path je postavljen na vrhu funkcije.)
     ds = ds.map(lambda r: {"text": tok.apply_chat_template(
         sample_to_chatml(r), tokenize=False, add_generation_prompt=False)},
         remove_columns=[c for c in ds.column_names if c != "text"])
