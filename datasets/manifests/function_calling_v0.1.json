@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 612
+      "function-calling": 672
     },
-    "total": 612
+    "total": 672
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 21 (+60): certbot/VPN/salt/monitoring/k8s/DNS. 612/612 ACCEPT.",
+  "note": "Serija 22 (+60): Zabbix/Icinga/Sensu/uptme/DNS alati, znanje. 672/672 ACCEPT.",
   "splits": {
-    "train": 484,
-    "valid": 63,
-    "test": 65
+    "train": 530,
+    "valid": 69,
+    "test": 73
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"

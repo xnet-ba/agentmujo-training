@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 630
+      "bosnian-core": 670
     },
-    "total": 630
+    "total": 670
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serije 16a/b (+80): saobracaj/BiH/kultura. 630/630 ACCEPT. NAJVECI.",
+  "note": "Serije 17a/b (+40): Mostar/kultura/muzika. 670/670 ACCEPT. NAJVECI.",
   "version": "0.1.0",
   "splits": {
-    "train": 493,
-    "valid": 76,
-    "test": 61
+    "train": 525,
+    "valid": 81,
+    "test": 64
   }
 }
