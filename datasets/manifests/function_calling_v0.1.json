@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 492
+      "function-calling": 552
     },
-    "total": 492
+    "total": 552
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 19 (balans): +40 memory/CPU/mreza/novi alati. 492/492 ACCEPT.",
+  "note": "Serija 20 (+60): certbot/VPN/salt/monitoring/k8s/DNS. 552/552 ACCEPT.",
   "splits": {
-    "train": 388,
-    "valid": 57,
-    "test": 47
+    "train": 434,
+    "valid": 60,
+    "test": 58
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"
