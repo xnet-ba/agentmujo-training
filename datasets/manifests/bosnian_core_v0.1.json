@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 500
+      "bosnian-core": 550
     },
-    "total": 500
+    "total": 550
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serije 10-14 (+130): zdravlje, kuhinja, sport, BiH, hitne sluzbe. NAJVECI skup. Split 398/54/48. 500/500 ACCEPT.",
+  "note": "Serije 10-15 (+180): ID kolizija rijesena prenumeracijom; 6 smjer-gresaka ispravljeno. 550/550 ACCEPT. NAJVECI.",
   "version": "0.1.0",
   "splits": {
-    "train": 392,
-    "valid": 57,
-    "test": 51
+    "train": 431,
+    "valid": 63,
+    "test": 56
   }
 }
