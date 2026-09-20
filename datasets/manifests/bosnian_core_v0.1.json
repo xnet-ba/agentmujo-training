@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 330
+      "bosnian-core": 370
     },
-    "total": 330
+    "total": 370
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 8 (+40): pustinja/more/vrijeme/kultura + retroaktivna ispravka 0116. 330/330 ACCEPT.",
+  "note": "Serija 9 (+40): emocije/vrijeme/umjetnost; 6 prijevoda ispravljeno. 370/370 ACCEPT.",
   "version": "0.1.0",
   "splits": {
-    "train": 261,
-    "valid": 39,
-    "test": 30
+    "train": 295,
+    "valid": 41,
+    "test": 34
   }
 }

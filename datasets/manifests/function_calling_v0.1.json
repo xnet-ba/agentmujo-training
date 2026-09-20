@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 452
+      "function-calling": 492
     },
-    "total": 452
+    "total": 492
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 18 (+60): salt/monitoring/k8s servisi, znanje. 452/452 ACCEPT.",
+  "note": "Serija 19 (balans): +40 memory/CPU/mreza/novi alati. 492/492 ACCEPT.",
   "splits": {
-    "train": 357,
-    "valid": 53,
-    "test": 42
+    "train": 388,
+    "valid": 57,
+    "test": 47
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"

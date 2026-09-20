@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 226
+      "agentic-terminal": 241
     },
-    "total": 226
+    "total": 241
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 18 (+15): HA/failover/consul/NTP tragovi. 226/226 ACCEPT.",
+  "note": "Serija 19 (clarify+memory): +15 nedostatak-parametara, kontekst-memorija, injection. 241/241 ACCEPT.",
   "splits": {
-    "train": 187,
-    "valid": 16,
-    "test": 23
+    "train": 197,
+    "valid": 18,
+    "test": 26
   },
   "version": "0.1.0"
 }
