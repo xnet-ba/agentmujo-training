@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 250
+      "bosnian-core": 290
     },
-    "total": 250
+    "total": 290
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 6 (+40): more/porodica/posta; 5 prijevoda ispravljeno. 250/250 ACCEPT.",
+  "note": "Serija 7 (+40): pustinja/more/vrijeme/porodica; 5 prijevoda ispravljeno. 290/290 ACCEPT.",
   "version": "0.1.0",
   "splits": {
-    "train": 194,
-    "valid": 34,
-    "test": 22
+    "train": 225,
+    "valid": 37,
+    "test": 28
   }
 }

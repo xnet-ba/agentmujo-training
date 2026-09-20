@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 196
+      "agentic-terminal": 211
     },
-    "total": 196
+    "total": 211
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 16 (+22): mail/DNS/kafka/NTP tragovi. 196/196 ACCEPT.",
+  "note": "Serija 17 (+15): mail/DNS/kafka/NTP tragovi. 211/211 ACCEPT.",
   "splits": {
-    "train": 162,
-    "valid": 14,
-    "test": 20
+    "train": 173,
+    "valid": 16,
+    "test": 22
   },
   "version": "0.1.0"
 }
