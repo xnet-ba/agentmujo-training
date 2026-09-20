@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "bosnian-core": 370
+      "bosnian-core": 500
     },
-    "total": 370
+    "total": 500
   },
   "dataset": "agentmujo-bosnian-core",
   "file": "datasets/canonical/bosnian_core_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 9 (+40): emocije/vrijeme/umjetnost; 6 prijevoda ispravljeno. 370/370 ACCEPT.",
+  "note": "Serije 10-14 (+130): zdravlje, kuhinja, sport, BiH, hitne sluzbe. NAJVECI skup. Split 398/54/48. 500/500 ACCEPT.",
   "version": "0.1.0",
   "splits": {
-    "train": 295,
-    "valid": 41,
-    "test": 34
+    "train": 392,
+    "valid": 57,
+    "test": 51
   }
 }
