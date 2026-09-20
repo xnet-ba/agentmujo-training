@@ -21,5 +21,5 @@ forgettinga izazvanog uskim tool SFT-om (dokazano re-probom, vidi
   prijevodi EN↔BS, sažeci. Svi odgovori provjereno tačni — ispravljaju
   točno one halucinacije koje je baza pokazala (džep, akuzativ, mlijeko).
 - **Format:** JSONL, ista schema (`task: bosnian-core`, bez `tool_calls`).
-- **Kvalitet:** 170/170 ACCEPT, human-reviewed.
+- **Kvalitet:** 550/550 ACCEPT, human-reviewed.
 - **Licenca:** Apache-2.0. Bez ličnih podataka, bez tajni.
