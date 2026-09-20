@@ -2,16 +2,16 @@
   "date": "2026-09-15",
   "method": "hash(ID) mod 100: <80 train, <90 valid, ostalo test",
   "fc": {
-    "train": 202,
+    "train": 212,
     "valid": 29,
     "test": 23,
     "ids_disjoint": true,
     "content_hashes_unique": true
   },
   "ag": {
-    "train": 139,
-    "valid": 11,
-    "test": 14,
+    "train": 145,
+    "valid": 12,
+    "test": 17,
     "ids_disjoint": true,
     "content_hashes_unique": true
   },

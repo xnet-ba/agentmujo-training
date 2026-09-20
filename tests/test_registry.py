@@ -26,3 +26,12 @@ def test_argument_validation():
     reg = ToolRegistry.from_yaml(REPO / "configs" / "tools.yaml")
     assert any("required" in e or "missing" in e for e in reg.validate_call("service_restart", {}))
     assert reg.validate_call("port_check", {"port": "80"}) != []  # port mora biti int
+
+
+def test_new_tools_v05():
+    reg = ToolRegistry.from_yaml(REPO / "configs" / "tools.yaml")
+    assert reg.get("package_install").policy == "confirmation_required"
+    assert reg.get("package_query").policy == "allow"
+    assert reg.get("file_read").policy == "allow"
+    assert reg.validate_call("package_install", {}) != []
+    assert reg.validate_call("file_read", {"path": "/etc/hosts"}) == []

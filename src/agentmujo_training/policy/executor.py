@@ -51,6 +51,13 @@ def _build_argv(tool: str, arguments: dict[str, Any]) -> list[str] | None:
         return ["ip", "-brief", "addr"]
     if tool == "port_check":
         return ["ss", "-ltnp"]
+    if tool == "package_query":
+        return ["dpkg-query", "-W", "-f=${Status} ${Version}\n", str(arguments.get("package", ""))]
+    if tool == "file_list":
+        return ["ls", "-la", str(arguments.get("path", "/"))]
+    if tool == "file_read":
+        return ["head", "-n", str(arguments.get("lines", 50)), str(arguments.get("path", ""))]
+    # package_install i ostale mutacije: nema direktnog izvrsavanja (samo dry-run opis).
     return None
 
 

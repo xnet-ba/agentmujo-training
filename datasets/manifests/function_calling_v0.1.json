@@ -1,16 +1,16 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 254
+      "function-calling": 264
     },
-    "total": 254
+    "total": 264
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 13: +50 novi servisi/portovi/putevi, no-tool znanje. 254/254 ACCEPT.",
+  "note": "Serija 14 (+10): novi servisi, terminal-redirect, root/sudo znanje. Split 212/29/23. 264/264 ACCEPT.",
   "splits": {
-    "train": 202,
+    "train": 212,
     "valid": 29,
     "test": 23
   },

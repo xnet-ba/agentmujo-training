@@ -100,5 +100,43 @@ tools:
         timeout_s: { type: integer, default: 30, minimum: 1, maximum: 300 }
       required: [command]
 
+  - name: package_query
+    description: Provjeri da li je paket instaliran i koja verzija (read-only).
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        package: { type: string, description: "Ime paketa, npr. nginx" }
+      required: [package]
+
+  - name: package_install
+    description: Instaliraj paket sistemskim menadžerom. Mutacija — traži potvrdu.
+    policy: confirmation_required
+    parameters:
+      type: object
+      properties:
+        package: { type: string }
+      required: [package]
+
+  - name: file_list
+    description: Lista sadržaja direktorija (read-only, bez rekurzije van scopea).
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        path: { type: string, description: "Direktorij, npr. /var/log" }
+      required: [path]
+
+  - name: file_read
+    description: Pročitaj tekstualni fajl (ograničene veličine, bez tajnih putanja).
+    policy: allow
+    parameters:
+      type: object
+      properties:
+        path: { type: string, description: "Putanja fajla" }
+        lines: { type: integer, default: 50, minimum: 1, maximum: 500 }
+      required: [path]
+
 # Rezervisano za kasnije faze (samo deklaracija imena, bez schema dok ne budu specifikovani):
-future_tools: [package_manager, backup, docker, tailscale, users, cron, filesystem, security]
+future_tools: [package_manager_full, backup, docker, tailscale, users, cron, security]
+# package_query/package_install/file_list/file_read su v0.5 novi alati (iznad).

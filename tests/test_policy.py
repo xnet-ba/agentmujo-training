@@ -61,3 +61,12 @@ def test_executor_real_readonly():
     d = e.decide("cpu_usage", {})
     r = execute("cpu_usage", {}, d, dry_run=False)
     assert r.ok and r.output.strip().isdigit()
+
+
+def test_new_tool_policies():
+    e = _eng()
+    assert e.decide("package_query", {"package": "nginx"}).verdict == "allow"
+    assert e.decide("package_install", {"package": "htop"}).verdict == "confirmation_required"
+    r = execute("package_query", {"package": "bash"},
+                e.decide("package_query", {"package": "bash"}), dry_run=False)
+    assert r.ok and "install ok installed" in r.output
