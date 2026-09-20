@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 272
+      "function-calling": 332
     },
-    "total": 272
+    "total": 332
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 15 (think-choice): +8 izbor alata u think tragovima. Split 217/30/25. 272/272 ACCEPT.",
+  "note": "Serija 16 (+60): mail/NTP/queue servisi, znanje. 332/332 ACCEPT.",
   "splits": {
-    "train": 217,
-    "valid": 30,
-    "test": 25
+    "train": 264,
+    "valid": 37,
+    "test": 31
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"

@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 181
+      "agentic-terminal": 196
     },
-    "total": 181
+    "total": 196
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 15: +7 (hipoteze, zaobilazenje potvrda). Split 149/14/18. 181/181 ACCEPT.",
+  "note": "Serija 16 (+22): mail/DNS/kafka/NTP tragovi. 196/196 ACCEPT.",
   "splits": {
-    "train": 149,
+    "train": 162,
     "valid": 14,
-    "test": 18
+    "test": 20
   },
   "version": "0.1.0"
 }
