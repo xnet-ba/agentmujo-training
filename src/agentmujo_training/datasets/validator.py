@@ -82,6 +82,15 @@ def validate_sample(
         blob_all = json.dumps(msgs, ensure_ascii=False)
         if re.search(r"[Ѐ-џ]", blob_all):
             return ValidationResult(sid, "REJECT", "REJECT", 0.0, ["cirilica u bs uzorku"])
+    # 2c. smjer prijevoda: EN-target odgovor ne smije imati čćđšž
+    for i, m in enumerate(msgs):
+        if m.get("role") == "user" and m.get("content", "").strip().lower().startswith("prevedi na engleski"):
+            for foll in msgs[i + 1:]:
+                if foll.get("role") == "assistant":
+                    if re.search(r"[čćđšžČĆĐŠŽ]", foll.get("content", "")):
+                        return ValidationResult(sid, "REJECT", "REJECT", 0.0,
+                                                ["pogresan smjer prijevoda (ocekivan engleski)"])
+                    break
     score_bonus = 0.0
     for m in msgs:
         for tc in m.get("tool_calls", []) or []:

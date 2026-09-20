@@ -78,3 +78,20 @@ def test_refusal_sample_accepted():
     }
     res = validate_sample(refusal, set(reg.names()), seen, reg.validate_call)
     assert res.verdict == "ACCEPT", res.errors
+
+
+def test_translation_direction():
+    from agentmujo_training.datasets.validator import validate_sample
+    reg = _reg()
+    seen: set[str] = set()
+    bad = {
+        "id": "amj-bc-6666", "version": "0.1.0", "language": "bs-ijekavica",
+        "task": "bosnian-core", "difficulty": "easy",
+        "messages": [
+            {"role": "user", "content": "Prevedi na engleski: 'Zdravo.'"},
+            {"role": "assistant", "content": "Želim ti puno sreće."},
+        ],
+        "metadata": {"source": "t", "quality_tier": "GOLD", "verification_status": "verified"},
+    }
+    res = validate_sample(bad, set(reg.names()), seen, reg.validate_call)
+    assert res.verdict == "REJECT"
