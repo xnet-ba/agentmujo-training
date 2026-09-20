@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "function-calling": 264
+      "function-calling": 272
     },
-    "total": 264
+    "total": 272
   },
   "dataset": "agentmujo-function-calling",
   "file": "datasets/canonical/function_calling_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 14 (+10): novi servisi, terminal-redirect, root/sudo znanje. Split 212/29/23. 264/264 ACCEPT.",
+  "note": "Serija 15 (think-choice): +8 izbor alata u think tragovima. Split 217/30/25. 272/272 ACCEPT.",
   "splits": {
-    "train": 212,
-    "valid": 29,
-    "test": 23
+    "train": 217,
+    "valid": 30,
+    "test": 25
   },
   "tier_target": "GOLD/SILVER",
   "version": "0.1.0"

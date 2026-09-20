@@ -1,18 +1,18 @@
 {
   "counts": {
     "by_task": {
-      "agentic-terminal": 174
+      "agentic-terminal": 181
     },
-    "total": 174
+    "total": 181
   },
   "dataset": "agentmujo-agentic-terminal",
   "file": "datasets/canonical/agentic_terminal_v0.1.jsonl",
   "language": "bs-ijekavica",
-  "note": "Serija 14 (+10): timeout, certifikati, queue, failover + 4 dopune. Split 145/12/17. 174/174 ACCEPT.",
+  "note": "Serija 15: +7 (hipoteze, zaobilazenje potvrda). Split 149/14/18. 181/181 ACCEPT.",
   "splits": {
-    "train": 145,
-    "valid": 12,
-    "test": 17
+    "train": 149,
+    "valid": 14,
+    "test": 18
   },
   "version": "0.1.0"
 }
