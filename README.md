@@ -36,7 +36,7 @@ amj model list                # pinovane revizije baze
 amj tools validate            # 10 alata iz registryja
 amj dataset validate --input datasets/canonical/function_calling_v0.1.jsonl
 amj dataset validate --input datasets/canonical/agentic_terminal_v0.1.jsonl
-amj benchmark run --cases benchmark/cases_v0.4.jsonl
+amj benchmark run --cases benchmark/cases_v0.5.jsonl
 amj registry build           # lineage + eval tablice u docs/REGISTRY.md
 pytest -q                     # 31 test
 ```
@@ -50,7 +50,7 @@ pytest -q                     # 31 test
 - `datasets/canonical/` — 192 function-calling + 141 agentic-terminal +
   120 bosnian-core + pogledi (thinking/confirmation/no-tool); sirovi podaci na HF Hubu
 - `datasets/splits/` — zamrznuti train/valid/test + leakage_report.json
-- `benchmark/` — AgentMujo-Bench (16 kategorija, 40 slučajeva v0.4) + agent_eval.py
+- `benchmark/` — AgentMujo-Bench (16 kategorija, 48 slučajeva v0.5) + agent_eval.py
 - `quantization/` — GGUF Q8 pipeline (convert_q8.sh + protokol)
 - `workers/vast/` — stateless GPU worker spec (startup/sync TODO do GPU faze)
 - `deployment/` — Ollama Modelfile profili (thinking/non-thinking, zajednički GGUF)
