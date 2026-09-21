@@ -1,6 +1,6 @@
 # Dataset registar — dataseti žive na HF Hubu, ovdje su samo manifeste i verzije.
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-842-662-88-92, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: b866d3ac94532f300f547a69e716d4734a920d81 }
+  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-902-716-90-96, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 6335f9fe3e703e6bee52c228c0210235b3e2866b }
   - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-541-450-42-49, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 66087544ba75c5678ba8a1b0b82a3d7c1b94772e }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
