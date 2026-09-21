@@ -1,0 +1,11 @@
+{
+  "mode": "sft",
+  "train_loss": 0.5495494842529297,
+  "train_loss_mean": 0.549186917146047,
+  "eval_loss_final": 0.8829375505447388,
+  "eval_loss_min": 0.8818201422691345,
+  "train_eval_gap": 0.3334,
+  "eval": {
+    "note": "AgentMujo-Bench (8 kategorija A-H) pokrenuti nakon treninga; rule-based dio ovdje, manual/LLM-sudija na Oracleu"
+  }
+}
