@@ -6,7 +6,7 @@ datasets:
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
   - { name: agentmujo-safety,              version: null, status: planned }
-  - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-920-731-111-78, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: 5dc0005bac52ee4d8bcd0dadabfcaba55a71c249 }
+  - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-1000-796-118-86, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: dc4829bf78709336fe2365d1fe690c9a1cbeb753 }
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
 
