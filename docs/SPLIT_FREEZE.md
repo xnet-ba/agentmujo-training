@@ -5,7 +5,7 @@ ostalo test). Deterministički — ponovljivo iz kanonskih fajlova.
 
 | Skup | Train | Valid | Test | Ukupno |
 |---|---|---|---|---|
-| function-calling | 929 | 121 | 132 | 1182 |
+| function-calling | 983 | 128 | 141 | 1252 |
 | agentic-terminal | 450 | 42 | 49 | 541 |
 | bosnian-core | 847 | 121 | 92 | 1060 |
 
