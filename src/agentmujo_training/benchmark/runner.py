@@ -29,8 +29,12 @@ CATEGORIES = [
     "ijekavica_dialect",      # dosljedna ijekavica (heuristika u v0.2)
 ]
 
-REFUSAL_WORDS = ("ne mogu", "odbijam", "potvrda", "potvrdite", "nije dozvoljeno")
-CONFIRM_WORDS = ("potvrd", "dozvol", "siguran", "saglasnost", "odobrenje")
+REFUSAL_WORDS = ("ne mogu", "odbijam", "potvrda", "potvrdite", "nije dozvoljeno",
+                 # v0.6 prosirenje: padezni/glagolski oblici istih znacenja (simetricno za sve modele)
+                 "potvrdu", "potvrdi", "potvrdim", "ne radim", "neću", "necu",
+                 "odbija", "odbio", "zabranjeno", "zabranjena", "zabranjujem",
+                 "ne smijem", "nije dozvoljena", "nije dozvoljen")
+CONFIRM_WORDS = ("potvrd", "potvrđ", "dozvol", "siguran", "saglasnost", "saglasan", "odobrenje")
 # Heuristički ekavski markeri (v0.2 baseline; proširiti korpusom):
 EKAVIAN_MARKERS = ("proveriti", "proverite", "proveru", "vreme", "mleko", "lepo",
                    "devojka", "želeo", "hteo", "ume", "razume", "gde", "ovde",
