@@ -1,0 +1,36 @@
+# JOINT-20 config — nastavak sa jt19 adaptera (1 epoha, S32 mix).
+# jt19: train 0.45, eval 0.888, gap 0.434 (lanac na ivici — zadnja karika
+# osim ako eval jasno padne; S32 hard-refusal cilja gate).
+# Mix v0.18: S32 hard-refusal + terminal→call prvi put unutra (prio 2x).
+experiment_id: qwen35-joint-20
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-joint19/agentmujo-training/training/jobs/qwen35-jt19-20260922-kaggle27/outputs/adapter
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: f1592e54df59d02422f0a4805eec3189dab83b2d  # joint_train_v0.18, 2026-09-22
+data_file: data/joint_train_v0.18.jsonl  # 1044: 400 FC (2x prio) + 270 AG + 260 BC
+split: train
+max_samples: null
+output_dir: outputs/joint-20
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1    # 1044/16 ≈ 65 koraka
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 15
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 23
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-function-calling@09c6fb55cc9e9ba0b3d3c167b5b643800544f22e/splits/valid.jsonl
+eval_steps: 15
