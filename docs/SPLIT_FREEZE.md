@@ -7,7 +7,7 @@ ostalo test). Deterministički — ponovljivo iz kanonskih fajlova.
 |---|---|---|---|---|
 | function-calling | 929 | 121 | 132 | 1182 |
 | agentic-terminal | 450 | 42 | 49 | 541 |
-| bosnian-core | 796 | 118 | 86 | 1000 |
+| bosnian-core | 847 | 121 | 92 | 1060 |
 
 Fajlovi: `datasets/splits/{fc,ag,bc}/{train,valid,test}.jsonl`
 (leže u gitu — mali su — i na HF Hubu u istim dataset repoima pod `splits/`).
