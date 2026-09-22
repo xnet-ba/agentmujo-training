@@ -82,7 +82,8 @@ def main() -> int:
                     if tool2 == c.expected_tool:
                         scores["tool_selection"] = 1
             results.append({"case": c.id, "tool": tool, "args": args, "scores": scores,
-                            "trace": trace, "lat": round(time.time() - t0, 1)})
+                            "trace": trace, "lat": round(time.time() - t0, 1),
+                            "text": (text or "")[:600]})
         except Exception as e:
             results.append({"case": c.id, "tool": None, "scores": {}, "error": str(e)[:100]})
         print(f"[{c.id}] {results[-1].get('tool')} {results[-1].get('scores')}", flush=True)
