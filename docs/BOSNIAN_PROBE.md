@@ -38,6 +38,29 @@ Ručna ocjena (poređenje sa bazom):
 - bp-06: "Mlijeko je klasičan izvor zla" — besmislica.
 - bp-11: "padež je obješen" — besmislica (baza je bar griješila samouvjereno).
 
+## Re-proba jt19 vs v0.4 (2026-09-22) — blaga generativna degradacija
+
+Isti 12 promptova, temp 0.7, `agentmujo-jt19-q8` vs `agentmujo-q8` (v0.4).
+Automatika: oba 12/12 non-empty, 12/12 bez ekavizama (neriješeno).
+
+Ručna ocjena izvadaka (jt19 vs v0.4):
+
+- bp-02 (čestitka): jt19 "Napočastan tebi dan!" (neologizam-greška) vs
+  v0.4 "Ovo je za tebe! Sretna ti rođendan!" (prihvatljivo) → v0.4.
+- bp-04 (prevod): jt19 "Servjer treba više memorije." (pogrešna riječ)
+  vs v0.4 "Server treba više memorije." (tačno) → v0.4.
+- bp-06 (tri rečenice s mlijekom): jt19 daje JEDNU krnju rečenicu
+  (ignoriše instrukciju) vs v0.4 daje tri tražene → v0.4.
+
+Zaključak: 1000 BC uzoraka spriječilo je katastrofalno zaboravljanje
+(jevica čista, operativne poruke tačne), ali teški SFT kratkih
+operativnih odgovora (2500+ uzoraka) nagriza tečnost i složenije
+slijeđenje instrukcija. Potvrđuje audit-nalaz "sistematska plitkost".
+Sljedeći BC val mora sadržavati DUŽE tečne odgovore (objašnjenja,
+višerečenične poruke), ne samo kratka Q&A.
+
+---
+
 ## Revidirana preporuka: bosnian-core je sada POTREBAN
 
 Uski tool SFT izazvao je **katastrofalno zaboravljanje općeg bosanskog**:
