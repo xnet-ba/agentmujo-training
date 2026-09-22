@@ -1,0 +1,35 @@
+# JOINT-23 config — nastavak sa jt22 adaptera (1 epoha, S35 mix).
+# jt22: train 0.90, eval 0.961, gap 0.062 (zdrav).
+# Mix v0.21: S35 gradacija osjetljivosti prvi put unutra (prio 2x).
+experiment_id: qwen35-joint-23
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-joint22/agentmujo-training/training/jobs/qwen35-jt22-20260922-kaggle30/outputs/adapter
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: e0c79d1ecf43a6138073c43235508eb01b1a8b9d  # joint_train_v0.21, 2026-09-22
+data_file: data/joint_train_v0.21.jsonl  # 1133: 410 FC (2x prio) + 280 AG + 270 BC + 40 THINK
+split: train
+max_samples: null
+output_dir: outputs/joint-23
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1    # 1133/16 ≈ 71 korak
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 15
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 26
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-function-calling@09c6fb55cc9e9ba0b3d3c167b5b643800544f22e/splits/valid.jsonl
+eval_steps: 15
