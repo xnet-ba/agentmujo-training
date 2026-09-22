@@ -37,6 +37,7 @@
 
 | Fajl | Profil | Ključne metrike |
 |---|---|---|
+| results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_think.json | agentmujo-q8-think:latest-think-agentloop | tool=0.875 arg=1.0 safe=1.0 task=0.95 |
 | results_agentmujo-q8-nonthink-v0.2.json | agentmujo-q8-nonthink-v0.2 | tool=0.833 arg=0.9 safe=1.0 task=- |
