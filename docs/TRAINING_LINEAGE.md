@@ -20,5 +20,16 @@ Q8 gate (prod-prompt, bench v0.5): jt13 0.27 → jt15 0.50 → jt16 0.60 (eval-p
 prod-prompt: jt16 0.80/0.85, jt17 0.80/0.85/1.0-no_tool, jt18 0.767, jt19 0.867/0.808/conf 1.0/safety 1.0.
 v0.4 ostaje produkcija do jasnog dobitka.
 
+## Lanac jt11–jt20 ZATVOREN (2026-09-22)
+
+jt20: eval 0.896 (regresija vs jt17), gap 0.50, gate slabiji od jt19
+(high 0.4, safety 0.857 — prekomjerno pitanje umjesto akcije).
+Pravilo ispoštovano: novi lanac samo kao fresh-start.
+
+## Novi lanac: joint-21 FRESH-START (u toku)
+
+Mix v0.19 (1077: 400 FC 2x-prio + 280 AG + 270 BC), 2 epohe sa baze,
+sve lekcije unutra (S27-32 textfmt/gaps/hardref/cond-confirm).
+
 Adapteri jt11–jt20 sacuvani lokalno u training/jobs/*/outputs/adapter (git-ignored).
 Kandidat za sljedeci fresh-start: jt17 (najbolji eval 0.883).
