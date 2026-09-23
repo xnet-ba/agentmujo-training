@@ -38,6 +38,6 @@ models:
 # netačan placeholder, ispraviti pri releaseu (baza je Qwen3.5-2B-bos, Apache-2.0).
 deployment_repos:
   - { profile: non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Non-Thinking, hf_revision: b8c7db1d49a5ccd70c05f3cab138d12a61dc45ea, status: v0.4-live (joint-02) }
-  - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: 26937c32dff16bb83872dda7ac7487d407a3572c, status: v0.4-live (joint-02) }
+  - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: 27b405bdf207c64276e5e6b52fca882bb50777c8, status: v0.5-live (joint-23) }
   - { profile: thinking, hf_repo: null, status: to-create-at-release }
   - { profile: q8-thinking, hf_repo: null, status: to-create-at-release }
