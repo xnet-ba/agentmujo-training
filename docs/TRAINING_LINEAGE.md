@@ -38,6 +38,19 @@ Ollama `agentmujo-q8` = jt23, v0.4 backup manifest zadržan.
 Think gate: 3W-2T-3L — think profil ostaje v0.4-think.
 S34 thinking-safety popravio think safety 0.571→1.0, refusal 0.2→1.0.
 
+## Lanac jt21–jt24: oscilacija, lekcije
+
+- jt24 ODBIJEN: gori od v0.5 na 6 metrika (high 0.4, safety 0.857).
+  Uzrok: S36 imperativ-ops→tekst otrovao alatno ponašanje
+  (uklonjen uzorak 1117 iz kanona); eval-loss (0.921) NIJE pratio
+  ponašanje — valid-loss gate je nedovoljan, bench je obavezan.
+- Thinking fajl historijski dijeli sadržaj sa FC/AG kanonima
+  (25 starih uzoraka); mix builder radi content-dedupe.
+
+## Joint-25 FRESH-START treći lanac (2026-09-23)
+
+Mix v0.23: čisti balans 992 bez prio hakova i bez duplikata.
+
 ## Gate v0.5: jt23 PROLAZI (2026-09-22)
 
 jt23-prod nonthink vs v0.4: tool 0.800/+0.133, args 0.808/+0.077,
