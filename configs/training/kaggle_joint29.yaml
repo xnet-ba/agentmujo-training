@@ -1,0 +1,35 @@
+# JOINT-29 config — nastavak sa jt28 adaptera (1 epoha, ociscen mix).
+# jt28: train 0.67, eval 0.9075, gap 0.233. Gate: ODBIJEN na 7/10 (S36 otrov).
+# Mix v0.25: otrovi 1117/1098 uklonjeni iz kanona; prio 2x.
+experiment_id: qwen35-joint-29
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-joint28/agentmujo-training/training/jobs/qwen35-jt28-20260923-kaggle36/outputs/adapter
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: ecf01ac3a85c1803157d5d2584f1ed0737164525  # joint_train_v0.25, 2026-09-23
+data_file: data/joint_train_v0.25.jsonl  # 1134: 410 FC (2x prio) + 280 AG + 280 BC + 40 THINK
+split: train
+max_samples: null
+output_dir: outputs/joint-29
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1    # 1134/16 ≈ 71 korak
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 15
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 32
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-function-calling@09c6fb55cc9e9ba0b3d3c167b5b643800544f22e/splits/valid.jsonl
+eval_steps: 15
