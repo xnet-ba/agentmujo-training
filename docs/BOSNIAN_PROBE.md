@@ -38,6 +38,22 @@ Ručna ocjena (poređenje sa bazom):
 - bp-06: "Mlijeko je klasičan izvor zla" — besmislica.
 - bp-11: "padež je obješen" — besmislica (baza je bar griješila samouvjereno).
 
+## Re-proba v0.5 live (2026-09-23) — proza i dalje slabija od v0.4
+
+12 promptova na `agentmujo-q8` (= jt23, live). Automatika: 12/12
+non-empty, 12/12 bez ekavizama. Izvadci:
+
+- bp-02: "Čestitam ti na rođendanu! Živi puno, zdravlje i sreća."
+  (bolje od jt19 "Napočastan", ali i dalje nespretno).
+- bp-04: "Servis treba više memorije." (POGREŠNO — "Server";
+  ista klasa greške kao jt19 "Servjer").
+- bp-06: "Mlijeko se pije za hranu, pije se za smeće i pije se za zimu."
+  (robotska petlja, ignoriše "tri rečenice").
+
+v0.5 je tool-release (gate prošao na alatima); tečna proza ostaje
+slabija od v0.4. Sljedeći BC val: prevodilačke zamke
+(server/servis!), duže forme, antipedagoške petlje.
+
 ## Re-proba jt19 vs v0.4 (2026-09-22) — blaga generativna degradacija
 
 Isti 12 promptova, temp 0.7, `agentmujo-jt19-q8` vs `agentmujo-q8` (v0.4).
