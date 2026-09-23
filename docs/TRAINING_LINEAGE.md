@@ -31,6 +31,15 @@ Pravilo ispoštovano: novi lanac samo kao fresh-start.
 Mix v0.19 (1077: 400 FC 2x-prio + 280 AG + 270 BC), 2 epohe sa baze,
 sve lekcije unutra (S27-32 textfmt/gaps/hardref/cond-confirm).
 
+## Lanac jt25–jt30: zatvoren bez releasea (2026-09-23)
+
+jt26–jt30 svi ODBIJENI na gateu vs v0.5 (jt23 ostaje nedodirljiv:
+tool 0.80/args 0.808/conf 0.8/notool 1.0/safety 1.0/high 1.0).
+Nalaz: eval-loss poboljšanja ne garantuju ponašanje; svaki fix
+poremeti nešto drugo (whack-a-mole na 2B+LoRA kapacitetu).
+TRENING SE PAUZIRA — v0.5 ostaje produkcija do nove strategije
+(veći base model, značajno više podataka ili druga metoda).
+
 ## RELEASE v0.5 nonthink (2026-09-23) — jt23 live
 
 Nonthink gate: 6W-2T (jedini fail frazni artefakt). Hub rev 27b405b,
