@@ -285,6 +285,10 @@ def _train_dpo(cfg: dict, out: Path) -> dict:
     adapter_path = _resolve_adapter(cfg["base_adapter"])
     model = PeftModel.from_pretrained(model, adapter_path, is_trainable=True)
     print(f"INFO: DPO sa adaptera {adapter_path}")
+    # TRL DPOTrainer ne prima PeftModel+peft_config zajedno:
+    # spoji adapter u bazu pa kreni sa svjezim LoRA slojem.
+    model = model.merge_and_unload()
+    print("INFO: adapter spojen u bazu (merge_and_unload)")
     peft_cfg = LoraConfig(r=cfg.get("lora_r", 16), lora_alpha=cfg.get("lora_alpha", 32),
                           lora_dropout=cfg.get("lora_dropout", 0.05),
                           target_modules=cfg.get("target_modules",
