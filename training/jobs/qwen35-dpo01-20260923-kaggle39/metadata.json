@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-dpo01-20260923-kaggle39",
+  "created_at": "2026-09-23T12:19:37+00:00",
+  "base_model": "alphaedge-ai/Qwen3.5-2B-bos-32768",
+  "base_revision": "2f89b8332c352d01adebd88bba5d8a2f7adf8bd6",
+  "dataset": "shaban2024/agentmujo-dpo-01",
+  "dataset_revision": "df0e9947a218a190b85e8060c007ccf7754cd215",
+  "training_config": "configs/training/kaggle_dpo01.yaml",
+  "seed": 40,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}

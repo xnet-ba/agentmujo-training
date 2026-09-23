@@ -60,6 +60,8 @@ def main() -> int:
             if r.returncode != 0:
                 raise RuntimeError("smoke test pao — vidi smoke_* logove")
             metrics = {"mode": "smoke", "smoke": "PASS"}
+        elif cfg.get("mode") == "dpo":
+            metrics = _train_dpo(cfg, out)
         else:
             metrics = _train_lora(cfg, out)
 
@@ -234,6 +236,93 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     metrics = {"mode": "sft", **tr,
                "eval": {"note": "AgentMujo-Bench (8 kategorija A-H) pokrenuti "
                                 "nakon treninga; rule-based dio ovdje, manual/LLM-sudija na Oracleu"}}
+    _write(out / "metrics.json", metrics)
+    return metrics
+
+
+def _train_dpo(cfg: dict, out: Path) -> dict:
+    """DPO preferencije nad SFT adapterom (TRL), vraća metrike.
+    Dataset: {prompt, chosen, rejected} (agentmujo-dpo-01).
+    Počinje sa base_adaptera (obicno najbolji joint adapter)."""
+    import sys as _sys
+    from pathlib import Path as _P
+    _sys.path.insert(0, str(_P(__file__).resolve().parents[2] / "src"))
+    from datasets import load_dataset
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    from peft import LoraConfig, PeftModel
+    from trl import DPOTrainer, DPOConfig
+    import inspect as _inspect
+
+    DPO_SYSTEM = ("Ti si AgentMujo, asistent za administraciju Linux servera. "
+                  "Odgovaraj na bosanskom jeziku (ijekavica). "
+                  "Za zadatke sa alatom odgovori kanonskim formatom.")
+    tok = AutoTokenizer.from_pretrained(cfg["model_name"], trust_remote_code=True)
+    repo, rev = cfg["dataset"], cfg.get("dataset_revision") or "main"
+    data_glob = cfg.get("data_file", "data/*.jsonl")
+    try:
+        ds = load_dataset("json", split=cfg.get("split", "train"),
+                          data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
+    except Exception as e:
+        print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
+        ds = load_dataset(repo, revision=cfg.get("dataset_revision"),
+                          split=cfg.get("split", "train"))
+    if cfg.get("max_samples"):
+        ds = ds.select(range(min(cfg["max_samples"], len(ds))))
+
+    def _fmt(row):
+        base = [{"role": "system", "content": DPO_SYSTEM},
+                {"role": "user", "content": row["prompt"]}]
+        return {"prompt": tok.apply_chat_template(base, tokenize=False, add_generation_prompt=True),
+                "chosen": row["chosen"], "rejected": row["rejected"]}
+    ds = ds.map(_fmt, remove_columns=[c for c in ds.column_names if c not in ()])
+    ds = ds.remove_columns([c for c in ds.column_names if c not in ("prompt", "chosen", "rejected")])
+
+    model = AutoModelForCausalLM.from_pretrained(
+        cfg["model_name"], trust_remote_code=True,
+        torch_dtype="bfloat16", device_map="auto")
+    if not cfg.get("base_adapter"):
+        raise ValueError("DPO trazi base_adapter (SFT polaziste)")
+    adapter_path = _resolve_adapter(cfg["base_adapter"])
+    model = PeftModel.from_pretrained(model, adapter_path, is_trainable=True)
+    print(f"INFO: DPO sa adaptera {adapter_path}")
+    peft_cfg = LoraConfig(r=cfg.get("lora_r", 16), lora_alpha=cfg.get("lora_alpha", 32),
+                          lora_dropout=cfg.get("lora_dropout", 0.05),
+                          target_modules=cfg.get("target_modules",
+                                                 ["q_proj", "k_proj", "v_proj", "o_proj"]),
+                          task_type="CAUSAL_LM")
+    wanted = {
+        "output_dir": str(out / "checkpoints"), "seed": cfg.get("seed", 42),
+        "per_device_train_batch_size": cfg.get("per_device_train_batch_size", 1),
+        "gradient_accumulation_steps": cfg.get("gradient_accumulation_steps", 16),
+        "learning_rate": cfg.get("learning_rate", 5e-6),
+        "num_train_epochs": cfg.get("num_train_epochs", 1),
+        "warmup_ratio": cfg.get("warmup_ratio", 0.05),
+        "weight_decay": cfg.get("weight_decay", 0.0),
+        "logging_steps": cfg.get("logging_steps", 5),
+        "save_steps": cfg.get("save_steps", 30),
+        "save_total_limit": cfg.get("save_total_limit", 2),
+        "gradient_checkpointing": cfg.get("gradient_checkpointing", True),
+        "bf16": True,
+        "beta": cfg.get("beta", 0.1),
+        "max_length": cfg.get("max_seq_length", 4096),
+        "max_prompt_length": cfg.get("max_prompt_length", 1024),
+    }
+    supported = set(_inspect.signature(DPOConfig.__init__).parameters)
+    dropped = sorted(k for k in wanted if k not in supported)
+    if dropped:
+        print(f"WARN: TRL {DPOConfig} ne podržava {dropped} — izbačeno")
+    args = DPOConfig(**{k: v for k, v in wanted.items() if k in supported})
+    try:
+        trainer = DPOTrainer(model=model, args=args, train_dataset=ds,
+                             peft_config=peft_cfg, processing_class=tok)
+    except TypeError:
+        trainer = DPOTrainer(model=model, args=args, train_dataset=ds,
+                             peft_config=peft_cfg, tokenizer=tok)
+    trainer.train()
+    trainer.save_model(str(out / "adapter"))
+    tr = _summarize_history(trainer.state.log_history)
+    metrics = {"mode": "dpo", **tr,
+               "eval": {"note": "DPO reward/loss ovdje; bench na Oracleu nakon mergea"}}
     _write(out / "metrics.json", metrics)
     return metrics
 
