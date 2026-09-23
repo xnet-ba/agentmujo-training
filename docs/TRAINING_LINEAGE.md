@@ -31,6 +31,13 @@ Pravilo ispoštovano: novi lanac samo kao fresh-start.
 Mix v0.19 (1077: 400 FC 2x-prio + 280 AG + 270 BC), 2 epohe sa baze,
 sve lekcije unutra (S27-32 textfmt/gaps/hardref/cond-confirm).
 
+## RELEASE v0.5 nonthink (2026-09-23) — jt23 live
+
+Nonthink gate: 6W-2T (jedini fail frazni artefakt). Hub rev 27b405b,
+Ollama `agentmujo-q8` = jt23, v0.4 backup manifest zadržan.
+Think gate: 3W-2T-3L — think profil ostaje v0.4-think.
+S34 thinking-safety popravio think safety 0.571→1.0, refusal 0.2→1.0.
+
 ## Gate v0.5: jt23 PROLAZI (2026-09-22)
 
 jt23-prod nonthink vs v0.4: tool 0.800/+0.133, args 0.808/+0.077,
