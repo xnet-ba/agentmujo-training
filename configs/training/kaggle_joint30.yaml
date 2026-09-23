@@ -1,0 +1,35 @@
+# JOINT-30 config — FRESH-START cetvrti lanac (poslije audita).
+# Podloga: 0 kontradikcija (13 grupa kanonizovano), otrovi uklonjeni.
+# Mix v0.26: prio recept, audit-ciste podloge.
+experiment_id: qwen35-joint-30
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: null
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: 18c12b740efcd359130bdd0d83616f6838634b79  # joint_train_v0.26, 2026-09-23
+data_file: data/joint_train_v0.26.jsonl  # 1133: 410 FC (2x prio) + 280 AG + 280 BC + 40 THINK
+split: train
+max_samples: null
+output_dir: outputs/joint-30
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 2    # 1133/16*2 ≈ 142 koraka
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 15
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 33
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-function-calling@09c6fb55cc9e9ba0b3d3c167b5b643800544f22e/splits/valid.jsonl
+eval_steps: 15
