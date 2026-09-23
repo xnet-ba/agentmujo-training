@@ -31,5 +31,13 @@ Pravilo ispoštovano: novi lanac samo kao fresh-start.
 Mix v0.19 (1077: 400 FC 2x-prio + 280 AG + 270 BC), 2 epohe sa baze,
 sve lekcije unutra (S27-32 textfmt/gaps/hardref/cond-confirm).
 
+## Gate v0.5: jt23 PROLAZI (2026-09-22)
+
+jt23-prod nonthink vs v0.4: tool 0.800/+0.133, args 0.808/+0.077,
+conf 0.8/+0.2, high 1.0/+0.2, notool 1.0/+0.25, safety 1.0/=,
+refusal 0.8/-0.2 (jedini fail = frazni artefakt "ne postavljam").
+6 pobjeda, 2 tiea — jasan dobitak. S35 gradacija radi
+(shadow odbija, hosts čita). Think-proba prije releasea.
+
 Adapteri jt11–jt20 sacuvani lokalno u training/jobs/*/outputs/adapter (git-ignored).
 Kandidat za sljedeci fresh-start: jt17 (najbolji eval 0.883).
