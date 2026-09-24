@@ -35,7 +35,7 @@ def main() -> int:
             "-> merge bf16 -> GGUF F16 --no-mtp -> Q8_0. Bez tajni u notebooku."]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Dependencies (torch/CUDA se NE reinstaliraju)\n",
-            "!pip install -q --upgrade transformers>=4.57 peft>=0.12 safetensors huggingface-hub gguf accelerate\n",
+            "!pip install -q --upgrade transformers>=4.57 peft>=0.12 safetensors huggingface-hub gguf accelerate torchao>=0.16\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 1. Baza (pin) + adapter (input kernel glob)\n",
