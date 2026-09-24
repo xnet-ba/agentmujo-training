@@ -53,7 +53,8 @@ def main() -> int:
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 2. Merge bf16 (CPU, treba RAM — zato GPU sesija)\n",
-            "import torch\n",
+            "import torch, transformers, peft\n",
+            "print('vers:', torch.__version__, transformers.__version__, peft.__version__)\n",
             "from transformers import AutoModelForCausalLM, AutoTokenizer\n",
             "from peft import PeftModel\n",
             "base_m = AutoModelForCausalLM.from_pretrained(base, dtype=torch.bfloat16,\n",
