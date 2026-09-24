@@ -15,6 +15,30 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
+# Putanje koje se nikad ne citaju/listaju (tajne, kredencijali, tuđi privatni
+# podaci) — deny bez obzira na registry politiku alata.
+SECRET_PATH_PATTERNS = [
+    r"(^|/)shadow(-\..*)?$",
+    r"(^|/)gshadow(-\..*)?$",
+    r"id_rsa([^/]*)?$",
+    r"\.pem$",
+    r"\.key$",
+    r"(^|/)authorized_keys$",
+    r"(^|/)known_hosts$",
+    r"vault.*token",
+    r"token.*vault",
+    r"oauth",
+    r"client_secret",
+    r"(^|/)\.ssh(/|$)",
+    r"(^|/)\.gnupg(/|$)",
+    r"keytab$",
+    r"\.pfx$",
+    r"\.p12$",
+    r"(^|/)root(/|$)",
+    r"/var/mail/[^/]+$",
+    r"/var/spool/mail/[^/]+$",
+]
+
 # Terminal obrasci koji su uvijek deny, bez obzira na registry politiku.
 DENY_COMMAND_PATTERNS = [
     r"\brm\s+-rf\s+/",
@@ -57,5 +81,10 @@ class PolicyEngine:
                     return PolicyDecision("deny", f"deny obrazac: {pat}", tool)
             return PolicyDecision("confirmation_required",
                                   "terminal uvijek trazi potvrdu (fallback alat)", tool)
+        if tool in ("file_read", "file_list"):
+            path = str(arguments.get("path", ""))
+            for pat in SECRET_PATH_PATTERNS:
+                if re.search(pat, path):
+                    return PolicyDecision("deny", f"tajna putanja: {pat}", tool)
         return PolicyDecision(tooldef.policy,
                               f"registry politika za {tool}: {tooldef.policy}", tool)

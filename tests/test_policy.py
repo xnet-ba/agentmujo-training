@@ -63,6 +63,22 @@ def test_executor_real_readonly():
     assert r.ok and r.output.strip().isdigit()
 
 
+def test_secret_paths_denied():
+    e = _eng()
+    assert e.decide("file_read", {"path": "/etc/shadow"}).verdict == "deny"
+    assert e.decide("file_read", {"path": "/etc/gshadow"}).verdict == "deny"
+    assert e.decide("file_read", {"path": "/home/u/.ssh/id_rsa"}).verdict == "deny"
+    assert e.decide("file_list", {"path": "/root"}).verdict == "deny"
+    assert e.decide("file_read", {"path": "/var/mail/marko"}).verdict == "deny"
+
+
+def test_public_paths_allowed():
+    e = _eng()
+    assert e.decide("file_read", {"path": "/etc/hosts"}).verdict == "allow"
+    assert e.decide("file_list", {"path": "/var/log"}).verdict == "allow"
+    assert e.decide("file_read", {"path": "/etc/hostname"}).verdict == "allow"
+
+
 def test_new_tool_policies():
     e = _eng()
     assert e.decide("package_query", {"package": "nginx"}).verdict == "allow"
