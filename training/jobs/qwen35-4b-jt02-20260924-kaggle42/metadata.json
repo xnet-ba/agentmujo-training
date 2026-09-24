@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-4b-jt02-20260924-kaggle42",
+  "created_at": "2026-09-24T09:33:55+00:00",
+  "base_model": "alphaedge-ai/Qwen3.5-4B-bos-32768",
+  "base_revision": "34a621915a6214ab9d28f74142840d8cd5bc0acb",
+  "dataset": "shaban2024/agentmujo-joint-01",
+  "dataset_revision": "069c627af2d6ecc777f5da3aab297b5fee10f2b1",
+  "training_config": "configs/training/kaggle_4b_joint02.yaml",
+  "seed": 35,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}

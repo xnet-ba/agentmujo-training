@@ -1,0 +1,35 @@
+# 4B-JOINT-02 config — nastavak sa 4b-jt01 adaptera (1 epoha, aktuelni mix).
+# jt01: train 0.89, eval 0.883, gap ~0; gate: tool 0.867 bolji, high/ref slabi.
+# Mix v0.27: sve aktuelno uklj. S32-S38 (sensitivity, cond-confirm, AG).
+experiment_id: qwen35-4b-joint-02
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-4B-bos-32768
+model_revision: 34a621915a6214ab9d28f74142840d8cd5bc0acb
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-4b-joint01/agentmujo-training/training/jobs/qwen35-4b-jt01-20260924-kaggle41/outputs/adapter
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: 069c627af2d6ecc777f5da3aab297b5fee10f2b1  # joint_train_v0.27, 2026-09-24
+data_file: data/joint_train_v0.27.jsonl  # 1139: 410 FC (2x prio) + 280 AG + 280 BC + 40 THINK
+split: train
+max_samples: null
+output_dir: outputs/4b-joint-02
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1    # 1139/16 ≈ 71 korak
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 15
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 35
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-function-calling@09c6fb55cc9e9ba0b3d3c167b5b643800544f22e/splits/valid.jsonl
+eval_steps: 15
