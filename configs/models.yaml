@@ -31,6 +31,31 @@ models:
   #   hf_repo: org/model
   #   family: ...
 
+  - id: qwen3.5-4b-bos-32768
+    hf_repo: alphaedge-ai/Qwen3.5-4B-bos-32768
+    revision: 34a621915a6214ab9d28f74142840d8cd5bc0acb  # main; pinovati prije treninga
+    family: qwen3_5
+    architecture: Qwen3_5ForConditionalGeneration
+    params: ~3200000000
+    vocab_size: 32768
+    context_native: 262144
+    context_deploy: 32768
+    license: apache-2.0
+    base_model: Qwen/Qwen3.5-4B
+    adaptation: vocabulary-trimming (fineweb-2)
+    chat_template:
+      tool_format: "<tool_call><function=NAME><parameter=P>..</parameter></function></tool_call>"
+      result_format: "<tool_response>..</tool_response>"
+      thinking_open: "<think>"
+      thinking_close: "</think>"
+    thinking: { supported: true, mode: inference_flag, param: enable_thinking }
+    tools: { supported: true, mechanism: chat_template_tools_param }
+    load_class: AutoModelForCausalLM
+    dtype: bfloat16
+    role: base_bosnian_4b
+    status: verified-metadata-only
+    text_config: { hidden_size: 2560, num_hidden_layers: 32, num_attention_heads: 16, num_key_value_heads: 4, intermediate_size: 9216, head_dim: 256 }
+
 # Rezervisani deployment repoi na shaban2024 nalogu (prazni placeholderi od
 # 2026-09-14, odluka: REUSE, ne delete). Pune se tek iz release pipelinea
 # (težine + model card iz docs/MODEL_CARD_TEMPLATE.md).
