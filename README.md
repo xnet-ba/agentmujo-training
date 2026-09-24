@@ -7,9 +7,10 @@ Reproducibilan sistem za fine-tuning **malih bosanskojezičnih modela**
 koji znaju koristiti alate, raditi višekoračne zadatke i provjeravati
 rezultate — jezgra AgentMujo AI agenta.
 
-> Status: **aktivan trening i release ciklus.** Q8 v0.4 je objavljen
-> (task_success 1.0/0.95 kroz agent loop). Svi TEST_PLAN gateovi su zeleni;
-> `amj train` ostaje stub dok se ne odobri sljedeći GPU run.
+> Status: **v0.5 live (joint-23 Q8, gate 6W-2T nad v0.4).**
+> Dataseti: 2911 uzoraka (FC 1252 + AG 541 + BC 1118 + thinking 45).
+> Trening pauziran nakon 30 joint runova (eval 1.067→0.873);
+> Svi testovi zeleni (37/37); think-profil ostaje v0.4.
 
 ## Razumijevanje za 5 minuta
 
@@ -18,9 +19,9 @@ rezultate — jezgra AgentMujo AI agenta.
    jezik od nule dok benchmark ne pokaže potrebu.
 2. **Thinking/non-thinking = JEDAN model.** `enable_thinking` zastavica chat
    templatea prebacuje režim; 4 deployment profila dijele iste težine.
-3. **Alati:** `configs/tools.yaml` je Single Source of Truth (10 alata:
+3. **Alati:** `configs/tools.yaml` je Single Source of Truth (14 alata:
    `service_*`, `disk/memory/cpu`, `process_list`, `network_status`,
-   `port_check`, `terminal` kao fallback). Model MORA preferirati
+   `port_check`, `package_*`, `file_*`, `terminal` kao fallback). Model MORA preferirati
    high-level alat nad sirovom terminal komandom.
 4. **Sigurnost:** `MODEL → TOOL → POLICY ENGINE → LINUX`. Fine-tuning nije
    zaštita; `allow / confirmation_required / deny` odlučuje izvršavanje.
@@ -38,7 +39,7 @@ amj dataset validate --input datasets/canonical/function_calling_v0.1.jsonl
 amj dataset validate --input datasets/canonical/agentic_terminal_v0.1.jsonl
 amj benchmark run --cases benchmark/cases_v0.5.jsonl
 amj registry build           # lineage + eval tablice u docs/REGISTRY.md
-pytest -q                     # 31 test
+pytest -q                     # 37 testova
 ```
 
 ## Struktura
@@ -47,12 +48,12 @@ pytest -q                     # 31 test
 - `src/agentmujo_training/` — cli (`amj`), tools, datasets, benchmark,
   context, registry, policy (Policy Engine + Executor), training/, evaluation/
 - `schemas/` — dataset, tool, experiment, model JSON Scheme
-- `datasets/canonical/` — 192 function-calling + 141 agentic-terminal +
-  120 bosnian-core + pogledi (thinking/confirmation/no-tool); sirovi podaci na HF Hubu
+- `datasets/canonical/` — 1252 function-calling + 541 agentic-terminal +
+  1118 bosnian-core + 45 thinking + DPO parovi; sirovi podaci na HF Hubu
 - `datasets/splits/` — zamrznuti train/valid/test + leakage_report.json
-- `benchmark/` — AgentMujo-Bench (16 kategorija, 48 slučajeva v0.5) + agent_eval.py
-- `quantization/` — GGUF Q8 pipeline (convert_q8.sh + protokol)
-- `workers/vast/` — stateless GPU worker spec (startup/sync TODO do GPU faze)
+- `benchmark/` — AgentMujo-Bench (16 kategorija, 48 slučajeva v0.5) + agent_eval.py + format-probe + bosanska proba
+- `quantization/` — GGUF Q8 pipeline (convert --no-mtp + block_count patch protokol)
+- `workers/kaggle/` — T4 worker (SFT + DPO + smoke), notebook generator, 40 jobova
 - `deployment/` — Ollama Modelfile profili (thinking/non-thinking, zajednički GGUF)
 - `docs/` — PROJECT_SPEC, TEST_PLAN, HF_PUBLISHING
 - `tests/` — registry, validator (+safety), benchmark
@@ -69,8 +70,9 @@ Sigurnost: `SECURITY.md` · Publish: `docs/HF_PUBLISHING.md`
 
 ## Objavljeno na Hugging Face Hubu
 
-- Dataseti (9): function-calling (192) · agentic-terminal (141) ·
-  bosnian-core (120) · thinking (25) · confirmation (20) ·
-  rebalance-01 · joint-01 · svi pod `shaban2024/agentmujo-*`
-- Modeli: [Q8 v0.4](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking)
-  (task_success 1.0/0.95) · [Non-Thinking full v0.1](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Non-Thinking)
+- Dataseti: function-calling (1252) · agentic-terminal (541) ·
+  bosnian-core (1118) · thinking (45) · dpo-01 (140 parova) ·
+  joint-01 (mixevi) · svi pod `shaban2024/agentmujo-*`
+- Modeli: [Q8 v0.5](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking)
+  (joint-23, gate 6W-2T; v0.4 backup) · think-profil ostaje v0.4 ·
+  [Non-Thinking full v0.1](https://huggingface.co/shaban2024/Qwen3.5-2B-BOS-Non-Thinking)
