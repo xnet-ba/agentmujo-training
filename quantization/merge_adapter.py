@@ -19,6 +19,8 @@ def main() -> int:
     ap.add_argument("--adapter", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--dtype", default="bfloat16", choices=["bfloat16", "float32"])
+    ap.add_argument("--rm-base-after-load", action="store_true",
+                    help="obrisi --base dir nakon ucitavanja u RAM (stednja diska; samo za jednokratne dir-ove, NIKAD za HF cache)")
     a = ap.parse_args()
 
     import torch
@@ -29,12 +31,18 @@ def main() -> int:
     print(f"[merge] baza: {a.base} | adapter: {a.adapter} | dtype: {a.dtype}", flush=True)
     base = AutoModelForCausalLM.from_pretrained(
         a.base, dtype=dtype, device_map="cpu", trust_remote_code=True)
+    tok = AutoTokenizer.from_pretrained(a.base, trust_remote_code=False)
+    if a.rm_base_after_load:
+        import shutil as _sh
+        assert Path(a.base).is_dir() and "huggingface" not in str(Path(a.base).resolve()), \
+            "rm-base-after-load dozvoljen samo za jednokratne dir-ove"
+        _sh.rmtree(a.base)
+        print(f"[merge] baza obrisana sa diska (težine u RAM-u)", flush=True)
     model = PeftModel.from_pretrained(base, a.adapter)
     merged = model.merge_and_unload()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     merged.save_pretrained(out)
-    tok = AutoTokenizer.from_pretrained(a.base, trust_remote_code=True)
     tok.save_pretrained(out)
     print(f"[merge] gotovo: {out}", flush=True)
     return 0
