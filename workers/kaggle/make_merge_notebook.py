@@ -78,6 +78,8 @@ def main() -> int:
             "_sys.path.insert(0, '/tmp/llama.cpp/gguf-py')\n",
             "import os as _os\n",
             "_os.environ['PYTHONPATH'] = '/tmp/llama.cpp/gguf-py:' + _os.environ.get('PYTHONPATH', '')\n",
+            "import gguf as _gguf\n",
+            "print('gguf file:', _gguf.__file__)\n",
             "!git clone -q https://github.com/ggerganov/llama.cpp.git /tmp/llama.cpp\n",
             "!cd /tmp/llama.cpp && git checkout -q " + a.llamacpp_ref + " && git log --oneline -1\n",
             "!cd /tmp/llama.cpp && git checkout -q " + a.llamacpp_ref + "\n",
