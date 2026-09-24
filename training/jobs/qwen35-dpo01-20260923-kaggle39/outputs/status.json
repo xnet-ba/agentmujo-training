@@ -1,9 +1,9 @@
 {
   "job_id": "qwen35-dpo01-20260923-kaggle39",
-  "status": "failed",
-  "started_at": "2026-09-23T12:20:52+00:00",
+  "status": "done",
+  "started_at": "2026-09-23T12:43:42+00:00",
   "gpu": "Tesla T4",
-  "error": "ValueError: You passed a `PeftModel` instance together with a `peft_config` to the trainer. Please first merge and unload the existing adapter, save the resulting base model, and then pass that base model along with the new `peft_config` to the trainer.",
+  "error": null,
   "cuda": "12.8",
-  "finished_at": "2026-09-23T12:21:41+00:00"
+  "finished_at": "2026-09-23T12:47:59+00:00"
 }
