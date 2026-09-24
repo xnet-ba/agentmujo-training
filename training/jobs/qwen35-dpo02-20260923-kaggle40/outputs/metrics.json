@@ -1,0 +1,8 @@
+{
+  "mode": "dpo",
+  "train_loss": 0.6773139834403992,
+  "train_loss_mean": 0.6866447180509567,
+  "eval": {
+    "note": "DPO reward/loss ovdje; bench na Oracleu nakon mergea"
+  }
+}

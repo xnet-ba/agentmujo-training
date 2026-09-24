@@ -1,0 +1,71 @@
+{
+  "job_id": "qwen35-dpo02-20260923-kaggle40",
+  "created_at": "2026-09-24T05:28:52+00:00",
+  "base_model": "alphaedge-ai/Qwen3.5-2B-bos-32768",
+  "base_revision": "2f89b8332c352d01adebd88bba5d8a2f7adf8bd6",
+  "dataset": "shaban2024/agentmujo-dpo-01",
+  "dataset_revision": "bfa7efb644ceaeb3eceb932e4f3c0d0a49202b2e",
+  "training_config": "configs/training/kaggle_dpo02.yaml",
+  "seed": 41,
+  "worker": "kaggle-ephemeral",
+  "status": "done",
+  "config": {
+    "experiment_id": "qwen35-dpo-02",
+    "mode": "dpo",
+    "model_name": "alphaedge-ai/Qwen3.5-2B-bos-32768",
+    "model_revision": "2f89b8332c352d01adebd88bba5d8a2f7adf8bd6",
+    "base_adapter": "/kaggle/input/notebooks/admiragic/qwen35-joint23/agentmujo-training/training/jobs/qwen35-jt23-20260922-kaggle31/outputs/adapter",
+    "dataset": "shaban2024/agentmujo-dpo-01",
+    "dataset_revision": "bfa7efb644ceaeb3eceb932e4f3c0d0a49202b2e",
+    "data_file": "dpo_v0.2.jsonl",
+    "split": "train",
+    "max_samples": null,
+    "output_dir": "outputs/dpo-02",
+    "max_seq_length": 4096,
+    "max_prompt_length": 1024,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "learning_rate": 5e-06,
+    "num_train_epochs": 1,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.0,
+    "logging_steps": 2,
+    "save_steps": 8,
+    "save_total_limit": 1,
+    "gradient_checkpointing": true,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "seed": 41,
+    "beta": 0.1
+  },
+  "metrics": {
+    "mode": "dpo",
+    "train_loss": 0.6773139834403992,
+    "train_loss_mean": 0.6866447180509567,
+    "eval": {
+      "note": "DPO reward/loss ovdje; bench na Oracleu nakon mergea"
+    }
+  },
+  "finished_at": "2026-09-24T05:35:14+00:00",
+  "env": {
+    "python": "3.12.13",
+    "torch": "2.10.0+cu128",
+    "cuda": "12.8",
+    "gpu": "Tesla T4",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "trl": "1.13.0",
+    "accelerate": "1.15.0",
+    "datasets": "5.0.1"
+  }
+}
