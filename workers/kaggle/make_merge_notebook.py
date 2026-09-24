@@ -71,6 +71,7 @@ def main() -> int:
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 3. llama.cpp build (samo quantize) + konverzija F16 --no-mtp\n",
+            "!pip install -q --upgrade --force-reinstall --no-deps git+https://github.com/ggerganov/llama.cpp.git#subdirectory=gguf-py 2>&1 | tail -1\n",
             "!git clone -q --depth 1 https://github.com/ggerganov/llama.cpp.git /tmp/llama.cpp\n",
             "!cmake -S /tmp/llama.cpp -B /tmp/llama.cpp/build -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release > /dev/null\n",
             "!cmake --build /tmp/llama.cpp/build --config Release -j $(nproc) --target llama-quantize 2>&1 | tail -1\n",
