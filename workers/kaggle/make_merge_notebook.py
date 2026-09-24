@@ -23,6 +23,8 @@ def main() -> int:
     ap.add_argument("--base-rev", required=True)
     ap.add_argument("--adapter-glob", default="*/outputs/adapter")
     ap.add_argument("--out-name", default="model-q8.gguf")
+    ap.add_argument("--llamacpp-ref", default="87f9c82",
+                    help="pinovana llama.cpp revizija (master puca na Sequence pre-tokenizer)")
     ap.add_argument("--kernel-id", required=True)
     ap.add_argument("--input-kernels", default="")
     ap.add_argument("--out-dir", required=True)
@@ -70,9 +72,15 @@ def main() -> int:
             "print('merge gotov')\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
-            "# 3. llama.cpp build (samo quantize) + konverzija F16 --no-mtp\n",
-            "!pip install -q --upgrade --force-reinstall --no-deps git+https://github.com/ggerganov/llama.cpp.git#subdirectory=gguf-py 2>&1 | tail -1\n",
+            "# 3. llama.cpp (pinovana revizija — master puca na Sequence pre-tokenizer) + konverzija F16 --no-mtp\n",
+            "# gguf paket dolazi iz pinovane llama.cpp revizije (PYTHONPATH), ne sa mastera\n",
+            "import sys as _sys\n",
+            "_sys.path.insert(0, '/tmp/llama.cpp/gguf-py')\n",
+            "import os as _os\n",
+            "_os.environ['PYTHONPATH'] = '/tmp/llama.cpp/gguf-py:' + _os.environ.get('PYTHONPATH', '')\n",
             "!git clone -q --depth 1 https://github.com/ggerganov/llama.cpp.git /tmp/llama.cpp\n",
+            "!cd /tmp/llama.cpp && git fetch -q --depth 1 origin " + a.llamacpp_ref + " && git checkout -q FETCH_HEAD && git log --oneline -1\n",
+            "!cd /tmp/llama.cpp && git checkout -q " + a.llamacpp_ref + "\n",
             "!cmake -S /tmp/llama.cpp -B /tmp/llama.cpp/build -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release > /dev/null\n",
             "!cmake --build /tmp/llama.cpp/build --config Release -j $(nproc) --target llama-quantize 2>&1 | tail -1\n",
             "!python3 /tmp/llama.cpp/convert_hf_to_gguf.py /tmp/merged --outfile /tmp/model-f16.gguf --outtype f16 --no-mtp 2>&1 | tail -1\n",
