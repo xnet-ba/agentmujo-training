@@ -6,6 +6,8 @@
 |---|---|---|---|---|
 | qwen35-ag-20260916-kaggle05 | adapter: ...n35-fc-20260916-kaggle04/outputs/adapter | agentmujo-agentic-terminal | 0.808 | done |
 | qwen35-cf-20260918-kaggle09 | adapter: ...n35-jt-20260917-kaggle08/outputs/adapter | agentmujo-confirmation | 1.361 | done |
+| qwen35-dpo01-20260923-kaggle39 | adapter: ...5-jt23-20260922-kaggle31/outputs/adapter | agentmujo-dpo-01 | 0.685 | done |
+| qwen35-dpo02-20260923-kaggle40 | adapter: ...5-jt23-20260922-kaggle31/outputs/adapter | agentmujo-dpo-01 | 0.687 | done |
 | qwen35-fc-20260915-kaggle01 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | done |
 | qwen35-fc-20260915-kaggle02 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | failed |
 | qwen35-fc-20260916-kaggle03 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | 0.736 | done |
@@ -26,7 +28,14 @@
 | qwen35-jt21-20260922-kaggle29 | adapter: ...null | agentmujo-joint-01 | 1.173 | done |
 | qwen35-jt22-20260922-kaggle30 | adapter: ...5-jt21-20260922-kaggle29/outputs/adapter | agentmujo-joint-01 | 0.862 | done |
 | qwen35-jt23-20260922-kaggle31 | adapter: ...5-jt22-20260922-kaggle30/outputs/adapter | agentmujo-joint-01 | 0.782 | done |
+| qwen35-jt24-20260923-kaggle32 | adapter: ...5-jt23-20260922-kaggle31/outputs/adapter | agentmujo-joint-01 | 0.71 | done |
+| qwen35-jt25-20260923-kaggle33 | adapter: ...null | agentmujo-joint-01 | 1.267 | done |
+| qwen35-jt26-20260923-kaggle34 | adapter: ...5-jt25-20260923-kaggle33/outputs/adapter | agentmujo-joint-01 | 0.915 | done |
+| qwen35-jt27-20260923-kaggle35 | adapter: ...5-jt26-20260923-kaggle34/outputs/adapter | agentmujo-joint-01 | 0.823 | done |
+| qwen35-jt28-20260923-kaggle36 | adapter: ...5-jt27-20260923-kaggle35/outputs/adapter | agentmujo-joint-01 | 0.738 | done |
+| qwen35-jt29-20260923-kaggle37 | adapter: ...5-jt28-20260923-kaggle36/outputs/adapter | agentmujo-joint-01 | 0.669 | done |
 | qwen35-jt3-20260918-kaggle11 | adapter: ...35-jt2-20260918-kaggle10/outputs/adapter | agentmujo-joint-01 | 0.471 | done |
+| qwen35-jt30-20260923-kaggle38 | adapter: ...null | agentmujo-joint-01 | 1.187 | done |
 | qwen35-jt4-20260918-kaggle12 | adapter: ...35-jt3-20260918-kaggle11/outputs/adapter | agentmujo-joint-01 | 0.365 | done |
 | qwen35-jt5-20260918-kaggle13 | adapter: ...35-jt4-20260918-kaggle12/outputs/adapter | agentmujo-joint-01 | 0.326 | done |
 | qwen35-jt6-20260919-kaggle14 | adapter: ...35-jt5-20260918-kaggle13/outputs/adapter | agentmujo-joint-01 | 0.289 | done |
@@ -43,6 +52,8 @@
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_think.json | agentmujo-q8-think:latest-think-agentloop | tool=0.875 arg=1.0 safe=1.0 task=0.95 |
+| results_agentloop_v04back_nonthink.json | agentmujo-q8-v04-backup-nonthink-agentloop | tool=0.733 arg=1.0 safe=0.714 task=0.938 |
+| results_agentloop_v05_nonthink.json | agentmujo-q8-nonthink-agentloop | tool=0.633 arg=1.0 safe=1.0 task=0.917 |
 | results_agentmujo-q8-nonthink-v0.2.json | agentmujo-q8-nonthink-v0.2 | tool=0.833 arg=0.9 safe=1.0 task=- |
 | results_agentmujo-q8-think-v0.2.json | agentmujo-q8-think-v0.2 | tool=0.833 arg=1.0 safe=0.667 task=- |
 | results_agentmujo_q8_thinking.json | agentmujo-q8-think-v0.1 | tool=0.917 arg=1.0 safe=0.0 task=- |
@@ -57,8 +68,11 @@
 | results_bosnian_probe_jt19.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v02.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v04.json | ? | tool=- arg=- safe=- task=- |
+| results_bosnian_probe_v05.json | ? | tool=- arg=- safe=- task=- |
 | results_deployed_q8_v04_nonthink.json | agentmujo-q8:latest-nonthink | tool=0.792 arg=0.8 safe=1.0 task=- |
 | results_deployed_q8_v04_think.json | agentmujo-q8-think:latest-think | tool=0.875 arg=0.9 safe=1.0 task=- |
+| results_dpo01_prod_nonthink.json | agentmujo-dpo01-q8-nonthink | tool=0.8 arg=0.846 safe=1.0 task=- |
+| results_dpo02_prod_nonthink.json | agentmujo-dpo02-q8-nonthink | tool=0.767 arg=0.846 safe=1.0 task=- |
 | results_jt13_q8_v06_nonthink.json | agentmujo-jt13-q8-nonthink | tool=0.267 arg=0.192 safe=0.714 task=- |
 | results_jt16_prod_nonthink.json | agentmujo-jt16-q8-nonthink | tool=0.833 arg=0.846 safe=0.857 task=- |
 | results_jt17_prod_nonthink.json | agentmujo-jt17-q8-nonthink | tool=0.8 arg=0.846 safe=0.857 task=- |
@@ -69,6 +83,13 @@
 | results_jt20_prod_nonthink.json | agentmujo-jt20-q8-nonthink | tool=0.767 arg=0.769 safe=0.857 task=- |
 | results_jt22_prod_nonthink.json | agentmujo-jt22-q8-nonthink | tool=0.7 arg=0.731 safe=0.857 task=- |
 | results_jt23_prod_nonthink.json | agentmujo-jt23-q8-nonthink | tool=0.8 arg=0.808 safe=1.0 task=- |
+| results_jt23_prod_think.json | agentmujo-jt23-q8-think | tool=0.767 arg=0.846 safe=1.0 task=- |
+| results_jt24_prod_nonthink.json | agentmujo-jt24-q8-nonthink | tool=0.733 arg=0.654 safe=0.857 task=- |
+| results_jt26_prod_nonthink.json | agentmujo-jt26-q8-nonthink | tool=0.8 arg=0.731 safe=1.0 task=- |
+| results_jt27_prod_nonthink.json | agentmujo-jt27-q8-nonthink | tool=0.767 arg=0.769 safe=1.0 task=- |
+| results_jt28_prod_nonthink.json | agentmujo-jt28-q8-nonthink | tool=0.733 arg=0.808 safe=0.857 task=- |
+| results_jt29_prod_nonthink.json | agentmujo-jt29-q8-nonthink | tool=0.8 arg=0.846 safe=0.857 task=- |
+| results_jt30_prod_nonthink.json | agentmujo-jt30-q8-nonthink | tool=0.833 arg=0.731 safe=1.0 task=- |
 | results_q8_v0.2.json | ? | tool=- arg=- safe=- task=- |
 | results_q8_v0.3.json | ? | tool=- arg=- safe=- task=- |
 | results_v04_prod_nonthink.json | agentmujo-q8-nonthink | tool=0.667 arg=0.731 safe=1.0 task=- |
