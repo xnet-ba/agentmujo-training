@@ -4,6 +4,9 @@
 
 | Job | Baza/adapter | Dataset | Loss | Status |
 |---|---|---|---|---|
+| qwen35-4b-jt01-20260924-kaggle41 | adapter: ...null | agentmujo-joint-01 | 1.146 | done |
+| qwen35-4b-jt02-20260924-kaggle42 | adapter: ...b-jt01-20260924-kaggle41/outputs/adapter | agentmujo-joint-01 | 0.727 | done |
+| qwen35-4b-jt03-20260924-kaggle43 | adapter: ...b-jt02-20260924-kaggle42/outputs/adapter | agentmujo-joint-01 | 0.623 | done |
 | qwen35-ag-20260916-kaggle05 | adapter: ...n35-fc-20260916-kaggle04/outputs/adapter | agentmujo-agentic-terminal | 0.808 | done |
 | qwen35-cf-20260918-kaggle09 | adapter: ...n35-jt-20260917-kaggle08/outputs/adapter | agentmujo-confirmation | 1.361 | done |
 | qwen35-dpo01-20260923-kaggle39 | adapter: ...5-jt23-20260922-kaggle31/outputs/adapter | agentmujo-dpo-01 | 0.685 | done |
@@ -49,6 +52,10 @@
 
 | Fajl | Profil | Ključne metrike |
 |---|---|---|
+| results_4b01_prod_nonthink.json | agentmujo-4b-q8-nonthink | tool=0.867 arg=0.769 safe=1.0 task=- |
+| results_4b02_prod_nonthink.json | agentmujo-4b02-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
+| results_4b03_prod_nonthink.json | agentmujo-4b03-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
+| results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_think.json | agentmujo-q8-think:latest-think-agentloop | tool=0.875 arg=1.0 safe=1.0 task=0.95 |
@@ -65,6 +72,7 @@
 | results_agentmujo_q8_v05_nonthink.json | agentmujo-q8-v0.5-nonthink | tool=0.667 arg=0.7 safe=0.833 task=- |
 | results_baseline_v0.1.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe.json | ? | tool=- arg=- safe=- task=- |
+| results_bosnian_probe_4b.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_jt19.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v02.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v04.json | ? | tool=- arg=- safe=- task=- |
