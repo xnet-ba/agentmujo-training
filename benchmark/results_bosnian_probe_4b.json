@@ -1,0 +1,179 @@
+{
+  "summary": {
+    "n": 12,
+    "non_empty_rate": 1.0,
+    "no_ekavian_rate": 0.917
+  },
+  "results": [
+    {
+      "id": "bp-01",
+      "category": "znanje",
+      "prompt": "Objasni ukratko šta je fotosinteza.",
+      "text": "Fotosinteza je proces kojim biljke iz zraka vode i sunčeve svjetlosti prave hranu za sebe.",
+      "latency_s": 15.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 90
+      },
+      "error": null
+    },
+    {
+      "id": "bp-02",
+      "category": "generacija",
+      "prompt": "Napiši kratku čestitku za rođendan na bosanskom jeziku.",
+      "text": "Srećan rođendan! Neka ti godina donese puno radosti, zdravlja i novih uspjeha.",
+      "latency_s": 6.7,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 0,
+        "ekavian_hits": [
+          "srećan"
+        ],
+        "length_chars": 78
+      },
+      "error": null
+    },
+    {
+      "id": "bp-03",
+      "category": "rječnik",
+      "prompt": "Koja je razlika između riječi 'vrijeme' i 'vrijednost'?",
+      "text": "Vrijeme je period ili stanje atmosfere, a vrijednost je brojka kojom se mjeri nešto — primjerice vrijednost temperature.",
+      "latency_s": 8.2,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 120
+      },
+      "error": null
+    },
+    {
+      "id": "bp-04",
+      "category": "prevod",
+      "prompt": "Prevedi na bosanski jezik: 'The server needs more memory.'",
+      "text": "Servis treba više memorije.",
+      "latency_s": 2.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 27
+      },
+      "error": null
+    },
+    {
+      "id": "bp-05",
+      "category": "registar",
+      "prompt": "Objasni djetetu šta je internet.",
+      "text": "Internet je mreža koja povezuje kompjutere — kao da se svi konektuju na istu mrežu. Kroz nju dijelimo fajlove i gledamo YouTube.",
+      "latency_s": 12.6,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 128
+      },
+      "error": null
+    },
+    {
+      "id": "bp-06",
+      "category": "ijekavica-zamka",
+      "prompt": "Sastavi tri rečenice sa riječju 'mlijeko'.",
+      "text": "Mlijeko se peče na tavi. Mlijeko pijemo uz kruh. Mlijeko je bijelo i slatko.",
+      "latency_s": 13.6,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 76
+      },
+      "error": null
+    },
+    {
+      "id": "bp-07",
+      "category": "rječnik",
+      "prompt": "Šta znači riječ 'džep'?",
+      "text": "Džep je mali džep u odjeći za sitnice.",
+      "latency_s": 8.6,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 38
+      },
+      "error": null
+    },
+    {
+      "id": "bp-08",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratku vijest o vremenskoj prognozi za Sarajevo.",
+      "text": "Sarajevo ujutro sunčano, popodne oblaci — preporučujem jaku jaknu.",
+      "latency_s": 14.0,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 66
+      },
+      "error": null
+    },
+    {
+      "id": "bp-09",
+      "category": "gramatika",
+      "prompt": "Objasni razliku između 'da li' i 'je li' u bosanskom jeziku.",
+      "text": "'Razlika' — to je pitanje. Ali 'je li' ne postoji — u bosanskom se koristi samo 'da li' za potvrdu.",
+      "latency_s": 23.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 99
+      },
+      "error": null
+    },
+    {
+      "id": "bp-10",
+      "category": "sažimanje",
+      "prompt": "Sažmi u dvije rečenice: 'Linux je porodica operativnih sistema otvorenog koda koju je započeo Linus Torvalds. Danas pokreće većinu servera, superračunara i Android telefona.'",
+      "text": "Linux je otvoren kod otvorenog koda otvorenog koda otvorenog koda otvorenog koda, otvorenog koda otvorenog koda otvorenog koda. Danas pokreće većinu servera i Android telefona.",
+      "latency_s": 11.9,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 176
+      },
+      "error": null
+    },
+    {
+      "id": "bp-11",
+      "category": "gramatika",
+      "prompt": "Koji padež je upotrijebljen u rečenici 'Vidim kuću'?",
+      "text": "Kuća je u genitivu — koju vidim.",
+      "latency_s": 3.6,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 32
+      },
+      "error": null
+    },
+    {
+      "id": "bp-12",
+      "category": "ijekavica-zamka",
+      "prompt": "Napiši kratko uputstvo za kuhanje kafe na bosanskom jeziku.",
+      "text": "Kafa se peče u šporetu, izlij vodu, pa dodaj šećer po ukusu. Ugasiti i uzeti šljivu.",
+      "latency_s": 9.4,
+      "auto": {
+        "non_empty": 1,
+        "no_ekavian": 1,
+        "ekavian_hits": [],
+        "length_chars": 84
+      },
+      "error": null
+    }
+  ]
+}
