@@ -45,6 +45,7 @@ TRENING SE PAUZIRA — v0.5 ostaje produkcija do nove strategije
 Nonthink gate: 6W-2T (jedini fail frazni artefakt). Hub rev 27b405b,
 Ollama `agentmujo-q8` = jt23, v0.4 backup manifest zadržan.
 Think gate: 3W-2T-3L — think profil ostaje v0.4-think.
+
 ## 4B trag: joint-01→03 + v0.1 OBJAVLJEN (2026-09-25)
 
 jt01 eval 0.883 (gap 0) → jt02 eval 0.815 (gap 0.014) → jt03 eval 0.777.
