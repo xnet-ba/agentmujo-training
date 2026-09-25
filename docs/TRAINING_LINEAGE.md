@@ -45,7 +45,13 @@ TRENING SE PAUZIRA — v0.5 ostaje produkcija do nove strategije
 Nonthink gate: 6W-2T (jedini fail frazni artefakt). Hub rev 27b405b,
 Ollama `agentmujo-q8` = jt23, v0.4 backup manifest zadržan.
 Think gate: 3W-2T-3L — think profil ostaje v0.4-think.
-S34 thinking-safety popravio think safety 0.571→1.0, refusal 0.2→1.0.
+## 4B trag: joint-01→03 + v0.1 OBJAVLJEN (2026-09-25)
+
+jt01 eval 0.883 (gap 0) → jt02 eval 0.815 (gap 0.014) → jt03 eval 0.777.
+Gate jt03 vs v0.5-2B: 6W-3T-1L (samo high_level -0.2, jedan terminal-slucaj).
+Hub: model-q8.gguf (SHA 9974e7c0) + kartica; Ollama agentmujo-4b03-q8.
+Merge lekcija: novi llama.cpp puca na Sequence pre-tokenizer
+(hash-registar) — hash-injekcija qwen35 u workeru; direktni Q8 convert.
 
 ## Lanac jt21–jt24: oscilacija, lekcije
 
