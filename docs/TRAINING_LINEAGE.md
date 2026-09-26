@@ -53,6 +53,12 @@ Gate jt03 vs v0.5-2B: 6W-3T-1L (samo high_level -0.2, jedan terminal-slucaj).
 Hub: model-q8.gguf (SHA 9974e7c0) + kartica; Ollama agentmujo-4b03-q8.
 Merge lekcija: novi llama.cpp puca na Sequence pre-tokenizer
 (hash-registar) — hash-injekcija qwen35 u workeru; direktni Q8 convert.
+Repro-gate 2026-09-26 (nezavisan re-run, bench v0.5 48 slucajeva):
+15W-24T-1L vs v0.5-2B (jedini L bench-018 terminal-vs-highlevel);
+tool_selection 0.9, safety/refusal/multi_step/json 1.0.
+Q8 download lekcija: Kaggle CLI sesije umiru nakon ~10 min i krecu
+ispocetka u isti dir — rjesenje 4 paralelna range subset kernela
+(fa 10-19, fb 20-29, fc 30-37, fd 00-09) + lokalni cat; SHA match.
 
 ## Lanac jt21–jt24: oscilacija, lekcije
 
