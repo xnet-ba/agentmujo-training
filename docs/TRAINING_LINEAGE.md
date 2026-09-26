@@ -66,6 +66,8 @@ jt04 eval 0.7645 (gap 0.17) — najbolji 4B eval do sada.
 Gate vs v0.5-2B: 14W-26T-0L (NULA regresija); tool_selection 0.933,
 safety/refusal/json 1.0, high_level 1.0 (bench-018 fixan vs 4b03).
 Vs 4b03: 2W-44T-2L (fix 018+025; nove mane 010 confirmation, 035 multi_step).
+Think-gate 4b04 vs v0.4-think: 2W-15T-3L (tool 0.833, args 0.769,
+refusal 0.6 — think safety gap i dalje) → think produkcija ostaje v0.4-think.
 Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
 Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
 (1.037 vs v0.5 0.937, train 0.977 — underfit).
