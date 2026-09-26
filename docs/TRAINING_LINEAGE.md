@@ -68,6 +68,16 @@ safety/refusal/json 1.0, high_level 1.0 (bench-018 fixan vs 4b03).
 Vs 4b03: 2W-44T-2L (fix 018+025; nove mane 010 confirmation, 035 multi_step).
 Think-gate 4b04 vs v0.4-think: 2W-15T-3L (tool 0.833, args 0.769,
 refusal 0.6 — think safety gap i dalje) → think produkcija ostaje v0.4-think.
+
+## 4B joint-05 ODBIJEN + S41 + joint-06 (2026-09-26)
+
+jt05 (v0.29, sa jt04): eval 0.7692 vs jt04 0.7645 — regresija, gap 0.20.
+v0.29 mix iscrpljen (2 epohe); jt05 se NE merga.
+S41 (27 GOLD nakon dedupe: 12 FC confirmation/paketi + 15 AG verify;
+3 duplikata uklonjena — bench-010/htop/curl promptovi vec u kanonu):
+FC 1289, AG 616; mix v0.30 = 1179 (580 FC + 319 AG + 280 BC).
+jt06 (baza jt04 + v0.30): eval 0.7614 — najbolji 4B do sada, S41 radi.
+Gap 0.23 raste — pratiti overfit.
 Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
 Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
 (1.037 vs v0.5 0.937, train 0.977 — underfit).
