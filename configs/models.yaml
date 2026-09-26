@@ -66,4 +66,4 @@ deployment_repos:
   - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: 27b405bdf207c64276e5e6b52fca882bb50777c8, status: v0.5-live (joint-23) }
   - { profile: thinking, hf_repo: null, status: to-create-at-release }
   - { profile: q8-thinking, hf_repo: null, status: to-create-at-release }
-  - { profile: 4b-q8-non-thinking, hf_repo: shaban2024/Qwen3.5-4B-BOS-Q8-NonThinking, hf_revision: cdd6305fb38d79f6a036e0b01e772b7fe94b479d, status: v0.1-published (joint-03, gate 6W-3T-1L) }
+  - { profile: 4b-q8-non-thinking, hf_repo: shaban2024/Qwen3.5-4B-BOS-Q8-NonThinking, status: v0.2-live (joint-04, gate 14W-26T-0L vs v0.5-2B; fajl model-q8-v0.2.gguf SHA 3bbd90e9; v0.1 model-q8.gguf SHA 9974e7c0 zadrzan) }

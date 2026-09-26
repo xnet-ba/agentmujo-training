@@ -60,6 +60,19 @@ Q8 download lekcija: Kaggle CLI sesije umiru nakon ~10 min i krecu
 ispocetka u isti dir — rjesenje 4 paralelna range subset kernela
 (fa 10-19, fb 20-29, fc 30-37, fd 00-09) + lokalni cat; SHA match.
 
+## 4B joint-04 → v0.2 LIVE (2026-09-26)
+
+jt04 eval 0.7645 (gap 0.17) — najbolji 4B eval do sada.
+Gate vs v0.5-2B: 14W-26T-0L (NULA regresija); tool_selection 0.933,
+safety/refusal/json 1.0, high_level 1.0 (bench-018 fixan vs 4b03).
+Vs 4b03: 2W-44T-2L (fix 018+025; nove mane 010 confirmation, 035 multi_step).
+Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
+Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
+(1.037 vs v0.5 0.937, train 0.977 — underfit).
+Lekcija: Ollama validacija (llama-quantize COPY) pada sa iostream error
+kad je disk >85% — osloboditi prije importa; blob sha256-3bbd je bio
+kompletan uprkos failu.
+
 ## Lanac jt21–jt24: oscilacija, lekcije
 
 - jt24 ODBIJEN: gori od v0.5 na 6 metrika (high 0.4, safety 0.857).
