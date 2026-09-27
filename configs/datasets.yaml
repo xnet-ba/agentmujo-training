@@ -1,7 +1,9 @@
 # Dataset registar — dataseti žive na HF Hubu, ovdje su samo manifeste i verzije.
+# PRAVILO (lekcija 2026-09-27): pytest lokalno PRIJE svakog Hub pusha kanona
+# (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1289-1004-131-142+S41, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 3512fa90e76750957b520ca5e4b4e8e0839832fa }
-  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-616-499-50-52+S41+S42, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 339c6c44edf1ca7a8cfaa66e324aef25671e19ca }
+  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1289-1004-131-142+S41c, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 5ea17eaf55380f32da19d721a8cbf713578db79d }
+  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-631-499-50-52+S41c+S42, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 5dd5c0bb83d918e2940165d8c5c7c1f22708efab }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
