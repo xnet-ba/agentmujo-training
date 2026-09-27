@@ -119,6 +119,9 @@ safety/refusal/confirmation/multi/args 1.0; tool 0.767, high 0.2 —
 obrazac identican 4b03 (0.70/0.2): kroz loop model bira terminal/no-tool
 umjesto high-level alata (018, 030, 038, 044-046, 048). Harness-karakteristika,
 ne regresija (single-shot gate ostaje mjerodavan); task_success grub (uvijek 1.0).
+Rescore strogim task_success (done + ocekivani alat u tragu):
+v0.4-DPO 0.854 = jt19 0.854 > 4b03 0.812 > v0.4-backup 0.75 > v0.5-2B 0.667.
+Harness od sada pise i task_success_strict (rescore_agentloop.py za historiju).
 Think-gate v0.4-DPO vs v0.4-think: 2W-16T-2L (tool 0.733, refusal 0.8 —
 bolji refusal od 4b04, ali gubici 006/019) → think ostaje v0.4-think.
 Scorer-nalaz: bench-045 "miss" je artefakt stroge jednakosti
