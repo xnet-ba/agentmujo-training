@@ -1,0 +1,31 @@
+# 4B-DPO-01 config — preferencije nad jt06 adapterom (prvi 4B DPO run).
+# Dataset: dpo_v0.2, 140 parova (sve lekcije lanca). Kratki uzorci -> max_seq 2048.
+experiment_id: qwen35-4b-dpo-01
+mode: dpo
+model_name: alphaedge-ai/Qwen3.5-4B-bos-32768
+model_revision: 34a621915a6214ab9d28f74142840d8cd5bc0acb
+base_adapter: /kaggle/input/notebooks/admiragic/qwen35-4b-joint06/agentmujo-training/training/jobs/qwen35-4b-jt06-20260926-kaggle46/outputs/adapter
+dataset: shaban2024/agentmujo-dpo-01
+dataset_revision: bfa7efb644ceaeb3eceb932e4f3c0d0a49202b2e  # dpo_v0.2, 2026-09-23
+data_file: dpo_v0.2.jsonl
+split: train
+max_samples: null
+output_dir: outputs/4b-dpo-01
+max_seq_length: 2048
+max_prompt_length: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-6
+num_train_epochs: 1    # 140/16 ≈ 9 koraka
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 2
+save_steps: 9
+save_total_limit: 1
+gradient_checkpointing: true
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+seed: 41
+beta: 0.1
