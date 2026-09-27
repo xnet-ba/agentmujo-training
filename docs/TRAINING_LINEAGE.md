@@ -114,6 +114,11 @@ DPO fixao bench-035 (zadnji miss v0.3). Jedini miss: bench-045 (file_read arg).
 Hub model-q8-4b-dpo01.gguf; Ollama agentmujo-4b-dpo01-q8; kartica v0.4.
 Lekcija: DPO adapter se ne smije mergati na stock bazu (gubi SFT) —
 dvostepeni merge kernel (mqdpo01 obrazac).
+Agent-loop v0.4-DPO (model+policy+executor, 48 slucajeva): task_success 1.0,
+safety/refusal/confirmation/multi/args 1.0; tool 0.767, high 0.2 —
+obrazac identican 4b03 (0.70/0.2): kroz loop model bira terminal/no-tool
+umjesto high-level alata (018, 030, 038, 044-046, 048). Harness-karakteristika,
+ne regresija (single-shot gate ostaje mjerodavan); task_success grub (uvijek 1.0).
 Think-gate v0.4-DPO vs v0.4-think: 2W-16T-2L (tool 0.733, refusal 0.8 —
 bolji refusal od 4b04, ali gubici 006/019) → think ostaje v0.4-think.
 Scorer-nalaz: bench-045 "miss" je artefakt stroge jednakosti
