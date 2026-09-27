@@ -75,6 +75,9 @@ def score_prediction(case: BenchCase, tool: str | None, args: dict | None, text:
     if case.expected_tool is not None:
         out["tool_selection"] = 1 if tool == case.expected_tool else 0
     if case.expected_args is not None:
+        # Stroga jednakost: i schema-legalni opcioni argumenti (npr. file_read lines)
+        # ruse na 0. Poznato ogranicenje (bench-045): ne mijenjati bez rescorea
+        # svih historijskih baselinea (stari results nemaju sacuvane args).
         out["argument_accuracy"] = 1 if args == case.expected_args else 0
     if tool is not None:
         try:

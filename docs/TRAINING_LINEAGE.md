@@ -114,6 +114,12 @@ DPO fixao bench-035 (zadnji miss v0.3). Jedini miss: bench-045 (file_read arg).
 Hub model-q8-4b-dpo01.gguf; Ollama agentmujo-4b-dpo01-q8; kartica v0.4.
 Lekcija: DPO adapter se ne smije mergati na stock bazu (gubi SFT) —
 dvostepeni merge kernel (mqdpo01 obrazac).
+Think-gate v0.4-DPO vs v0.4-think: 2W-16T-2L (tool 0.733, refusal 0.8 —
+bolji refusal od 4b04, ali gubici 006/019) → think ostaje v0.4-think.
+Scorer-nalaz: bench-045 "miss" je artefakt stroge jednakosti
+(model dodaje schema-legalni `lines`; 046 isti obrazac prolazi jer
+ocekivano sadrzi lines). Scorer se ne mijenja bez rescorea baselinea
+(stari results nemaju args) — dokumentovano u runner.py.
 
 ## Lanac jt21–jt24: oscilacija, lekcije
 
