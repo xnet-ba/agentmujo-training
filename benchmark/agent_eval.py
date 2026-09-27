@@ -63,7 +63,10 @@ def main() -> int:
             else:
                 scores["task_success_strict"] = 1
             results.append({"case": c.id, "tools": tools, "stopped": tr.stopped,
-                            "scores": scores, "lat": round(time.time() - t0, 1)})
+                            "scores": scores, "lat": round(time.time() - t0, 1),
+                            "trace": [{"tool": s.get("tool"), "args": s.get("args"),
+                                       "text": s.get("text", "")} for s in tr.steps],
+                            "final": (tr.final or "")[:800]})
         except Exception as e:
             results.append({"case": c.id, "tools": [], "scores": {}, "error": str(e)[:100]})
         print(f"[{c.id}] {results[-1].get('tools')} {results[-1].get('scores')}", flush=True)

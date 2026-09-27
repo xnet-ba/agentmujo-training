@@ -76,7 +76,8 @@ def run(task: str, engine, model: str = "agentmujo-q8:latest", think: bool = Fal
             trace.stopped = "done"
             return trace
         decision = engine.decide(tool, args or {})
-        step = {"tool": tool, "args": args, "policy": decision.verdict}
+        step = {"tool": tool, "args": args, "policy": decision.verdict,
+                "text": (text or "")[:800]}
         trace.steps.append(step)
         if decision.verdict == "deny":
             trace.final = text
