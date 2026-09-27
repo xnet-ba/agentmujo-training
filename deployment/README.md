@@ -1,5 +1,16 @@
 # Deployment profili (Ollama)
 
+## Živi modeli (2026-09-27)
+
+| Alias (stabilan) | Verzija | Hub fajl | Napomena |
+|---|---|---|---|
+| `agentmujo-q8` | 2B v0.5 (joint-23) | model Q8 2B repo | default, 1.5GB |
+| `agentmujo-4b-q8` | 4B v0.4-DPO | `model-q8-4b-dpo01.gguf` | veci, 3.9GB (`ollama cp` alias, shared blobs) |
+| `agentmujo-q8-think` | 2B v0.4-think | — | think profil ostaje 2B v0.4 |
+
+Pravilo: stabilni alias uvijek pokazuje na aktuelnu verziju;
+verzionirani modeli (`agentmujo-4b-dpo01-q8`, `agentmujo-4b06-q8`) ostaju kao backup.
+
 Thinking i non-thinking **dijele isti GGUF** — režim se bira runtime
 zastavicom (`"think": true/false` u `/api/chat`), ne odvojenim fajlovima.
 Ovo je direktna posljedica odluke D1 (zajedničke težine).
