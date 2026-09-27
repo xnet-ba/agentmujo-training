@@ -39,6 +39,8 @@ Nalaz: eval-loss poboljšanja ne garantuju ponašanje; svaki fix
 poremeti nešto drugo (whack-a-mole na 2B+LoRA kapacitetu).
 TRENING SE PAUZIRA — v0.5 ostaje produkcija do nove strategije
 (veći base model, značajno više podataka ili druga metoda).
+Dodatno: jt30 fresh-start (2B, očišćeni podaci) ODBIJEN na evalu
+(1.037 vs v0.5 0.937, underfit).
 
 ## RELEASE v0.5 nonthink (2026-09-23) — jt23 live
 
@@ -101,12 +103,17 @@ regresija, gap 0.37 (skok sa 0.23). S42 nije pomogao; 3. epoha na
 ~95% istim podacima = overfit. jt07 se NE merga.
 4B SFT lanac se PAUZIRA na v0.3 (joint-06) — ista odluka kao 2B lanac
 na v0.5. Sljedeci pravci: DPO na 4B, think-safety podaci, ili veci mix.
-Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
-Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
-(1.037 vs v0.5 0.937, train 0.977 — underfit).
-Lekcija: Ollama validacija (llama-quantize COPY) pada sa iostream error
-kad je disk >85% — osloboditi prije importa; blob sha256-3bbd je bio
-kompletan uprkos failu.
+
+## 4B DPO-01 → v0.4 LIVE (2026-09-27)
+
+DPO (beta 0.1, 140 parova dpo_v0.2) nad jt06 adapterom: train loss 0.67,
+bez OOM-a na T4. Dvostepeni merge (jt06 pa dpo adapter) + Q8.
+Gate vs v0.3: 1W-47T-0L; vs v0.5-2B: 15W-25T-0L.
+tool_selection 1.0 (30/30!), multi_step 1.0, confirmation/safety/refusal/json 1.0.
+DPO fixao bench-035 (zadnji miss v0.3). Jedini miss: bench-045 (file_read arg).
+Hub model-q8-4b-dpo01.gguf; Ollama agentmujo-4b-dpo01-q8; kartica v0.4.
+Lekcija: DPO adapter se ne smije mergati na stock bazu (gubi SFT) —
+dvostepeni merge kernel (mqdpo01 obrazac).
 
 ## Lanac jt21–jt24: oscilacija, lekcije
 
