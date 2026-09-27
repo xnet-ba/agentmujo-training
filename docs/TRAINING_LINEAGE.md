@@ -78,6 +78,16 @@ S41 (27 GOLD nakon dedupe: 12 FC confirmation/paketi + 15 AG verify;
 FC 1289, AG 616; mix v0.30 = 1179 (580 FC + 319 AG + 280 BC).
 jt06 (baza jt04 + v0.30): eval 0.7614 — najbolji 4B do sada, S41 radi.
 Gap 0.23 raste — pratiti overfit.
+
+## 4B joint-06 → v0.3 LIVE (2026-09-26)
+
+Gate vs v0.5-2B: 15W-25T-0L (nula regresija); vs v0.2: 2W-46T-0L
+(S41 fixao bench-010 confirmation + 048).
+tool_selection 0.967, args 0.962, confirmation 1.0, safety/refusal/json 1.0.
+Preostalo: bench-035 (0.5). Hub model-q8-v0.3.gguf (SHA d4d79e11…);
+Ollama agentmujo-4b06-q8; kartica v0.3.
+Lekcija: Ollama import iz postojeceg blob patha kad je disk tijesan
+(blob vec sadrzi bajtove — deduplikacija po SHA).
 Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
 Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
 (1.037 vs v0.5 0.937, train 0.977 — underfit).
