@@ -83,8 +83,9 @@ Gap 0.23 raste — pratiti overfit.
 
 ## 4B joint-06 → v0.3 LIVE (2026-09-26)
 
-Gate vs v0.5-2B: 15W-25T-0L (nula regresija); vs v0.2: 2W-46T-0L
-(S41 fixao bench-010 confirmation + 048).
+Gate vs v0.5-2B cist (bez tainted 010/035): 13W-25T-0L (nula regresija);
+vs v0.2 cist: 0W-45T-0L (oba dobitka bila memorizacija S41 —
+vidi Kontaminacija sekciju).
 tool_selection 0.967, args 0.962, confirmation 1.0, safety/refusal/json 1.0.
 Preostalo: bench-035 (0.5). Hub model-q8-v0.3.gguf (SHA d4d79e11…);
 Ollama agentmujo-4b06-q8; kartica v0.3.
@@ -104,13 +105,28 @@ regresija, gap 0.37 (skok sa 0.23). S42 nije pomogao; 3. epoha na
 4B SFT lanac se PAUZIRA na v0.3 (joint-06) — ista odluka kao 2B lanac
 na v0.5. Sljedeci pravci: DPO na 4B, think-safety podaci, ili veci mix.
 
+## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
+
+Test test_leakage pao: S41 je unijela 3 doslovna bench promta u FC/AG kanon
+(amj-fc-1288=bench-010, amj-fc-1294=bench-048, amj-ag-0602=bench-035).
+Uklonjeni iz kanona + splits/train + Hub; mix v0.32 (1191) je čist i
+obavezan za sve buduće treninge. Testovi 37/37 prolaze.
+Starija kontaminacija (van test-scopea, dokumentovano, ne dira se):
+amj-th-0034 (=bench-010) u thinking kanonu od S40, bench-043 u thinking_v0.1.
+Pošten re-gate bez tainted 010/035: v0.3 vs v0.5 = 13W-25T-0L;
+v0.4 vs v0.5 = 13W-25T-0L; v0.4 vs v0.3 = 0W-45T-0L.
+Korekcija: "DPO fixao 035" se POVLAČI (bila memorizacija S41 uzorka);
+oba releasea stoje (nula gubitaka na čistim slučajevima).
+
 ## 4B DPO-01 → v0.4 LIVE (2026-09-27)
 
 DPO (beta 0.1, 140 parova dpo_v0.2) nad jt06 adapterom: train loss 0.67,
 bez OOM-a na T4. Dvostepeni merge (jt06 pa dpo adapter) + Q8.
-Gate vs v0.3: 1W-47T-0L; vs v0.5-2B: 15W-25T-0L.
+Gate vs v0.3 cist (bez tainted 010/035/048): 0W-45T-0L;
+vs v0.5-2B cist: 13W-25T-0L (nula gubitaka).
 tool_selection 1.0 (30/30!), multi_step 1.0, confirmation/safety/refusal/json 1.0.
-DPO fixao bench-035 (zadnji miss v0.3). Jedini miss: bench-045 (file_read arg).
+Tvrdnja "DPO fixao 035" povucena — vidi Kontaminacija sekciju iznad.
+Jedini miss: bench-045 (file_read arg, scorer artefakt).
 Hub model-q8-4b-dpo01.gguf; Ollama agentmujo-4b-dpo01-q8; kartica v0.4.
 Lekcija: DPO adapter se ne smije mergati na stock bazu (gubi SFT) —
 dvostepeni merge kernel (mqdpo01 obrazac).
