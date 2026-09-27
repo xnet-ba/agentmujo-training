@@ -113,3 +113,14 @@ Poseban jezički skup se NE pravi. Umjesto toga:
   `ijekavica_dialect` heuristika je automatski regresioni čuvar.
 - Re-evaluacija tek ako fine-tunirani model pokaže jezičku degradaciju
   (catastrophic forgetting) na operativnim porukama.
+
+## Re-proba v0.4-DPO (2026-09-27)
+
+Heuristika: 12/12 non-empty, 12/12 bez ekavizama (markeri prazni).
+Kvalitativno proza i dalje slaba na otvorenoj generaciji:
+bp-02 "Bok!" (kroatizam, heuristika ga ne hvata) + "Čestitam ti rođendan";
+bp-04 i dalje "Server" umjesto "server";
+bp-12 konfabulira besmislen recept (brašno u kafu, serviranje u tanjire).
+Odgovori prekratki (27–120 znakova) — model rano staje.
+Zakljucak: operativne poruke (domen agenta) su tacne; slobodna proza
+nije cilj modela i ne trenira se dalje. Heuristika ostaje regresioni cuvar.
