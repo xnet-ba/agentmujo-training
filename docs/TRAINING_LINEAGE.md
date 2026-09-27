@@ -93,7 +93,14 @@ Lekcija: Ollama import iz postojeceg blob patha kad je disk tijesan
 
 S42: 15 AG verify-tragova (restart+provjera klasa, fix bench-035);
 AG kanon 631; mix v0.31 = 1194 (580 FC + 334 AG + 280 BC).
-joint-07: baza jt06 adapter + v0.31, kernel pushan.
+
+## 4B joint-07 ODBIJEN — SFT LANAC PAUZIRAN (2026-09-27)
+
+jt07 (baza jt06 + v0.31): eval 0.7766 (min 0.7737) vs jt06 0.7614 —
+regresija, gap 0.37 (skok sa 0.23). S42 nije pomogao; 3. epoha na
+~95% istim podacima = overfit. jt07 se NE merga.
+4B SFT lanac se PAUZIRA na v0.3 (joint-06) — ista odluka kao 2B lanac
+na v0.5. Sljedeci pravci: DPO na 4B, think-safety podaci, ili veci mix.
 Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
 Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
 (1.037 vs v0.5 0.937, train 0.977 — underfit).
