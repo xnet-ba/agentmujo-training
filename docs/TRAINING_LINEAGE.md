@@ -88,6 +88,12 @@ Preostalo: bench-035 (0.5). Hub model-q8-v0.3.gguf (SHA d4d79e11…);
 Ollama agentmujo-4b06-q8; kartica v0.3.
 Lekcija: Ollama import iz postojeceg blob patha kad je disk tijesan
 (blob vec sadrzi bajtove — deduplikacija po SHA).
+
+## S42 + joint-07 u toku (2026-09-27)
+
+S42: 15 AG verify-tragova (restart+provjera klasa, fix bench-035);
+AG kanon 631; mix v0.31 = 1194 (580 FC + 334 AG + 280 BC).
+joint-07: baza jt06 adapter + v0.31, kernel pushan.
 Hub: model-q8-v0.2.gguf (SHA 3bbd90e9…3cdc4, 3886195840 B);
 Ollama agentmujo-4b04-q8. jt30 (2B fresh-start) ODBIJEN na evalu
 (1.037 vs v0.5 0.937, train 0.977 — underfit).
