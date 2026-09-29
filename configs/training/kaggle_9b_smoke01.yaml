@@ -1,0 +1,13 @@
+# 9B-SMOKE-01 config — smoke multimodalnog Qwen3.5-9B (QLoRA 4bit, tiny subset).
+experiment_id: qwen35-9b-smoke-01
+mode: smoke
+model_name: Qwen/Qwen3.5-9B
+model_revision: c20223623576
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: 3dc4ae672199  # joint_train_v0.32 (cist, 1191)
+data_file: data/joint_train_v0.32.jsonl
+split: train
+max_samples: 20
+output_dir: outputs/9b-smoke-01
+max_seq_length: 2048
+seed: 37
