@@ -105,6 +105,16 @@ regresija, gap 0.37 (skok sa 0.23). S42 nije pomogao; 3. epoha na
 4B SFT lanac se PAUZIRA na v0.3 (joint-06) — ista odluka kao 2B lanac
 na v0.5. Sljedeci pravci: DPO na 4B, think-safety podaci, ili veci mix.
 
+## 4B DPO-02 ODBIJEN (2026-09-29)
+
+DPO-02 (147 parova, baza dpo01 adapter): gate vs v0.4 = 0W-46T-2L.
+Regresije bench-008 (terminal umjesto disk_usage) i 035;
+tool 0.933 (sa 1.0), multi 0.857 (sa 1.0).
+Uzrok: loop-mined parovi svi favorizuju akciju nad pitanjem —
+model postao trigger-happy. Q8 buildan (Hub dpo02 fajl, nelive) ali
+NE releasa se; v0.4-DPO ostaje live. Lekcija: DPO parovi moraju
+balansirati akcija/pitanje, ne gurati samo jednu stranu.
+
 ## 9B trag otvoren (2026-09-29) — Qwen/Qwen3.5-9B
 
 Multimodalni model (vision+text; text: hidden 4096, 32 sloja, vocab 248320).
