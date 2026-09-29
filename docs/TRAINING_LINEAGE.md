@@ -105,6 +105,15 @@ regresija, gap 0.37 (skok sa 0.23). S42 nije pomogao; 3. epoha na
 4B SFT lanac se PAUZIRA na v0.3 (joint-06) — ista odluka kao 2B lanac
 na v0.5. Sljedeci pravci: DPO na 4B, think-safety podaci, ili veci mix.
 
+## 9B trag otvoren (2026-09-29) — Qwen/Qwen3.5-9B
+
+Multimodalni model (vision+text; text: hidden 4096, 32 sloja, vocab 248320).
+Worker prosiren multimodalnim fallbackom (CausalLM -> ImageTextToText).
+Smoke01 na T4 PASS (4bit load, LoRA init, fwd/bwd, save/reload).
+joint-01: QLoRA 4bit, mix v0.32 cist (1191), seq 4096, 1 epoha, lr 5e-5.
+Otvorena pitanja: merge RAM (9B bf16 ~36GB peak) i multimodalni GGUF convert.
+Lekcija: klon-skripte MORAJU prepisati i cell 5 job-dir (smoke01 v1 pao na stari dir).
+
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
 Test test_leakage pao: S41 je unijela 3 doslovna bench promta u FC/AG kanon
