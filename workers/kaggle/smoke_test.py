@@ -68,9 +68,16 @@ def main() -> int:
         # Napomena (transformers>=5): kvantizacija ide preko BitsAndBytesConfig,
         # direktni kwarg load_in_4bit više ne postoji.
         from transformers import BitsAndBytesConfig
-        model = AutoModelForCausalLM.from_pretrained(
-            a.model, quantization_config=BitsAndBytesConfig(load_in_4bit=True),
-            device_map="auto", trust_remote_code=True)
+        try:
+            model = AutoModelForCausalLM.from_pretrained(
+                a.model, quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+                device_map="auto", trust_remote_code=True)
+        except (ValueError, OSError):
+            from transformers import AutoModelForImageTextToText  # multimodalni (Qwen3.5-9B)
+            print("INFO: smoke multimodalni fallback", flush=True)
+            model = AutoModelForImageTextToText.from_pretrained(
+                a.model, quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+                device_map="auto", trust_remote_code=True)
     ok["model-load-4bit"] = check("model-load-4bit", _load)
     if model is None:
         return _finish(ok)

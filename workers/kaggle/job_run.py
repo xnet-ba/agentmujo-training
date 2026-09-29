@@ -26,6 +26,24 @@ def _write(path: Path, obj: dict) -> None:
     path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
+def _load_text_model(model_name: str, model_kwargs: dict):
+    """Ucitaj tekstualni model: CausalLM, uz fallback na multimodalni
+    (Qwen3.5-9B je vision+text; LoRA targeti se podudaraju po imenu
+    language_model slojeva)."""
+    from transformers import AutoModelForCausalLM
+    try:
+        return AutoModelForCausalLM.from_pretrained(model_name, **model_kwargs)
+    except (ValueError, OSError) as first_err:
+        # Multimodalni checkpoint (Qwen3.5-9B): probaj ImageTextToText,
+        # inace digni originalnu gresku.
+        try:
+            from transformers import AutoModelForImageTextToText
+            print(f"INFO: CausalLM load pao ({type(first_err).__name__}) — multimodalni fallback")
+            return AutoModelForImageTextToText.from_pretrained(model_name, **model_kwargs)
+        except (ValueError, OSError, ImportError):
+            raise first_err
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--job-dir", required=True)
@@ -180,7 +198,7 @@ def _train_lora(cfg: dict, out: Path) -> dict:
         model_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True)
     else:
         model_kwargs.update({"torch_dtype": "bfloat16", "device_map": "auto"})
-    model = AutoModelForCausalLM.from_pretrained(cfg["model_name"], **model_kwargs)
+    model = _load_text_model(cfg["model_name"], model_kwargs)
     peft_cfg = LoraConfig(r=cfg.get("lora_r", 16), lora_alpha=cfg.get("lora_alpha", 32),
                           lora_dropout=cfg.get("lora_dropout", 0.05),
                           target_modules=cfg.get("target_modules",
@@ -277,9 +295,9 @@ def _train_dpo(cfg: dict, out: Path) -> dict:
     ds = ds.map(_fmt, remove_columns=[c for c in ds.column_names if c not in ()])
     ds = ds.remove_columns([c for c in ds.column_names if c not in ("prompt", "chosen", "rejected")])
 
-    model = AutoModelForCausalLM.from_pretrained(
-        cfg["model_name"], trust_remote_code=True,
-        torch_dtype="bfloat16", device_map="auto")
+    model = _load_text_model(
+        cfg["model_name"], {"trust_remote_code": True,
+                            "torch_dtype": "bfloat16", "device_map": "auto"})
     if not cfg.get("base_adapter"):
         raise ValueError("DPO trazi base_adapter (SFT polaziste)")
     adapter_path = _resolve_adapter(cfg["base_adapter"])
