@@ -117,6 +117,11 @@ balansirati akcija/pitanje, ne gurati samo jednu stranu.
 
 ## 9B trag otvoren (2026-09-29) — Qwen/Qwen3.5-9B
 
+## 9B joint-01 GOTOV (2026-09-29): train 2.50, eval 2.78, gap 0.28
+
+Skala gubitka visa (vocab 248k) — bitan trend i gap, ne apsoluta.
+Adapter 58MB sacuvan. Merge kernel (swap 28G + bf16 + GGUF) pushan.
+
 Multimodalni model (vision+text; text: hidden 4096, 32 sloja, vocab 248320).
 Worker prosiren multimodalnim fallbackom (CausalLM -> ImageTextToText).
 Smoke01 na T4 PASS (4bit load, LoRA init, fwd/bwd, save/reload).
