@@ -119,6 +119,16 @@ balansirati akcija/pitanje, ne gurati samo jednu stranu.
 
 ## 9B joint-01 GOTOV (2026-09-29): train 2.50, eval 2.78, gap 0.28
 
+## 9B v0.1 GATE PAO (2026-09-30) — treba još SFT
+
+llama-server gate (43/48, timeout): **0 kanonskih poziva** — model odgovara
+```bash blokovima (sirovi systemctl/tail), ne <tool_call> XML dijalektom.
+Baza Qwen3.5-9B (puni vocab, instruct) je dalje od naseg dijalekta nego
+BOS-trimane 2B/4B baze; 1 epoha LoRA nije instalirala format.
+Plus: server vukao sporo (~2min/slucaj, vjerovatno CPU fallback).
+Sljedece: joint-02 sa jt01 adaptera (mix v0.32), pa re-gate.
+Q8 v0.1 fajl ostaje na Hubu kao nelive artefakt.
+
 Skala gubitka visa (vocab 248k) — bitan trend i gap, ne apsoluta.
 Adapter 58MB sacuvan. Merge kernel (swap 28G + bf16 + GGUF) pushan.
 
