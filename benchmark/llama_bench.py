@@ -19,8 +19,10 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "benchmark"))
 
 from agentmujo_training.benchmark import load_cases, score_prediction  # noqa: E402
-from two_step_eval import FUNC_RE, INT_ARGS, SYSTEM as _  # noqa: E402
-from bench_prod import SYSTEM  # noqa: E402  (produkcijski prompt)
+import two_step_eval  # noqa: E402
+from two_step_eval import FUNC_RE, INT_ARGS  # noqa: E402
+import bench_prod  # noqa: E402  (postavlja produkcijski SYSTEM na two_step_eval.SYSTEM)
+SYSTEM = two_step_eval.SYSTEM
 
 
 def chat(endpoint: str, messages: list[dict], max_tokens: int, timeout: int = 600) -> str:
