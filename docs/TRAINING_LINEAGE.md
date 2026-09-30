@@ -131,7 +131,8 @@ Q8 v0.1 fajl ostaje na Hubu kao nelive artefakt.
 
 ## 9B joint-02 GOTOV (2026-09-30): train 1.72, eval 2.07, gap 0.35
 
-Veliki skok sa jt01 (2.78) — format se instalira. Merge+Q8+gate u toku.
+Veliki skok sa jt01 (2.78) — format se instalira.
+v0.2 Q8 (427 tenzora, block_count 32) na Hubu; gate02 kernel u toku.
 
 Skala gubitka visa (vocab 248k) — bitan trend i gap, ne apsoluta.
 Adapter 58MB sacuvan. Merge kernel (swap 28G + bf16 + GGUF) pushan.
