@@ -77,6 +77,9 @@ def main() -> int:
         except Exception as e:
             results.append({"case": c.id, "tools": [], "scores": {}, "error": str(e)[:100]})
         print(f"[{c.id}] {results[-1].get('tool')} {results[-1].get('scores')}", flush=True)
+        Path(out_path).write_text(json.dumps(
+            {"profile": f"llama-server-{mode}", "partial": True, "results": results},
+            indent=2, ensure_ascii=False), encoding="utf-8")
     agg: dict[str, list] = {}
     for r in results:
         for k, v in r.get("scores", {}).items():
