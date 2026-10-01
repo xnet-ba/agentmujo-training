@@ -141,7 +141,8 @@ blokovima, ali sada na bosanskom. Format treba jos epoha (eval jos pada).
 
 ## 9B joint-03 GOTOV (2026-10-01): train 1.50, eval 1.89, gap 0.39
 
-Jos pada (2.78→2.07→1.89); gap raste — pratiti. Merge+Q8+gate u toku.
+Jos pada (2.78→2.07→1.89); gap raste — pratiti.
+v0.3 Q8 (427 tenzora) na Hubu; gate03 kernel u toku.
 
 Skala gubitka visa (vocab 248k) — bitan trend i gap, ne apsoluta.
 Adapter 58MB sacuvan. Merge kernel (swap 28G + bf16 + GGUF) pushan.
