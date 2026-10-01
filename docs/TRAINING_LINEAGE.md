@@ -146,6 +146,13 @@ v0.3 Q8 (427 tenzora) na Hubu.
 
 ## 9B DPO-01 GOTOV (2026-10-01): loss 0.67, dvostepeni merge u toku
 
+## 9B DPO merge GOTOV + download na pola (2026-10-01) — PAUZA
+
+Merge (jt03+dpo) + split04 gotovi. Fetch va-ve (00-49) skinuti u
+/tmp/kva_out..kve_out (50 chunkova); vf-vj kerneli COMPLETE, download
+preostaje: /tmp/kvf_out..kvj_out pa append 50-90 + Hub upload
+model-q8-9b-dpo01.gguf + gate04 kernel.
+
 ## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
 
 46/48, model i dalje bash blokovi. Zakljucak: LoRA ne instalira gramatiku
