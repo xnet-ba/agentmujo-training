@@ -144,6 +144,8 @@ blokovima, ali sada na bosanskom. Format treba jos epoha (eval jos pada).
 Jos pada (2.78→2.07→1.89); gap raste — pratiti.
 v0.3 Q8 (427 tenzora) na Hubu.
 
+## 9B DPO-01 GOTOV (2026-10-01): loss 0.67, dvostepeni merge u toku
+
 ## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
 
 46/48, model i dalje bash blokovi. Zakljucak: LoRA ne instalira gramatiku
