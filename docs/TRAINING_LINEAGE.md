@@ -153,15 +153,12 @@ Lekcija: assembly na 92% diska puca na zadnjim chunkovima — prvo
 obrisati vec-sastavljene chunk direktorije, truncate fajla na granicu,
 pa append ostatka.
 
-## 9B DPO GATE PAO (2026-10-04) — 9B TRAG PAUZIRAN
+## 9B DPO GATE PAO (2026-10-04) — pa nastavak SFT-a
 
 47/48 slucajeva, 0 kanonskih poziva — DPO (27 format parova, 3 epohe)
-nije instalirao dijalekt. Zakljucak: LoRA r16 (+DPO) ne moze instalirati
-<tool_call> gramatiku na Qwen3.5-9B (puni vocab, bez nativnog tool templatea).
-9B trag se PAUZIRA (svi SFT/DPO metodi iscrpljeni na T4/Kaggle).
-Buduce opcije: visi LoRA rank / full fine-tune (jaci GPU), eksplicitni
-format-spec u system promptu (novi bench protokol), ili druga 9B baza
-sa nativnim tool templateom. Q8 fajlovi (v0.1/v0.2/dpo) ostaju nelive artefakti.
+nije instalirao dijalekt. Medjutim: nema 9B BOS baze (alphaedge ima
+samo 0.8B/2B/4B), a eval trend pada (2.78→2.07→1.89) bez overfita —
+pa se nastavlja SFT: joint-04 sa jt03 adaptera (mix v0.32).
 
 ## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
 
