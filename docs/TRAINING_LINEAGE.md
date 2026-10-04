@@ -146,19 +146,22 @@ v0.3 Q8 (427 tenzora) na Hubu.
 
 ## 9B DPO-01 GOTOV (2026-10-01): loss 0.67, dvostepeni merge u toku
 
-## 9B DPO merge GOTOV + download na pola (2026-10-01) — PAUZA
-
-## 9B DPO Q8 na Hubu, gate04 u toku (2026-10-04)
+## 9B DPO Q8 na Hubu (2026-10-04)
 
 DPO Q8 (427 tenzora, ~9.5GB) kao model-q8-9b-dpo01.gguf.
 Lekcija: assembly na 92% diska puca na zadnjim chunkovima — prvo
 obrisati vec-sastavljene chunk direktorije, truncate fajla na granicu,
 pa append ostatka.
 
-Merge (jt03+dpo) + split04 gotovi. Fetch va-ve (00-49) skinuti u
-/tmp/kva_out..kve_out (50 chunkova); vf-vj kerneli COMPLETE, download
-preostaje: /tmp/kvf_out..kvj_out pa append 50-90 + Hub upload
-model-q8-9b-dpo01.gguf + gate04 kernel.
+## 9B DPO GATE PAO (2026-10-04) — 9B TRAG PAUZIRAN
+
+47/48 slucajeva, 0 kanonskih poziva — DPO (27 format parova, 3 epohe)
+nije instalirao dijalekt. Zakljucak: LoRA r16 (+DPO) ne moze instalirati
+<tool_call> gramatiku na Qwen3.5-9B (puni vocab, bez nativnog tool templatea).
+9B trag se PAUZIRA (svi SFT/DPO metodi iscrpljeni na T4/Kaggle).
+Buduce opcije: visi LoRA rank / full fine-tune (jaci GPU), eksplicitni
+format-spec u system promptu (novi bench protokol), ili druga 9B baza
+sa nativnim tool templateom. Q8 fajlovi (v0.1/v0.2/dpo) ostaju nelive artefakti.
 
 ## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
 
