@@ -148,6 +148,13 @@ v0.3 Q8 (427 tenzora) na Hubu.
 
 ## 9B DPO merge GOTOV + download na pola (2026-10-01) — PAUZA
 
+## 9B DPO Q8 na Hubu, gate04 u toku (2026-10-04)
+
+DPO Q8 (427 tenzora, ~9.5GB) kao model-q8-9b-dpo01.gguf.
+Lekcija: assembly na 92% diska puca na zadnjim chunkovima — prvo
+obrisati vec-sastavljene chunk direktorije, truncate fajla na granicu,
+pa append ostatka.
+
 Merge (jt03+dpo) + split04 gotovi. Fetch va-ve (00-49) skinuti u
 /tmp/kva_out..kve_out (50 chunkova); vf-vj kerneli COMPLETE, download
 preostaje: /tmp/kvf_out..kvj_out pa append 50-90 + Hub upload
