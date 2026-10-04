@@ -160,6 +160,11 @@ nije instalirao dijalekt. Medjutim: nema 9B BOS baze (alphaedge ima
 samo 0.8B/2B/4B), a eval trend pada (2.78→2.07→1.89) bez overfita —
 pa se nastavlja SFT: joint-04 sa jt03 adaptera (mix v0.32).
 
+## 9B joint-04 GOTOV (2026-10-04): train 1.41, eval 1.82, gap 0.40
+
+Jos pada (2.78→2.07→1.89→1.82). Format-proba (5 promptova, direktno na
+adapteru, bez mergea) pokrenuta — jeftina odluka prije punog pipelinea.
+
 ## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
 
 46/48, model i dalje bash blokovi. Zakljucak: LoRA ne instalira gramatiku
