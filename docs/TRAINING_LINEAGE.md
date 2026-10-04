@@ -117,6 +117,12 @@ balansirati akcija/pitanje, ne gurati samo jednu stranu.
 
 ## 9B trag otvoren (2026-09-29) — Qwen/Qwen3.5-9B
 
+Multimodalni model (vision+text; text: hidden 4096, 32 sloja, vocab 248320).
+Worker prosiren multimodalnim fallbackom (CausalLM -> ImageTextToText).
+Smoke01 na T4 PASS. Skala gubitka visa (vocab 248k) — bitan trend i gap.
+Otvorena pitanja bila: merge RAM (~36GB peak, rijeseno swapom) i multimodalni
+GGUF convert (radi). Lekcija: klon-skripte MORAJU prepisati i cell 5 job-dir.
+
 ## 9B joint-01 GOTOV (2026-09-29): train 2.50, eval 2.78, gap 0.28
 
 ## 9B v0.1 GATE PAO (2026-09-30) — treba još SFT
@@ -144,6 +150,12 @@ blokovima, ali sada na bosanskom. Format treba jos epoha (eval jos pada).
 Jos pada (2.78→2.07→1.89); gap raste — pratiti.
 v0.3 Q8 (427 tenzora) na Hubu.
 
+## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
+
+46/48, model i dalje bash blokovi. Zakljucak: LoRA ne instalira gramatiku
+(strukturno, ne vremensko). Sljedece: 9B DPO-01 sa 27 format parova
+(rejected=9B bash, chosen=4B kanonski; dpo_9b_v0.1), 3 epohe.
+
 ## 9B DPO-01 GOTOV (2026-10-01): loss 0.67, dvostepeni merge u toku
 
 ## 9B DPO Q8 na Hubu (2026-10-04)
@@ -164,22 +176,6 @@ pa se nastavlja SFT: joint-04 sa jt03 adaptera (mix v0.32).
 
 Jos pada (2.78→2.07→1.89→1.82). Format-proba (5 promptova, direktno na
 adapteru, bez mergea) pokrenuta — jeftina odluka prije punog pipelinea.
-
-## 9B v0.3 GATE PAO (2026-10-01) — 0 kanonskih i nakon 3 epohe
-
-46/48, model i dalje bash blokovi. Zakljucak: LoRA ne instalira gramatiku
-(strukturno, ne vremensko). Sljedece: 9B DPO-01 sa 27 format parova
-(rejected=9B bash, chosen=4B kanonski; dpo_9b_v0.1), 3 epohe.
-
-Skala gubitka visa (vocab 248k) — bitan trend i gap, ne apsoluta.
-Adapter 58MB sacuvan. Merge kernel (swap 28G + bf16 + GGUF) pushan.
-
-Multimodalni model (vision+text; text: hidden 4096, 32 sloja, vocab 248320).
-Worker prosiren multimodalnim fallbackom (CausalLM -> ImageTextToText).
-Smoke01 na T4 PASS (4bit load, LoRA init, fwd/bwd, save/reload).
-joint-01: QLoRA 4bit, mix v0.32 cist (1191), seq 4096, 1 epoha, lr 5e-5.
-Otvorena pitanja: merge RAM (9B bf16 ~36GB peak) i multimodalni GGUF convert.
-Lekcija: klon-skripte MORAJU prepisati i cell 5 job-dir (smoke01 v1 pao na stari dir).
 
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
