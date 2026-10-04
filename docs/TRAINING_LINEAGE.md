@@ -174,8 +174,11 @@ pa se nastavlja SFT: joint-04 sa jt03 adaptera (mix v0.32).
 
 ## 9B joint-04 GOTOV (2026-10-04): train 1.41, eval 1.82, gap 0.40
 
-Jos pada (2.78→2.07→1.89→1.82). Format-proba (5 promptova, direktno na
-adapteru, bez mergea) pokrenuta — jeftina odluka prije punog pipelinea.
+Jos pada (2.78→2.07→1.89→1.82). Format-proba jt04 (5 promptova,
+direktno na adapteru): 0/5 kanonskih — namjera se formira (naracija
+o alatima na engleskom), gramatike nema.
+ODLUKA: jos jedna r16 epoha (jt05); ako proba i dalje 0/5 → r64 fresh
+sa baze (ne trositi vise r16 epoha). Kriterij zaustavljanja eksplicitan.
 
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
