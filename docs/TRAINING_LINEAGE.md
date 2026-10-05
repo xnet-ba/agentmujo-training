@@ -187,6 +187,11 @@ Proba jt05: 0/5 → STOP r16 (5 epoha, format 0).
 ODLUKA: r64/alpha128 FRESH sa baze (4x kapacitet); r16 adapteri
 nespojivi sa visim rankom. Proba nakon r64-01 odlucuje dalje.
 
+## 9B r64-01 GOTOV (2026-10-04): train 1.71, eval 2.06, gap 0.34
+
+Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
+Format-proba r64 pokrenuta.
+
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
 Test test_leakage pao: S41 je unijela 3 doslovna bench promta u FC/AG kanon
