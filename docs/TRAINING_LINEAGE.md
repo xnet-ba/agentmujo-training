@@ -197,6 +197,8 @@ nema nativnu tool semantiku u embeddingima (BOS baze imaju) — gramatika
 fizicki ne moze izaci. ODLUKA: r64e-01 FRESH sa embed_tokens+lm_head
 u targetima (+~64M LoRA parametara, staje na T4). Ako proba pokaze
 format → pipeline; ako 0/5 → 9B pauza (format-spec pristup).
+r64e v1 OOM (13.3GB + treba jos 1.65GB). Fix: mix max je 403 tokena →
+seq 4096→1024 (tie_word_embeddings=False, oba targeta ostaju). v2 pushan.
 
 Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
 Format-proba r64: 0/5. Template provjeren lokalno — render cist
