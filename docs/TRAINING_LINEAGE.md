@@ -180,6 +180,11 @@ o alatima na engleskom), gramatike nema.
 ODLUKA: jos jedna r16 epoha (jt05); ako proba i dalje 0/5 → r64 fresh
 sa baze (ne trositi vise r16 epoha). Kriterij zaustavljanja eksplicitan.
 
+## 9B joint-05 GOTOV (2026-10-04): train 1.38, eval 1.81, gap 0.43
+
+Eval stagnira (1.82→1.81), gap raste — stop-kriterij aktiviran.
+Proba jt05 pokrenuta; nakon nje r64 fresh sa baze.
+
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
 Test test_leakage pao: S41 je unijela 3 doslovna bench promta u FC/AG kanon
