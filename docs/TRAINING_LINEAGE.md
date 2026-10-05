@@ -189,6 +189,11 @@ nespojivi sa visim rankom. Proba nakon r64-01 odlucuje dalje.
 
 ## 9B r64-01 GOTOV (2026-10-04): train 1.71, eval 2.06, gap 0.34
 
+## 9B r64-02 GOTOV (2026-10-05): train 1.40, eval 1.80, gap 0.40
+
+Velik skok (2.06→1.80). Format-proba r64-02 pokrenuta — ako format
+klikne, ide puni pipeline (merge/Q8/gate).
+
 Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
 Format-proba r64: 0/5. Template provjeren lokalno — render cist
 (<tool_call> verbatim, prazan think marker po D1); problem je ucenje.
