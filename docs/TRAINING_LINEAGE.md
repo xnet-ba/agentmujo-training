@@ -201,6 +201,9 @@ r64e v1 OOM (13.3GB + treba jos 1.65GB). Ispostavilo se: worker ODBACUJE
 max_seq_length (nepodrzan TRL kljuc) — seq fix nikad nije primijenjen
 (ionako nebitan: mix max 403 tokena). Pravi fix: optim passthrough
 u workeru + paged_adamw_8bit za r64e (stednja ~1.5GB na states). v3 pushan.
+v3 OOM na koraku 30/38 (+2.28GB fali) — T4 ne moze r64+embed.
+ODLUKA: r16h-01 FRESH (r16 + embed/lm_head, +16M param — r16 je dokazano
+stao); ista hipoteza, manji otisak. Proba nakon toga odlucuje.
 
 Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
 Format-proba r64: 0/5. Template provjeren lokalno — render cist
