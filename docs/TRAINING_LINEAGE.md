@@ -191,8 +191,12 @@ nespojivi sa visim rankom. Proba nakon r64-01 odlucuje dalje.
 
 ## 9B r64-02 GOTOV (2026-10-05): train 1.40, eval 1.80, gap 0.40
 
-Velik skok (2.06→1.80). Format-proba r64-02 pokrenuta — ako format
-klikne, ide puni pipeline (merge/Q8/gate).
+Velik skok (2.06→1.80). Format-proba r64-02: 0/5.
+HIPOTEZA sa mehanizmom: LoRA ne dira embed_tokens/lm_head, a 9B baza
+nema nativnu tool semantiku u embeddingima (BOS baze imaju) — gramatika
+fizicki ne moze izaci. ODLUKA: r64e-01 FRESH sa embed_tokens+lm_head
+u targetima (+~64M LoRA parametara, staje na T4). Ako proba pokaze
+format → pipeline; ako 0/5 → 9B pauza (format-spec pristup).
 
 Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
 Format-proba r64: 0/5. Template provjeren lokalno — render cist
