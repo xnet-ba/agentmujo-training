@@ -229,6 +229,7 @@ def _train_lora(cfg: dict, out: Path) -> dict:
         "gradient_checkpointing": cfg.get("gradient_checkpointing", True),
         "bf16": not cfg.get("load_in_4bit", False),
         "loss_type": cfg.get("loss_type", "nll"),
+        "optim": cfg.get("optim", "adamw_torch"),
         "eval_strategy": "steps" if eval_ds is not None else "no",
         "eval_steps": cfg.get("eval_steps", 25),
         "max_seq_length": cfg.get("max_seq_length", 4096),

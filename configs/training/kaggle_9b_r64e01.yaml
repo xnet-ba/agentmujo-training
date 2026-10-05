@@ -10,6 +10,7 @@ split: train
 max_samples: null
 output_dir: outputs/9b-r64e-01
 max_seq_length: 1024
+optim: paged_adamw_8bit
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 16
 learning_rate: 5.0e-5
