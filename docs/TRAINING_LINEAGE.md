@@ -183,7 +183,9 @@ sa baze (ne trositi vise r16 epoha). Kriterij zaustavljanja eksplicitan.
 ## 9B joint-05 GOTOV (2026-10-04): train 1.38, eval 1.81, gap 0.43
 
 Eval stagnira (1.82→1.81), gap raste — stop-kriterij aktiviran.
-Proba jt05 pokrenuta; nakon nje r64 fresh sa baze.
+Proba jt05: 0/5 → STOP r16 (5 epoha, format 0).
+ODLUKA: r64/alpha128 FRESH sa baze (4x kapacitet); r16 adapteri
+nespojivi sa visim rankom. Proba nakon r64-01 odlucuje dalje.
 
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
