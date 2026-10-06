@@ -211,6 +211,11 @@ stao); ista hipoteza, manji otisak. Proba nakon toga odlucuje.
 
 ## 9B r16h-01 OOM (2026-10-05)
 
+## 9B probeeh: embed-only proba direktno kernelom (2026-10-05)
+
+Download adaptera zapinje na sesijskom limitu — zaobilazak: proba cita
+adapter iz kernel_sources (obrazac probe04/05), bez downloada.
+
 r16+embed/lm_head takodje OOM (+2.28GB fali; 12.49GB u upotrebi).
 Bilans 9B: r16x5 + DPO + r64x2 + r64e + r16h — format 0/5 svuda;
 embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
