@@ -189,6 +189,10 @@ nespojivi sa visim rankom. Proba nakon r64-01 odlucuje dalje.
 
 ## 9B r64-01 GOTOV (2026-10-04): train 1.71, eval 2.06, gap 0.34
 
+Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
+Format-proba r64: 0/5. Template provjeren lokalno — render cist
+(<tool_call> verbatim, prazan think marker po D1); problem je ucenje.
+
 ## 9B r64-02 GOTOV (2026-10-05): train 1.40, eval 1.80, gap 0.40
 
 Velik skok (2.06→1.80). Format-proba r64-02: 0/5.
@@ -204,6 +208,15 @@ u workeru + paged_adamw_8bit za r64e (stednja ~1.5GB na states). v3 pushan.
 v3 OOM na koraku 30/38 (+2.28GB fali) — T4 ne moze r64+embed.
 ODLUKA: r16h-01 FRESH (r16 + embed/lm_head, +16M param — r16 je dokazano
 stao); ista hipoteza, manji otisak. Proba nakon toga odlucuje.
+
+## 9B r16h-01 OOM — 9B TRAG PAUZIRAN (2026-10-05)
+
+r16+embed/lm_head takodje OOM (+2.28GB fali; 12.49GB u upotrebi).
+Bilans 9B: r16x5 + DPO + r64x2 + r64e + r16h — format 0/5 svuda;
+embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
+Preostale opcije (van dometa): format-spec system prompt + novi bench
+protokol, jaci GPU (Vast/full fine-tune), 9B BOS baza (ne postoji).
+Sve dokumentovano; Q8 artefakti nelive na Hubu.
 
 Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
 Format-proba r64: 0/5. Template provjeren lokalno — render cist
