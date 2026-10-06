@@ -217,6 +217,8 @@ embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
 
 ## 9B pivot na v0.33 trening (2026-10-06)
 
+## 9B r64-03 GOTOV (2026-10-06): metrike se vade, proba6403 pushana
+
 r16eh-01 takodje OOM (ista +2.28GB rupa) — embed put definitivno mrtav
 na T4 u svim rankovima. ODLUKA: pivot sa tezina na podatke — r64-03
 nastavak sa r6402 adaptera na mixu v0.33 (format-spec robustnost);
