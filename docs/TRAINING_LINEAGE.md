@@ -230,9 +230,16 @@ r6402 + spec: 3/5. Tezine MOGU emitovati dijalekt — problem je PROTOKOL
 poruku, a produkcijski SYSTEM nema format-spec (2B/4B to ne treba jer
 imaju nativni tool template).
 ODLUKA: proizvodni prompt se NE dira (uporedivost gateova); robustnost
-se uci kroz podatke — mix v0.33 sa format-spec varijantama uzoraka
-(50% sa spec system porukom, 50% bez). r16eh-01 se pusta do kraja
-(informativan).
+se uci kroz podatke.
+
+## Mix v0.33 sa format-spec varijantama (2026-10-05)
+
+v0.33 = v0.32 (1191) + 149 spec-varijanti (svaki 3. tool uzorak dobija
+bosanski SPEC system: kanonski format + high-level preferenca) = 1340.
+Varijante zive SAMO u mixu (kanon cist); validator ne vazi za mixeve
+(v0.32 i sam ima 139 content-duplikata — mix je kompozicija, ne kanon).
+Leakage: 0 novih bench preklapanja (samo stara th-0033/0034).
+Hub rev 616dca43.
 
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
