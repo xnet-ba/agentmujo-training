@@ -211,6 +211,16 @@ stao); ista hipoteza, manji otisak. Proba nakon toga odlucuje.
 
 ## 9B r16h-01 OOM — 9B TRAG PAUZIRAN (2026-10-05)
 
+## 9B nastavak po nalogu: format-spec proba + r16eh-01 (2026-10-05)
+
+Dva paralelna kraka: (1) format-spec proba (baza vs r6402, eksplicitna
+XML gramatika u promptu — odgovara da li je problem u tezinama ili
+protokolu); (2) r16eh-01 FRESH, SAMO embed_tokens/lm_head (bez
+attentiona, ~16M param — sigurno staje; attention znanje ionako
+nedostaje jer je fresh sa baze).
+
+## 9B r16h-01 OOM (2026-10-05)
+
 r16+embed/lm_head takodje OOM (+2.28GB fali; 12.49GB u upotrebi).
 Bilans 9B: r16x5 + DPO + r64x2 + r64e + r16h — format 0/5 svuda;
 embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
