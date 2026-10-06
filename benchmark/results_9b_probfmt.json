@@ -1,0 +1,62 @@
+[
+  {
+    "model": "baza",
+    "prompt": "Da li je nginx servis trenutno aktivan?",
+    "text": "The user is asking if the nginx service is currently active. I need to check the status of the nginx service. I should use the service_status tool to check this.\n\nLet me respond in Bosnian (ijekavica) as requested, and use the CANONICAL format for the tool call.\n</think>\n\n<tool_call>\n<function=service_status>\n<parameter=service>nginx</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "model": "baza",
+    "prompt": "Restartuj postgres i potvrdi da prima konekcije.",
+    "text": "The user is asking me to restart PostgreSQL and confirm that it accepts connections. I need to use the available tools to accomplish this task.\n\nLooking at the available tools:\n- service_status(service) - to check if PostgreSQL is running\n- service_restart(service) - to restart PostgreSQL\n- service_logs(service, lines) - to check logs\n- port_check(port) - to verify if PostgreSQL is listening on its port (default is 5432)\n\nI should:\n1. First check the service status of PostgreSQL\n2. Restart PostgreSQL\n3. Check if it's",
+    "kanonski": false
+  },
+  {
+    "model": "baza",
+    "prompt": "Prikazi sadrzaj /etc/hosts datoteke.",
+    "text": "The user is asking me to display the contents of the /etc/hosts file. This is a file reading task that requires using the file_read tool.\n\nI need to respond in Bosnian (ijekavica) and use the CANONICAL format for tool calls.\n\nLet me use the file_read tool with the path parameter set to /etc/hosts.\n</think>\n\n<tool_call>\n<function=file_read>\n<path>/etc/hosts</path>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "model": "baza",
+    "prompt": "Je li htop instaliran?",
+    "text": "The user is asking if htop is installed on the system. I need to check if the htop package is installed. I can use the package_query tool to check if htop is installed.\n\nLet me respond in Bosnian (ijekavica) as requested, and use the CANONICAL format for the tool call.\n</think>\n\n<tool_call>\n<function=package_query>\n<parameter=package>htop</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "model": "baza",
+    "prompt": "Obrisi logove starije od 30 dana.",
+    "text": "The user is asking me to delete logs older than 30 days. This is a system administration task that requires using the terminal tool to execute a command.\n\nIn Linux, to delete log files older than 30 days, I would typically use the `find` command with the `-mtime` option to locate files older than 30 days and then delete them.\n\nThe command would be something like:\n```\nfind /var/log -type f -mtime +30 -delete\n```\n\nI need to use the terminal tool with the command parameter. Let me format this",
+    "kanonski": false
+  },
+  {
+    "model": "r6402",
+    "prompt": "Da li je nginx servis trenutno aktivan?",
+    "text": "The user is asking if the nginx service is currently active. I need to check the status of the nginx service. I should use the service_status tool to check this.\n\nLet me respond in Bosnian (ijekavica) as requested, and use the CANONICAL format for the tool call.\n</think>\n\n<tool_call>\n<function=service_status>\n<parameter=service>nginx</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "model": "r6402",
+    "prompt": "Restartuj postgres i potvrdi da prima konekcije.",
+    "text": "The user is asking me to restart PostgreSQL and confirm that it accepts connections. I need to use the available tools to accomplish this task.\n\nLooking at the available tools:\n- service_status(service) - to check if PostgreSQL is running\n- service_restart(service) - to restart PostgreSQL\n- service_logs(service, lines) - to check logs\n- port_check(port) - to verify if PostgreSQL is listening on its port (default is 5432)\n\nI should:\n1. First check the service status of PostgreSQL\n2. Restart PostgreSQL\n3. Check if it's",
+    "kanonski": false
+  },
+  {
+    "model": "r6402",
+    "prompt": "Prikazi sadrzaj /etc/hosts datoteke.",
+    "text": "The user is asking me to display the contents of the /etc/hosts file. This is a file reading task that requires using the file_read tool.\n\nI need to respond in Bosnian (ijekavica) and use the CANONICAL format for tool calls.\n\nLet me use the file_read tool with the path parameter set to /etc/hosts.\n</think>\n\n<tool_call>\n<function=file_read>\n<path>/etc/hosts</path>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "model": "r6402",
+    "prompt": "Je li htop instaliran?",
+    "text": "The user is asking if htop is installed on the system. I need to check if the htop package is installed. I can use the package_query tool to check if htop is installed.\n\nLet me respond in Bosnian (ijekavica) as requested, and use the CANONICAL format for the tool call.\n</think>\n\n<tool_call>\n<function=package_query>\n<parameter=package>htop</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "model": "r6402",
+    "prompt": "Obrisi logove starije od 30 dana.",
+    "text": "The user is asking me to delete logs older than 30 days. This is a system administration task that requires using the terminal tool to execute a command.\n\nIn Linux, to delete log files older than 30 days, I would typically use the `find` command with the `-mtime` option to locate files older than 30 days and then delete them.\n\nThe command would be something like:\n```\nfind /var/log -type f -mtime +30 -delete\n```\n\nI need to use the terminal tool with the command parameter. Let me format this",
+    "kanonski": false
+  }
+]

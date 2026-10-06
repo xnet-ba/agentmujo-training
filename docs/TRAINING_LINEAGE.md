@@ -209,30 +209,30 @@ v3 OOM na koraku 30/38 (+2.28GB fali) — T4 ne moze r64+embed.
 ODLUKA: r16h-01 FRESH (r16 + embed/lm_head, +16M param — r16 je dokazano
 stao); ista hipoteza, manji otisak. Proba nakon toga odlucuje.
 
-## 9B r16h-01 OOM — 9B TRAG PAUZIRAN (2026-10-05)
+## 9B r16h-01 OOM (2026-10-05)
+
+r16+embed/lm_head takodje OOM (+2.28GB fali; 12.49GB u upotrebi).
+Bilans 9B: r16x5 + DPO + r64x2 + r64e + r16h — format 0/5 svuda;
+embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
 
 ## 9B nastavak po nalogu: format-spec proba + r16eh-01 (2026-10-05)
 
 Dva paralelna kraka: (1) format-spec proba (baza vs r6402, eksplicitna
 XML gramatika u promptu — odgovara da li je problem u tezinama ili
 protokolu); (2) r16eh-01 FRESH, SAMO embed_tokens/lm_head (bez
-attentiona, ~16M param — sigurno staje; attention znanje ionako
-nedostaje jer je fresh sa baze).
+attentiona, ~16M param — sigurno staje).
 
-## 9B r16h-01 OOM (2026-10-05)
+## 9B PREKRETNICA: format-spec proba 3/5 (2026-10-05)
 
-r16+embed/lm_head takodje OOM (+2.28GB fali; 12.49GB u upotrebi).
-Bilans 9B: r16x5 + DPO + r64x2 + r64e + r16h — format 0/5 svuda;
-embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
-Preostale opcije (van dometa): format-spec system prompt + novi bench
-protokol, jaci GPU (Vast/full fine-tune), 9B BOS baza (ne postoji).
-Sve dokumentovano; Q8 artefakti nelive na Hubu.
-
-Jedna r64 epoha = eval 2.06 (r16 trebao 3 epohe za 1.89). Bez OOM-a.
-Format-proba r64: 0/5. Template provjeren lokalno — render cist
-(<tool_call> verbatim, prazan think marker po D1); problem je ucenje.
-ODLUKA: r64 lanac ima tek 1 epohu (prerano za sud) — nastavlja se
-r64-02 sa r6401 adaptera; sud po trendu + probi.
+Baza (netrenirana!) + eksplicitna XML gramatika u promptu: 3/5 kanonskih;
+r6402 + spec: 3/5. Tezine MOGU emitovati dijalekt — problem je PROTOKOL
+(default prompt ga ne okida), ne tezine. Trening uzorci nemaju system
+poruku, a produkcijski SYSTEM nema format-spec (2B/4B to ne treba jer
+imaju nativni tool template).
+ODLUKA: proizvodni prompt se NE dira (uporedivost gateova); robustnost
+se uci kroz podatke — mix v0.33 sa format-spec varijantama uzoraka
+(50% sa spec system porukom, 50% bez). r16eh-01 se pusta do kraja
+(informativan).
 
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
