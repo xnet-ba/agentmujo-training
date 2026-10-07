@@ -281,6 +281,10 @@ Hub rev 616dca43.
 
 ## 9B prioritet: r64-05 + dpo_9b_v0.2 (2026-10-07)
 
+## 9B DPO-02 GOTOV (loss 0.66), merge mq05 u toku (2026-10-07)
+
+Dvostepeni merge (r6405 + dpo02) → Q8 v0.5 → gate sa spec protokolom.
+
 ## 9B r64-05 GOTOV + DPO-02 pokrenut (2026-10-07)
 
 Cilj: najbolja moguca 9B verzija (2B/4B/9B pokrivenost).
