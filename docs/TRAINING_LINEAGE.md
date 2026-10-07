@@ -279,6 +279,13 @@ Hub rev 616dca43.
 
 ## 9B gate05: spec radi, ali 9B gubi — TRAG PAUZIRAN (2026-10-07)
 
+## 9B prioritet: r64-05 + dpo_9b_v0.2 (2026-10-07)
+
+Cilj: najbolja moguca 9B verzija (2B/4B/9B pokrivenost).
+r64-05: treca epoha v0.33 sa r6404 adaptera.
+dpo_9b_v0.2 (36 parova: 27 format + 9 spec-mined iz gate05 —
+9B grijesi, 2B+spec tacan, isti prompt).
+
 r6404 (v0.33 x2) + spec: tool 0.633 (19/30), args 0.423, kompletnih 48/48.
 2B v0.5 + ISTI spec (lokalni re-gate): tool 0.90, args 0.808.
 Gate 9B vs 2B pod spec protokolom: 3W-27T-18L — 9B odlucno slabiji.
