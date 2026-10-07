@@ -223,6 +223,12 @@ embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
 
 ## 9B r64-04 GOTOV (2026-10-06): metrike se vade, proba6404 pushana
 
+## 9B v0.4 Q8 na Hubu, gate05 sa spec promptom (2026-10-07)
+
+r6404 merge (v0.33 x2) → Q8 427 tenzora → model-q8-v0.4.gguf na Hubu.
+Gate05: LLAMA_BENCH_SYSTEM_FILE=system_spec.txt (prvi gate sa
+format-spec protokolom).
+
 ## 9B proba r64-04: 0/5 — data-hipoteza mrtva, format-spec protokol (2026-10-06)
 
 Dvije epohe v0.33, i dalje 0 kanonskih pod default promptom.
