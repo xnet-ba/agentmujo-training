@@ -277,6 +277,15 @@ Varijante zive SAMO u mixu (kanon cist); validator ne vazi za mixeve
 Leakage: 0 novih bench preklapanja (samo stara th-0033/0034).
 Hub rev 616dca43.
 
+## 9B gate05: spec radi, ali 9B gubi — TRAG PAUZIRAN (2026-10-07)
+
+r6404 (v0.33 x2) + spec: tool 0.633 (19/30), args 0.423, kompletnih 48/48.
+2B v0.5 + ISTI spec (lokalni re-gate): tool 0.90, args 0.808.
+Gate 9B vs 2B pod spec protokolom: 3W-27T-18L — 9B odlucno slabiji.
+Zanimljivo: spec pomaze 2B tool (0.80→0.90) ali rusi confirmation (0.8→0.4).
+ZAKLJUCAK: spec otkljucao format ali ne i kvalitet; 9B ispod 2B uz iste
+uslove. Nema 9B releasea. Pauza sa kompletnim dokazima (SFT/DPO/spec/rank).
+
 ## Kontaminacija bencha — S41 greška i čišćenje (2026-09-27)
 
 Test test_leakage pao: S41 je unijela 3 doslovna bench promta u FC/AG kanon
