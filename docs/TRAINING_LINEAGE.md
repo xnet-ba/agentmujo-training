@@ -279,6 +279,11 @@ Hub rev 616dca43.
 
 ## 9B gate05: spec radi, ali 9B gubi — TRAG PAUZIRAN (2026-10-07)
 
+## 9B prioritet 2: v0.5 (r6405+dpo02) na Hubu, gate06 sa spec (2026-10-07)
+
+Q8 427 tenzora → model-q8-v0.5.gguf. Upload se zavrsio prije aborta
+(Hub no-op potvrda). Gate06 kernel u toku.
+
 ## 9B prioritet: r64-05 + dpo_9b_v0.2 (2026-10-07)
 
 ## 9B DPO-02 GOTOV (loss 0.66), merge mq05 u toku (2026-10-07)
