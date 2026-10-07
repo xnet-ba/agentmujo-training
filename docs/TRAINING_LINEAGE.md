@@ -281,6 +281,8 @@ Hub rev 616dca43.
 
 ## 9B prioritet: r64-05 + dpo_9b_v0.2 (2026-10-07)
 
+## 9B r64-05 GOTOV + DPO-02 pokrenut (2026-10-07)
+
 Cilj: najbolja moguca 9B verzija (2B/4B/9B pokrivenost).
 r64-05: treca epoha v0.33 sa r6404 adaptera.
 dpo_9b_v0.2 (36 parova: 27 format + 9 spec-mined iz gate05 —
