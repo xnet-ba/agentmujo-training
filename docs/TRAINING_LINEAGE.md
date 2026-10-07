@@ -223,6 +223,13 @@ embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
 
 ## 9B r64-04 GOTOV (2026-10-06): metrike se vade, proba6404 pushana
 
+## 9B proba r64-04: 0/5 — data-hipoteza mrtva, format-spec protokol (2026-10-06)
+
+Dvije epohe v0.33, i dalje 0 kanonskih pod default promptom.
+ODLUKA: format-spec postaje dio 9B protokola (ne dira se 2B/4B);
+gate sa spec promptom (LLAMA_BENCH_SYSTEM_FILE) mjeri pravi strop.
+Puni pipeline za r6404: merge → Q8 v0.4 → gate05 sa spec.
+
 Proba nakon 1 epohe v0.33: 0/5 (ocekivano slab signal: 11% uzoraka).
 ODLUKA: r64-04 (druga epoha v0.33 sa r6403) pa puni gate (merge/Q8/bench)
 — posten test data-hipoteze prije suda.
