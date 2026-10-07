@@ -22,7 +22,12 @@ from agentmujo_training.benchmark import load_cases, score_prediction  # noqa: E
 import two_step_eval  # noqa: E402
 from two_step_eval import FUNC_RE, INT_ARGS  # noqa: E402
 import bench_prod  # noqa: E402  (postavlja produkcijski SYSTEM na two_step_eval.SYSTEM)
-SYSTEM = two_step_eval.SYSTEM
+import os as _os
+_SYSTEM_FILE = _os.environ.get("LLAMA_BENCH_SYSTEM_FILE")
+if _SYSTEM_FILE:
+    SYSTEM = Path(_SYSTEM_FILE).read_text(encoding="utf-8")
+else:
+    SYSTEM = two_step_eval.SYSTEM
 
 
 def chat(endpoint: str, messages: list[dict], max_tokens: int, timeout: int = 600) -> str:
