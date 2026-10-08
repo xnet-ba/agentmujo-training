@@ -281,6 +281,13 @@ Hub rev 616dca43.
 
 ## 9B prioritet 2: v0.5 (r6405+dpo02) na Hubu, gate06 sa spec (2026-10-07)
 
+## 9B gate06: DPO nula dobitka — 9B EKSPERIMENTALAN (2026-10-08)
+
+v0.5 (r6405+dpo02) + spec: tool 0.633 — identicno v0.4 (0W-48T-0L).
+Gate vs 2B+spec: 3W-27T-18L. Nema releasea; kartica postavljena na
+EKSPERIMENTALNO (posteno: fajlovi postoje, live nije).
+Mikro-kernel trik (get06) zaobilazi stall pri downloadu velikih outputa.
+
 Q8 427 tenzora → model-q8-v0.5.gguf. Upload se zavrsio prije aborta
 (Hub no-op potvrda). Gate06 kernel u toku.
 
