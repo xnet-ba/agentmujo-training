@@ -270,6 +270,15 @@ se uci kroz podatke.
 
 ## Mix v0.33 sa format-spec varijantama (2026-10-05)
 
+## S43 v2: +60 + DPO balans + mix v0.35 (2026-10-07)
+
+S43 v2: 20 AG (samba/nfs/mail/diagnostika) + 20 FC (paketi/fajlovi/portovi)
++ 20 BC (BiH geografija/kultura) = 60 GOLD; 7 zamjena duplikata.
+DPO v0.3: 150 parova (140 + 10 balansiranih confirm/act).
+FC 1349, AG 709, BC 1138; testovi 37/37; audit 0 kontradikcija.
+Mix v0.35 = v0.34 + S43v2 + 10 spec-varijanti = 1534.
+S43 ukupno: 158 uzoraka.
+
 ## S43: 98 GOLD + mix v0.34 (2026-10-07)
 
 S43 (multi-step/confirmation/paketi): 58 AG (0633-0692) + 40 FC
