@@ -2,8 +2,8 @@
 # PRAVILO (lekcija 2026-09-27): pytest lokalno PRIJE svakog Hub pusha kanona
 # (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1289-1004-131-142+S41c, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 5ea17eaf55380f32da19d721a8cbf713578db79d }
-  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-631-499-50-52+S41c+S42, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 5dd5c0bb83d918e2940165d8c5c7c1f22708efab }
+  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1329+S43, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 6a0eea16d07bab4ba87ec730c5f283eda27b9f1c }
+  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-689+S43, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 7a3d50400ab55933d38f6bddba4db1f8d27559a0 }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }

@@ -270,6 +270,14 @@ se uci kroz podatke.
 
 ## Mix v0.33 sa format-spec varijantama (2026-10-05)
 
+## S43: 98 GOLD + mix v0.34 (2026-10-07)
+
+S43 (multi-step/confirmation/paketi): 58 AG (0633-0692) + 40 FC
+(1305-1344); 2 odbacena validatorom (rm -rf deny-obrazac).
+FC 1329, AG 689; audit 0 kontradikcija; testovi 37/37.
+Mix v0.34 = v0.33 + S43 + 26 S43-spec-varijanti = 1464
+(688 FC + 280 BC + 496 AG). Leakage: 0 novih preklapanja.
+
 v0.33 = v0.32 (1191) + 149 spec-varijanti (svaki 3. tool uzorak dobija
 bosanski SPEC system: kanonski format + high-level preferenca) = 1340.
 Varijante zive SAMO u mixu (kanon cist); validator ne vazi za mixeve
