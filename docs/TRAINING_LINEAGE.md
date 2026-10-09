@@ -328,6 +328,15 @@ nikad plutajuci upgrade na trening kernelima.
 
 ## 9B r64-06 na v0.35 sa r6405 (2026-10-08, bez Thundera)
 
+## 9B gate07: BS-spec na v0.3 — protokol dominira (2026-10-09)
+
+v0.3 Q8 + BS-spec, kompletnih 48: tool 0.60, args 0.346, high_level 1.0.
+Gate vs 2B+spec: 4W-21T-23L. Zanimljivo: jedan output doslovno kopirao
+placeholder <function=ime_alata> iz speca.
+ZAKLJUCAK: protokol (EN 0.633 / BS 0.60) dominira nad treningom
+(v0.3 vs v0.4 vs r6405 sve ~0.6); SFT/DPO/rank ne micu 9B sa mjesta.
+9B ostaje eksperimentalno.
+
 ## 9B protokol-varijante: BS-spec 4/5 pobjeđuje (2026-10-09)
 
 EN-spec 3/5, BS-spec 4/5, fewshot 2/5 (na r6406). BS ostaje bosanski.
