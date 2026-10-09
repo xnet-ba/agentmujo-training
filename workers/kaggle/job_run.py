@@ -306,7 +306,9 @@ def _train_full(cfg: dict, out: Path) -> dict:
         remove_columns=[c for c in ds.column_names if c != "text"])
     model = _load_text_model(cfg["model_name"],
                              {"trust_remote_code": True, "torch_dtype": "bfloat16",
-                              "device_map": "auto"})
+                              "device_map": "auto",
+                              "max_memory": cfg.get("max_memory",
+                                                    {"cuda:0": "75GiB", "cpu": "10GiB"})})
     print("INFO: full fine-tuning (sve tezine)")
     wanted = {
         "output_dir": str(out / "checkpoints"), "seed": cfg.get("seed", 42),
