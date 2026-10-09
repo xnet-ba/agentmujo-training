@@ -328,6 +328,13 @@ nikad plutajuci upgrade na trening kernelima.
 
 ## 9B r64-06 na v0.35 sa r6405 (2026-10-08, bez Thundera)
 
+## 9B proba r64-06: 0/5 — protokol-varijante test (2026-10-09)
+
+v0.35 (2 epohe) ne prenosi format na default prompt.
+ODLUKA: umjesto trece epohe naslijepo — test EN-spec vs BS-spec vs
+few-shot direktno na r6406 (15 generacija, ~30 min, bez treninga).
+Najbolji protokol ide u puni gate.
+
 Thunder nedostupan → povratak na Kaggle T4: r64-06 (mix v0.35/1534
 sa r6405 adaptera). DPO-02 baza za kasnije.
 
