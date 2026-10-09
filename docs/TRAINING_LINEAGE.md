@@ -221,8 +221,6 @@ embed put 3x OOM na T4. Pauza po najavljenom kriteriju.
 
 ## 9B proba r64-03: 0/5 — ali druga epoha v0.33 (2026-10-06)
 
-## 9B r64-04 GOTOV (2026-10-06): metrike se vade, proba6404 pushana
-
 ## 9B v0.4 Q8 na Hubu, gate05 sa spec promptom (2026-10-07)
 
 r6404 merge (v0.33 x2) → Q8 427 tenzora → model-q8-v0.4.gguf na Hubu.
@@ -319,6 +317,12 @@ r64-06 v1 pao: SFTTrainer ne podrzava nn.DataParallel (sesija dala
 2 GPU-a, device_map auto shardovao). Fix: CUDA_VISIBLE_DEVICES=0
 u preflight celiji + assert device_count==1 (obavezno za sve buduce
 trening kernele). v2 pushan.
+v2 pao: novi TRL chunked_logprob kernel trazi sm80+, T4 je sm75
+(plutajuci pip upgrade slomio radni lanac!). Dijagnoza mikro-kernelima
+(stat06/getver obrazac). Fix: pin transformers==5.19.0, trl==1.14.2,
+peft==0.21.2, accelerate==1.15.0, datasets==5.1.0 (provjereno dobre
+iz r6405 manifesta). v3 pushan. LEKCIJA: pinuj verzije u notebooku,
+nikad plutajuci upgrade na trening kernelima.
 
 ## 9B gate06: DPO nula dobitka — 9B EKSPERIMENTALAN (2026-10-08)
 
