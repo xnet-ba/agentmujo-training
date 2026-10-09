@@ -164,13 +164,19 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     from datasets import load_dataset
     repo, rev = cfg["dataset"], cfg.get("dataset_revision") or "main"
     data_glob = cfg.get("data_file", "data/*.jsonl")
-    try:
+    if data_glob.startswith(("file://", "/")):
+        # Lokalni fajl (Thunder/starije datasets verzije bez hf:// podrske).
         ds = load_dataset("json", split=cfg.get("split", "train"),
-                          data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
-    except Exception as e:
-        print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
-        ds = load_dataset(repo, revision=cfg.get("dataset_revision"),
-                          split=cfg.get("split", "train"))
+                          data_files=data_glob.replace("file://", ""))
+        print(f"INFO: dataset sa lokalnog fajla {data_glob} ({len(ds)} uzoraka)")
+    else:
+        try:
+            ds = load_dataset("json", split=cfg.get("split", "train"),
+                              data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
+        except Exception as e:
+            print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
+            ds = load_dataset(repo, revision=cfg.get("dataset_revision"),
+                              split=cfg.get("split", "train"))
     if cfg.get("max_samples"):
         ds = ds.select(range(min(cfg["max_samples"], len(ds))))
     # Validacija na zamrznutom valid splitu (overfitting detekcija).
@@ -278,13 +284,19 @@ def _train_dpo(cfg: dict, out: Path) -> dict:
     tok = AutoTokenizer.from_pretrained(cfg["model_name"], trust_remote_code=True)
     repo, rev = cfg["dataset"], cfg.get("dataset_revision") or "main"
     data_glob = cfg.get("data_file", "data/*.jsonl")
-    try:
+    if data_glob.startswith(("file://", "/")):
+        # Lokalni fajl (Thunder/starije datasets verzije bez hf:// podrske).
         ds = load_dataset("json", split=cfg.get("split", "train"),
-                          data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
-    except Exception as e:
-        print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
-        ds = load_dataset(repo, revision=cfg.get("dataset_revision"),
-                          split=cfg.get("split", "train"))
+                          data_files=data_glob.replace("file://", ""))
+        print(f"INFO: dataset sa lokalnog fajla {data_glob} ({len(ds)} uzoraka)")
+    else:
+        try:
+            ds = load_dataset("json", split=cfg.get("split", "train"),
+                              data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
+        except Exception as e:
+            print(f"WARN: hf:// load pao ({e}) — fallback na repo stil")
+            ds = load_dataset(repo, revision=cfg.get("dataset_revision"),
+                              split=cfg.get("split", "train"))
     if cfg.get("max_samples"):
         ds = ds.select(range(min(cfg["max_samples"], len(ds))))
 
