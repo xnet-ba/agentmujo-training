@@ -1,0 +1,92 @@
+[
+  {
+    "proto": "EN-spec",
+    "prompt": "Da li je nginx servis trenutno aktivan?",
+    "text": "The user is asking if the nginx service is currently active. I need to check the status of the nginx service. I should use the service_status tool to check this.\n\nLet me respond in Bosnian (ijekavica) as requested, and use the CANONICAL format for the tool call.\n</think>\n\n<tool_call>\n<function=service_status>\n<parameter=service>nginx</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "EN-spec",
+    "prompt": "Restartuj postgres i potvrdi da prima konekcije.",
+    "text": "The user is asking me to restart PostgreSQL and confirm that it accepts connections. I need to use the available tools to accomplish this task.\n\nLooking at the available tools:\n- service_status(service) - to check if PostgreSQL is running\n- service_restart(service) - to restart PostgreSQL\n- service_logs(service, lines) - to check logs\n- port_check(port) - to verify if PostgreSQL is listening on its port (default is 5432)\n\nI should:\n1. First check the service status of PostgreSQL\n2. Restart PostgreSQL\n3. Check if it's accepting connections (using port_check or service_status after restart)\n\nLet me start with checking the service status, then restart it, then verify it's",
+    "kanonski": false
+  },
+  {
+    "proto": "EN-spec",
+    "prompt": "Prikazi sadrzaj /etc/hosts datoteke.",
+    "text": "The user is asking me to display the contents of the /etc/hosts file. This is a file reading task that requires using the file_read tool.\n\nI need to respond in Bosnian (ijekavica) and use the CANONICAL format for tool calls.\n\nLet me use the file_read tool with the path parameter set to /etc/hosts.\n</think>\n\n<tool_call>\n<function=file_read>\n<path>/etc/hosts</path>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "EN-spec",
+    "prompt": "Je li htop instaliran?",
+    "text": "The user is asking if htop is installed on the system. I need to check if the htop package is installed. I can use the package_query tool to check if htop is installed.\n\nLet me respond in Bosnian (ijekavica) as requested, and use the CANONICAL format for the tool call.\n</think>\n\n<tool_call>\n<function=package_query>\n<parameter=package>htop</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "EN-spec",
+    "prompt": "Obrisi logove starije od 30 dana.",
+    "text": "The user is asking me to delete logs older than 30 days. This is a system administration task that requires using the terminal tool to execute a command.\n\nIn Linux, to delete log files older than 30 days, I would typically use the `find` command with the `-mtime` option to locate files older than 30 days and then delete them.\n\nThe command would be something like:\n```\nfind /var/log -type f -mtime +30 -delete\n```\n\nI need to use the terminal tool with the command parameter. Let me format this according to the CANONICAL format specified.\n\nI should respond in Bosnian (ijekavica) as requested.\n</think>\n\nZa br",
+    "kanonski": false
+  },
+  {
+    "proto": "BS-spec",
+    "prompt": "Da li je nginx servis trenutno aktivan?",
+    "text": "The user is asking if the nginx service is currently active. I need to use the service_status tool to check this. According to the instructions, I must use the exact canonical format without any deviations.\n\nThe format should be:\n<tool_call>\n<function=ime_alata>\n<parameter=naziv>vrijednost</parameter>\n</function>\n</tool_call>\n\nFor this task, I need to use service_status with the service name \"nginx\".\n</think>\n\n<tool_call>\n<function=service_status>\n<parameter=naziv>nginx</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "BS-spec",
+    "prompt": "Restartuj postgres i potvrdi da prima konekcije.",
+    "text": "The user is asking me to restart postgres and verify that it accepts connections. I need to use the available tools in the canonical format specified.\n\nFor restarting postgres, I should use service_restart(service) with postgres as the service name.\n\nFor verifying connections, I can use port_check(port) to check if postgres is listening on its default port (5432 for postgres).\n\nLet me format this correctly according to the canonical format required.\n</think>\n\n<tool_call>\n<function=service_restart>\n<parameter=naziv>postgres</parameter>\n</function>\n</tool_call>\n<tool_call>\n<function=port_check>\n<parameter=port>5432</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "BS-spec",
+    "prompt": "Prikazi sadrzaj /etc/hosts datoteke.",
+    "text": "The user is asking me to display the content of the /etc/hosts file. I need to use the file_read tool to accomplish this task.\n\nAccording to the instructions, I must respond in Bosnian (ijekavica) and use the exact canonical format for tools:\n<tool_call>\n<function=ime_alata>\n<parameter=naziv>vrijednost</parameter>\n</function>\n</tool_call>\n\nFor this task, I should use file_read with the path \"/etc/hosts\".\n</think>\n\n<tool_call>\n<function=file_read>\n<parameter=path>/etc/hosts</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "BS-spec",
+    "prompt": "Je li htop instaliran?",
+    "text": "The user is asking if htop is installed on the Linux server. I need to check if the htop package is installed using the available tools.\n\nLooking at the available tools, I have `package_query(package)` which can check if a package is installed. I should use this tool to query if htop is installed.\n\nI need to respond in Bosnian (ijekavica) and use the exact canonical format for tool calls.\n\nLet me create the response with the package_query tool to check if htop is installed.\n</think>\n\n<tool_call>\n<function=package_query>\n<parameter=naziv>htop</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "BS-spec",
+    "prompt": "Obrisi logove starije od 30 dana.",
+    "text": "The user is asking me to delete log files older than 30 days. This is a system administration task that requires using the file system tools.\n\nLooking at the available tools, I have:\n- service_status(service)\n- service_restart(service)\n- service_logs(service, lines)\n- disk_usage(path)\n- memory_usage()\n- cpu_usage()\n- process_list(limit)\n- network_status()\n- port_check(port)\n- package_query(package)\n- package_install(package)\n- file_list(path)\n- file_read(path)\n- terminal(command)\n\nFor deleting log files older than 30 days, I would need to use the terminal command tool, as this is a shell operation",
+    "kanonski": false
+  },
+  {
+    "proto": "fewshot",
+    "prompt": "Da li je nginx servis trenutno aktivan?",
+    "text": "The user is asking if the nginx service is currently active. I need to respond in Bosnian (Ijekavian) and use the exact format specified - first a text response, then the function call, then the response again.\n\nThe user wants to know if nginx is active, so I should use the service_status function with nginx as the service parameter.\n\nLet me follow the exact format from the examples:\n1. Text response (in Bosnian Ijekavian)\n2. Function call with exact syntax\n3. Text response again\n\nI should NOT use bash blocks as specified in the instructions.\n</think>\n\nProvjeravam status servisa.\n\n<tool_call>\n<function=service_status>\n<parameter=service>\nnginx",
+    "kanonski": true
+  },
+  {
+    "proto": "fewshot",
+    "prompt": "Restartuj postgres i potvrdi da prima konekcije.",
+    "text": "The user is asking me to restart postgres and confirm that it accepts connections. I need to follow the exact format specified in the system instructions:\n\n1. First, I should respond with a confirmation that I'm checking the service status\n2. Then call the service_status function for postgres\n3. Then I should check if postgres is accepting connections (this would typically require a connection test)\n\nLet me follow the exact format with the function calls in the specified format.\n\nFor restarting postgres, I would need to:\n1. Check service status first\n2. Restart the service\n3. Test if it accepts connections\n\nLet me structure this properly in the required format.\n</think>\n\nProvjeravam status servisa.\n<tool_call>\n<",
+    "kanonski": false
+  },
+  {
+    "proto": "fewshot",
+    "prompt": "Prikazi sadrzaj /etc/hosts datoteke.",
+    "text": "The user is asking me to display the content of the /etc/hosts file. This is a system administration task that requires reading a file.\n\nLooking at the instructions, I need to:\n1. Respond in Bosnian language (ijekavica)\n2. Use the exact format shown in the examples - with the function call wrapped in <tool_call> and </tool_call> tags\n3. NOT use bash blocks\n\nFor reading a file, I would need to use a file reading function. However, looking at the available tools mentioned in the examples (service_status, package_query), I don't see a file_read function in the examples.\n\nSince I need to follow the exact format but there's no file reading function shown in the examples,",
+    "kanonski": false
+  },
+  {
+    "proto": "fewshot",
+    "prompt": "Je li htop instaliran?",
+    "text": "The user is asking if htop is installed. I need to follow the exact format specified:\n\n1. First, I should respond with a confirmation that I'm checking\n2. Then call the package_query function with the package name\n3. The response should be in Bosnian (ijekavica)\n\nLet me follow the exact format from the examples provided.\n</think>\n\nProvjeravam paket.\n<tool_call>\n<function=package_query>\n<parameter=package>\nhtop\n</parameter>\n</function>\n</tool_call>\n",
+    "kanonski": true
+  },
+  {
+    "proto": "fewshot",
+    "prompt": "Obrisi logove starije od 30 dana.",
+    "text": "The user is asking me to delete logs older than 30 days. This is a system administration task that would typically require using logrotate or manual log file management.\n\nHowever, I need to follow the format specified in the system instructions:\n1. I must respond in Bosnian language (ijekavica)\n2. I must use the exact format with the function call wrapper (<tool_call> and </tool_call>)\n3. I should NOT use bash blocks\n4. I need to call the appropriate function for this task\n\nLooking at the available functions from the examples:\n- service_status - for checking service status\n- package_query - for checking if a package is installed\n\nFor deleting logs older than 30 days, I would",
+    "kanonski": false
+  }
+]
