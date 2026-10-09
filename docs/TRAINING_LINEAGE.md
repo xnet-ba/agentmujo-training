@@ -326,6 +326,11 @@ nikad plutajuci upgrade na trening kernelima.
 
 ## 9B gate06: DPO nula dobitka — 9B EKSPERIMENTALAN (2026-10-08)
 
+## 4B joint-31 na Thunderu (2026-10-09): dpo01 + mix v0.37
+
+4B lanac odmrzнут: nastavak v0.4-DPO adaptera sa S44 podacima (mix v0.37,
+1670 uzoraka) na A100. Cilj v0.5-4B.
+
 ## 9B r64-06 na v0.35 sa r6405 (2026-10-08, bez Thundera)
 
 ## 9B Thunder r64e x3: embed hipoteza mrtva — PAUZA DEFINITIVNA (2026-10-09)

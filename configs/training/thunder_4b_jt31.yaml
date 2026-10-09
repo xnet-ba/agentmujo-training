@@ -1,0 +1,33 @@
+# 4B-JT31 Thunder — nastavak dpo01 (v0.4) adaptera + mix v0.37 (S44).
+experiment_id: qwen35-4b-jt31
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-4B-bos-32768
+model_revision: 34a621915a6214ab9d28f74142840d8cd5bc0acb
+base_adapter: LOCAL:/tmp/base_4b_dpo01/adapter (Kaggle 4b-dpo01, scp)
+dataset: local
+data_file: /tmp/joint_train_v0.37.jsonl
+split: train
+max_samples: null
+output_dir: outputs/4b-jt31-thunder
+max_seq_length: 1024
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 15
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optim: paged_adamw_8bit
+loss_type: nll
+seed: 37
+resume_from_checkpoint: null
+eval_file: /tmp/valid_fc.jsonl
+eval_steps: 15
