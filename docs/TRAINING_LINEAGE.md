@@ -300,6 +300,11 @@ Hub rev 616dca43.
 
 ## 9B gate06: DPO nula dobitka — 9B EKSPERIMENTALAN (2026-10-08)
 
+## 9B r64-06 na v0.35 sa r6405 (2026-10-08, bez Thundera)
+
+Thunder nedostupan → povratak na Kaggle T4: r64-06 (mix v0.35/1534
+sa r6405 adaptera). DPO-02 baza za kasnije.
+
 v0.5 (r6405+dpo02) + spec: tool 0.633 — identicno v0.4 (0W-48T-0L).
 Gate vs 2B+spec: 3W-27T-18L. Nema releasea; kartica postavljena na
 EKSPERIMENTALNO (posteno: fajlovi postoje, live nije).
