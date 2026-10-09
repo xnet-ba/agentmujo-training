@@ -328,6 +328,11 @@ nikad plutajuci upgrade na trening kernelima.
 
 ## 4B joint-31 na Thunderu (2026-10-09): dpo01 + mix v0.37
 
+## 4B jt31 GOTOV (train 0.69, eval 0.84) — merge na Thunderu (2026-10-09)
+
+Eval 0.84 visi od jt06 0.76 (drugi mix/start — bench odlucuje).
+Merge+Q8 direktno na Thunderu (thunder_merge.py, mq04 obrazac).
+
 4B lanac odmrzнут: nastavak v0.4-DPO adaptera sa S44 podacima (mix v0.37,
 1670 uzoraka) na A100. Cilj v0.5-4B.
 
