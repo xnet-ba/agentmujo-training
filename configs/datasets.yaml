@@ -2,13 +2,13 @@
 # PRAVILO (lekcija 2026-09-27): pytest lokalno PRIJE svakog Hub pusha kanona
 # (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1369+S43v3, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 1f8b7d1f600e23f77dc6be60b7efe9da855a43a6 }
-  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-729+S43v3, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 02311a7514fb8dcd18721226b2423cf690f4df19 }
+  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: c5c732b805b010e3a4a6845e5bd960aac485f013 }
+  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: ec90e0352c8e691f9c71f00f7a0e30272ee703a7 }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
   - { name: agentmujo-safety,              version: null, status: planned }
-  - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-1158+S43v3, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: 73fda3dc25c80eb96f358758597cecc844d1899a }
+  - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-1178+S44, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: 85ffb1f7e66ba084cbe37609c0815e33292cd381 }
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
 

@@ -293,6 +293,15 @@ S43 ukupno: 158 uzoraka.
 
 ## S43 v3: +60 + DPO v0.4 + mix v0.36 (2026-10-08)
 
+## S44: +70 + DPO v0.5 + mix v0.37 (2026-10-08)
+
+S44: 20 AG (nut/samba/dns/backup) + 20 FC (paketi/fajlovi/portovi)
++ 20 BC (BiH istorija/pisci/priroda) + 10 DPO balansiranih.
+FC 1389, AG 749, BC 1178; DPO v0.5: 170 parova.
+Testovi 37/37; audit 0; leakage čist.
+Mix v0.37 = v0.36 + S44 + 9 spec-varijanti = 1670.
+S43+S44 ukupno: 288 uzoraka.
+
 S43 v3: 20 AG (named/dns/mail/backup) + 20 FC (samba/paketi/fajlovi)
 + 20 BC (BiH gradovi/planine/pisci); 1 zamjena duplikata.
 DPO v0.4: 160 parova (150 + 10 balansiranih).
