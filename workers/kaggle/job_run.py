@@ -308,7 +308,7 @@ def _train_full(cfg: dict, out: Path) -> dict:
                              {"trust_remote_code": True, "torch_dtype": "bfloat16",
                               "device_map": "auto",
                               "max_memory": cfg.get("max_memory",
-                                                    {"cuda:0": "75GiB", "cpu": "10GiB"})})
+                                                    {0: "75GiB", "cpu": "10GiB"})})
     print("INFO: full fine-tuning (sve tezine)")
     wanted = {
         "output_dir": str(out / "checkpoints"), "seed": cfg.get("seed", 42),
