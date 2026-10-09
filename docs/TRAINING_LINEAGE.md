@@ -313,6 +313,13 @@ S43 ukupno: 218 uzoraka.
 
 ## 9B prioritet 2: v0.5 (r6405+dpo02) na Hubu, gate06 sa spec (2026-10-07)
 
+## 9B r64-06 v1 fail: DataParallel (2026-10-09) — fix + re-run
+
+r64-06 v1 pao: SFTTrainer ne podrzava nn.DataParallel (sesija dala
+2 GPU-a, device_map auto shardovao). Fix: CUDA_VISIBLE_DEVICES=0
+u preflight celiji + assert device_count==1 (obavezno za sve buduce
+trening kernele). v2 pushan.
+
 ## 9B gate06: DPO nula dobitka — 9B EKSPERIMENTALAN (2026-10-08)
 
 ## 9B r64-06 na v0.35 sa r6405 (2026-10-08, bez Thundera)
