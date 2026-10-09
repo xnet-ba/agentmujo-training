@@ -270,14 +270,9 @@ se uci kroz podatke.
 
 ## Mix v0.33 sa format-spec varijantama (2026-10-05)
 
-## S43 v2: +60 + DPO balans + mix v0.35 (2026-10-07)
-
-S43 v2: 20 AG (samba/nfs/mail/diagnostika) + 20 FC (paketi/fajlovi/portovi)
-+ 20 BC (BiH geografija/kultura) = 60 GOLD; 7 zamjena duplikata.
-DPO v0.3: 150 parova (140 + 10 balansiranih confirm/act).
-FC 1349, AG 709, BC 1138; testovi 37/37; audit 0 kontradikcija.
-Mix v0.35 = v0.34 + S43v2 + 10 spec-varijanti = 1534.
-S43 ukupno: 158 uzoraka.
+v0.33 = v0.32 (1191) + 149 spec-varijanti (svaki 3. tool uzorak;
+bosanski SPEC system) = 1340. Varijante samo u mixu.
+Hub rev 616dca43.
 
 ## S43: 98 GOLD + mix v0.34 (2026-10-07)
 
@@ -287,12 +282,23 @@ FC 1329, AG 689; audit 0 kontradikcija; testovi 37/37.
 Mix v0.34 = v0.33 + S43 + 26 S43-spec-varijanti = 1464
 (688 FC + 280 BC + 496 AG). Leakage: 0 novih preklapanja.
 
-v0.33 = v0.32 (1191) + 149 spec-varijanti (svaki 3. tool uzorak dobija
-bosanski SPEC system: kanonski format + high-level preferenca) = 1340.
-Varijante zive SAMO u mixu (kanon cist); validator ne vazi za mixeve
-(v0.32 i sam ima 139 content-duplikata — mix je kompozicija, ne kanon).
-Leakage: 0 novih bench preklapanja (samo stara th-0033/0034).
-Hub rev 616dca43.
+## S43 v2: +60 + DPO balans + mix v0.35 (2026-10-07)
+
+S43 v2: 20 AG (samba/nfs/mail/diagnostika) + 20 FC (paketi/fajlovi/portovi)
++ 20 BC (BiH geografija/kultura) = 60 GOLD; 7 zamjena duplikata.
+DPO v0.3: 150 parova (140 + 10 balansiranih confirm/act).
+FC 1349, AG 709, BC 1138; testovi 37/37; audit 0 kontradikcija.
+Mix v0.35 = v0.34 + S43v2 + 10 spec-varijanti = 1534.
+S43 ukupno: 158 uzoraka.
+
+## S43 v3: +60 + DPO v0.4 + mix v0.36 (2026-10-08)
+
+S43 v3: 20 AG (named/dns/mail/backup) + 20 FC (samba/paketi/fajlovi)
++ 20 BC (BiH gradovi/planine/pisci); 1 zamjena duplikata.
+DPO v0.4: 160 parova (150 + 10 balansiranih).
+FC 1369, AG 729, BC 1158; testovi 37/37; audit 0; leakage čist.
+Mix v0.36 = v0.35 + S43v3 + 10 spec-varijanti = 1604.
+S43 ukupno: 218 uzoraka.
 
 ## 9B gate05: spec radi, ali 9B gubi — TRAG PAUZIRAN (2026-10-07)
 
