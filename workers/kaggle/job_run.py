@@ -80,6 +80,8 @@ def main() -> int:
             metrics = {"mode": "smoke", "smoke": "PASS"}
         elif cfg.get("mode") == "dpo":
             metrics = _train_dpo(cfg, out)
+        elif cfg.get("mode") == "full":
+            metrics = _train_full(cfg, out)
         else:
             metrics = _train_lora(cfg, out)
 
@@ -261,6 +263,88 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     metrics = {"mode": "sft", **tr,
                "eval": {"note": "AgentMujo-Bench (8 kategorija A-H) pokrenuti "
                                 "nakon treninga; rule-based dio ovdje, manual/LLM-sudija na Oracleu"}}
+    _write(out / "metrics.json", metrics)
+    return metrics
+
+
+def _train_full(cfg: dict, out: Path) -> dict:
+    """Puni fine-tuning (sve tezine, bez LoRA) — samo za velike GPU (A100+).
+    Koristi isti SFT dataset/pipeline kao _train_lora; sprema puni model
+    u outputs/model (NE adapter — nema merge koraka)."""
+    import sys as _sys
+    from pathlib import Path as _P
+    _sys.path.insert(0, str(_P(__file__).resolve().parents[2] / "src"))
+    from agentmujo_training.training import sample_to_chatml
+    from datasets import load_dataset
+    from transformers import AutoTokenizer
+    from trl import SFTTrainer, SFTConfig
+    import inspect as _inspect
+
+    tok = AutoTokenizer.from_pretrained(cfg["model_name"], trust_remote_code=True)
+    repo, rev = cfg["dataset"], cfg.get("dataset_revision") or "main"
+    data_glob = cfg.get("data_file", "data/*.jsonl")
+    if data_glob.startswith(("file://", "/")):
+        ds = load_dataset("json", split=cfg.get("split", "train"),
+                          data_files=data_glob.replace("file://", ""))
+        print(f"INFO: dataset sa lokalnog fajla {data_glob} ({len(ds)} uzoraka)")
+    else:
+        ds = load_dataset("json", split=cfg.get("split", "train"),
+                          data_files=f"hf://datasets/{repo}@{rev}/{data_glob}")
+    if cfg.get("max_samples"):
+        ds = ds.select(range(min(cfg["max_samples"], len(ds))))
+    eval_ds = None
+    if cfg.get("eval_file"):
+        from datasets import load_dataset as _load
+        ef = cfg["eval_file"]
+        eval_ds = _load("json", split="train", data_files=ef)
+        from agentmujo_training.training import sample_to_chatml as _c2
+        eval_ds = eval_ds.map(lambda r: {"text": tok.apply_chat_template(
+            _c2(r), tokenize=False, add_generation_prompt=False)},
+            remove_columns=[c for c in eval_ds.column_names if c != "text"])
+    ds = ds.map(lambda r: {"text": tok.apply_chat_template(
+        sample_to_chatml(r), tokenize=False, add_generation_prompt=False)},
+        remove_columns=[c for c in ds.column_names if c != "text"])
+    model = _load_text_model(cfg["model_name"],
+                             {"trust_remote_code": True, "torch_dtype": "bfloat16",
+                              "device_map": "auto"})
+    print("INFO: full fine-tuning (sve tezine)")
+    wanted = {
+        "output_dir": str(out / "checkpoints"), "seed": cfg.get("seed", 42),
+        "per_device_train_batch_size": cfg.get("per_device_train_batch_size", 1),
+        "gradient_accumulation_steps": cfg.get("gradient_accumulation_steps", 16),
+        "learning_rate": cfg.get("learning_rate", 2e-5),
+        "num_train_epochs": cfg.get("num_train_epochs", 1),
+        "warmup_ratio": cfg.get("warmup_ratio", 0.05),
+        "weight_decay": cfg.get("weight_decay", 0.0),
+        "logging_steps": cfg.get("logging_steps", 10),
+        "save_steps": cfg.get("save_steps", 100),
+        "save_total_limit": cfg.get("save_total_limit", 2),
+        "gradient_checkpointing": cfg.get("gradient_checkpointing", True),
+        "bf16": True,
+        "loss_type": cfg.get("loss_type", "nll"),
+        "optim": cfg.get("optim", "paged_adamw_8bit"),
+        "eval_strategy": "steps" if eval_ds is not None else "no",
+        "eval_steps": cfg.get("eval_steps", 25),
+        "max_seq_length": cfg.get("max_seq_length", 4096),
+        "dataset_text_field": "text",
+        "resume_from_checkpoint": cfg.get("resume_from_checkpoint"),
+    }
+    supported = set(_inspect.signature(SFTConfig.__init__).parameters)
+    dropped = sorted(k for k in wanted if k not in supported)
+    if dropped:
+        print(f"WARN: TRL {SFTConfig} ne podržava {dropped} — izbačeno")
+    args = SFTConfig(**{k: v for k, v in wanted.items() if k in supported})
+    try:
+        trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
+                             eval_dataset=eval_ds, processing_class=tok)
+    except TypeError:
+        trainer = SFTTrainer(model=model, args=args, train_dataset=ds,
+                             eval_dataset=eval_ds, tokenizer=tok)
+    trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
+    trainer.save_model(str(out / "model"))
+    tr = _summarize_history(trainer.state.log_history)
+    metrics = {"mode": "full", **tr,
+               "eval": {"note": "AgentMujo-Bench pokrenuti nakon treninga"}}
     _write(out / "metrics.json", metrics)
     return metrics
 
