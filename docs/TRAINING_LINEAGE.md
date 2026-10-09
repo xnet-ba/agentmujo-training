@@ -328,6 +328,14 @@ nikad plutajuci upgrade na trening kernelima.
 
 ## 9B r64-06 na v0.35 sa r6405 (2026-10-08, bez Thundera)
 
+## 9B Thunder r64e x3: embed hipoteza mrtva — PAUZA DEFINITIVNA (2026-10-09)
+
+Thunder r64e-01/02/03 (r64+embed, A100): eval 0.86→0.81, probe 0/5-0/5-0/5.
+Embed ne instalira gramatiku ni uz kapacitet. Bilans 9B: SFT 9 epoha
+(r16x5, r64x4) + DPO x2 + embed x3 + rankovi + spec-protokol (0.633 max).
+Svaka metoda isprobana; format dolazi samo iz prompta.
+Thunder se preusmjerava: 4B joint-31 (dpo01 + mix v0.37).
+
 ## 9B gate07: BS-spec na v0.3 — protokol dominira (2026-10-09)
 
 v0.3 Q8 + BS-spec, kompletnih 48: tool 0.60, args 0.346, high_level 1.0.
