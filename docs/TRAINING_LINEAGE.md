@@ -362,6 +362,11 @@ Thunder se preusmjerava: 4B joint-31 (dpo01 + mix v0.37).
 
 ## 9B gate07: BS-spec na v0.3 — protokol dominira (2026-10-09)
 
+## 9B v0.6 (r6406, v0.35) na Hubu + gate08 (2026-10-10)
+
+Merge r6406 → Q8 427 tenzora → model-q8-v0.6.gguf (disk 99% prezivljen
+chunk-po-chunk assemblyjem). Kartica v0.6. Gate08 sa BS-spec u toku.
+
 v0.3 Q8 + BS-spec, kompletnih 48: tool 0.60, args 0.346, high_level 1.0.
 Gate vs 2B+spec: 4W-21T-23L. Zanimljivo: jedan output doslovno kopirao
 placeholder <function=ime_alata> iz speca.
