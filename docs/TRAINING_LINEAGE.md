@@ -328,6 +328,13 @@ nikad plutajuci upgrade na trening kernelima.
 
 ## 4B joint-31 na Thunderu (2026-10-09): dpo01 + mix v0.37
 
+## 4B jt31 GATE PAO (2026-10-10): SFT-nakon-DPO regresija
+
+jt31 vs v0.4: 1W-38T-9L (confirmation 1.0→0.4, high 1.0→0.6).
+SFT nakon DPO ponistava DPO dobitke (pogresan redoslijed).
+ODLUKA: DPO-03 (balansirani v0.4, 160 parova) nad jt31 adapterom
+na Thunderu — pravilan SFT→DPO redoslijed.
+
 ## 4B jt31 GOTOV (train 0.69, eval 0.84) — merge na Thunderu (2026-10-09)
 
 Eval 0.84 visi od jt06 0.76 (drugi mix/start — bench odlucuje).
