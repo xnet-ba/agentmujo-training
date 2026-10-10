@@ -342,6 +342,7 @@ na Thunderu — pravilan SFT→DPO redoslijed.
 Thunder TnrDataSockMon panic deterministicki na 8GB safetensors writeu
 (2 pokusaja, ista tacka). Adapteri (jt31+dpo03, 84MB) prebaceni na Hub
 adapters repo; merge dvostepeni na Kaggleu (mqthunder, adapteri sa Huba).
+Adapters repo otvoren javno (samo tezine). v2 pushan nakon 401 fixa.
 
 Eval 0.84 visi od jt06 0.76 (drugi mix/start — bench odlucuje).
 Merge+Q8 direktno na Thunderu (thunder_merge.py, mq04 obrazac).
