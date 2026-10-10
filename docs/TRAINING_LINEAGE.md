@@ -364,6 +364,13 @@ Thunder se preusmjerava: 4B joint-31 (dpo01 + mix v0.37).
 
 ## 9B v0.6 (r6406, v0.35) na Hubu + gate08 (2026-10-10)
 
+## 9B gate08: v0.6 identican v0.3 (2026-10-10)
+
+v0.6 + BS-spec, kompletnih 48: tool 0.60 — 0W-48T-0L vs v0.3
+(doslovno identicni skorovi na svih 48!). Vs 2B+spec: 4W-21T-23L.
+v0.35 mix + r6406 nista mjerljivo. 9B plafon: 0.60 pod specom,
+ne pomjera se tezinama. Nema releasea.
+
 Merge r6406 → Q8 427 tenzora → model-q8-v0.6.gguf (disk 99% prezivljen
 chunk-po-chunk assemblyjem). Kartica v0.6. Gate08 sa BS-spec u toku.
 
