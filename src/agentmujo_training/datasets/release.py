@@ -42,13 +42,20 @@ def _preference(repo: Path, spec: dict[str, Any], out: Path, version: str) -> di
     d.mkdir(parents=True, exist_ok=True)
     data = d / "data.jsonl"
     write_jsonl(data, rows)
+    langs = distribution(rows, "language")
     man = {"schema": "agentmujo.preference.v0", "name": spec["name"], "version": version,
            "created_at": datetime.now(timezone.utc).isoformat(), "source": "own",
            "license": "internal", "data": str(data), "data_sha256": _sha(data),
-           "counts": {"rows": len(rows)}, "format": "prompt/chosen/rejected"}
+           "counts": {"input": len(rows), "kept": len(rows), "rejected": 0,
+                      "duplicates": 0, "rows": len(rows)},
+           "languages": langs or {"?": len(rows)},
+           "tasks": {"preference-dpo": len(rows)},
+           "format": "prompt/chosen/rejected"}
     (d / "manifest.json").write_text(json.dumps(man, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return {"name": spec["name"], "categories": spec["categories"], "rows": len(rows),
-            "sha256": man["data_sha256"], "manifest": str(d / "manifest.json"), "format": "preference"}
+            "sha256": man["data_sha256"], "manifest": str(d / "manifest.json"),
+            "counts": man["counts"], "languages": man["languages"], "tasks": man["tasks"],
+            "format": "preference"}
 
 
 def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path | None = None) -> dict[str, Any]:

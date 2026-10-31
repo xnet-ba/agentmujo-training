@@ -2,7 +2,7 @@
   "schema": "agentmujo.release.v0",
   "name": "AgentMujo Dataset",
   "version": "0.1.0",
-  "created_at": "2026-10-31T17:26:18.439138+00:00",
+  "created_at": "2026-10-31T17:34:43.458317+00:00",
   "repository": "/tmp/agentmujo-training",
   "datasets": [
     {
@@ -129,6 +129,19 @@
       "rows": 170,
       "sha256": "394fbce9d0d22c327554c0adb941269b7b88c77aba53cc4868dfa1f669f2acae",
       "manifest": "releases/v0.1.0/agentmujo-preference-dpo/manifest.json",
+      "counts": {
+        "input": 170,
+        "kept": 170,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 170
+      },
+      "languages": {
+        "?": 170
+      },
+      "tasks": {
+        "preference-dpo": 170
+      },
       "format": "preference"
     }
   ],
