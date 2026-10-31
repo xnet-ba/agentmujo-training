@@ -1,33 +1,27 @@
-# DATASET_STATUS_REPORT — v0.1.0
+# DATASET_STATUS_REPORT — v0.2.0
 
-**Datum:** 2026-10-31 · **Repo:** xnet-ba/agentmujo-training (PR #2) · **Commit:** 70368ed
+**Datum:** 2026-10-31 · **Repo:** xnet-ba/agentmujo-training (PR #3) · **Testovi:** 46/46
 
-## Release v0.1.0
+## Release v0.2.0
 
-- **Ukupno:** 3.536 red
-- bosnian-language 1.178 · function-calling 1.389 · agentic-tasks 749 · preference-dpo 170 · reasoning 50 · safety 0 (20/20 bili duplikati; kategorija je gap) · **45 preklapanja uklonjeno**
-- Kategorije: agentic-tasks, bosnian-language, function-calling, instructions, linux-terminal, preference-dpo, reasoning, safety, tool-use-mcp
-- **Gapovi:** knowledge, coding, rag-memory, safety; agentic-evaluation = odvojen benchmark (nije train)
-- Manifesti + SHA256: `releases/v0.1.0/`, `RELEASE.json`, `DATASET_CARD.md`
+- **Ukupno:** 3.716 redova, 9 datasetova, 12 kategorija.
+- bosnian-language 1.178 · safety 20 · reasoning 75 · function-calling 1.364 · agentic-tasks 729 · bosnian-knowledge 100 · coding 30 · rag-memory 50 · preference-dpo 170.
+- **Gap:** agentic-evaluation (odvojen benchmark; nije train).
+- Cross-dataset dedup: 45 uklonjeno.
+- Manifesti + SHA256: `releases/v0.2.0/`, `RELEASE.json`, `DATASET_CARD.md`.
 
-## Testovi
+## Izvori i licence
 
-- **45/45** (`pytest -q`)
-- Popravljen `registry/index.py` (summary lista).
+- `wikipedia-bs` = approved, CC BY-SA 4.0; intro extracts, attribution URL u metadata.
+- `own` = approved; coding iz vlastitog Apache-2.0 repo koda; interni preference podaci.
+- HF/OSCAR/CulturaX/OPUS/Wikimedia(generic)/BigCode/BFCL = pending; nisu korišteni bez provjere.
 
-## Izvori
+## GPU / LUMI
 
-- `own` = approved (interne baze).
-- HF, OSCAR, CulturaX, OPUS, Wikimedia, BigCode, BFCL = **pending** (provjera licence/dozvole prije ingestije).
-- Nijedan pending izvor nije korišten za v0.1.0.
+- GPU nije korišten za obradu; sve na Contabo CPU.
+- LUMI ostaje za CPU/Slurm streaming i opravdanu sintetičku generaciju/eval/trening.
 
-## LUMI / GPU
+## HF
 
-- **GPU nije korišten** za obradu podataka.
-- Sljedeće: CPU/Slurm za streaming ingest i dedup; GPU samo za opravdanu sintetičku generaciju/eval/trening.
-
-## Sljedeće
-
-1. Knowledge/coding/rag izvori uz licence → v0.2.0.
-2. 5-agentni pregled kvaliteta i gapova.
-3. HF adapter (streaming) + governance evidencija.
+- v0.1.0: https://huggingface.co/datasets/renatoschust/agentmujo-dataset-v0.1.0
+- v0.2.0: https://huggingface.co/datasets/renatoschust/agentmujo-dataset-v0.2.0

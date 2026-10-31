@@ -1,0 +1,399 @@
+{
+  "schema": "agentmujo.release.v0",
+  "name": "AgentMujo Dataset",
+  "version": "0.2.0",
+  "created_at": "2026-10-31T17:50:01.007320+00:00",
+  "repository": "xnet-ba/agentmujo-training",
+  "datasets": [
+    {
+      "name": "agentmujo-bosnian-language",
+      "categories": [
+        "bosnian-language",
+        "instructions"
+      ],
+      "source": "own",
+      "rows": 1178,
+      "sha256": "596143811151b11b10091045b4a4872c074392b4adfe5ce82af01d5c2ba2400c",
+      "manifest": "releases/v0.2.0/agentmujo-bosnian-language/manifest.json",
+      "counts": {
+        "input": 1178,
+        "kept": 1178,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 1178
+      },
+      "languages": {
+        "bs-ijekavica": 1178
+      },
+      "tasks": {
+        "bosnian-core": 1118,
+        "bosnian-knowledge": 60
+      },
+      "cross_duplicates_removed": 0
+    },
+    {
+      "name": "agentmujo-safety",
+      "categories": [
+        "safety"
+      ],
+      "source": "own",
+      "rows": 20,
+      "sha256": "f2b4158f7e9d328059f88ac49d31e854f7975d50f6ed44683220ec308fc764e1",
+      "manifest": "releases/v0.2.0/agentmujo-safety/manifest.json",
+      "counts": {
+        "input": 20,
+        "kept": 20,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 20
+      },
+      "languages": {
+        "bs-ijekavica": 20
+      },
+      "tasks": {
+        "agentic-terminal": 10,
+        "function-calling": 10
+      },
+      "cross_duplicates_removed": 0
+    },
+    {
+      "name": "agentmujo-reasoning",
+      "categories": [
+        "reasoning"
+      ],
+      "source": "own",
+      "rows": 75,
+      "sha256": "9d8deb8bb11ddd47ebeba7095be09f4717e653165dd599cbf54d2701b4317763",
+      "manifest": "releases/v0.2.0/agentmujo-reasoning/manifest.json",
+      "counts": {
+        "input": 75,
+        "kept": 75,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 75
+      },
+      "languages": {
+        "bs-ijekavica": 75
+      },
+      "tasks": {
+        "agentic-terminal": 40,
+        "function-calling": 35
+      },
+      "cross_duplicates_removed": 0
+    },
+    {
+      "name": "agentmujo-function-calling",
+      "categories": [
+        "function-calling",
+        "tool-use-mcp"
+      ],
+      "source": "own",
+      "rows": 1364,
+      "sha256": "b7a07aadbe1623052198d301757fb0e551717c6301a77ab8e779f0318687da59",
+      "manifest": "releases/v0.2.0/agentmujo-function-calling/manifest.json",
+      "counts": {
+        "input": 1389,
+        "kept": 1389,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 1364,
+        "cross_duplicates_removed": 25
+      },
+      "languages": {
+        "bs-ijekavica": 1364
+      },
+      "tasks": {
+        "function-calling": 1364
+      },
+      "cross_duplicates_removed": 25
+    },
+    {
+      "name": "agentmujo-agentic-tasks",
+      "categories": [
+        "agentic-tasks",
+        "linux-terminal"
+      ],
+      "source": "own",
+      "rows": 729,
+      "sha256": "8279cebd6e6a7bab72d2e025164931a6a2e3b813754f4f6593c05705d003b666",
+      "manifest": "releases/v0.2.0/agentmujo-agentic-tasks/manifest.json",
+      "counts": {
+        "input": 749,
+        "kept": 749,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 729,
+        "cross_duplicates_removed": 20
+      },
+      "languages": {
+        "bs-ijekavica": 729
+      },
+      "tasks": {
+        "agentic-terminal": 729
+      },
+      "cross_duplicates_removed": 20
+    },
+    {
+      "name": "agentmujo-bosnian-knowledge",
+      "categories": [
+        "knowledge"
+      ],
+      "source": "wikipedia-bs",
+      "rows": 100,
+      "sha256": "7fff8be2c33f7eb2ffcf14ab2ea06a74d48f813e5f8f79e6be3260b5caa1945c",
+      "manifest": "releases/v0.2.0/agentmujo-bosnian-knowledge/manifest.json",
+      "counts": {
+        "input": 100,
+        "kept": 100,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 100
+      },
+      "languages": {
+        "bs": 100
+      },
+      "tasks": {
+        "bosnian-knowledge": 100
+      },
+      "cross_duplicates_removed": 0
+    },
+    {
+      "name": "agentmujo-coding",
+      "categories": [
+        "coding"
+      ],
+      "source": "own",
+      "rows": 30,
+      "sha256": "37dc584ce7d6758c69c191c437c4acbab2e48416c49b9a79dc5b077e95636e36",
+      "manifest": "releases/v0.2.0/agentmujo-coding/manifest.json",
+      "counts": {
+        "input": 30,
+        "kept": 30,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 30
+      },
+      "languages": {
+        "bs": 30
+      },
+      "tasks": {
+        "coding": 30
+      },
+      "cross_duplicates_removed": 0
+    },
+    {
+      "name": "agentmujo-rag-memory",
+      "categories": [
+        "rag-memory"
+      ],
+      "source": "wikipedia-bs",
+      "rows": 50,
+      "sha256": "5acd6b76808f7ec475299b8582f67b48f187a0fae9989650f60cfe00399144b5",
+      "manifest": "releases/v0.2.0/agentmujo-rag-memory/manifest.json",
+      "counts": {
+        "input": 50,
+        "kept": 50,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 50
+      },
+      "languages": {
+        "bs": 50
+      },
+      "tasks": {
+        "rag-memory": 50
+      },
+      "cross_duplicates_removed": 0
+    },
+    {
+      "name": "agentmujo-preference-dpo",
+      "categories": [
+        "preference-dpo"
+      ],
+      "rows": 170,
+      "sha256": "394fbce9d0d22c327554c0adb941269b7b88c77aba53cc4868dfa1f669f2acae",
+      "manifest": "releases/v0.2.0/agentmujo-preference-dpo/manifest.json",
+      "counts": {
+        "input": 170,
+        "kept": 170,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 170
+      },
+      "languages": {
+        "?": 170
+      },
+      "tasks": {
+        "preference-dpo": 170
+      },
+      "format": "preference",
+      "cross_duplicates_removed": 0
+    }
+  ],
+  "covered_categories": [
+    "agentic-tasks",
+    "bosnian-language",
+    "coding",
+    "function-calling",
+    "instructions",
+    "knowledge",
+    "linux-terminal",
+    "preference-dpo",
+    "rag-memory",
+    "reasoning",
+    "safety",
+    "tool-use-mcp"
+  ],
+  "gaps": [
+    "agentic-evaluation"
+  ],
+  "total_rows": 3716,
+  "duplicates_across_datasets": 0,
+  "overlap_removed": 45,
+  "overlap_examples": [
+    {
+      "hash": "694d62ca34bc2b69",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 148,
+      "id": "amj-fc-0148"
+    },
+    {
+      "hash": "d88021064324faaf",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 149,
+      "id": "amj-fc-0149"
+    },
+    {
+      "hash": "22833adba21502ab",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 150,
+      "id": "amj-fc-0150"
+    },
+    {
+      "hash": "dc4148b83d7dd0cb",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 151,
+      "id": "amj-fc-0151"
+    },
+    {
+      "hash": "baa153d8526fe16f",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 152,
+      "id": "amj-fc-0152"
+    },
+    {
+      "hash": "b5c10d90f6b35a81",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 153,
+      "id": "amj-fc-0153"
+    },
+    {
+      "hash": "40053bb366de2319",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 154,
+      "id": "amj-fc-0154"
+    },
+    {
+      "hash": "88041f5c6f24479b",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 155,
+      "id": "amj-fc-0155"
+    },
+    {
+      "hash": "5fc3af0840ccf669",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 156,
+      "id": "amj-fc-0156"
+    },
+    {
+      "hash": "118d7490c30cc740",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 157,
+      "id": "amj-fc-0157"
+    },
+    {
+      "hash": "8722bb98868f42b2",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 158,
+      "id": "amj-fc-0158"
+    },
+    {
+      "hash": "777f6dd04b087a11",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 159,
+      "id": "amj-fc-0159"
+    },
+    {
+      "hash": "8c4a2dd9efa7a239",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 160,
+      "id": "amj-fc-0160"
+    },
+    {
+      "hash": "11720fd7827c690c",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 161,
+      "id": "amj-fc-0161"
+    },
+    {
+      "hash": "58cff11b7b7274a8",
+      "first": "agentmujo-reasoning",
+      "removed_from": "agentmujo-function-calling",
+      "line": 162,
+      "id": "amj-fc-0162"
+    },
+    {
+      "hash": "3c04be7b249242ad",
+      "first": "agentmujo-safety",
+      "removed_from": "agentmujo-function-calling",
+      "line": 163,
+      "id": "amj-fc-0163"
+    },
+    {
+      "hash": "3dcfe09d459c3f49",
+      "first": "agentmujo-safety",
+      "removed_from": "agentmujo-function-calling",
+      "line": 164,
+      "id": "amj-fc-0164"
+    },
+    {
+      "hash": "e772c15218bd0036",
+      "first": "agentmujo-safety",
+      "removed_from": "agentmujo-function-calling",
+      "line": 165,
+      "id": "amj-fc-0165"
+    },
+    {
+      "hash": "cbbabd8e8de7ea38",
+      "first": "agentmujo-safety",
+      "removed_from": "agentmujo-function-calling",
+      "line": 166,
+      "id": "amj-fc-0166"
+    },
+    {
+      "hash": "25fdf532f2a65d32",
+      "first": "agentmujo-safety",
+      "removed_from": "agentmujo-function-calling",
+      "line": 167,
+      "id": "amj-fc-0167"
+    }
+  ],
+  "gpu_used": false,
+  "lumi_used": false,
+  "notes": "v0.1.0 je reprezentativni release iz postojećih kanonskih fajlova; gapovi su stvarni, nisu popunjeni izmišljenim podacima. Agentic-evaluation je odvojen benchmark.",
+  "errors": []
+}
