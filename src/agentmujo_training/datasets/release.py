@@ -135,6 +135,10 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
             d["tasks"] = man["tasks"]
         d["cross_duplicates_removed"] = local_removed
         removed_total += local_removed
+    datasets = [d for d in datasets if int(d.get("rows") or 0) > 0]  # EMPTY_DATASET_DROP_V1
+    covered = set()
+    for d in datasets:
+        covered.update(d.get("categories") or [])
     gaps = [c for c in ALL_CATEGORIES if c not in covered]
     total = sum(int(d.get("rows") or 0) for d in datasets)
     release = {

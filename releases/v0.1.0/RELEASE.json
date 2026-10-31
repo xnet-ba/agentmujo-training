@@ -2,7 +2,7 @@
   "schema": "agentmujo.release.v0",
   "name": "AgentMujo Dataset",
   "version": "0.1.0",
-  "created_at": "2026-10-31T17:35:49.784813+00:00",
+  "created_at": "2026-10-31T17:36:09.595450+00:00",
   "repository": "xnet-ba/agentmujo-training",
   "datasets": [
     {
@@ -104,28 +104,6 @@
       "cross_duplicates_removed": 25
     },
     {
-      "name": "agentmujo-safety",
-      "categories": [
-        "safety"
-      ],
-      "rows": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "manifest": "releases/v0.1.0/agentmujo-safety/manifest.json",
-      "counts": {
-        "input": 20,
-        "kept": 20,
-        "rejected": 0,
-        "duplicates": 0,
-        "rows": 0,
-        "cross_duplicates_removed": 20
-      },
-      "languages": {
-        "?": 0
-      },
-      "tasks": {},
-      "cross_duplicates_removed": 20
-    },
-    {
       "name": "agentmujo-preference-dpo",
       "categories": [
         "preference-dpo"
@@ -158,13 +136,13 @@
     "linux-terminal",
     "preference-dpo",
     "reasoning",
-    "safety",
     "tool-use-mcp"
   ],
   "gaps": [
     "knowledge",
     "coding",
     "rag-memory",
+    "safety",
     "agentic-evaluation"
   ],
   "total_rows": 3536,
