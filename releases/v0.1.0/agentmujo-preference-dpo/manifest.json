@@ -1,0 +1,24 @@
+{
+  "schema": "agentmujo.preference.v0",
+  "name": "agentmujo-preference-dpo",
+  "version": "0.1.0",
+  "created_at": "2026-10-31T17:38:57.021456+00:00",
+  "source": "own",
+  "license": "internal",
+  "data": "releases/v0.1.0/agentmujo-preference-dpo/data.jsonl",
+  "data_sha256": "394fbce9d0d22c327554c0adb941269b7b88c77aba53cc4868dfa1f669f2acae",
+  "counts": {
+    "input": 170,
+    "kept": 170,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 170
+  },
+  "languages": {
+    "?": 170
+  },
+  "tasks": {
+    "preference-dpo": 170
+  },
+  "format": "prompt/chosen/rejected"
+}
