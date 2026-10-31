@@ -46,6 +46,15 @@ sources:
     status: pending
     categories: [bosnian-language, knowledge]
     notes: "Bosnian Wikipedia/Wikisource/Wiktionary; evidentirati reviziju dumpa."
+  - id: wikipedia-bs
+    name: Bosanska Wikipedija
+    type: wiki
+    url: https://bs.wikipedia.org/
+    license: CC BY-SA 4.0
+    access: public
+    status: approved
+    categories: [bosnian-language, knowledge, rag-memory]
+    notes: "Intro extracts (explaintext), attribution URL u metadata; bez izmišljanja."
   - id: bigcode
     name: BigCode / The Stack
     type: code-corpus

@@ -17,14 +17,21 @@ ALL_CATEGORIES = [
 MESSAGE_SPECS = [
     {"name": "agentmujo-bosnian-language", "file": "bosnian_core_v0.1.jsonl",
      "categories": ["bosnian-language", "instructions"]},
+    # safety i reasoning PRIJE function-calling: isti uzorci ne smiju curiti u dva dataseta
+    {"name": "agentmujo-safety", "file": "confirmation_v0.1.jsonl",
+     "categories": ["safety"]},
+    {"name": "agentmujo-reasoning", "file": "thinking_v0.1.jsonl",
+     "categories": ["reasoning"]},
     {"name": "agentmujo-function-calling", "file": "function_calling_v0.1.jsonl",
      "categories": ["function-calling", "tool-use-mcp"]},
     {"name": "agentmujo-agentic-tasks", "file": "agentic_terminal_v0.1.jsonl",
      "categories": ["agentic-tasks", "linux-terminal"]},
-    {"name": "agentmujo-reasoning", "file": "thinking_v0.1.jsonl",
-     "categories": ["reasoning"]},
-    {"name": "agentmujo-safety", "file": "confirmation_v0.1.jsonl",
-     "categories": ["safety"]},
+    {"name": "agentmujo-bosnian-knowledge", "file": "knowledge_wikipedia_bs_v0.1.jsonl",
+     "categories": ["knowledge"], "source": "wikipedia-bs"},
+    {"name": "agentmujo-coding", "file": "coding_repo_v0.1.jsonl",
+     "categories": ["coding"], "source": "own"},
+    {"name": "agentmujo-rag-memory", "file": "rag_wikipedia_bs_v0.1.jsonl",
+     "categories": ["rag-memory"], "source": "wikipedia-bs"},
 ]
 PREFERENCE_SPEC = {"name": "agentmujo-preference-dpo", "file": "dpo_v0.5.jsonl",
                    "categories": ["preference-dpo"]}
@@ -78,9 +85,11 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
             errors.append(f"{spec['name']}: nema {src}")
             continue
         try:
-            r = build_dataset(src, out / spec["name"], spec["name"], version, source_id="own")
+            r = build_dataset(src, out / spec["name"], spec["name"], version,
+                               source_id=str(spec.get("source") or "own"))
             man = json.loads((out / spec["name"] / "manifest.json").read_text(encoding="utf-8"))
             datasets.append({"name": spec["name"], "categories": spec["categories"],
+                             "source": str(spec.get("source") or "own"),
                              "rows": man["counts"]["rows"], "sha256": man["data_sha256"],
                              "manifest": str(out / spec["name"] / "manifest.json"),
                              "counts": man["counts"], "languages": man.get("languages", {}),
@@ -165,7 +174,9 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
              "| Dataset | Kategorije | Redovi | SHA256 |", "|---|---|---:|---|"]
     for d in datasets:
         lines.append(f"| {d['name']} | {', '.join(d['categories'])} | {d['rows']} | `{d['sha256'][:16]}` |")
-    lines += ["", "## Napomene", "- Bez LUMI GPU za obradu podataka.", "- Bez objave na HF.", "- Gapovi nisu popunjeni nekvalitetnim podacima."]
+    lines += ["", "## Licence", "- knowledge/RAG: CC BY-SA 4.0 (Wikipedia; attribution URL u metadata).",
+              "- coding: Apache-2.0 (vlastiti repo kod).", "- preference/ostalo: interno/Apache-2.0 po evidenciji.",
+              "", "## Napomene", "- Bez LUMI GPU za obradu podataka.", "- Gapovi nisu popunjeni nekvalitetnim podacima."]
     (out / "DATASET_CARD.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return {"ok": True, "version": version, "out_dir": str(out), "total_rows": total,
             "covered_categories": sorted(covered), "gaps": gaps, "datasets": datasets, "errors": errors}

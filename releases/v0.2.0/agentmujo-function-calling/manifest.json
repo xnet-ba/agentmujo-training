@@ -1,0 +1,31 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-function-calling",
+  "version": "0.2.0",
+  "created_at": "2026-10-31T17:50:00.702504+00:00",
+  "source": "own",
+  "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
+  "input": "/tmp/agentmujo-training/datasets/canonical/function_calling_v0.1.jsonl",
+  "data": "releases/v0.2.0/agentmujo-function-calling/data.jsonl",
+  "input_sha256": "1183ff9a2e7a1c029a86fd1e6fc75e5e2bd23a02e3fbbed7e32208a76a3bf682",
+  "data_sha256": "b7a07aadbe1623052198d301757fb0e551717c6301a77ab8e779f0318687da59",
+  "counts": {
+    "input": 1389,
+    "kept": 1389,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 1364,
+    "cross_duplicates_removed": 25
+  },
+  "languages": {
+    "bs-ijekavica": 1364
+  },
+  "tasks": {
+    "function-calling": 1364
+  },
+  "tiers": {
+    "GOLD": 1324,
+    "SILVER": 65
+  },
+  "rejected_samples": []
+}

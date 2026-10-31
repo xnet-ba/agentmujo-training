@@ -1,0 +1,31 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-agentic-tasks",
+  "version": "0.2.0",
+  "created_at": "2026-10-31T17:50:00.760472+00:00",
+  "source": "own",
+  "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
+  "input": "/tmp/agentmujo-training/datasets/canonical/agentic_terminal_v0.1.jsonl",
+  "data": "releases/v0.2.0/agentmujo-agentic-tasks/data.jsonl",
+  "input_sha256": "987ded817009bcdcd02f3add7bbfb1fa2bc6858065e67639031c977dce783606",
+  "data_sha256": "8279cebd6e6a7bab72d2e025164931a6a2e3b813754f4f6593c05705d003b666",
+  "counts": {
+    "input": 749,
+    "kept": 749,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 729,
+    "cross_duplicates_removed": 20
+  },
+  "languages": {
+    "bs-ijekavica": 729
+  },
+  "tasks": {
+    "agentic-terminal": 729
+  },
+  "tiers": {
+    "GOLD": 727,
+    "SILVER": 22
+  },
+  "rejected_samples": []
+}
