@@ -35,6 +35,13 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _row_hash(row: dict[str, Any]) -> str:
+    if row.get("messages"):
+        return sample_hash(row)
+    import hashlib
+    return hashlib.sha256(json.dumps(row, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
 def _preference(repo: Path, spec: dict[str, Any], out: Path, version: str) -> dict[str, Any]:
     src = repo / "datasets" / "canonical" / spec["file"]
     rows = read_jsonl(src)
@@ -92,11 +99,25 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
         errors.append(f"{PREFERENCE_SPEC['name']}: nema {src}")
     gaps = [c for c in ALL_CATEGORIES if c not in covered]
     total = sum(int(d.get("rows") or 0) for d in datasets)
+    seen: dict[str, str] = {}
+    overlap: list[dict[str, Any]] = []
+    for d in datasets:
+        dp = out / d["name"] / "data.jsonl"
+        if not dp.exists():
+            continue
+        for i, row in enumerate(read_jsonl(dp), 1):
+            h = _row_hash(row)
+            if h in seen:
+                overlap.append({"hash": h, "first": seen[h], "also": d["name"], "line": i,
+                                "id": row.get("id")})
+            else:
+                seen[h] = d["name"]
     release = {
         "schema": "agentmujo.release.v0", "name": "AgentMujo Dataset", "version": version,
-        "created_at": datetime.now(timezone.utc).isoformat(), "repository": str(repo),
+        "created_at": datetime.now(timezone.utc).isoformat(), "repository": "xnet-ba/agentmujo-training",
         "datasets": datasets, "covered_categories": sorted(covered), "gaps": gaps,
-        "total_rows": total, "gpu_used": False, "lumi_used": False,
+        "total_rows": total, "duplicates_across_datasets": len(overlap),
+        "overlap_examples": overlap[:20], "gpu_used": False, "lumi_used": False,
         "notes": "v0.1.0 je reprezentativni release iz postojećih kanonskih fajlova; "
                  "gapovi su stvarni, nisu popunjeni izmišljenim podacima. Agentic-evaluation je odvojen benchmark.",
         "errors": errors,
