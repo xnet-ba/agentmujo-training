@@ -52,3 +52,32 @@ def validate_sources(repo: Path) -> list[str]:
         if url and not (url.startswith("http") or url.startswith("file:")):
             issues.append(f"izvor '{sid}': url mora biti http(s) ili file:")
     return issues
+
+
+def scan_sources(repo: Path, only: list[str] | None = None, timeout: int = 8) -> list[dict[str, Any]]:
+    """Provjeri dostupnost izvora (bez odobravanja licence)."""
+    import urllib.request
+    out: list[dict[str, Any]] = []
+    for s in load_sources(repo):
+        sid = str(s.get("id") or "")
+        if only and sid not in only:
+            continue
+        url = str(s.get("url") or "")
+        row = {"id": sid, "url": url, "status": s.get("status"), "reachable": False, "http": None, "error": ""}
+        try:
+            if url.startswith("file:"):
+                p = Path(url[7:])
+                if not p.is_absolute():
+                    p = Path(repo) / p
+                row["reachable"] = p.exists()
+            elif url.startswith("http"):
+                req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "agentmujo-dataset-factory/0.1"})
+                with urllib.request.urlopen(req, timeout=timeout) as r:
+                    row["http"] = int(getattr(r, "status", 200))
+                    row["reachable"] = 200 <= row["http"] < 400
+            else:
+                row["error"] = "nepodrzan url"
+        except Exception as e:
+            row["error"] = str(e)[:160]
+        out.append(row)
+    return out

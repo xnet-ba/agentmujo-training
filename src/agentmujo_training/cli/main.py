@@ -117,6 +117,10 @@ def cmd_dataset_sources(args) -> int:
         issues = validate_sources(REPO_ROOT)
         print(json.dumps({"ok": not issues, "issues": issues}, indent=2, ensure_ascii=False))
         return 0 if not issues else 1
+    if action == "scan":
+        from agentmujo_training.datasets.sources import scan_sources
+        print(json.dumps(scan_sources(REPO_ROOT), indent=2, ensure_ascii=False))
+        return 0
     print("upotreba: amj dataset sources list|validate")
     return 2
 
