@@ -1,0 +1,157 @@
+{
+  "schema": "agentmujo.release.v0",
+  "name": "AgentMujo Dataset",
+  "version": "0.1.0",
+  "created_at": "2026-10-31T17:26:18.439138+00:00",
+  "repository": "/tmp/agentmujo-training",
+  "datasets": [
+    {
+      "name": "agentmujo-bosnian-language",
+      "categories": [
+        "bosnian-language",
+        "instructions"
+      ],
+      "rows": 1178,
+      "sha256": "596143811151b11b10091045b4a4872c074392b4adfe5ce82af01d5c2ba2400c",
+      "manifest": "releases/v0.1.0/agentmujo-bosnian-language/manifest.json",
+      "counts": {
+        "input": 1178,
+        "kept": 1178,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 1178
+      },
+      "languages": {
+        "bs-ijekavica": 1178
+      },
+      "tasks": {
+        "bosnian-core": 1118,
+        "bosnian-knowledge": 60
+      }
+    },
+    {
+      "name": "agentmujo-function-calling",
+      "categories": [
+        "function-calling",
+        "tool-use-mcp"
+      ],
+      "rows": 1389,
+      "sha256": "1183ff9a2e7a1c029a86fd1e6fc75e5e2bd23a02e3fbbed7e32208a76a3bf682",
+      "manifest": "releases/v0.1.0/agentmujo-function-calling/manifest.json",
+      "counts": {
+        "input": 1389,
+        "kept": 1389,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 1389
+      },
+      "languages": {
+        "bs-ijekavica": 1389
+      },
+      "tasks": {
+        "function-calling": 1389
+      }
+    },
+    {
+      "name": "agentmujo-agentic-tasks",
+      "categories": [
+        "agentic-tasks",
+        "linux-terminal"
+      ],
+      "rows": 749,
+      "sha256": "22c0e4b233d816229bb1fb870868e04b26ed3035618e0c9a1fb582576a413b6d",
+      "manifest": "releases/v0.1.0/agentmujo-agentic-tasks/manifest.json",
+      "counts": {
+        "input": 749,
+        "kept": 749,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 749
+      },
+      "languages": {
+        "bs-ijekavica": 749
+      },
+      "tasks": {
+        "agentic-terminal": 749
+      }
+    },
+    {
+      "name": "agentmujo-reasoning",
+      "categories": [
+        "reasoning"
+      ],
+      "rows": 75,
+      "sha256": "9d8deb8bb11ddd47ebeba7095be09f4717e653165dd599cbf54d2701b4317763",
+      "manifest": "releases/v0.1.0/agentmujo-reasoning/manifest.json",
+      "counts": {
+        "input": 75,
+        "kept": 75,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 75
+      },
+      "languages": {
+        "bs-ijekavica": 75
+      },
+      "tasks": {
+        "agentic-terminal": 40,
+        "function-calling": 35
+      }
+    },
+    {
+      "name": "agentmujo-safety",
+      "categories": [
+        "safety"
+      ],
+      "rows": 20,
+      "sha256": "f2b4158f7e9d328059f88ac49d31e854f7975d50f6ed44683220ec308fc764e1",
+      "manifest": "releases/v0.1.0/agentmujo-safety/manifest.json",
+      "counts": {
+        "input": 20,
+        "kept": 20,
+        "rejected": 0,
+        "duplicates": 0,
+        "rows": 20
+      },
+      "languages": {
+        "bs-ijekavica": 20
+      },
+      "tasks": {
+        "agentic-terminal": 10,
+        "function-calling": 10
+      }
+    },
+    {
+      "name": "agentmujo-preference-dpo",
+      "categories": [
+        "preference-dpo"
+      ],
+      "rows": 170,
+      "sha256": "394fbce9d0d22c327554c0adb941269b7b88c77aba53cc4868dfa1f669f2acae",
+      "manifest": "releases/v0.1.0/agentmujo-preference-dpo/manifest.json",
+      "format": "preference"
+    }
+  ],
+  "covered_categories": [
+    "agentic-tasks",
+    "bosnian-language",
+    "function-calling",
+    "instructions",
+    "linux-terminal",
+    "preference-dpo",
+    "reasoning",
+    "safety",
+    "tool-use-mcp"
+  ],
+  "gaps": [
+    "knowledge",
+    "coding",
+    "rag-memory",
+    "agentic-evaluation"
+  ],
+  "total_rows": 3581,
+  "gpu_used": false,
+  "lumi_used": false,
+  "notes": "v0.1.0 je reprezentativni release iz postojećih kanonskih fajlova; gapovi su stvarni, nisu popunjeni izmišljenim podacima. Agentic-evaluation je odvojen benchmark.",
+  "errors": []
+}

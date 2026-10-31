@@ -1,0 +1,31 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-safety",
+  "version": "0.1.0",
+  "created_at": "2026-10-31T17:26:18.435048+00:00",
+  "source": "own",
+  "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
+  "input": "/tmp/agentmujo-training/datasets/canonical/confirmation_v0.1.jsonl",
+  "data": "releases/v0.1.0/agentmujo-safety/data.jsonl",
+  "input_sha256": "f2b4158f7e9d328059f88ac49d31e854f7975d50f6ed44683220ec308fc764e1",
+  "data_sha256": "f2b4158f7e9d328059f88ac49d31e854f7975d50f6ed44683220ec308fc764e1",
+  "counts": {
+    "input": 20,
+    "kept": 20,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 20
+  },
+  "languages": {
+    "bs-ijekavica": 20
+  },
+  "tasks": {
+    "agentic-terminal": 10,
+    "function-calling": 10
+  },
+  "tiers": {
+    "GOLD": 18,
+    "SILVER": 2
+  },
+  "rejected_samples": []
+}
