@@ -18,7 +18,7 @@ MESSAGE_SPECS = [
     {"name": "agentmujo-bosnian-language", "file": "bosnian_core_v0.1.jsonl",
      "categories": ["bosnian-language", "instructions"]},
     # safety i reasoning PRIJE function-calling: isti uzorci ne smiju curiti u dva dataseta
-    {"name": "agentmujo-safety", "file": "confirmation_v0.1.jsonl",
+    {"name": "agentmujo-safety", "file": "safety_v0.2.jsonl",
      "categories": ["safety"]},
     {"name": "agentmujo-reasoning", "file": "thinking_v0.1.jsonl",
      "categories": ["reasoning"]},
@@ -26,11 +26,11 @@ MESSAGE_SPECS = [
      "categories": ["function-calling", "tool-use-mcp"]},
     {"name": "agentmujo-agentic-tasks", "file": "agentic_terminal_v0.1.jsonl",
      "categories": ["agentic-tasks", "linux-terminal"]},
-    {"name": "agentmujo-bosnian-knowledge", "file": "knowledge_wikipedia_bs_v0.1.jsonl",
+    {"name": "agentmujo-bosnian-knowledge", "file": "knowledge_wikipedia_bs_v0.2.jsonl",
      "categories": ["knowledge"], "source": "wikipedia-bs"},
-    {"name": "agentmujo-coding", "file": "coding_repo_v0.1.jsonl",
+    {"name": "agentmujo-coding", "file": "coding_repo_v0.2.jsonl",
      "categories": ["coding"], "source": "own"},
-    {"name": "agentmujo-rag-memory", "file": "rag_wikipedia_bs_v0.1.jsonl",
+    {"name": "agentmujo-rag-memory", "file": "rag_wikipedia_bs_v0.2.jsonl",
      "categories": ["rag-memory"], "source": "wikipedia-bs"},
 ]
 PREFERENCE_SPEC = {"name": "agentmujo-preference-dpo", "file": "dpo_v0.5.jsonl",
@@ -106,6 +106,23 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
             errors.append(f"{PREFERENCE_SPEC['name']}: {e}")
     else:
         errors.append(f"{PREFERENCE_SPEC['name']}: nema {src}")
+    bench_src = repo / "benchmarks" / "agentic_eval_v0.1.jsonl"
+    benchmarks: list[dict[str, Any]] = []
+    benchmark_rows = 0
+    if bench_src.exists():
+        import shutil
+        bdir = out / "benchmarks"
+        bdir.mkdir(parents=True, exist_ok=True)
+        bdst = bdir / bench_src.name
+        shutil.copy2(bench_src, bdst)
+        benchmark_rows = len(read_jsonl(bench_src))
+        benchmarks.append({"name": "agentmujo-agentic-evaluation", "role": "evaluation",
+                           "categories": ["agentic-evaluation"], "rows": benchmark_rows,
+                           "sha256": _sha(bdst), "path": str(bdst), "held_out": True,
+                           "license": "Apache-2.0"})
+        covered.add("agentic-evaluation")
+    else:
+        errors.append(f"benchmark: nema {bench_src}")
     # CROSS_DATASET_DEDUP_V1: isti uzorak u dva dataseta -> zadrzi prvi, ukloni iz kasnijeg.
     seen: dict[str, str] = {}
     removed: list[dict[str, Any]] = []
@@ -145,7 +162,7 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
         d["cross_duplicates_removed"] = local_removed
         removed_total += local_removed
     datasets = [d for d in datasets if int(d.get("rows") or 0) > 0]  # EMPTY_DATASET_DROP_V1
-    keep = {d["name"] for d in datasets}
+    keep = {d["name"] for d in datasets} | ({"benchmarks"} if benchmarks else set())
     import shutil
     for child in out.iterdir():
         if child.is_dir() and child.name not in keep:
@@ -153,17 +170,20 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
     covered = set()
     for d in datasets:
         covered.update(d.get("categories") or [])
+    if benchmarks:
+        covered.add("agentic-evaluation")
     gaps = [c for c in ALL_CATEGORIES if c not in covered]
     total = sum(int(d.get("rows") or 0) for d in datasets)
     release = {
         "schema": "agentmujo.release.v0", "name": "AgentMujo Dataset", "version": version,
         "created_at": datetime.now(timezone.utc).isoformat(), "repository": "xnet-ba/agentmujo-training",
-        "datasets": datasets, "covered_categories": sorted(covered), "gaps": gaps,
+        "datasets": datasets, "benchmarks": benchmarks, "benchmark_rows": benchmark_rows,
+        "covered_categories": sorted(covered), "gaps": gaps,
         "total_rows": total, "duplicates_across_datasets": 0,
         "overlap_removed": removed_total, "overlap_examples": removed[:20],
         "gpu_used": False, "lumi_used": False,
-        "notes": "v0.1.0 je reprezentativni release iz postojećih kanonskih fajlova; "
-                 "gapovi su stvarni, nisu popunjeni izmišljenim podacima. Agentic-evaluation je odvojen benchmark.",
+        "notes": "Release iz kanonskih fajlova; gapovi nisu popunjeni izmišljenim podacima. "
+                 "agentic-evaluation je held-out benchmark, ne trening.",
         "errors": errors,
     }
     (out / "RELEASE.json").write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -174,9 +194,15 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
              "| Dataset | Kategorije | Redovi | SHA256 |", "|---|---|---:|---|"]
     for d in datasets:
         lines.append(f"| {d['name']} | {', '.join(d['categories'])} | {d['rows']} | `{d['sha256'][:16]}` |")
+    if benchmarks:
+        lines += ["", "## Benchmark (evaluation, held-out)", "| Benchmark | Kategorija | Zadaci | SHA256 |", "|---|---|---:|---|"]
+        for b in benchmarks:
+            lines.append(f"| {b['name']} | {', '.join(b['categories'])} | {b['rows']} | `{b['sha256'][:16]}` |")
     lines += ["", "## Licence", "- knowledge/RAG: CC BY-SA 4.0 (Wikipedia; attribution URL u metadata).",
-              "- coding: Apache-2.0 (vlastiti repo kod).", "- preference/ostalo: interno/Apache-2.0 po evidenciji.",
+              "- coding: Apache-2.0 (vlastiti repo kod).", "- benchmark: Apache-2.0 (held-out, nije trening).",
+              "- preference/ostalo: interno/Apache-2.0 po evidenciji.",
               "", "## Napomene", "- Bez LUMI GPU za obradu podataka.", "- Gapovi nisu popunjeni nekvalitetnim podacima."]
     (out / "DATASET_CARD.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return {"ok": True, "version": version, "out_dir": str(out), "total_rows": total,
-            "covered_categories": sorted(covered), "gaps": gaps, "datasets": datasets, "errors": errors}
+            "benchmark_rows": benchmark_rows, "covered_categories": sorted(covered), "gaps": gaps,
+            "datasets": datasets, "benchmarks": benchmarks, "errors": errors}

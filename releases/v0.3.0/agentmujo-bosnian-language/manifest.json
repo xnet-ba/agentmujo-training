@@ -1,0 +1,31 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-bosnian-language",
+  "version": "0.3.0",
+  "created_at": "2026-10-31T18:01:10.807924+00:00",
+  "source": "own",
+  "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
+  "input": "/tmp/agentmujo-training/datasets/canonical/bosnian_core_v0.1.jsonl",
+  "data": "releases/v0.3.0/agentmujo-bosnian-language/data.jsonl",
+  "input_sha256": "596143811151b11b10091045b4a4872c074392b4adfe5ce82af01d5c2ba2400c",
+  "data_sha256": "596143811151b11b10091045b4a4872c074392b4adfe5ce82af01d5c2ba2400c",
+  "counts": {
+    "input": 1178,
+    "kept": 1178,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 1178
+  },
+  "languages": {
+    "bs-ijekavica": 1178
+  },
+  "tasks": {
+    "bosnian-core": 1118,
+    "bosnian-knowledge": 60
+  },
+  "tiers": {
+    "GOLD": 725,
+    "SILVER": 453
+  },
+  "rejected_samples": []
+}

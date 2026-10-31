@@ -1,0 +1,29 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-coding",
+  "version": "0.3.0",
+  "created_at": "2026-10-31T18:01:10.949020+00:00",
+  "source": "own",
+  "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
+  "input": "/tmp/agentmujo-training/datasets/canonical/coding_repo_v0.2.jsonl",
+  "data": "releases/v0.3.0/agentmujo-coding/data.jsonl",
+  "input_sha256": "246f158efabf0e8ebe79e8d5d53818c2870ad0bc7a7145011318f58c75935a59",
+  "data_sha256": "2e1558803ec4b442e88a9fb346e9d53784decaf3a00fcdfef6ec93a6b693efaa",
+  "counts": {
+    "input": 100,
+    "kept": 100,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 100
+  },
+  "languages": {
+    "bs": 100
+  },
+  "tasks": {
+    "coding": 100
+  },
+  "tiers": {
+    "SILVER": 100
+  },
+  "rejected_samples": []
+}
