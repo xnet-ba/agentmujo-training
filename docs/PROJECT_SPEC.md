@@ -136,7 +136,7 @@ Aktuelni rezultati: Q8 v0.4 task_success 1.0/0.95 kroz agent loop
 
 ## 8. GitHub / Hugging Face workflow
 
-- GitHub (`xnet-ba/agentmujo-training`, živ od 2026-09-15, CI zelen):
+- GitHub (`gamai-io/agentmujo-training`, živ od 2026-09-15, CI zelen):
   kod, scheme, config, testovi, docs.
 - HF Hub: dataseti (`agentmujo-*`), modeli/adapteri, benchmark artefakti,
   svaki sa karticom (model card: baza, revizija, dataseti, metodologija,

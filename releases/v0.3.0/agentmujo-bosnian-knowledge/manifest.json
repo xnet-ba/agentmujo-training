@@ -1,0 +1,29 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-bosnian-knowledge",
+  "version": "0.3.0",
+  "created_at": "2026-10-31T18:10:39.304089+00:00",
+  "source": "wikipedia-bs",
+  "license": "CC BY-SA 4.0",
+  "input": "/tmp/agentmujo-training/datasets/canonical/knowledge_wikipedia_bs_v0.2.jsonl",
+  "data": "releases/v0.3.0/agentmujo-bosnian-knowledge/data.jsonl",
+  "input_sha256": "5cd67ba45c4cf6dbf7fc4958eeb3013d87b0f14c75f323ef998d82bb6e589a20",
+  "data_sha256": "ef1b322940f5f65087344f269b584f936a6bf03515a20d81928f7cc9fb57ecc9",
+  "counts": {
+    "input": 200,
+    "kept": 200,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 200
+  },
+  "languages": {
+    "bs": 200
+  },
+  "tasks": {
+    "bosnian-knowledge": 200
+  },
+  "tiers": {
+    "SILVER": 200
+  },
+  "rejected_samples": []
+}

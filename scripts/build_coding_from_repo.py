@@ -13,7 +13,7 @@ for p in sorted(ROOT.rglob("*.py")):
         tree = ast.parse(src)
     except Exception:
         continue
-    for node in tree.body:
+    for node in ast.walk(tree):
         if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             continue
         doc = ast.get_docstring(node) or ""
@@ -24,7 +24,7 @@ for p in sorted(ROOT.rglob("*.py")):
         if node.name in {r["messages"][0]["content"].split("`")[1] for r in rows if "`" in r["messages"][0]["content"]}:
             continue
         rows.append({
-            "id": f"amj-cd-{len(rows)+1:04d}", "version": "0.2.0", "language": "bs",
+            "id": f"amj-cd-{len(rows)+1:04d}", "version": "0.3.0", "language": "bs",
             "task": "coding", "difficulty": "medium",
             "messages": [
                 {"role": "user", "content": (f"Napiši Python funkciju `{node.name}` prema opisu: {first}" if first else f"Napiši Python funkciju `{node.name}` (signature: {node.name}({', '.join(a.arg for a in node.args.args)})).")},
@@ -33,11 +33,11 @@ for p in sorted(ROOT.rglob("*.py")):
             "metadata": {"source": "own-repo", "license": "Apache-2.0", "file": str(p),
                          "verification_status": "source-grounded", "quality_tier": "SILVER"},
         })
-        if len(rows) >= 30:
+        if len(rows) >= 100:
             break
-    if len(rows) >= 30:
+    if len(rows) >= 100:
         break
-out = Path("datasets/canonical/coding_repo_v0.1.jsonl")
+out = Path("datasets/canonical/coding_repo_v0.2.jsonl")
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
 print("coding rows", len(rows), "->", out)

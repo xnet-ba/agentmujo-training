@@ -2,7 +2,7 @@
 project: agentmujo-training
 version: 0.1.0
 language_primary: bs-ijekavica
-github_repo: xnet-ba/agentmujo-training   # predloženo; kreirati ako ne postoji
+github_repo: gamai-io/agentmujo-training   # predloženo; kreirati ako ne postoji
 hf_org_or_user: shaban2024  # aktivan HF nalog (login 2026-09-15)
 hf_datasets:
   - shaban2024/agentmujo-function-calling@af98997edc265e0392cae65ae4b4c616973d5328  # v0.1.0

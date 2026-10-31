@@ -14,7 +14,7 @@ tags:
 # agentmujo-function-calling (v0.1.0 — MVP)
 
 Ručno dizajniran kanonski skup za **function calling na bosanskom jeziku
-(ijekavica)**, dio [AgentMujo Training Frameworka](https://github.com/xnet-ba/agentmujo-training)
+(ijekavica)**, dio [AgentMujo Training Frameworka](https://github.com/gamai-io/agentmujo-training)
 (`configs/tools.yaml` je Single Source of Truth za alate).
 
 - **Verzija:** 0.1.0 · **Uzoraka:** 147 · **Jezik:** bs-ijekavica

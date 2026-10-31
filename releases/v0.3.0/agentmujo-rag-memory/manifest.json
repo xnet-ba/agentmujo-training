@@ -1,0 +1,29 @@
+{
+  "schema": "agentmujo.dataset.v0",
+  "name": "agentmujo-rag-memory",
+  "version": "0.3.0",
+  "created_at": "2026-10-31T18:10:39.339068+00:00",
+  "source": "wikipedia-bs",
+  "license": "CC BY-SA 4.0",
+  "input": "/tmp/agentmujo-training/datasets/canonical/rag_wikipedia_bs_v0.2.jsonl",
+  "data": "releases/v0.3.0/agentmujo-rag-memory/data.jsonl",
+  "input_sha256": "7c5b1b3711c9b4dd26a534910819630276ecdd7878a965fdec7441d8ddfb9354",
+  "data_sha256": "1b7e7234d64f235025960e28cd8f86aa5293b3fe8090f36e8d38a0d181e37aaa",
+  "counts": {
+    "input": 100,
+    "kept": 100,
+    "rejected": 0,
+    "duplicates": 0,
+    "rows": 100
+  },
+  "languages": {
+    "bs": 100
+  },
+  "tasks": {
+    "rag-memory": 100
+  },
+  "tiers": {
+    "SILVER": 100
+  },
+  "rejected_samples": []
+}

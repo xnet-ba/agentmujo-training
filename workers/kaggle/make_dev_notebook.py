@@ -36,7 +36,7 @@ def main() -> int:
             "Baza i dataset direktno sa Huba. Bez tajni u notebooku."]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Repo + dependencies (torch/CUDA se NE reinstaliraju)\n",
-            "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
+            "!git clone -q https://github.com/gamai-io/agentmujo-training.git\n",
             "%pip install -q --upgrade transformers>=4.57 datasets>=3.0 peft>=0.12 trl>=0.12 accelerate>=0.33 bitsandbytes>=0.43 torchao>=0.16 huggingface-hub safetensors pyyaml\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [

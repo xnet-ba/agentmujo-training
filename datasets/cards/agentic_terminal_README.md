@@ -14,7 +14,7 @@ tags:
 # agentmujo-agentic-terminal (v0.1.0 — MVP)
 
 Ručno dizajnirani **višekoračni agentic/terminal tragovi** na bosanskom
-(ijekavica), dio [AgentMujo Training Frameworka](https://github.com/xnet-ba/agentmujo-training):
+(ijekavica), dio [AgentMujo Training Frameworka](https://github.com/gamai-io/agentmujo-training):
 problem → dijagnoza → tool call → opservacija → analiza →
 akcija → **verifikacija** → finalni odgovor. Agent nikada ne pretpostavlja
 da je akcija uspjela.
