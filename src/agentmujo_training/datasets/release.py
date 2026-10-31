@@ -176,7 +176,7 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
     total = sum(int(d.get("rows") or 0) for d in datasets)
     release = {
         "schema": "agentmujo.release.v0", "name": "AgentMujo Dataset", "version": version,
-        "created_at": datetime.now(timezone.utc).isoformat(), "repository": "xnet-ba/agentmujo-training",
+        "created_at": datetime.now(timezone.utc).isoformat(), "repository": "gamai-io/agentmujo-training",
         "datasets": datasets, "benchmarks": benchmarks, "benchmark_rows": benchmark_rows,
         "covered_categories": sorted(covered), "gaps": gaps,
         "total_rows": total, "duplicates_across_datasets": 0,

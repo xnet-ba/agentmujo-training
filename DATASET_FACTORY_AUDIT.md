@@ -1,6 +1,6 @@
 # DATASET_FACTORY_AUDIT.md — AgentMujo Dataset Factory
 
-**Datum:** 2026-10-31 · **Repo:** xnet-ba/agentmujo-training (fork: renatoschust-dot/agentmujo-training)
+**Datum:** 2026-10-31 · **Repo:** gamai-io/agentmujo-training (fork: renatoschust-dot/agentmujo-training)
 **Cilj:** proširiti postojeći framework u produkcijski Dataset Factory (ne paralelni sistem).
 
 ## 1. Baseline (stvarno stanje)

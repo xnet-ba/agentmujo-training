@@ -75,7 +75,7 @@ def main() -> int:
             "# Bosanska proba (replay provjera)\n\nIsti 12 promptova kao TP-0 proba. Bez tajni."]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Repo + dependencies\n",
-            "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
+            "!git clone -q https://github.com/gamai-io/agentmujo-training.git\n",
             "%pip install -q --upgrade transformers>=4.57 peft>=0.12 accelerate>=0.33 bitsandbytes>=0.43 torchao>=0.16 huggingface-hub safetensors\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [

@@ -11,7 +11,7 @@ for attempt in range(80):
         "grnlimit": "10", "prop": "extracts", "explaintext": "1", "exintro": "1",
         "format": "json", "formatversion": "2"})
     try:
-        req = urllib.request.Request(API + "?" + q, headers={"User-Agent": "AgentMujoDatasetFactory/0.2 (https://github.com/xnet-ba/agentmujo-training; dataset@agentmujo.ai)"})
+        req = urllib.request.Request(API + "?" + q, headers={"User-Agent": "AgentMujoDatasetFactory/0.2 (https://github.com/gamai-io/agentmujo-training; dataset@agentmujo.ai)"})
         with urllib.request.urlopen(req, timeout=25) as r:
             data = json.loads(r.read().decode("utf-8"))
     except Exception as e:

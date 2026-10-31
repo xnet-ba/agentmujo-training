@@ -2,8 +2,8 @@
   "schema": "agentmujo.release.v0",
   "name": "AgentMujo Dataset",
   "version": "0.3.0",
-  "created_at": "2026-10-31T18:01:11.088504+00:00",
-  "repository": "xnet-ba/agentmujo-training",
+  "created_at": "2026-10-31T18:10:39.471862+00:00",
+  "repository": "gamai-io/agentmujo-training",
   "datasets": [
     {
       "name": "agentmujo-bosnian-language",

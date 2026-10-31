@@ -1,6 +1,9 @@
 # AgentMujo Training Framework
 
-[![CI](https://github.com/xnet-ba/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/xnet-ba/agentmujo-training/actions)
+> **Dataset Factory v0.3.0** (2026-10-31): 3.996 train rows, 9 datasets, held-out agentic eval 50, gaps 0.
+> HF: https://huggingface.co/datasets/renatoschust/agentmujo-dataset · Canonical repo: https://github.com/gamai-io/agentmujo-training
+
+[![CI](https://github.com/gamai-io/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/gamai-io/agentmujo-training/actions)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 Reproducibilan sistem za fine-tuning **malih bosanskojezičnih modela**

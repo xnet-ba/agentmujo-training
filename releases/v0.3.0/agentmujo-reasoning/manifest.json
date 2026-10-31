@@ -2,7 +2,7 @@
   "schema": "agentmujo.dataset.v0",
   "name": "agentmujo-reasoning",
   "version": "0.3.0",
-  "created_at": "2026-10-31T18:01:10.828583+00:00",
+  "created_at": "2026-10-31T18:10:39.199592+00:00",
   "source": "own",
   "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
   "input": "/tmp/agentmujo-training/datasets/canonical/thinking_v0.1.jsonl",

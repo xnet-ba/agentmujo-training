@@ -1,6 +1,6 @@
 # DATASET_STATUS_REPORT — v0.3.0
 
-**Datum:** 2026-10-31 · **Repo:** xnet-ba/agentmujo-training (PR #4) · **Testovi:** 49/49
+**Datum:** 2026-10-31 · **Repo:** gamai-io/agentmujo-training (canonical; xnet-ba PR #4) · **Testovi:** 49/49
 
 ## Release v0.3.0
 
@@ -31,3 +31,4 @@
 - v0.1.0: https://huggingface.co/datasets/renatoschust/agentmujo-dataset-v0.1.0
 - v0.2.0: https://huggingface.co/datasets/renatoschust/agentmujo-dataset-v0.2.0
 - v0.3.0: https://huggingface.co/datasets/renatoschust/agentmujo-dataset-v0.3.0
+- **Consolidated (sve verzije):** https://huggingface.co/datasets/renatoschust/agentmujo-dataset

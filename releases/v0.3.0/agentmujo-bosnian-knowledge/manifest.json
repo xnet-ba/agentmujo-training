@@ -2,7 +2,7 @@
   "schema": "agentmujo.dataset.v0",
   "name": "agentmujo-bosnian-knowledge",
   "version": "0.3.0",
-  "created_at": "2026-10-31T18:01:10.935893+00:00",
+  "created_at": "2026-10-31T18:10:39.304089+00:00",
   "source": "wikipedia-bs",
   "license": "CC BY-SA 4.0",
   "input": "/tmp/agentmujo-training/datasets/canonical/knowledge_wikipedia_bs_v0.2.jsonl",
