@@ -1,3 +1,12 @@
+---
+language:
+  - bs
+license: other
+task_categories:
+  - text-generation
+pretty_name: AgentMujo Dataset v0.1.0
+---
+
 # AgentMujo Dataset Card — v0.1.0
 
 **Ukupno redova:** 3536

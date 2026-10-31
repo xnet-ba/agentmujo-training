@@ -136,6 +136,11 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
         d["cross_duplicates_removed"] = local_removed
         removed_total += local_removed
     datasets = [d for d in datasets if int(d.get("rows") or 0) > 0]  # EMPTY_DATASET_DROP_V1
+    keep = {d["name"] for d in datasets}
+    import shutil
+    for child in out.iterdir():
+        if child.is_dir() and child.name not in keep:
+            shutil.rmtree(child, ignore_errors=True)
     covered = set()
     for d in datasets:
         covered.update(d.get("categories") or [])
@@ -153,7 +158,9 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
         "errors": errors,
     }
     (out / "RELEASE.json").write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    lines = [f"# AgentMujo Dataset Card — v{version}", "", f"**Ukupno redova:** {total}",
+    lines = ["---", "language:", "  - bs", "license: other",
+             "task_categories:", "  - text-generation", f"pretty_name: AgentMujo Dataset v{version}", "---", "",
+             f"# AgentMujo Dataset Card — v{version}", "", f"**Ukupno redova:** {total}",
              f"**Kategorije:** {', '.join(sorted(covered))}", f"**Gapovi:** {', '.join(gaps) or '-'}", "",
              "| Dataset | Kategorije | Redovi | SHA256 |", "|---|---|---:|---|"]
     for d in datasets:
