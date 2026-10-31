@@ -106,6 +106,21 @@ def cmd_dataset_stats(args) -> int:
     return 0
 
 
+def cmd_dataset_sources(args) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from agentmujo_training.datasets.sources import load_sources, validate_sources
+    action = getattr(args, "action", "list")
+    if action == "list":
+        print(json.dumps(load_sources(REPO_ROOT), indent=2, ensure_ascii=False))
+        return 0
+    if action == "validate":
+        issues = validate_sources(REPO_ROOT)
+        print(json.dumps({"ok": not issues, "issues": issues}, indent=2, ensure_ascii=False))
+        return 0 if not issues else 1
+    print("upotreba: amj dataset sources list|validate")
+    return 2
+
+
 def cmd_dataset_split(args) -> int:
     """Deterministički split bez leakagea (po hash-u ID-a)."""
     import hashlib
@@ -270,7 +285,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("model", help="model list").add_argument("action", choices=["list"])
     p_model = p.add_argument_group()
     # pojednostavljeno: `amj model list`
-    sub.add_parser("dataset", help="dataset validate|stats|split")
+    sub.add_parser("dataset", help="dataset validate|stats|split|sources")
     return p
 
 
@@ -278,7 +293,7 @@ def main(argv=None) -> int:
     # Namjerno jednostavan dispatcher (stabilan za v0.1; Typer/Click tek ako zatreba).
     args = sys.argv[1:] if argv is None else argv
     if not args:
-        print("upotreba: amj {doctor|model list|dataset validate|dataset stats|dataset split|tools validate|benchmark run|job create|job status|job validate|artifacts fetch|evaluate|registry build|policy check|train|experiment show|publish|model quantize}")
+        print("upotreba: amj {doctor|model list|dataset validate|stats|split|sources|tools validate|benchmark run|job create|job status|job validate|artifacts fetch|evaluate|registry build|policy check|train|experiment show|publish|model quantize}")
         return 2
     if args[0] == "doctor":
         return cmd_doctor(None)
@@ -289,6 +304,8 @@ def main(argv=None) -> int:
         if args[2:3] == ["--registry"]:
             ns.registry = args[3]
         return cmd_tools_validate(ns)
+    if args[:2] == ["dataset", "sources"]:
+        return cmd_dataset_sources(argparse.Namespace(action=args[2] if len(args) > 2 else "list"))
     if args[:2] == ["dataset", "validate"]:
         allow_dup = "--allow-duplicates" in args
         rest = [x for x in args if x != "--allow-duplicates"]

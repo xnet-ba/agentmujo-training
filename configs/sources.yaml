@@ -1,0 +1,75 @@
+# Source Registry v0 — svaki izvor: licenca, pristup, status, kategorije.
+# Status: approved | pending | blocked | rejected. Ne označavati pending kao approved bez provjere licence.
+sources:
+  - id: hf
+    name: Hugging Face Hub
+    type: hub
+    url: https://huggingface.co/datasets
+    license: per-dataset (verify)
+    access: public
+    status: pending
+    categories: [bosnian-language, instructions, knowledge, function-calling, tool-use-mcp]
+    notes: "Koristiti HF API; provjeriti licencu i dozvolu po datasetu prije ingestije."
+  - id: oscar
+    name: OSCAR
+    type: corpus
+    url: https://oscar-project.org/
+    license: per-release (verify)
+    access: public
+    status: pending
+    categories: [bosnian-language]
+    notes: "Web corpus; filtrirati jezik/idiom; ne preuzimati cijeli korpus."
+  - id: culturax
+    name: CulturaX
+    type: corpus
+    url: https://huggingface.co/datasets/uonlp/CulturaX
+    license: per-dataset (verify)
+    access: public
+    status: pending
+    categories: [bosnian-language, knowledge]
+    notes: "Bosanski podkorpus; streaming + uzorkovanje."
+  - id: opus
+    name: OPUS
+    type: parallel-corpus
+    url: https://opus.nlpl.eu/
+    license: per-corpus (verify)
+    access: public
+    status: pending
+    categories: [bosnian-language, translation]
+    notes: "hrenWaC, SETimes, MaCoCu i relevantni bs/hr/sr korpusi."
+  - id: wikimedia
+    name: Wikimedia Dumps
+    type: dump
+    url: https://dumps.wikimedia.org/
+    license: CC BY-SA (verify per project)
+    access: public
+    status: pending
+    categories: [bosnian-language, knowledge]
+    notes: "Bosnian Wikipedia/Wikisource/Wiktionary; evidentirati reviziju dumpa."
+  - id: bigcode
+    name: BigCode / The Stack
+    type: code-corpus
+    url: https://www.bigcode-project.org/docs/about/the-stack/
+    license: per-dataset (verify)
+    access: restricted/per-dataset
+    status: pending
+    categories: [coding]
+    notes: "Samo odobreni podskupovi; provjeriti opt-out i licencu."
+  - id: bfcl
+    name: BFCL / ToolBench
+    type: benchmark
+    url: https://gorilla.cs.berkeley.edu/leaderboard
+    license: per-benchmark (verify)
+    access: public
+    status: pending
+    categories: [function-calling, tool-use-mcp]
+    notes: "Koristiti za evaluaciju i šeme; ne miješati benchmark u train bez odobrenja."
+  - id: own
+    name: AgentMujo interne baze
+    type: internal
+    url: file://datasets/canonical
+    license: internal (Apache-2.0 za kod; podaci po evidenciji)
+    access: internal
+    status: approved
+    categories: [bosnian-language, instructions, knowledge, function-calling, tool-use-mcp, agentic-tasks, linux-terminal, coding, reasoning, rag-memory, safety, preference-dpo, agentic-evaluation]
+    notes: "Najvažniji dugoročni izvor; vlastiti provjereni uzorci."
