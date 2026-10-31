@@ -106,6 +106,21 @@ def cmd_dataset_stats(args) -> int:
     return 0
 
 
+def cmd_dataset_sources(args) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from agentmujo_training.datasets.sources import load_sources, validate_sources
+    action = getattr(args, "action", "list")
+    if action == "list":
+        print(json.dumps(load_sources(REPO_ROOT), indent=2, ensure_ascii=False))
+        return 0
+    if action == "validate":
+        issues = validate_sources(REPO_ROOT)
+        print(json.dumps({"ok": not issues, "issues": issues}, indent=2, ensure_ascii=False))
+        return 0 if not issues else 1
+    print("upotreba: amj dataset sources list|validate")
+    return 2
+
+
 def cmd_dataset_split(args) -> int:
     """Deterministički split bez leakagea (po hash-u ID-a)."""
     import hashlib
@@ -127,6 +142,38 @@ def cmd_dataset_split(args) -> int:
     (out / "test.jsonl").write_text("\n".join(test) + "\n", encoding="utf-8")
     print(f"train={len(train)} valid={len(valid)} test={len(test)} -> {out}")
     return 0
+
+
+def cmd_dataset_ingest(args) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from agentmujo_training.datasets.factory import ingest_file
+    r = ingest_file(args.source, args.input, args.output, int(getattr(args, "limit", 0) or 0))
+    print(json.dumps(r, indent=2, ensure_ascii=False))
+    return 0 if r.get("ok") else 1
+
+
+def cmd_dataset_clean(args, dedup=False) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from agentmujo_training.datasets.factory import clean_file, deduplicate_file
+    r = (deduplicate_file if dedup else clean_file)(args.input, args.output)
+    print(json.dumps(r, indent=2, ensure_ascii=False))
+    return 0 if r.get("ok") else 1
+
+
+def cmd_dataset_build(args) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from agentmujo_training.datasets.factory import build_dataset
+    r = build_dataset(args.input, args.out_dir, args.name, args.version, args.source or "own")
+    print(json.dumps(r, indent=2, ensure_ascii=False))
+    return 0 if r.get("ok") else 1
+
+
+def cmd_dataset_export(args) -> int:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from agentmujo_training.datasets.factory import export_dataset
+    r = export_dataset(args.input, args.output, args.format or "canonical")
+    print(json.dumps(r, indent=2, ensure_ascii=False))
+    return 0 if r.get("ok") else 1
 
 
 def cmd_benchmark_run(args) -> int:
@@ -270,7 +317,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("model", help="model list").add_argument("action", choices=["list"])
     p_model = p.add_argument_group()
     # pojednostavljeno: `amj model list`
-    sub.add_parser("dataset", help="dataset validate|stats|split")
+    sub.add_parser("dataset", help="dataset validate|stats|split|sources|ingest|clean|dedup|build|export")
     return p
 
 
@@ -278,7 +325,7 @@ def main(argv=None) -> int:
     # Namjerno jednostavan dispatcher (stabilan za v0.1; Typer/Click tek ako zatreba).
     args = sys.argv[1:] if argv is None else argv
     if not args:
-        print("upotreba: amj {doctor|model list|dataset validate|dataset stats|dataset split|tools validate|benchmark run|job create|job status|job validate|artifacts fetch|evaluate|registry build|policy check|train|experiment show|publish|model quantize}")
+        print("upotreba: amj {doctor|model list|dataset validate|stats|split|sources|ingest|clean|dedup|build|export|tools validate|benchmark run|job create|job status|job validate|artifacts fetch|evaluate|registry build|policy check|train|experiment show|publish|model quantize}")
         return 2
     if args[0] == "doctor":
         return cmd_doctor(None)
@@ -289,6 +336,27 @@ def main(argv=None) -> int:
         if args[2:3] == ["--registry"]:
             ns.registry = args[3]
         return cmd_tools_validate(ns)
+    if args[:2] == ["dataset", "sources"]:
+        return cmd_dataset_sources(argparse.Namespace(action=args[2] if len(args) > 2 else "list"))
+    if args[:2] == ["dataset", "ingest"]:
+        d = dict(zip(args[2::2], args[3::2]))
+        return cmd_dataset_ingest(argparse.Namespace(source=d.get("--source", ""), input=d.get("--input", ""),
+                                                     output=d.get("--output", ""), limit=d.get("--limit", "0")))
+    if args[:2] == ["dataset", "clean"]:
+        d = dict(zip(args[2::2], args[3::2]))
+        return cmd_dataset_clean(argparse.Namespace(input=d.get("--input", ""), output=d.get("--output", "")))
+    if args[:2] == ["dataset", "dedup"] or args[:2] == ["dataset", "deduplicate"]:
+        d = dict(zip(args[2::2], args[3::2]))
+        return cmd_dataset_clean(argparse.Namespace(input=d.get("--input", ""), output=d.get("--output", "")), dedup=True)
+    if args[:2] == ["dataset", "build"]:
+        d = dict(zip(args[2::2], args[3::2]))
+        return cmd_dataset_build(argparse.Namespace(input=d.get("--input", ""), out_dir=d.get("--out-dir", ""),
+                                                    name=d.get("--name", "agentmujo-dataset"), version=d.get("--version", "0.1.0"),
+                                                    source=d.get("--source", "own")))
+    if args[:2] == ["dataset", "export"]:
+        d = dict(zip(args[2::2], args[3::2]))
+        return cmd_dataset_export(argparse.Namespace(input=d.get("--input", ""), output=d.get("--output", ""),
+                                                     format=d.get("--format", "canonical")))
     if args[:2] == ["dataset", "validate"]:
         allow_dup = "--allow-duplicates" in args
         rest = [x for x in args if x != "--allow-duplicates"]

@@ -8,7 +8,8 @@ from pathlib import Path
 
 def _load_json(p: Path) -> dict:
     try:
-        return json.loads(p.read_text(encoding="utf-8"))
+        d = json.loads(p.read_text(encoding="utf-8"))
+        return d if isinstance(d, dict) else {}
     except Exception:
         return {}
 
@@ -45,6 +46,8 @@ def build(repo: Path) -> str:
     for f in sorted((repo / "benchmark").glob("results_*.json")):
         d = _load_json(f)
         s = d.get("summary", {})
+        if not isinstance(s, dict):
+            s = {}
         def g(k):
             v = s.get(k, {})
             return v.get("mean", "-") if isinstance(v, dict) else "-"
