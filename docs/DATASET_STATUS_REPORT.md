@@ -4,8 +4,8 @@
 
 ## Release v0.1.0
 
-- **Ukupno:** 3.581 red
-- bosnian-language 1.178 · function-calling 1.389 · agentic-tasks 749 · preference-dpo 170 · reasoning 75 · safety 20
+- **Ukupno:** 3.536 red
+- bosnian-language 1.178 · function-calling 1.389 · agentic-tasks 749 · preference-dpo 170 · reasoning 30 · safety 20 · **45 preklapanja uklonjeno**
 - Kategorije: agentic-tasks, bosnian-language, function-calling, instructions, linux-terminal, preference-dpo, reasoning, safety, tool-use-mcp
 - **Gapovi:** knowledge, coding, rag-memory; agentic-evaluation = odvojen benchmark (nije train)
 - Manifesti + SHA256: `releases/v0.1.0/`, `RELEASE.json`, `DATASET_CARD.md`

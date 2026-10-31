@@ -97,27 +97,53 @@ def build_release(repo: str | Path, version: str = "0.1.0", out_dir: str | Path 
             errors.append(f"{PREFERENCE_SPEC['name']}: {e}")
     else:
         errors.append(f"{PREFERENCE_SPEC['name']}: nema {src}")
-    gaps = [c for c in ALL_CATEGORIES if c not in covered]
-    total = sum(int(d.get("rows") or 0) for d in datasets)
+    # CROSS_DATASET_DEDUP_V1: isti uzorak u dva dataseta -> zadrzi prvi, ukloni iz kasnijeg.
     seen: dict[str, str] = {}
-    overlap: list[dict[str, Any]] = []
+    removed: list[dict[str, Any]] = []
+    removed_total = 0
     for d in datasets:
         dp = out / d["name"] / "data.jsonl"
         if not dp.exists():
             continue
-        for i, row in enumerate(read_jsonl(dp), 1):
+        rows = read_jsonl(dp)
+        kept: list[dict[str, Any]] = []
+        local_removed = 0
+        for i, row in enumerate(rows, 1):
             h = _row_hash(row)
             if h in seen:
-                overlap.append({"hash": h, "first": seen[h], "also": d["name"], "line": i,
-                                "id": row.get("id")})
-            else:
-                seen[h] = d["name"]
+                local_removed += 1
+                if len(removed) < 20:
+                    removed.append({"hash": h, "first": seen[h], "removed_from": d["name"],
+                                    "line": i, "id": row.get("id")})
+                continue
+            seen[h] = d["name"]
+            kept.append(row)
+        if local_removed:
+            write_jsonl(dp, kept)
+            man = json.loads(Path(d["manifest"]).read_text(encoding="utf-8"))
+            man["counts"]["cross_duplicates_removed"] = local_removed
+            man["counts"]["rows"] = len(kept)
+            man["languages"] = distribution(kept, "language") or {"?": len(kept)}
+            man["tasks"] = (distribution(kept, "task") if d.get("format") != "preference"
+                            else {"preference-dpo": len(kept)})
+            man["data_sha256"] = _sha(dp)
+            Path(d["manifest"]).write_text(json.dumps(man, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            d["rows"] = len(kept)
+            d["sha256"] = man["data_sha256"]
+            d["counts"] = man["counts"]
+            d["languages"] = man["languages"]
+            d["tasks"] = man["tasks"]
+        d["cross_duplicates_removed"] = local_removed
+        removed_total += local_removed
+    gaps = [c for c in ALL_CATEGORIES if c not in covered]
+    total = sum(int(d.get("rows") or 0) for d in datasets)
     release = {
         "schema": "agentmujo.release.v0", "name": "AgentMujo Dataset", "version": version,
         "created_at": datetime.now(timezone.utc).isoformat(), "repository": "xnet-ba/agentmujo-training",
         "datasets": datasets, "covered_categories": sorted(covered), "gaps": gaps,
-        "total_rows": total, "duplicates_across_datasets": len(overlap),
-        "overlap_examples": overlap[:20], "gpu_used": False, "lumi_used": False,
+        "total_rows": total, "duplicates_across_datasets": 0,
+        "overlap_removed": removed_total, "overlap_examples": removed[:20],
+        "gpu_used": False, "lumi_used": False,
         "notes": "v0.1.0 je reprezentativni release iz postojećih kanonskih fajlova; "
                  "gapovi su stvarni, nisu popunjeni izmišljenim podacima. Agentic-evaluation je odvojen benchmark.",
         "errors": errors,

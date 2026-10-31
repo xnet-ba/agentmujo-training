@@ -2,26 +2,27 @@
   "schema": "agentmujo.dataset.v0",
   "name": "agentmujo-reasoning",
   "version": "0.1.0",
-  "created_at": "2026-10-31T17:35:06.812097+00:00",
+  "created_at": "2026-10-31T17:35:49.678393+00:00",
   "source": "own",
   "license": "internal (Apache-2.0 za kod; podaci po evidenciji)",
   "input": "/tmp/agentmujo-training/datasets/canonical/thinking_v0.1.jsonl",
   "data": "releases/v0.1.0/agentmujo-reasoning/data.jsonl",
   "input_sha256": "3e1c1b3b59388b71418be2058b6bcd8ddf1295e7d48678e84588b785d4deae74",
-  "data_sha256": "9d8deb8bb11ddd47ebeba7095be09f4717e653165dd599cbf54d2701b4317763",
+  "data_sha256": "605e41ace0b742c62e4bcc41456a36e6d024366b5a894ac33fac5d4a5c94a39a",
   "counts": {
     "input": 75,
     "kept": 75,
     "rejected": 0,
     "duplicates": 0,
-    "rows": 75
+    "rows": 50,
+    "cross_duplicates_removed": 25
   },
   "languages": {
-    "bs-ijekavica": 75
+    "bs-ijekavica": 50
   },
   "tasks": {
-    "agentic-terminal": 40,
-    "function-calling": 35
+    "agentic-terminal": 30,
+    "function-calling": 20
   },
   "tiers": {
     "GOLD": 74,
