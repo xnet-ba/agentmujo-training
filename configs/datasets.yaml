@@ -17,7 +17,7 @@ datasets:
   - { name: agentmujo-coding,              version: 0.4.0, split: canonical, file: datasets/canonical/coding_repo_v0.1.jsonl, status: v0.1-30+v0.2-100+v0.3-850+v0.4-800, hf_repo: shaban2024/agentmujo-coding, hf_revision: 54e7be14751c74137ada3b253abfba19c8b1fa1a }
   - { name: agentmujo-knowledge,           version: 0.4.0, split: canonical, file: datasets/canonical/knowledge_wikipedia_bs_v0.1.jsonl, status: kn-v0.1-99+kn-v0.2-195+kn-v0.3-1700+rg-v0.1-50+rg-v0.2-97+rg-v0.3-900+rg-v0.4-3000, hf_repo: shaban2024/agentmujo-knowledge, hf_revision: 40d940840558b0dcc9fb96d205257e7adaae125e }
 
-  - { name: agentmujo-joint-01, version: 0.39.0, split: joint_train_v0.39, file: datasets/splits/joint_train_v0.39.jsonl, status: "v0.39-58904 (v0.38-18904+bc02-15000+bc03-25000)", splits: datasets/splits/joint_v0.39, hf_repo: shaban2024/agentmujo-joint-01, hf_revision: 82bf752117e46c30c9fe2d42e29672d836d2988b }
+  - { name: agentmujo-joint-01, version: 0.40.0, split: joint_train_v0.40, file: datasets/splits/joint_train_v0.40.jsonl, status: "v0.40-67004 (v0.39-58904+ag04-1500+rg04-3000+safe05-1500+th04-500+cd04-800+cf04-800)", splits: datasets/splits/joint_v0.40, hf_repo: shaban2024/agentmujo-joint-01, hf_revision: 578c87fbe4c389520f75b84254e46a3c9cb5f43f }
 quality_tiers: [GOLD, SILVER, BRONZE, REJECT]
 mvp_target_sizes:
   function_calling: 100-300   # v0.1 isporučuje starter podskup; širenje nakon validacije pipelinea

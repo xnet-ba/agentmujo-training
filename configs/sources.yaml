@@ -51,10 +51,10 @@ sources:
     type: hub-dataset
     url: https://huggingface.co/datasets/uonlp/CulturaX
     license: ODC-BY-1.0 (mC4 dio) + CC0-1.0 metadata (OSCAR dio); tekst Common-Crawl-derived, autori OSCAR-a ne polažu copyright; + Common Crawl ToU; gated prihvat uvjeta
-    access: gated (potreban prihvat uvjeta na HF stranici + login; provjereno 2026-11-02: nalog shaban2024 nema pristup)
+    access: restricted
     status: pending
     categories: [bosnian-language]
-    notes: "Licenca dozvoljava trening uz atribuciju, ali pristup je gated pa ingestija STOJI dok se ne prihvate uvjeti. bs podkorpus je sićušan: 1237 dokumenata / 39768 tokena -> ocekivano tek stotine redova, CAP 100k nedostižan. Skripta scripts/ingest_culturax_bc_v04.py spremna; source string nosi licencu."
+    notes: "Licenca dozvoljava trening uz atribuciju, ali pristup je gated pa ingestija STOJI dok se ne prihvate uvjeti. bs podkorpus je sićušan: 1237 dokumenata / 39768 tokena -> ocekivano tek stotine redova, CAP 100k nedostižan. Skripta scripts/ingest_culturax_bc_v04.py spremna; source string nosi licencu. Pristup: gated (potreban prihvat uvjeta na HF stranici + login; provjereno 2026-11-02: nalog shaban2024 nema pristup)."
   - id: opus
     name: OPUS
     type: parallel-corpus
