@@ -7,6 +7,7 @@
 | qwen35-4b-jt01-20260924-kaggle41 | adapter: ...null | agentmujo-joint-01 | 1.146 | done |
 | qwen35-4b-jt02-20260924-kaggle42 | adapter: ...b-jt01-20260924-kaggle41/outputs/adapter | agentmujo-joint-01 | 0.727 | done |
 | qwen35-4b-jt03-20260924-kaggle43 | adapter: ...b-jt02-20260924-kaggle42/outputs/adapter | agentmujo-joint-01 | 0.623 | done |
+| qwen35-4b-jt04-20260925-kaggle44 | adapter: ...b-jt03-20260924-kaggle43/outputs/adapter | agentmujo-joint-01 | 0.568 | done |
 | qwen35-ag-20260916-kaggle05 | adapter: ...n35-fc-20260916-kaggle04/outputs/adapter | agentmujo-agentic-terminal | 0.808 | done |
 | qwen35-cf-20260918-kaggle09 | adapter: ...n35-jt-20260917-kaggle08/outputs/adapter | agentmujo-confirmation | 1.361 | done |
 | qwen35-dpo01-20260923-kaggle39 | adapter: ...5-jt23-20260922-kaggle31/outputs/adapter | agentmujo-dpo-01 | 0.685 | done |
@@ -34,6 +35,7 @@
 | qwen35-jt24-20260923-kaggle32 | adapter: ...5-jt23-20260922-kaggle31/outputs/adapter | agentmujo-joint-01 | 0.71 | done |
 | qwen35-jt25-20260923-kaggle33 | adapter: ...null | agentmujo-joint-01 | 1.267 | done |
 | qwen35-jt26-20260923-kaggle34 | adapter: ...5-jt25-20260923-kaggle33/outputs/adapter | agentmujo-joint-01 | 0.915 | done |
+| qwen35-jt26-2b-20261102-kaggle39 | adapter: ...null), | agentmujo-joint-01 | - | created |
 | qwen35-jt27-20260923-kaggle35 | adapter: ...5-jt26-20260923-kaggle34/outputs/adapter | agentmujo-joint-01 | 0.823 | done |
 | qwen35-jt28-20260923-kaggle36 | adapter: ...5-jt27-20260923-kaggle35/outputs/adapter | agentmujo-joint-01 | 0.738 | done |
 | qwen35-jt29-20260923-kaggle37 | adapter: ...5-jt28-20260923-kaggle36/outputs/adapter | agentmujo-joint-01 | 0.669 | done |
@@ -55,7 +57,31 @@
 | results_4b01_prod_nonthink.json | agentmujo-4b-q8-nonthink | tool=0.867 arg=0.769 safe=1.0 task=- |
 | results_4b02_prod_nonthink.json | agentmujo-4b02-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
 | results_4b03_prod_nonthink.json | agentmujo-4b03-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
+| results_4b03_prod_think.json | agentmujo-4b03-q8-think | tool=0.8 arg=0.846 safe=0.857 task=- |
+| results_4b04_prod_nonthink.json | agentmujo-4b04-q8-nonthink | tool=0.933 arg=0.923 safe=1.0 task=- |
+| results_4b04_prod_think.json | agentmujo-4b04-q8-think | tool=0.833 arg=0.769 safe=1.0 task=- |
+| results_4b06_prod_nonthink.json | agentmujo-4b06-q8-nonthink | tool=0.967 arg=0.962 safe=1.0 task=- |
+| results_4b31_prod_nonthink.json | agentmujo-4b31-q8-nonthink | tool=0.9 arg=0.846 safe=1.0 task=- |
+| results_4bdpo01_prod_nonthink.json | agentmujo-4b-dpo01-q8-nonthink | tool=1.0 arg=0.962 safe=1.0 task=- |
+| results_4bdpo01_prod_think.json | agentmujo-4b-dpo01-q8-think | tool=0.733 arg=0.731 safe=1.0 task=- |
+| results_4bdpo02_prod_nonthink.json | agentmujo-4b-dpo02-q8-nonthink | tool=0.933 arg=0.923 safe=1.0 task=- |
+| results_9b01_llama_nonthink.json | llama-server-nonthink | tool=- arg=- safe=- task=- |
+| results_9b02_llama_nonthink.json | llama-server-nonthink | tool=- arg=- safe=- task=- |
+| results_9b03_llama_nonthink.json | llama-server-nonthink | tool=- arg=- safe=- task=- |
+| results_9b04_llama_nonthink.json | llama-server-nonthink | tool=- arg=- safe=- task=- |
+| results_9b05_llama_spec.json | llama-server-nonthink | tool=0.633 arg=0.423 safe=0.857 task=- |
+| results_9b06_llama_spec.json | llama-server-nonthink | tool=0.633 arg=0.423 safe=0.857 task=- |
+| results_9b07_llama_bs.json | llama-server-nonthink | tool=0.6 arg=0.346 safe=1.0 task=- |
+| results_9b08_llama_bs.json | llama-server-nonthink | tool=0.6 arg=0.346 safe=1.0 task=- |
+| results_9b_probe6403.json | results_9b_probe6403 | tool=- arg=- safe=- task=- |
+| results_9b_probe6404.json | results_9b_probe6404 | tool=- arg=- safe=- task=- |
+| results_9b_probe6406.json | ? | tool=- arg=- safe=- task=- |
+| results_9b_probeproto.json | ? | tool=- arg=- safe=- task=- |
+| results_9b_prober64.json | results_9b_prober64 | tool=- arg=- safe=- task=- |
+| results_9b_probfmt.json | results_9b_probfmt | tool=- arg=- safe=- task=- |
 | results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
+| results_agentloop_4bdpo01_nonthink.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
+| results_agentloop_dpo01_traces.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_think.json | agentmujo-q8-think:latest-think-agentloop | tool=0.875 arg=1.0 safe=1.0 task=0.95 |
@@ -73,6 +99,7 @@
 | results_baseline_v0.1.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_4b.json | ? | tool=- arg=- safe=- task=- |
+| results_bosnian_probe_4bdpo01.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_jt19.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v02.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v04.json | ? | tool=- arg=- safe=- task=- |
@@ -105,6 +132,7 @@
 | results_v04_q8_think.json | V04 THINK | tool=0.75 arg=0.9 safe=0.833 task=- |
 | results_v05_q8_nonthink.json | V05 NON-THINK | tool=0.533 arg=0.538 safe=0.857 task=- |
 | results_v05_q8_think.json | V05 THINK | tool=0.5 arg=0.577 safe=0.857 task=- |
+| results_v05_spec.json | agentmujo-q8-nonthink | tool=0.9 arg=0.808 safe=1.0 task=- |
 
 ## Hub pinovi (configs/models.yaml, datasets.yaml)
 
