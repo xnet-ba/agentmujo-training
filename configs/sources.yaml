@@ -1,6 +1,15 @@
 # Source Registry v0 — svaki izvor: licenca, pristup, status, kategorije.
 # Status: approved | pending | blocked | rejected. Ne označavati pending kao approved bez provjere licence.
 sources:
+  - id: sag69-bosnian
+    name: Sag69 bosnian-dataset
+    type: hub-dataset
+    url: https://huggingface.co/datasets/Sag69/bosnian-dataset
+    license: MIT
+    access: public
+    status: approved
+    categories: [bosnian-language]
+    notes: "Ingestirano 2026-11-02: samo language==Bosnian (121614 kandidata -> 98224 cistih u bosnian_core_v0.2); English/Bilingual preskoceno."
   - id: hf
     name: Hugging Face Hub
     type: hub
