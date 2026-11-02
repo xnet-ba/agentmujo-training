@@ -64,6 +64,15 @@ sources:
     status: pending
     categories: [bosnian-language, translation]
     notes: "hrenWaC, SETimes, MaCoCu i relevantni bs/hr/sr korpusi."
+  - id: opus100-bs-en
+    name: OPUS-100 bs-en (Helsinki-NLP/opus-100, config bs-en)
+    type: hub-dataset
+    url: https://huggingface.co/datasets/Helsinki-NLP/opus-100
+    license: "unknown (HF metadata 'unknown'; card licensing prazna; upstream OPUS agregat per-corpus licenci, neprovjereno)"
+    access: public
+    status: pending
+    categories: [translation]
+    notes: "Provjereno 2026-11-02: HF dataset card navodi license 'unknown', licensing sekcija prazna, GitHub repo EdinburghNLP/opus-100-corpus bez licence. OPUS bs-en potjece iz vise izvornih korpusa (titlovi, dokumentacija, vjerski tekstovi...) svaki s vlastitom licencom. Ingestija STOJI dok se licenca ne razjasni; nista nije preuzeto/ingestirano."
   - id: wikimedia
     name: Wikimedia Dumps
     type: dump

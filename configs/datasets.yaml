@@ -2,7 +2,7 @@
 # PRAVILO (lekcija 2026-09-27): pytest lokalno PRIJE svakog Hub pusha kanona
 # (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.3.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44+v0.2-1600+v0.3-3000, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: ff945ec6cf4f67611ed25a49808181a9c3bce286 }
+  - { name: agentmujo-function-calling,    version: 0.3.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44+v0.2-1600+v0.3-3000+v0.4-1500-slotfill, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: 42ec3ba26b0373e17c6dbcdc8264396d942d9861 }
   - { name: agentmujo-agentic-terminal,    version: 0.3.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44+v0.2-750+v0.3-1500+v0.4-1500-HPC, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 69bc43c5f23a00fa3d93be29106ff1af54cc6b1d }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
@@ -11,7 +11,7 @@ datasets:
   - { name: agentmujo-bosnian-core,        version: 0.3.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: v0.1-1178+S44+v0.2-98224-Sag69-MIT+v0.3-300000-corpusv1-CCBYSA, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: ac493199753badd172968bbe53446e7002c34877 }
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
-  - { name: agentmujo-dpo-01,              version: 0.8.0, split: canonical, file: datasets/canonical/dpo_v0.6.jsonl, status: v0.1-121+v0.2-140+v0.3-150+v0.4-160+v0.5-170+v0.6-500+v0.7-2000+v0.8-2000, hf_repo: shaban2024/agentmujo-dpo-01, hf_revision: c19132162bd48712004b19e8ca43ad6258a5a364 }
+  - { name: agentmujo-dpo-01,              version: 0.8.0, split: canonical, file: datasets/canonical/dpo_v0.6.jsonl, status: v0.1-121+v0.2-140+v0.3-150+v0.4-160+v0.5-170+v0.6-500+v0.7-2000+v0.8-2000+v0.9-1500-AG, hf_repo: shaban2024/agentmujo-dpo-01, hf_revision: e0eed946393b25868c557f94c83b0b5149c75891 }
   - { name: agentmujo-thinking,             version: 0.4.0, split: canonical, file: datasets/canonical/thinking_v0.1.jsonl, status: v0.1-75+v0.2-225+v0.3-500+v0.4-500, hf_repo: shaban2024/agentmujo-thinking, hf_revision: a5753ed382b4f4f4e8a624f3c19b114328d5e629 }
   - { name: agentmujo-confirmation,        version: 0.4.0, split: canonical, file: datasets/canonical/confirmation_v0.1.jsonl, status: v0.1-20+v0.2-200+v0.3-800+v0.4-800, hf_repo: shaban2024/agentmujo-confirmation, hf_revision: 41d67f71f4e7b6e8ac9c9b1873a9d690c14dd6ec }
   - { name: agentmujo-coding,              version: 0.4.0, split: canonical, file: datasets/canonical/coding_repo_v0.1.jsonl, status: v0.1-30+v0.2-100+v0.3-850+v0.4-800, hf_repo: shaban2024/agentmujo-coding, hf_revision: 54e7be14751c74137ada3b253abfba19c8b1fa1a }
