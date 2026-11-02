@@ -10,6 +10,15 @@ sources:
     status: approved
     categories: [bosnian-language]
     notes: "Ingestirano 2026-11-02: samo language==Bosnian (121614 kandidata -> 98224 cistih u bosnian_core_v0.2); English/Bilingual preskoceno."
+  - id: bosnian-corpus-v1
+    name: Bosnian Web Corpus v1 (hyper-efficient-system-llc)
+    type: hub-dataset
+    url: https://huggingface.co/datasets/hyper-efficient-system-llc/bosnian-corpus-v1
+    license: CC-BY-SA-4.0
+    access: public
+    status: approved
+    categories: [bosnian-language]
+    notes: "Ingestirano 2026-11-02: prefix-completion iz globalne datoteke (6.1GB, zip-stream), namespace amj-bc3-*, v0.3; atribucija u metadata.source+license+url."
   - id: hf
     name: Hugging Face Hub
     type: hub
@@ -37,6 +46,15 @@ sources:
     status: pending
     categories: [bosnian-language, knowledge]
     notes: "Bosanski podkorpus; streaming + uzorkovanje."
+  - id: culturax-bs
+    name: CulturaX Bosnian subcorpus
+    type: hub-dataset
+    url: https://huggingface.co/datasets/uonlp/CulturaX
+    license: ODC-BY-1.0 (mC4 dio) + CC0-1.0 metadata (OSCAR dio); tekst Common-Crawl-derived, autori OSCAR-a ne polažu copyright; + Common Crawl ToU; gated prihvat uvjeta
+    access: gated (potreban prihvat uvjeta na HF stranici + login; provjereno 2026-11-02: nalog shaban2024 nema pristup)
+    status: pending
+    categories: [bosnian-language]
+    notes: "Licenca dozvoljava trening uz atribuciju, ali pristup je gated pa ingestija STOJI dok se ne prihvate uvjeti. bs podkorpus je sićušan: 1237 dokumenata / 39768 tokena -> ocekivano tek stotine redova, CAP 100k nedostižan. Skripta scripts/ingest_culturax_bc_v04.py spremna; source string nosi licencu."
   - id: opus
     name: OPUS
     type: parallel-corpus

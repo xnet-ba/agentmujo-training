@@ -62,5 +62,71 @@
     "id_overlap_note": "knowledge/rag v0.1+v0.2 recikliraju ID namespace uz razlicit sadrzaj; content gate je mjerodavan",
     "bench_overlap_prompts": [],
     "bench_isolated": true
+  },
+  "joint_v0.39": {
+    "date": "2026-11-02",
+    "method": "shuffle seed 43, 90/5/5 redoslijedom; v0.38 baza + bc v0.2 strat 3x5000 + bc v0.3 uniform 25000",
+    "train": 53013,
+    "valid": 2945,
+    "test": 2946,
+    "total": 58904,
+    "bc_v0.2": 15000,
+    "bc_v0.2_types": {
+      "dictionary": 5000,
+      "bilingual_dictionary": 5000,
+      "literary": 5000
+    },
+    "bc_v0.3": 25000,
+    "ids_disjoint": false,
+    "id_overlap_noted": [
+      "amj-kn-0011",
+      "amj-kn-0017",
+      "amj-kn-0023",
+      "amj-kn-0029",
+      "amj-kn-0032",
+      "amj-kn-0045",
+      "amj-kn-0048",
+      "amj-kn-0050",
+      "amj-kn-0052",
+      "amj-kn-0055",
+      "amj-kn-0056",
+      "amj-kn-0061",
+      "amj-kn-0068",
+      "amj-kn-0080",
+      "amj-kn-0081",
+      "amj-rg-0005",
+      "amj-rg-0012",
+      "amj-rg-0013",
+      "amj-rg-0024",
+      "amj-rg-0027",
+      "amj-rg-0034",
+      "amj-rg-0037",
+      "amj-rg-0047",
+      "amj-rg-0048",
+      "amj-rg-0050"
+    ],
+    "content_hashes_unique": true,
+    "bench_overlap_prompts": [
+      "amj-fc-0001",
+      "amj-fc-0062",
+      "amj-fc-0020",
+      "amj-fc-1034",
+      "amj-ag-0009",
+      "amj-fc-0080",
+      "amj-fc-0007",
+      "amj-fc-0061",
+      "amj-fc-0059",
+      "amj-fc-0002",
+      "amj-fc-1113",
+      "amj-fc-0010"
+    ],
+    "bench_isolated": true,
+    "id_overlap_note": "knowledge/rag v0.1+v0.2 recikliraju ID namespace uz razlicit sadrzaj (naslijedjeno iz v0.38); content gate mjerodavan; 0 BC ID-a u overlapu",
+    "bench_overlap_note": "12 exact-norm pogodaka naslijedjeno iz v0.38 baze (fc/ag v0.1.0) — SAMO protiv povucenih cases_v0.1/v0.2; 0 pogodaka iz novih BC redova",
+    "bc_dup_skipped": 0,
+    "bench_vs_active_v0.5": {
+      "hits": 0,
+      "isolated": true
+    }
   }
 }

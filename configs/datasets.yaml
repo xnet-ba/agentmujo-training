@@ -3,7 +3,7 @@
 # (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
   - { name: agentmujo-function-calling,    version: 0.3.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44+v0.2-1600+v0.3-3000, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: ff945ec6cf4f67611ed25a49808181a9c3bce286 }
-  - { name: agentmujo-agentic-terminal,    version: 0.3.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44+v0.2-750+v0.3-1500, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: ec10bb2d4afa47d52c0aee3d15edfdaa70c82c76 }
+  - { name: agentmujo-agentic-terminal,    version: 0.3.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44+v0.2-750+v0.3-1500+v0.4-1500-HPC, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 69bc43c5f23a00fa3d93be29106ff1af54cc6b1d }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
@@ -12,11 +12,12 @@ datasets:
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
   - { name: agentmujo-dpo-01,              version: 0.7.0, split: canonical, file: datasets/canonical/dpo_v0.6.jsonl, status: v0.1-121+v0.2-140+v0.3-150+v0.4-160+v0.5-170+v0.6-500+v0.7-2000, hf_repo: shaban2024/agentmujo-dpo-01, hf_revision: ef235fb4881dabcc42c66bf598d8f9d9a09a285b }
-  - { name: agentmujo-thinking,             version: 0.3.0, split: canonical, file: datasets/canonical/thinking_v0.1.jsonl, status: v0.1-75+v0.2-225+v0.3-500, hf_repo: shaban2024/agentmujo-thinking, hf_revision: e145c3fed6ae58ff9baf7dc4e6130b54eb7a7163 }
+  - { name: agentmujo-thinking,             version: 0.4.0, split: canonical, file: datasets/canonical/thinking_v0.1.jsonl, status: v0.1-75+v0.2-225+v0.3-500+v0.4-500, hf_repo: shaban2024/agentmujo-thinking, hf_revision: a5753ed382b4f4f4e8a624f3c19b114328d5e629 }
   - { name: agentmujo-confirmation,        version: 0.3.0, split: canonical, file: datasets/canonical/confirmation_v0.1.jsonl, status: v0.1-20+v0.2-200+v0.3-800, hf_repo: shaban2024/agentmujo-confirmation, hf_revision: d5c3d4e179443e784c01763bfbb07ad94306f1b1 }
   - { name: agentmujo-coding,              version: 0.3.0, split: canonical, file: datasets/canonical/coding_repo_v0.1.jsonl, status: v0.1-30+v0.2-100+v0.3-850, hf_repo: shaban2024/agentmujo-coding, hf_revision: d5e5d5661c682188a0884bcfb7d17e429c309af7 }
-  - { name: agentmujo-knowledge,           version: 0.3.0, split: canonical, file: datasets/canonical/knowledge_wikipedia_bs_v0.1.jsonl, status: kn-v0.1-99+kn-v0.2-195+kn-v0.3-1700+rg-v0.1-50+rg-v0.2-97+rg-v0.3-900, hf_repo: shaban2024/agentmujo-knowledge, hf_revision: 3c10703a9ba028a6863a44f5e1845c4922b8ad1d }
+  - { name: agentmujo-knowledge,           version: 0.4.0, split: canonical, file: datasets/canonical/knowledge_wikipedia_bs_v0.1.jsonl, status: kn-v0.1-99+kn-v0.2-195+kn-v0.3-1700+rg-v0.1-50+rg-v0.2-97+rg-v0.3-900+rg-v0.4-3000, hf_repo: shaban2024/agentmujo-knowledge, hf_revision: 40d940840558b0dcc9fb96d205257e7adaae125e }
 
+  - { name: agentmujo-joint-01, version: 0.39.0, split: joint_train_v0.39, file: datasets/splits/joint_train_v0.39.jsonl, status: "v0.39-58904 (v0.38-18904+bc02-15000+bc03-25000)", splits: datasets/splits/joint_v0.39, hf_repo: shaban2024/agentmujo-joint-01, hf_revision: 82bf752117e46c30c9fe2d42e29672d836d2988b }
 quality_tiers: [GOLD, SILVER, BRONZE, REJECT]
 mvp_target_sizes:
   function_calling: 100-300   # v0.1 isporučuje starter podskup; širenje nakon validacije pipelinea
