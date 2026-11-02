@@ -7,11 +7,11 @@ datasets:
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
-  - { name: agentmujo-safety,              version: 0.4.0, split: canonical, file: datasets/canonical/safety_v0.3.jsonl, status: v0.3-600+v0.4-2400, hf_repo: shaban2024/agentmujo-safety, hf_revision: e9f8c316937c1f92e9524cc942eb34061fdb1663 }
+  - { name: agentmujo-safety,              version: 0.5.0, split: canonical, file: datasets/canonical/safety_v0.3.jsonl, status: v0.3-600+v0.4-2400+v0.5-1500, hf_repo: shaban2024/agentmujo-safety, hf_revision: 724736ac3f7dce091d408b2ebfd1ef4873aa44df }
   - { name: agentmujo-bosnian-core,        version: 0.3.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: v0.1-1178+S44+v0.2-98224-Sag69-MIT+v0.3-300000-corpusv1-CCBYSA, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: ac493199753badd172968bbe53446e7002c34877 }
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
-  - { name: agentmujo-dpo-01,              version: 0.7.0, split: canonical, file: datasets/canonical/dpo_v0.6.jsonl, status: v0.1-121+v0.2-140+v0.3-150+v0.4-160+v0.5-170+v0.6-500+v0.7-2000, hf_repo: shaban2024/agentmujo-dpo-01, hf_revision: ef235fb4881dabcc42c66bf598d8f9d9a09a285b }
+  - { name: agentmujo-dpo-01,              version: 0.8.0, split: canonical, file: datasets/canonical/dpo_v0.6.jsonl, status: v0.1-121+v0.2-140+v0.3-150+v0.4-160+v0.5-170+v0.6-500+v0.7-2000+v0.8-2000, hf_repo: shaban2024/agentmujo-dpo-01, hf_revision: c19132162bd48712004b19e8ca43ad6258a5a364 }
   - { name: agentmujo-thinking,             version: 0.4.0, split: canonical, file: datasets/canonical/thinking_v0.1.jsonl, status: v0.1-75+v0.2-225+v0.3-500+v0.4-500, hf_repo: shaban2024/agentmujo-thinking, hf_revision: a5753ed382b4f4f4e8a624f3c19b114328d5e629 }
   - { name: agentmujo-confirmation,        version: 0.3.0, split: canonical, file: datasets/canonical/confirmation_v0.1.jsonl, status: v0.1-20+v0.2-200+v0.3-800, hf_repo: shaban2024/agentmujo-confirmation, hf_revision: d5c3d4e179443e784c01763bfbb07ad94306f1b1 }
   - { name: agentmujo-coding,              version: 0.3.0, split: canonical, file: datasets/canonical/coding_repo_v0.1.jsonl, status: v0.1-30+v0.2-100+v0.3-850, hf_repo: shaban2024/agentmujo-coding, hf_revision: d5e5d5661c682188a0884bcfb7d17e429c309af7 }
