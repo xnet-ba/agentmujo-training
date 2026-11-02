@@ -2,15 +2,19 @@
 # PRAVILO (lekcija 2026-09-27): pytest lokalno PRIJE svakog Hub pusha kanona
 # (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
-  - { name: agentmujo-function-calling,    version: 0.1.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: c5c732b805b010e3a4a6845e5bd960aac485f013 }
-  - { name: agentmujo-agentic-terminal,    version: 0.1.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: ec90e0352c8e691f9c71f00f7a0e30272ee703a7 }
+  - { name: agentmujo-function-calling,    version: 0.3.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44+v0.2-1600+v0.3-3000, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: ff945ec6cf4f67611ed25a49808181a9c3bce286 }
+  - { name: agentmujo-agentic-terminal,    version: 0.3.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44+v0.2-750+v0.3-1500, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: ec10bb2d4afa47d52c0aee3d15edfdaa70c82c76 }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
-  - { name: agentmujo-safety,              version: null, status: planned }
+  - { name: agentmujo-safety,              version: 0.4.0, split: canonical, file: datasets/canonical/safety_v0.3.jsonl, status: v0.3-600+v0.4-2400, hf_repo: shaban2024/agentmujo-safety, hf_revision: e9f8c316937c1f92e9524cc942eb34061fdb1663 }
   - { name: agentmujo-bosnian-core,        version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_core_v0.1.jsonl, status: frozen-1178+S44, hf_repo: shaban2024/agentmujo-bosnian-core, hf_revision: 85ffb1f7e66ba084cbe37609c0815e33292cd381 }
   - { name: agentmujo-linux-diagnostics,   version: null, status: planned }
   - { name: agentmujo-business,            version: null, status: planned }
+  - { name: agentmujo-dpo-01,              version: 0.7.0, split: canonical, file: datasets/canonical/dpo_v0.6.jsonl, status: v0.1-121+v0.2-140+v0.3-150+v0.4-160+v0.5-170+v0.6-500+v0.7-2000, hf_repo: shaban2024/agentmujo-dpo-01, hf_revision: ef235fb4881dabcc42c66bf598d8f9d9a09a285b }
+  - { name: agentmujo-thinking,             version: 0.3.0, split: canonical, file: datasets/canonical/thinking_v0.1.jsonl, status: v0.1-75+v0.2-225+v0.3-500, hf_repo: shaban2024/agentmujo-thinking, hf_revision: e145c3fed6ae58ff9baf7dc4e6130b54eb7a7163 }
+  - { name: agentmujo-confirmation,        version: 0.3.0, split: canonical, file: datasets/canonical/confirmation_v0.1.jsonl, status: v0.1-20+v0.2-200+v0.3-800, hf_repo: shaban2024/agentmujo-confirmation, hf_revision: d5c3d4e179443e784c01763bfbb07ad94306f1b1 }
+  - { name: agentmujo-coding,              version: 0.3.0, split: canonical, file: datasets/canonical/coding_repo_v0.1.jsonl, status: v0.1-30+v0.2-100+v0.3-850, hf_repo: shaban2024/agentmujo-coding, hf_revision: d5e5d5661c682188a0884bcfb7d17e429c309af7 }
 
 quality_tiers: [GOLD, SILVER, BRONZE, REJECT]
 mvp_target_sizes:
