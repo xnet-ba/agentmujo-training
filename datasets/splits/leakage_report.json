@@ -187,5 +187,19 @@
     "content_hashes_unique": true,
     "bench_overlap_prompts": [],
     "bench_isolated": true
+  },
+  "joint_v0.42": {
+    "date": "2026-11-03",
+    "method": "shuffle seed 46, 90/5/5 redoslijedom; v0.41 baza 80504 1:1 + fc-v0.5 2000 BFCL + bi-v0.1 1500 (NOV task label bosnian-instructions) + cd-v0.5 1500 OSS + sg-v0.1 1500 MIT",
+    "train": 78303,
+    "valid": 4350,
+    "test": 4351,
+    "total": 87004,
+    "new_rows": 6500,
+    "ids_disjoint": false,
+    "id_overlap_note": "knowledge/rag v0.1+v0.2 recikliraju ID namespace uz razlicit sadrzaj (naslijedjeno); novi fc/bi/cd/sg ID opsezi disjunktni od baze; content gate mjerodavan",
+    "content_hashes_unique": true,
+    "bench_overlap_prompts": [],
+    "bench_isolated": true
   }
 }
