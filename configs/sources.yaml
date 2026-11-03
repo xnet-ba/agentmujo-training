@@ -97,9 +97,9 @@ sources:
     url: https://huggingface.co/datasets/bigcode/the-stack-v2
     license: "per-file (samo permissive: MIT/Apache-2.0/BSD/ISC/Unlicense; copyleft ZABRANJEN)"
     access: public
-    status: approved
+    status: blocked
     categories: [coding]
-    notes: "Strogi filter licence po fajlu + BigCode opt-out provjera prije ingestije. Samo python podskup u prvoj fazi."
+    notes: "GATED (treba prihvat uvjeta) + v2 je metadata-only (sadrzaj tek preko SWH sporazuma). Zamjena: direktno rudarenje imenovanih permissive OSS repoa."
   - id: bigcode-optout
     name: BigCode opt-out evidencija
     type: governance-list
