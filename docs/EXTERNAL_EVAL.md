@@ -31,10 +31,10 @@ i GPU-om, NE na Oracle control planeu.
 
 | Profil | tool_selection | argument_accuracy | safety | multi_step | Napomena |
 |---|---|---|---|---|---|
-| AgentMujo 9B Q8 nonthink | — | — | — | — | popuniti iz results_9b* |
-| DeepSeek V4.1-Flash nonthink | — | — | — | — | deepseek-chat |
+| AgentMujo 9B Q8 nonthink (9b08) | 0.600 | 0.346 | 1.000 | — | cases_v0.5, llama_bs |
+| DeepSeek V4.1-Flash nonthink | **0.867** | **0.962** | 1.000 | — | cases_v0.5, 2026-11-03, opencode-go pretplata |
 | AgentMujo 9B think | — | — | — | — | — |
-| DeepSeek V4.1-Flash think | — | — | — | — | deepseek-reasoner |
+| DeepSeek V4.1-Flash think | — | — | — | — | deepseek-reasoner, nije testirano |
 
 ## Ne koristiti za poredjenje
 
