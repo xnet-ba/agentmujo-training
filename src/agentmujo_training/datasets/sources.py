@@ -8,7 +8,7 @@ import yaml
 
 REQUIRED = ("id", "name", "type", "url", "license", "access", "status", "categories")
 ALLOWED_STATUS = {"approved", "pending", "blocked", "rejected", "enforced", "benchmark-only", "design-only"}
-ALLOWED_ACCESS = {"public", "restricted", "internal", "restricted/per-dataset"}
+ALLOWED_ACCESS = {"public", "restricted", "internal", "restricted/per-dataset", "gated"}
 
 
 def config_path(repo: Path) -> Path:

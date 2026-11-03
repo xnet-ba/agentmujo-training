@@ -145,6 +145,42 @@ sources:
     status: design-only
     categories: [function-calling, tool-use-mcp]
     notes: "Testni primjeri ostaju odvojeni od treninga. Nase FC ekspanzije slijede BFCL kategorije (simple/multiple/parallel) vlastitim sadrzajem."
+  - id: terminal-bench
+    name: Terminal-Bench (Stanford x Laude, Harbor format)
+    type: benchmark-design
+    url: https://github.com/harbor-framework/terminal-bench-1
+    license: Apache-2.0
+    access: public
+    status: approved
+    categories: [agentic-tasks, linux-terminal]
+    notes: "89 kuriranih terminal zadataka (sysadmin/server/debug). Trening: SAMO vlastiti scenariji inspirisani kategorijama (ne kopije testova). Eval: harbor protokol kasnije na GPU masini (docs/EXTERNAL_EVAL.md)."
+  - id: deepswe
+    name: DeepSWE (Datacurve, Harbor format)
+    type: benchmark
+    url: https://github.com/datacurve-ai/deep-swe
+    license: gated (contact info obavezan; held-out eval)
+    access: gated
+    status: pending
+    categories: [coding]
+    notes: "113 originalnih long-horizon zadataka, 5 jezika. SAMO externa poredbena referenca za vece modele; NIKAD trening (held-out)."
+  - id: cybergrym
+    name: CyberGym (Berkeley, OSS-Fuzz vulns)
+    type: benchmark
+    url: https://github.com/sunblaze-ucb/cybergym
+    license: javna, ali 130-240GB podataka
+    access: public
+    status: rejected
+    categories: [safety]
+    notes: "Odbijeno: pretesko (240GB) + C/C++ memory-safety van nase domene. Koncept PoC-verifikacije koristan nacelno, bez ingestije."
+  - id: automation-bench
+    name: AutomationBench (Zapier, SaaS workflows)
+    type: benchmark
+    url: https://github.com/zapier/AutomationBench
+    license: javna (600 public zadataka)
+    access: public
+    status: rejected
+    categories: [agentic-tasks]
+    notes: "Odbijeno: SaaS business workflows (CRM/inbox) van domene Linux agenta; nema preklapanja s nasim alatima."
     notes: "Koristiti za evaluaciju i šeme; ne miješati benchmark u train bez odobrenja."
   - id: own
     name: AgentMujo interne baze
