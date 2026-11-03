@@ -4,14 +4,23 @@ Izvor: nezavisni test našeg Hub modela (2026-09). Ključni nalazi: "kolaps
 semantičkog razumijevanja", "halucinacije lutanja", QLoRA upozorenje za
 Qwen3.5 (Unsloth: ne preporučuje 4-bit trening — veće kvantizacione razlike).
 
-## Pragovi
+## Pragovi (ažurirano 2026-11-03 — kanon 452.328 redova, joint v0.42 87.004)
 
 | Kategorija | Minimum | Preporučeno | Sada | Do minimuma |
 |---|---|---|---|---|
-| Bosnian Core | 1.000 | 2.000–3.000 | 1118 | +0 |
-| Function Calling | 800 | 1.200 | 1277 | +0 |
-| Agentic Behavior | 500 | 800–1.000 | 601 | +0 |
-| **Ukupno** | **2.300** | **4.000+** | **2.996** | **+0** |
+| Bosnian Core | 1.000 | 2.000–3.000 | 400.480 (v0.1 1178 + v0.2 98224 + v0.3 300000 + instr 1500*) | +0 |
+| Function Calling | 800 | 1.200 | 9.504 + slot/irrelevance ekspanzije | +0 |
+| Agentic Behavior | 500 | 800–1.000 | 4.502 + HPC 1500 | +0 |
+| Safety | — | — | 5.160 | +0 |
+| DPO parovi | — | — | 7.741 | +0 |
+| Knowledge+RAG | — | — | 10.000+9.039 (v0.5 u radu → ~18k+13k) | +0 |
+| Coding | — | — | 4.780 + SWE-Gym 1500 | +0 |
+| Thinking | — | — | 1.300 | +0 |
+| Confirmation | — | — | 1.820 | +0 |
+| **Ukupno kanon** | **2.300** | **4.000+** | **452.328** | **+0** |
+| **Joint (trening)** | — | — | **v0.42: 87.004** (train 78.303) | — |
+
+\* instructions brojani uz BC (rječničko porijeklo).
 
 ## Pravila iz izvještaja (usvojeno)
 
