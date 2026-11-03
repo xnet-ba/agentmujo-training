@@ -1,0 +1,49 @@
+# Axolotl SFT: Qwen3.5-2B-bos, joint v0.42 (AgentMujo).
+# Podaci: scripts/export_axolotl.py --sft (type completion, tekst vec ChatML-renderovan,
+# BEZ dodatnog chat templatea — isti signal kao postojeci TRL worker).
+# Referenca: training/jobs/qwen35-jt* (stari TRL put), docs/AXOLOTL.md
+base_model: alphaedge-ai/Qwen3.5-2B-bos-32768
+
+datasets:
+  - path: /tmp/axo_sft.jsonl
+    type: completion
+    field: text
+
+val_set_size: 0.05
+output_dir: ./outputs/qwen35-2b-joint42
+
+adapter: lora
+sequence_len: 8192
+sample_packing: true
+eval_sample_packing: true
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules:
+  - gate_proj
+  - down_proj
+  - up_proj
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+
+gradient_accumulation_steps: 4
+micro_batch_size: 1
+num_epochs: 1
+optimizer: adamw_8bit
+lr_scheduler: cosine
+learning_rate: 0.00005
+
+bf16: auto
+tf32: false
+gradient_checkpointing: true
+logging_steps: 10
+evals_per_epoch: 1
+saves_per_epoch: 1
+weight_decay: 0.0
+warmup_ratio: 0.05
+attn_implementation: flash_attention_2
+loss_watchdog_threshold: 5.0
+loss_watchdog_patience: 3

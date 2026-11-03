@@ -1,0 +1,47 @@
+# Axolotl DPO: Qwen3.5-2B-bos nad SFT adapterom (joint26+).
+# Podaci: scripts/export_axolotl.py --dpo (svi dpo kanoni v0.1-v0.9, train-only izvori).
+# model = zavrseni SFT checkpoint iz qwen35-2b-sft.yml (upisati rucno prije runa).
+base_model: alphaedge-ai/Qwen3.5-2B-bos-32768
+# lora_model_dir: ./outputs/qwen35-2b-joint42  # otkomentarisati: SFT adapter
+
+datasets:
+  - path: /tmp/axo_dpo.jsonl
+    type: preference
+    field_prompt: prompt
+    field_chosen: chosen
+    field_rejected: rejected
+
+val_set_size: 0.05
+output_dir: ./outputs/qwen35-2b-dpo
+
+adapter: lora
+rl: dpo
+sequence_len: 4096
+sample_packing: false
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules:
+  - gate_proj
+  - down_proj
+  - up_proj
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+
+gradient_accumulation_steps: 4
+micro_batch_size: 1
+num_epochs: 1
+optimizer: adamw_8bit
+lr_scheduler: cosine
+learning_rate: 0.00002
+
+bf16: auto
+tf32: false
+gradient_checkpointing: true
+logging_steps: 10
+evals_per_epoch: 1
+saves_per_epoch: 1
+warmup_ratio: 0.05
