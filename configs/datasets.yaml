@@ -3,7 +3,7 @@
 # (CI radi post-push; kontaminacija se hvata prije, ne poslije).
 datasets:
   - { name: agentmujo-function-calling,    version: 0.3.0, split: canonical, file: datasets/canonical/function_calling_v0.1.jsonl,    status: frozen-1389+S44+v0.2-1600+v0.3-3000+v0.4-1500-slotfill+v0.5-2000-BFCL, splits: datasets/splits/fc, hf_repo: shaban2024/agentmujo-function-calling, hf_revision: e365fe29950e933d6afe585fa4ba1721edd278bc }
-  - { name: agentmujo-agentic-terminal,    version: 0.3.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44+v0.2-750+v0.3-1500+v0.4-1500-HPC, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 69bc43c5f23a00fa3d93be29106ff1af54cc6b1d }
+  - { name: agentmujo-agentic-terminal,    version: 0.3.0, split: canonical, file: datasets/canonical/agentic_terminal_v0.1.jsonl,    status: frozen-749+S44+v0.2-750+v0.3-1500+v0.4-1500-HPC+v0.5-1200-TBench, splits: datasets/splits/ag, hf_repo: shaban2024/agentmujo-agentic-terminal, hf_revision: 4faa31f0b84aca094a4e2f5f012286c192a0fd78 }
   - { name: agentmujo-tool-selection,      version: null, status: planned }
   - { name: agentmujo-argument-generation, version: null, status: planned }
   - { name: agentmujo-verification,        version: null, status: planned }
