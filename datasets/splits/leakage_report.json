@@ -173,5 +173,19 @@
     "content_hashes_unique": true,
     "bench_overlap_prompts": [],
     "bench_isolated": true
+  },
+  "joint_v0.41": {
+    "date": "2026-11-03",
+    "method": "shuffle seed 45, 90/5/5 redoslijedom; v0.40 baza 67004 1:1 + fc-v0.4 1500 slot-filling + kn-v0.4 8000 + rg-v0.5 4000",
+    "train": 72453,
+    "valid": 4025,
+    "test": 4026,
+    "total": 80504,
+    "new_rows": 13500,
+    "ids_disjoint": false,
+    "id_overlap_note": "knowledge/rag v0.1+v0.2 recikliraju ID namespace uz razlicit sadrzaj (naslijedjeno); novi kn/rg/fc ID opsezi disjunktni od baze; content gate mjerodavan",
+    "content_hashes_unique": true,
+    "bench_overlap_prompts": [],
+    "bench_isolated": true
   }
 }
