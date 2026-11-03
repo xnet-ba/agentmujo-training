@@ -74,14 +74,14 @@ sources:
     categories: [translation]
     notes: "Provjereno 2026-11-02: HF dataset card navodi license 'unknown', licensing sekcija prazna, GitHub repo EdinburghNLP/opus-100-corpus bez licence. OPUS bs-en potjece iz vise izvornih korpusa (titlovi, dokumentacija, vjerski tekstovi...) svaki s vlastitom licencom. Ingestija STOJI dok se licenca ne razjasni; nista nije preuzeto/ingestirano."
   - id: wikimedia
-    name: Wikimedia Dumps
-    type: dump
-    url: https://dumps.wikimedia.org/
-    license: CC BY-SA (verify per project)
+    name: Wikimedia (Wikipedia bs + Wikisource)
+    type: corpus
+    url: https://bs.wikipedia.org/ + https://dumps.wikimedia.org/
+    license: CC BY-SA 3.0/4.0 (atribucija obavezna, evidentirana u metadata.source)
     access: public
-    status: pending
-    categories: [bosnian-language, knowledge]
-    notes: "Bosnian Wikipedia/Wikisource/Wiktionary; evidentirati reviziju dumpa."
+    status: approved
+    categories: [bosnian-language, bosnian-knowledge]
+    notes: "API ingest aktivan (knowledge v0.1-v0.4 + RAG). Atribucija u svakom redu; revizija dumpa kad se koristi dump."
   - id: wikipedia-bs
     name: Bosanska Wikipedija
     type: wiki
@@ -92,22 +92,50 @@ sources:
     categories: [bosnian-language, knowledge, rag-memory]
     notes: "Intro extracts (explaintext), attribution URL u metadata; bez izmišljanja."
   - id: bigcode
-    name: BigCode / The Stack
+    name: BigCode / The Stack v2
     type: code-corpus
-    url: https://www.bigcode-project.org/docs/about/the-stack/
-    license: per-dataset (verify)
-    access: restricted/per-dataset
-    status: pending
+    url: https://huggingface.co/datasets/bigcode/the-stack-v2
+    license: "per-file (samo permissive: MIT/Apache-2.0/BSD/ISC/Unlicense; copyleft ZABRANJEN)"
+    access: public
+    status: approved
     categories: [coding]
-    notes: "Samo odobreni podskupovi; provjeriti opt-out i licencu."
-  - id: bfcl
-    name: BFCL / ToolBench
-    type: benchmark
-    url: https://gorilla.cs.berkeley.edu/leaderboard
-    license: per-benchmark (verify)
+    notes: "Strogi filter licence po fajlu + BigCode opt-out provjera prije ingestije. Samo python podskup u prvoj fazi."
+  - id: bigcode-optout
+    name: BigCode opt-out evidencija
+    type: governance-list
+    url: https://www.bigcode-project.org/docs/about/the-stack/
+    license: N/A (governance)
+    access: public
+    status: enforced
+    categories: [coding]
+    notes: "Obavezna provjera opt-out liste prije svake BigCode ingestije; pogodci se uklanjaju iz dataseta."
+  - id: toolbench
+    name: ToolBench
+    type: agentic-corpus
+    url: https://github.com/OpenBMB/ToolBench
+    license: research-only (provjeriti; API podaci imaju vlastite uslove)
     access: public
     status: pending
+    categories: [agentic-tasks, tool-use-mcp]
+    notes: "Samo istrazivacka namjena dok se ne razjasni licenca + uslovi pojedinacnih API podataka."
+  - id: swe-bench
+    name: SWE-bench
+    type: benchmark
+    url: https://github.com/SWE-bench/SWE-bench
+    license: MIT (kod); evaluacijski skup se NE smije u trening
+    access: public
+    status: benchmark-only
+    categories: [coding]
+    notes: "Primarno benchmark. Dozvoljen samo train split za trening uz evidenciju; dev/test NIKAD u trening."
+  - id: bfcl
+    name: BFCL (Berkeley Function-Calling Leaderboard)
+    type: benchmark-design
+    url: https://gorilla.cs.berkeley.edu/leaderboard
+    license: eval-podaci se NE kopiraju; koristiti samo dizajn kategorija
+    access: public
+    status: design-only
     categories: [function-calling, tool-use-mcp]
+    notes: "Testni primjeri ostaju odvojeni od treninga. Nase FC ekspanzije slijede BFCL kategorije (simple/multiple/parallel) vlastitim sadrzajem."
     notes: "Koristiti za evaluaciju i šeme; ne miješati benchmark u train bez odobrenja."
   - id: own
     name: AgentMujo interne baze
