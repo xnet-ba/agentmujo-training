@@ -18,6 +18,7 @@ datasets:
   - { name: agentmujo-knowledge,           version: 0.5.0, split: canonical, file: datasets/canonical/knowledge_wikipedia_bs_v0.1.jsonl, status: kn-v0.1-99+kn-v0.2-195+kn-v0.3-1700+kn-v0.4-8000+rg-v0.1-50+rg-v0.2-97+rg-v0.3-900+rg-v0.4-3000+rg-v0.5-4000, hf_repo: shaban2024/agentmujo-knowledge, hf_revision: 396f9d6167dccbc8e3ffc85a806c8bd7196974d9 }
 
   - { name: agentmujo-joint-01, version: 0.41.0, split: joint_train_v0.41, file: datasets/splits/joint_train_v0.41.jsonl, status: "v0.41-80504 (v0.40-67004+fc04-1500-slotfill+kn04-8000+rg05-4000)", splits: datasets/splits/joint_v0.41, hf_repo: shaban2024/agentmujo-joint-01, hf_revision: 41827fc709d7977926b80796f192e3320ed3f172 }
+  - { name: agentmujo-bosnian-instructions, version: 0.1.0, split: canonical, file: datasets/canonical/bosnian_instructions_v0.1.jsonl, status: v0.1-1500, hf_repo: shaban2024/agentmujo-bosnian-instructions, hf_revision: cf63201653a1cd31a22ccf209606d761cb1524af }
 quality_tiers: [GOLD, SILVER, BRONZE, REJECT]
 mvp_target_sizes:
   function_calling: 100-300   # v0.1 isporučuje starter podskup; širenje nakon validacije pipelinea
