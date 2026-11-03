@@ -127,6 +127,15 @@ sources:
     status: benchmark-only
     categories: [coding]
     notes: "Primarno benchmark. Dozvoljen samo train split za trening uz evidenciju; dev/test NIKAD u trening."
+  - id: swe-gym
+    name: SWE-Gym (SWE-Gym/SWE-Gym train)
+    type: hub-dataset
+    url: https://huggingface.co/datasets/SWE-Gym/SWE-Gym
+    license: MIT
+    access: public
+    status: approved
+    categories: [coding]
+    notes: "Provjereno 2026-11-03: card license MIT (cardData+tags); samo train split (2438 instanci); overlap instance_id vs SWE-bench dev(225)/test(2294) = 0, nema eval kontaminacije. Ingest scripts/ingest_swegym_v01.py -> swe_gym_train_v0.1.jsonl (CAP 1500), namespace amj-sg-*, v0.1.0."
   - id: bfcl
     name: BFCL (Berkeley Function-Calling Leaderboard)
     type: benchmark-design
