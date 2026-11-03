@@ -19,6 +19,23 @@ i GPU-om, NE na Oracle control planeu.
 - SAMO poredjenje za veće modele (4B/9B); 2B se ne evaluira (pod ispod rezolucije).
 - NIKAD u trening (held-out). Prihvat uvjeta na HF prije preuzimanja.
 
+## DeepSeek V4.1 Flash vs AgentMujo 9B (dogovoreno poredjenje)
+
+- Skripta: `benchmark/deepseek_bench.py` (isti scorer/SYSTEM kao llama_bench,
+  Bearer auth iz `DEEPSEEK_API_KEY` env — ključ nikad u repo).
+- Modeli: `deepseek-chat` (nonthink) / `deepseek-reasoner` (think).
+- Uporediti protiv: `benchmark/results_9b0*_*.json` (isti cases_v0.5).
+- Fer-uvjet napomena: DeepSeek (284B MoE, 8–16B aktivnih) nije treniran na
+  našem `<tool_call>` formatu — poredjenje mjeri format+rasuđivanje zajedno,
+  ne samo rasuđivanje. Format-pristrasnost evidentirati uz rezultate.
+
+| Profil | tool_selection | argument_accuracy | safety | multi_step | Napomena |
+|---|---|---|---|---|---|
+| AgentMujo 9B Q8 nonthink | — | — | — | — | popuniti iz results_9b* |
+| DeepSeek V4.1-Flash nonthink | — | — | — | — | deepseek-chat |
+| AgentMujo 9B think | — | — | — | — | — |
+| DeepSeek V4.1-Flash think | — | — | — | — | deepseek-reasoner |
+
 ## Ne koristiti za poredjenje
 
 - CyberGym: pretežak (240GB), van domene.
