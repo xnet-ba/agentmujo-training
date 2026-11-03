@@ -201,5 +201,19 @@
     "content_hashes_unique": true,
     "bench_overlap_prompts": [],
     "bench_isolated": true
+  },
+  "joint_v0.43": {
+    "date": "2026-11-03",
+    "method": "shuffle seed 47, 90/5/5 redoslijedom; v0.42 baza 87004 1:1 + kn-v0.5 8000 + rg-v0.6 4000 + ag-v0.5 1200 TBench + lt-v0.1 1500 manpages (NOV task label linux-terminal)",
+    "train": 91533,
+    "valid": 5085,
+    "test": 5086,
+    "total": 101704,
+    "new_rows": 14700,
+    "ids_disjoint": false,
+    "id_overlap_note": "knowledge/rag v0.1+v0.2 recikliraju ID namespace uz razlicit sadrzaj (naslijedjeno iz v0.42); novi kn-v0.5/rg-v0.6/ag-v0.5/lt-v0.1 ID opsezi disjunktni od baze; content gate mjerodavan",
+    "content_hashes_unique": true,
+    "bench_overlap_prompts": [],
+    "bench_isolated": true
   }
 }
