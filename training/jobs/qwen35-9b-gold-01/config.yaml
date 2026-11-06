@@ -1,0 +1,38 @@
+# 9B-GOLD-01 — dialect-dense SFT (samo redovi sa tool_calls iz joint v0.40).
+# Hipoteza: koncentrisani dijalekt (r64, 1 epoha) instalira format koji
+# difuzni joint mixevi (v0.32-0.35) nisu instalirali u 9 epoha.
+# Subset: scripts/build_9b_gold.py (4246 redova: AG hard + AG med 1200 +
+# FC hard + verification + tool-selection + reasoning hard). Bez BC/safety.
+# A100 80GB: bf16, BEZ gradient checkpointinga (brzina), batch 2x8.
+experiment_id: qwen35-9b-gold-01
+mode: sft
+model_name: Qwen/Qwen3.5-9B
+model_revision: c20223623576
+base_adapter: null
+dataset: local
+data_file: /tmp/gold_v1.jsonl
+split: train
+max_samples: null
+output_dir: outputs/9b-gold-01
+max_seq_length: 1024
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+num_train_epochs: 1
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 50
+save_total_limit: 2
+gradient_checkpointing: false
+load_in_4bit: false
+lora_r: 64
+lora_alpha: 128
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optim: paged_adamw_8bit
+loss_type: nll
+seed: 37
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@667ce141c4605170746d0540b2ecb891e76e1c0f/data/splits/joint_v0.40/valid.jsonl
+eval_steps: 132
