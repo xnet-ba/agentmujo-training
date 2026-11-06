@@ -54,6 +54,7 @@
 
 | Fajl | Profil | Ključne metrike |
 |---|---|---|
+| results_2bfast01_prod_nonthink.json | agentmujo-2b-agent-fast:latest-nonthink-agentloop | tool=0.733 arg=1.0 safe=1.0 task=0.917 |
 | results_4b01_prod_nonthink.json | agentmujo-4b-q8-nonthink | tool=0.867 arg=0.769 safe=1.0 task=- |
 | results_4b02_prod_nonthink.json | agentmujo-4b02-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
 | results_4b03_prod_nonthink.json | agentmujo-4b03-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
@@ -104,6 +105,7 @@
 | results_bosnian_probe_v02.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v04.json | ? | tool=- arg=- safe=- task=- |
 | results_bosnian_probe_v05.json | ? | tool=- arg=- safe=- task=- |
+| results_deepseek_v41_flash_nonthink.json | deepseek-v4.1-flash-nonthink | tool=0.867 arg=0.962 safe=1.0 task=- |
 | results_deployed_q8_v04_nonthink.json | agentmujo-q8:latest-nonthink | tool=0.792 arg=0.8 safe=1.0 task=- |
 | results_deployed_q8_v04_think.json | agentmujo-q8-think:latest-think | tool=0.875 arg=0.9 safe=1.0 task=- |
 | results_dpo01_prod_nonthink.json | agentmujo-dpo01-q8-nonthink | tool=0.8 arg=0.846 safe=1.0 task=- |
