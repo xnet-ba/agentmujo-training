@@ -7,7 +7,7 @@ model_name: Qwen/Qwen3.5-9B
 model_revision: c20223623576
 base_adapter: null
 dataset: shaban2024/agentmujo-joint-01
-dataset_revision: 578c87fbe4c389520f75b84254e46a3cb5f43f  # joint v0.40, 2026-11-02
+dataset_revision: 667ce141c4605170746d0540b2ecb891e76e1c0f  # joint v0.40-0.43, 2026-11-02 (main HEAD; stari 578c87fb pin ne postoji na Hubu)
 data_file: data/splits/joint_v0.40/train.jsonl  # 60303
 split: train
 max_samples: 20
@@ -32,5 +32,5 @@ optim: paged_adamw_8bit
 loss_type: nll
 seed: 37
 resume_from_checkpoint: null
-eval_file: hf://datasets/shaban2024/agentmujo-joint-01@578c87fbe4c389520f75b84254e46a3cb5f43f/data/splits/joint_v0.40/valid.jsonl
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@667ce141c4605170746d0540b2ecb891e76e1c0f/data/splits/joint_v0.40/valid.jsonl
 eval_steps: 100
