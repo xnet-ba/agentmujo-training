@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-9b-thunder-smoke01",
+  "created_at": "2026-11-06T12:52:28+00:00",
+  "base_model": "Qwen/Qwen3.5-9B",
+  "base_revision": "c20223623576",
+  "dataset": "shaban2024/agentmujo-joint-01",
+  "dataset_revision": "578c87fbe4c389520f75b84254e46a3cb5f43f",
+  "training_config": "configs/training/thunder_9b_smoke01.yaml",
+  "seed": 37,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}
