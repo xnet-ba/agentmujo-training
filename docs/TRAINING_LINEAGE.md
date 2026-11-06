@@ -488,3 +488,26 @@ refusal 0.8/-0.2 (jedini fail = frazni artefakt "ne postavljam").
 
 Adapteri jt11–jt20 sacuvani lokalno u training/jobs/*/outputs/adapter (git-ignored).
 Kandidat za sljedeci fresh-start: jt17 (najbolji eval 0.883).
+
+## 9B GOLD-01: dijalekt instaliran — 10/10 proba, default gate tool 0.60 (2026-11-06)
+
+Hipoteza: 9B ne uci dijalekt iz difuznog jointa (9 epoha 0/5) — treba
+koncentrisani dialect-dense SFT. Subset: scripts/build_9b_gold.py
+(4246 reda sa tool_calls: AG hard + AG med 1200 + FC hard + verification
++ tool-selection + reasoning hard; bez BC/safety). r64/alpha128, bf16,
+bez grad-checkpointa, batch 2x8, 1 epoha, ~265 koraka na Thunder A100.
+Trosak: ~$5.50 od $10 budzeta (setup+smoke+gold+merge+Q8+gate).
+Rezultat: train 0.288 / eval 2.247 (gap 2.14, ocekivan — gold vs mjesoviti valid).
+Format-proba (10 slucajeva, production SYSTEM): 10/10 KANONSKIH —
+prvi put u 9B historiji pod default promptom (sve prije 0/5).
+Merge CPU (17GB, bez TnrDataSockMon panica — shardan safetensors ~5GB);
+Q8 sa --no-mtp protokolom (bez njega recurrent_layers 33 vs 32, server odbija);
+block_count patch 33->32 NIJE bio dovoljan sam (MTP ostaje u recurrent_layers).
+Gate (llama-server CPU, 48 slucajeva, default prompt, bez speca):
+tool 0.60 (= v0.6+spec plafon, ali BEZ speca), args 0.654 (najbolji 9B ikad,
+v0.6+spec 0.423), confirmation 0.8, json 1.0, ijekavica 1.0, multi 1.0,
+safety 0.714, refusal 0.6, high 0.6, notool 0.0 (trigger-happy: treniran
+samo na redovima sa alatima — dokumentovana mana, DPO se ne pokrece jer
+je 2x pao na 9B). Hub: model-q8-gold01.gguf (EKSPERIMENTALNO, live nije).
+Instanca obrisana nakon posla (billing stop). Zakljucak: 9B ozivljen kao
+eksperiment; sljedeci korak (van ovog budzeta): no-tool balans redovi.
