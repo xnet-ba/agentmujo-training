@@ -1,0 +1,36 @@
+# 9B-Thunder-SMOKE-01 — validacija A100 stacka (torch 2.12 + pinovi iz r6405).
+# 20 uzoraka sa v0.40, bf16-LoRA r16, bez evaluacije (eval_steps > ukupnih koraka).
+# Cilj: forward/backward/save prolaze na A100 prije bilo kakvog velikog runa.
+experiment_id: qwen35-9b-thunder-smoke01
+mode: sft
+model_name: Qwen/Qwen3.5-9B
+model_revision: c20223623576
+base_adapter: null
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: 578c87fbe4c389520f75b84254e46a3cb5f43f  # joint v0.40, 2026-11-02
+data_file: data/splits/joint_v0.40/train.jsonl  # 60303
+split: train
+max_samples: 20
+output_dir: outputs/9b-thunder-smoke01
+max_seq_length: 1024
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 1
+save_steps: 10
+save_total_limit: 1
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optim: paged_adamw_8bit
+loss_type: nll
+seed: 37
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@578c87fbe4c389520f75b84254e46a3cb5f43f/data/splits/joint_v0.40/valid.jsonl
+eval_steps: 100
