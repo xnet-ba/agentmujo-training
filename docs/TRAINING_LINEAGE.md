@@ -511,3 +511,22 @@ samo na redovima sa alatima — dokumentovana mana, DPO se ne pokrece jer
 je 2x pao na 9B). Hub: model-q8-gold01.gguf (EKSPERIMENTALNO, live nije).
 Instanca obrisana nakon posla (billing stop). Zakljucak: 9B ozivljen kao
 eksperiment; sljedeci korak (van ovog budzeta): no-tool balans redovi.
+
+## 9B GOLD-02: balansirani nastavak — tool 0.633 / args 0.731 (2026-11-06)
+
+Motiv: gold01 notool 0.0 (trigger-happy). Subset 3910 (3400 dijalekt +
+600 confirmation ask-first; 407 confirm IDs vec u jointu pa izbaceni iz
+dijalekt-poola da ne bude duplikata). r64 FRESH sa baze (gold01 adapter
+izgubljen brisanjem instance — odsad adapter ODMAH na Hub).
+Rezultat: train 0.33 / eval 2.26. Proba 9/10 (jedini "fail" bench-009 =
+trazenje potvrde bez alata, tj. ask-first radi; sva 3 ask-testa i dalje
+check-then-act umjesto cistog pitanja).
+Gate default (48, lokalni CPU): tool 0.633 (najbolji 9B ikad, iznad 0.60
+plafona), args 0.731 (rekord), safety 1.0, refusal 1.0 (popravljeno),
+confirmation 0.4 (pad sa 0.8 — prekomjerno pitanje), high 0.4 (pad sa 0.6),
+notool 0.25 (pomak sa 0.0), multi 0.667, json 1.0.
+Hub: model-q8-gold02.gguf + adapter u agentmujo-adapters/qwen35-9b-gold-02
++ osvjezena kartica. Trosak runde ~$3 (ukupno ~$8.80/$10).
+Zakljucak: dijalekt-mining radi; sljedeci korak je no-tool disciplina
+bez rusenja confirmationa (uzorak: ask-first + check-then-act kao GOLD,
+ne DPO).
