@@ -20,6 +20,8 @@ venv/
 *.ckpt/
 
 # Datasets (veliki fajlovi idu na HF Hub, ne u git)
+# shortcut: v0.1 kanon ostaje u gitu kao referenca; sve vece verzije (>10M)
+# i joint_train >v0.38 zive samo na Hubu (GitHub 100M limit).
 datasets/raw/*
 !datasets/raw/.gitkeep
 datasets/cleaned/*
@@ -27,6 +29,12 @@ datasets/cleaned/*
 datasets/canonical/*
 !datasets/canonical/*.jsonl
 !datasets/canonical/.gitkeep
+datasets/canonical/bosnian_core_v0.2.jsonl
+datasets/canonical/bosnian_core_v0.3.jsonl
+datasets/splits/joint_train_v0.39.jsonl
+datasets/splits/joint_train_v0.4*.jsonl
+datasets/splits/joint_v0.39/
+datasets/splits/joint_v0.4*/
 
 # Experiment outputs (veliki fajlovi NIKADA u git; manifesti DA)
 # Napomena: direktorij se ne smije excludati cijeli jer negacije ne rade unutar excludanih dir-ova.

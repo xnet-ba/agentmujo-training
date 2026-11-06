@@ -1,0 +1,37 @@
+# JOINT-26-2B config — FRESH-START peti lanac, prvi na v0.40 skali.
+# Podloga: v0.40 (67004: train 60303 / valid 3350 / test 3351), 10 kategorija.
+# Prethodni lanci (jt23-jt30) trenirani na ~1k mixevima — novi red velicine,
+# pa fresh start (base_adapter: null), presedan joint25/joint30.
+# bf16-LoRA (NE 4-bit — Unsloth upozorenje za Qwen3.5, vidi DATASET_TARGETS).
+experiment_id: qwen35-joint-26-2b
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: null
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: 578c87fbe4c389520f75b84254e46a3c9cb5f43f  # joint v0.40, 2026-11-02
+data_file: data/splits/joint_v0.40/train.jsonl  # 60303
+split: train
+max_samples: null
+output_dir: outputs/joint-26-2b
+max_seq_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-5
+num_train_epochs: 1    # 60303/16 ≈ 3769 koraka
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 200
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+loss_type: nll
+seed: 34
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@578c87fbe4c389520f75b84254e46a3c9cb5f43f/data/splits/joint_v0.40/valid.jsonl  # 3350
+eval_steps: 200

@@ -69,6 +69,10 @@ class PolicyEngine:
     def __init__(self, registry):
         self._registry = registry
 
+    def validate(self, tool: str, arguments: dict[str, Any] | None = None) -> list[str]:
+        """Validira poziv prema registry schemi (prazna lista = validno)."""
+        return self._registry.validate_call(tool, arguments or {})
+
     def decide(self, tool: str, arguments: dict[str, Any] | None = None) -> PolicyDecision:
         arguments = arguments or {}
         tooldef = self._registry.get(tool)

@@ -3,6 +3,11 @@
 #   npr. FROM /opt/agentmujo/models/agentmujo-q8.gguf
 FROM ./model.gguf
 
+# Raunen/OpenAI-tools kompatibilnost (smjer B): bez ovoga Ollama gubi
+# tools array iz /v1/chat/completions pa raunen visi. Arhitektura je qwen3.5.
+RENDERER qwen3.5
+PARSER qwen3.5
+
 # Režim bez razmišljanja bira se runtime zastavicom "think": false u /api/chat.
 # Namjena: brzi, direktni tool pozivi za jednostavne zadatke.
 
