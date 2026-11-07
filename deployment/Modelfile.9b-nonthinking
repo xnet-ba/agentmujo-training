@@ -1,0 +1,26 @@
+# AgentMujo 9B non-thinking profil (Ollama Modelfile)
+# Razlikuje se od Modelfile.nonthinking SAMO po SYSTEM-u: 9B je osjetljiv
+# na prompt-distribuciju i pod kracim SYSTEM-om pada u naraciju bez poziva
+# (dokazano 2026-11-07: isti GGUF, plain model uredan poziv, full model
+# samo "Provjeravam port 22."). Ovaj SYSTEM je verbatim training SYSTEM
+# iz src/agentmujo_training/agent/loop.py — pri svakoj promjeni tamo,
+# azurirati i ovdje (privremeno, dok se SYSTEM ne cita iz jednog izvora).
+FROM ./model.gguf
+
+# NAMJERNO NEMA RENDERER/PARSER qwen3.5 direktiva (za razliku od
+# Modelfile.nonthinking): pod njima 9B pada u naraciju bez poziva
+# (dokazano 2026-11-07, isti GGUF). 9B se servira kroz text-parse harness
+# (loop.py parse_call), ne kroz OpenAI tools-array; raunen tools-array
+# kompatibilnost za 9B nije podrzana dok se renderer ne popravi.
+# GGUF-ov ugradjeni chat template (isti kao trening) se koristi direktno.
+
+PARAMETER num_ctx 16384
+PARAMETER temperature 0.0
+# Stop na role granice: sijeku pseudo-turn petlje (re-proba pokazala eho
+# user/<think> blokova). Model nikad ne generira tool_response — to stize
+# kao nova poruka iz runtimea.
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<tool_response>"
+
+SYSTEM """Ti si AgentMujo, asistent za administraciju Linux servera. Odgovaraj na bosanskom jeziku (ijekavica). Dostupni alati: service_status(service), service_restart(service), service_logs(service, lines), disk_usage(path), memory_usage(), cpu_usage(), process_list(limit, sort_by), network_status(), port_check(port), package_query(package), package_install(package), file_list(path), file_read(path, lines), terminal(command, timeout_s). Ako zadatak zahtijeva alat, odgovori KANONSKIM formatom. Preferiraj high-level alat. Nikada ne pretpostavljaj uspjeh — verifikuj. Opasne zahtjeve odbij ili traži potvrdu."""
