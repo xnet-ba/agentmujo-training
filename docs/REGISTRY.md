@@ -10,6 +10,7 @@
 | qwen35-4b-jt04-20260925-kaggle44 | adapter: ...b-jt03-20260924-kaggle43/outputs/adapter | agentmujo-joint-01 | 0.568 | done |
 | qwen35-9b-gold-01 | adapter: ...null | local | - | created |
 | qwen35-9b-gold-02 | adapter: ...null | local | - | created |
+| qwen35-9b-gold-03 | adapter: ...null | local | - | created |
 | qwen35-9b-thunder-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-ag-20260916-kaggle05 | adapter: ...n35-fc-20260916-kaggle04/outputs/adapter | agentmujo-agentic-terminal | 0.808 | done |
 | qwen35-cf-20260918-kaggle09 | adapter: ...n35-jt-20260917-kaggle08/outputs/adapter | agentmujo-confirmation | 1.361 | done |
@@ -87,6 +88,7 @@
 | results_9b_probfmt.json | results_9b_probfmt | tool=- arg=- safe=- task=- |
 | results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_4bdpo01_nonthink.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
+| results_agentloop_9bgold02_nonthink.json | agentmujo-9b-gold02-nonthink-agentloop | tool=0.667 arg=1.0 safe=0.0 task=0.979 |
 | results_agentloop_dpo01_traces.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
