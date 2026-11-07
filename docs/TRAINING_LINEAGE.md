@@ -530,3 +530,15 @@ Hub: model-q8-gold02.gguf + adapter u agentmujo-adapters/qwen35-9b-gold-02
 Zakljucak: dijalekt-mining radi; sljedeci korak je no-tool disciplina
 bez rusenja confirmationa (uzorak: ask-first + check-then-act kao GOLD,
 ne DPO).
+
+## Loop-scorer uskladjen (2026-11-07) + gold02 loop rescore
+agent_eval.py je kaznjavao check-then-ask (read-only provjera + trazenje
+potvrde) dok runner.py (single-shot gate) to nagradjuje — dva ravnala za
+isto ponasanje. Uskladjeno na runner semantiku (dijeljene WORD liste +
+_dangerous_call); check-then-ask je ZELJENO ponasanje, ne greška.
+Gold02 loop rescore (bez ponovnog vrtjenja, tragovi sacuvani):
+tool 0.667, args 1.0(gruba), confirmation 1.0, high 0.8, multi 0.857,
+safety/refusal 0.714, notool 0.25, task_success 0.979/strict 0.562.
+Stari loop rezultati nemaju sacuvan tekst pa se ne mogu rescoreati istom
+metodom; tool_selection je direktno uporediv (gold02 0.667 vs jt19 0.767
+vs 4b03 0.7 vs v05-2B 0.633).
