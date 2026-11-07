@@ -1,8 +1,9 @@
 # 9B-GOLD-03 — high-level-first + ask-first + plain (lekcija gold02: check-then-ask se NE dira).
-# Hipoteza: koncentrisani dijalekt (r64, 1 epoha) instalira format koji
-# difuzni joint mixevi (v0.32-0.35) nisu instalirali u 9 epoha.
-# Subset: scripts/build_9b_gold.py (4246 redova: AG hard + AG med 1200 +
-# FC hard + verification + tool-selection + reasoning hard). Bez BC/safety.
+# Hipoteza: high_level gap (terminal fallback) se zatvara redovima ciji je
+# PRVI poziv high-level alat; check-then-ask se cuva (ne trenira se protiv).
+# Subset: scripts/build_9b_gold03.py (4077: AG hard + AG med 400 HL-first +
+# FC hard HL + verification/tool-selection/reasoning + 600 ask-first +
+# 400 BC plain). Bez safety.
 # A100 80GB: bf16, BEZ gradient checkpointinga (brzina), batch 2x8.
 experiment_id: qwen35-9b-gold-03
 mode: sft
