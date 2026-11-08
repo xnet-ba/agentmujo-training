@@ -20,6 +20,11 @@ export PYLIBS=/scratch/project_465003647/agentmujo/pylibs
 export REPO=/scratch/project_465003647/agentmujo/repo
 export PYTHONPATH="$PYLIBS:${PYTHONPATH:-}"
 export HF_HUB_CACHE=/scratch/project_465003647/agentmujo/hfcache
+# Kontejneru eksplicitno proslijediti env (SINGULARITYENV_*): obicni
+# `env VAR=` prefix se ne prenosi pouzdano — bez ovoga HF skida 18GB model
+# ispocetka u container-HOME i visi satima (vidjeno: 2.5h bez pomaka).
+export SINGULARITYENV_HF_HUB_CACHE="$HF_HUB_CACHE"
+export SINGULARITYENV_PYTHONPATH="$PYLIBS:/repo/src"
 mkdir -p "$PYLIBS" "$HF_HUB_CACHE"
 # Pylibs (samo prvi put / kad se promijene pinovi):
 # Kontejnerov ROCm torch (2.11) se NE smije pregaziti — PyPI torch bi
@@ -38,7 +43,6 @@ srun -n1 singularity exec "$SIF" env PYTHONPATH="$PYLIBS" python -c \
 cd "$REPO"
 # Uvijek svjež kod (LUMI klon inace zaostaje — vidjeno sa max_steps).
 git pull -q 2>/dev/null || echo "WARN: git pull nije uspio, radim sa postojecim kodom"
-srun singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
-  env PYTHONPATH="$PYLIBS:/repo/src" HF_HUB_CACHE="$HF_HUB_CACHE" \
-  python /repo/workers/kaggle/job_run.py --job-dir "$JOBDIR"
+srun --unbuffered singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
+  python -u /repo/workers/kaggle/job_run.py --job-dir "$JOBDIR"
 echo TRAIN_DONE
