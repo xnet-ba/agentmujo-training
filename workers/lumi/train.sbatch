@@ -36,6 +36,8 @@ fi
 srun -n1 singularity exec "$SIF" env PYTHONPATH="$PYLIBS" python -c \
   "import torch; assert 'rocm' in torch.__version__, torch.__version__; print('ROCM-TORCH-OK', torch.__version__)"
 cd "$REPO"
+# Uvijek svjež kod (LUMI klon inace zaostaje — vidjeno sa max_steps).
+git pull -q 2>/dev/null || echo "WARN: git pull nije uspio, radim sa postojecim kodom"
 srun singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
   env PYTHONPATH="$PYLIBS:/repo/src" HF_HUB_CACHE="$HF_HUB_CACHE" \
   python /repo/workers/kaggle/job_run.py --job-dir "$JOBDIR"
