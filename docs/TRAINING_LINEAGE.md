@@ -542,3 +542,18 @@ safety/refusal 0.714, notool 0.25, task_success 0.979/strict 0.562.
 Stari loop rezultati nemaju sacuvan tekst pa se ne mogu rescoreati istom
 metodom; tool_selection je direktno uporediv (gold02 0.667 vs jt19 0.767
 vs 4b03 0.7 vs v05-2B 0.633).
+
+## 9B GOLD-03 na LUMI (MI250X, ROCm 7.2) — prvi LUMI trening GOTOV (2026-11-08)
+
+Worker: Oracle skok (agentmujo_pro key) + ~/lumi.sh wrapper + ROCm kontejner
+lumi-multitorch-latest.sif (torch 2.11+rocm7.2). Pylibs pip --target
+(transformers 5.19.0/tr1.14.2/peft 0.21.2/accelerate 1.15.0/datasets 5.1.0);
+PyPI torch SE BRISE iz pylibs (shadowao ROCm) + ROCm guard. Smoke 20 uzoraka:
+BROJKE IDENTICNE Thunderu (train 2.25/eval 2.49) — ROCm numerika potvrdjena.
+Lekcije: env SE NE prenosi `env VAR=` prefixom u kontejner (SINGULARITYENV_*),
+stdout bufferuje (python -u + srun --unbuffered), LUMI klon trazio git-pull
+(max_steps), squeue TIME je MM:SS (ne sati!).
+Gold03 (4077: high-level-first + 600 ask + 400 plain), r64, bf16, batch 2x8:
+dev-g 2x130 chunkova sa resume (3h limit), 1 GCD. Rezultat: train 0.13/0.39,
+eval 2.048 (min) — BOLJE od gold02 (2.26) na istom validu. Adapter na scratchu;
+merge+Q8+gate lokalno ($0).
