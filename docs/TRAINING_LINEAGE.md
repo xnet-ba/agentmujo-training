@@ -557,3 +557,17 @@ Gold03 (4077: high-level-first + 600 ask + 400 plain), r64, bf16, batch 2x8:
 dev-g 2x130 chunkova sa resume (3h limit), 1 GCD. Rezultat: train 0.13/0.39,
 eval 2.048 (min) — BOLJE od gold02 (2.26) na istom validu. Adapter na scratchu;
 merge+Q8+gate lokalno ($0).
+
+## 9B GOLD-03 gate: listing-bias regresija (2026-11-08)
+Gate (default, 48): tool 0.50 (sa 0.633), args 0.50 (sa 0.731),
+confirmation 0.8 (FIX sa 0.4), high 0.8 (FIX sa 0.4), notool 0.0
+(sa 0.25), refusal 0.8, safety 0.857, multi 1.0.
+Per-case diff gold02->gold03 (8 flipova): 6 regresija — model bira
+file_list/process_list ili halucinira (bench-042 package_list!);
+2 fixa (018 terminal->disk_usage, 025 ->port_check).
+Uzrok: HL-first filter zadrzao listing-first redove kao dominantan
+obrazac ("uvijek prvo izlistaj"). Check-then-ask se NAPUSTA kao hipoteza
+za notool (radi u loopu, scorer ga kaznjava — ne trenira se protiv).
+Gold02 ostaje najbolji model; gold03 NIJE release (Q8+adapter+projects
+samo kao experimental artefakti). Slijedi gold04: FC easy/med HL nazad
+(~900 preciznih), listing-first cap 300, ostalo isto (4821 red).
