@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-9b-lumi-smoke01",
+  "created_at": "2026-11-08T17:13:33+00:00",
+  "base_model": "Qwen/Qwen3.5-9B",
+  "base_revision": "c20223623576",
+  "dataset": "shaban2024/agentmujo-joint-01",
+  "dataset_revision": "667ce141c4605170746d0540b2ecb891e76e1c0f",
+  "training_config": "workers/lumi/lumi_9b_smoke01.yaml",
+  "seed": 37,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}
