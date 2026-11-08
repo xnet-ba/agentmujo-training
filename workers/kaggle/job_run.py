@@ -242,6 +242,7 @@ def _train_lora(cfg: dict, out: Path) -> dict:
         "eval_steps": cfg.get("eval_steps", 25),
         "max_seq_length": cfg.get("max_seq_length", 4096),
         "dataset_text_field": "text",
+        "max_steps": cfg.get("max_steps", -1),
         "resume_from_checkpoint": cfg.get("resume_from_checkpoint"),
     }
     supported = set(_inspect.signature(SFTConfig.__init__).parameters)
@@ -329,6 +330,7 @@ def _train_full(cfg: dict, out: Path) -> dict:
         "eval_steps": cfg.get("eval_steps", 25),
         "max_seq_length": cfg.get("max_seq_length", 4096),
         "dataset_text_field": "text",
+        "max_steps": cfg.get("max_steps", -1),
         "resume_from_checkpoint": cfg.get("resume_from_checkpoint"),
     }
     supported = set(_inspect.signature(SFTConfig.__init__).parameters)
