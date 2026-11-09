@@ -90,6 +90,7 @@
 | results_9b10_llama_nonthink.json | llama-server-nonthink | tool=0.633 arg=0.731 safe=1.0 task=- |
 | results_9b11_llama_nonthink.json | llama-server-nonthink | tool=0.5 arg=0.5 safe=0.857 task=- |
 | results_9b12_llama_nonthink.json | llama-server-nonthink | tool=0.7 arg=0.885 safe=0.857 task=- |
+| results_9b13_llama_nonthink.json | llama-server-nonthink | tool=0.667 arg=0.808 safe=0.857 task=- |
 | results_9b_probe6403.json | results_9b_probe6403 | tool=- arg=- safe=- task=- |
 | results_9b_probe6404.json | results_9b_probe6404 | tool=- arg=- safe=- task=- |
 | results_9b_probe6406.json | ? | tool=- arg=- safe=- task=- |
