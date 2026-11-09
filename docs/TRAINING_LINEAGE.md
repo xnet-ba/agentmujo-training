@@ -580,3 +580,11 @@ refusal 0.8, safety 0.857, multi 0.8.
 Per-case vs gold02: +4 (003,018,023,038 terminal->highlevel), -2 (013
 listing-bias remnant, 027 service_restart->None). Q8+adapter+projects na
 Hubu; kartica: gold04 najbolji. Ostaje experimental (notool).
+
+## Gold04 agent-loop: tool 0.80 / strict 0.708 (2026-11-09)
+Loop (model+policy+executor, 9b Modelfile bez parsera): tool_selection 0.80
+(30) — iznad single-shot gatea (0.70); args 1.0(gruba), confirmation 0.8,
+high 0.8, multi 1.0, refusal/safety 0.857, task_success 0.979... 0.958,
+strict 0.708. Notool 0.0 i u loopu (gold05 ga cilja in-domain redovima).
+Uporedivo: v05-2B loop tool 0.633/strict 0.667; 4b-DPO loop tool 0.767/
+strict 0.854. Gold04 je najbolji 9B u oba protokola.
