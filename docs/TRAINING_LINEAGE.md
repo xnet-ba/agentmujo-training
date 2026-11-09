@@ -638,3 +638,13 @@ POVUCEN — vrijedi samo ciljano (kao DPO-03 za notool 0.25->0.50), ne
 kao rutina. Gold06 = gold04 + DPO-03 ostaje vrh: gate 0.70, loop 0.833/0.75.
 Datoteke: 9b13=gold06 gate (9b13_gold05 sacuvan posebno zbog prebrisa),
 9b14=gold07.
+
+## DPO-04 = remi sa DPO-03; GOLD06 OSTAJE FINALNI (2026-11-10)
+Gold08 loop: tool 0.80, strict 0.75, task_success 1.0 — vs gold06
+0.833/0.75/0.979. Gate essentially tied (0.667 vs 0.70, 1 flip).
+60 DPO parova nije donijelo nista preko 20: diminishing returns
+potvrdjen i za DPO (druga iteracija uzastopce bez pomaka).
+ZAKLJUCAK CIJELOG 9B TRAGA: gold06 (SFT gold04 + DPO-03) je vrh —
+gate 0.70/0.846, loop 0.833/0.75. Dalji SFT i DPO se obustavljaju
+uz dokaze; sljedeci leveri bi bili: veci base model, full-tune,
+ili redizajn dijalekta — sve izvan sadasnjeg opsega.
