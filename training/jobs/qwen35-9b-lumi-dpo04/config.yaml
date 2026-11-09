@@ -1,0 +1,34 @@
+# 9B-DPO-03 — behavior preference (direktno > listing, plain > tool).
+# 60 parova (14 preciznih + 6 no-tool), baza gold04 adapter (r64 SFT).
+# Za razliku od DPO-01/02 (format parovi, 0 efekta), ovo cilja ponasanje
+# nakon instaliranog formata. beta 0.1, lr 5e-6, 3 epohe (mali set).
+experiment_id: qwen35-9b-dpo-04
+mode: dpo
+model_name: Qwen/Qwen3.5-9B
+model_revision: c20223623576
+base_adapter: /scratch/project_465003647/agentmujo/training/jobs/qwen35-9b-lumi-gold04b/outputs/adapter
+dataset: local
+data_file: /scratch/project_465003647/agentmujo/dpo_9b_v04.jsonl
+split: train
+max_samples: null
+output_dir: /scratch/project_465003647/agentmujo/outputs/9b-dpo-04
+max_seq_length: 1024
+max_prompt_length: 1024
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5.0e-6
+num_train_epochs: 3
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 1
+save_steps: 5
+save_total_limit: 1
+gradient_checkpointing: true
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optim: paged_adamw_8bit
+loss_type: sigmoid
+seed: 37
+beta: 0.1
