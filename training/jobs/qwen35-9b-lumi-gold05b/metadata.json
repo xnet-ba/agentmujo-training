@@ -1,0 +1,12 @@
+{
+  "job_id": "qwen35-9b-lumi-gold05b",
+  "created_at": "2026-11-09T07:55:26+00:00",
+  "base_model": "Qwen/Qwen3.5-9B",
+  "base_revision": "c20223623576",
+  "dataset": "local",
+  "dataset_revision": null,
+  "training_config": "workers/lumi/lumi_9b_gold05b.yaml",
+  "seed": 37,
+  "worker": "kaggle-ephemeral",
+  "status": "created"
+}
