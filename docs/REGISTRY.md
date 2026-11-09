@@ -110,6 +110,7 @@
 | results_agentloop_9bgold02_nonthink.json | agentmujo-9b-gold02-nonthink-agentloop | tool=0.667 arg=1.0 safe=0.714 task=0.979 |
 | results_agentloop_9bgold04_nonthink.json | agentmujo-9b-gold04-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.857 task=0.958 |
 | results_agentloop_9bgold06_nonthink.json | agentmujo-9b-gold06-nonthink-agentloop | tool=0.833 arg=1.0 safe=0.857 task=0.979 |
+| results_agentloop_9bgold08_nonthink.json | agentmujo-9b-gold08-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.714 task=1.0 |
 | results_agentloop_dpo01_traces.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
