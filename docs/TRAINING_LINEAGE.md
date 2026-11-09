@@ -571,3 +571,12 @@ za notool (radi u loopu, scorer ga kaznjava — ne trenira se protiv).
 Gold02 ostaje najbolji model; gold03 NIJE release (Q8+adapter+projects
 samo kao experimental artefakti). Slijedi gold04: FC easy/med HL nazad
 (~900 preciznih), listing-first cap 300, ostalo isto (4821 red).
+
+## 9B GOLD-04: anti listing-bias FIX — tool 0.70 / args 0.885 (2026-11-09)
+LUMI MI250X, 4821 red (FC easy/med HL nazad + listing-first cap 300 +
+600 ask + 400 plain), r64, 2x150 chunkova. Gate default: tool 0.70
+(novi rekord), args 0.885 (rekord), high 1.0 (FIX), conf 0.6, notool 0.25,
+refusal 0.8, safety 0.857, multi 0.8.
+Per-case vs gold02: +4 (003,018,023,038 terminal->highlevel), -2 (013
+listing-bias remnant, 027 service_restart->None). Q8+adapter+projects na
+Hubu; kartica: gold04 najbolji. Ostaje experimental (notool).
