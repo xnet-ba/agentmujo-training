@@ -36,7 +36,11 @@ minuta); puni trening i dalje ide na Vast GPU.
   fajl (`blk.24.attn_norm.weight not found`). Ispravno: 24 bloka, 320 tenzora.
 - Trimmed vokabular treba tokenizer patch
   (`docs/patches/llama-tokenizer-qwen35-bos.patch`) — inače konverter ne
-  prepoznaje pretokenizer.
+  prepoznaje pretokenizer. NAPOMENA (2026-11-09): patch je pisan za stariju
+  llama.cpp reviziju; na masteru se ne primjenjuje cisto (hunk 1859).
+  Rucni ekvivalent: u `conversion/base.py` dodati chkhsh
+  `3307159a...` -> `res = "qwen35"` pored qwen2 bloka i pored laguna bloka
+  (oba mjesta su obavezna — get_vocab_base_pre i get_vocabtype_or_tokenizer).
 - `quantization/patch_gguf.py` postoji kao zadnja linija odbrane za
   metapodatke (korišten dijagnostički; primarni put je ispravna konverzija).
 
