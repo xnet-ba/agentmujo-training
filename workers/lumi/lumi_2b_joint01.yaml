@@ -1,0 +1,38 @@
+# 2B-JOINT — puni SFT na joint v0.40 (60303 train), FRESH sa BOS baze.
+# Hipoteza: 2B (dijalekt nativan) treba punu distribuciju, ne koncentrat
+# (gold01 subset dokazano steti: 0.50 vs v0.5 0.80).
+# r16/a32, bf16, batch 2x8, 1 epoha ≈ 3769 koraka (~40h MI250X).
+# small-g, time 60h. Cilj: nadmasiti v0.5 (gate tool 0.80) ili potvrditi v0.5.
+experiment_id: qwen35-2b-joint-lumi01
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: null
+dataset: shaban2024/agentmujo-joint-01
+dataset_revision: 667ce141c4605170746d0540b2ecb891e76e1c0f
+data_file: data/splits/joint_v0.40/train.jsonl
+split: train
+max_samples: null
+output_dir: /scratch/project_465003647/agentmujo/outputs/2b-joint-lumi01
+max_seq_length: 4096
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+num_train_epochs: 1
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 50
+save_steps: 500
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optim: paged_adamw_8bit
+loss_type: nll
+seed: 37
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@667ce141c4605170746d0540b2ecb891e76e1c0f/data/splits/joint_v0.40/valid.jsonl
+eval_steps: 500
