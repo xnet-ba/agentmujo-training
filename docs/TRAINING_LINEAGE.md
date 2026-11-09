@@ -613,3 +613,10 @@ dijalekt nativno iz joint treninga; uski subset brise sirinu (zaborav).
 Lekcija: ista data strategija ne vrijedi za obje baze — 9B treba
 koncentrisani dijalekt, 2B treba siroki joint mix. v0.5 ostaje produkcija;
 2B subset linija se NE nastavlja.
+
+## 9B GOLD-06 (DPO-03): behavior-DPO radi — notool 0.25->0.50 (2026-11-10)
+20 parova (direktno>listing, plain>tool), baza gold04, r16, beta 0.1.
+Gate: tool 0.70 IDENTICAN gold04 (0 flipova per-case!), args 0.885->0.846,
+notool 0.25->0.50 (ciljani efekat), high 1.0->0.8, multi 0.8->0.75.
+Za razliku od DPO-01/02 (format, 0 efekta): behavior-DPO na instaliranom
+formatu radi. DPO postaje standardni korak iza SFT-a.
