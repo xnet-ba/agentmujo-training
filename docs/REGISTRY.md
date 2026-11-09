@@ -14,6 +14,8 @@
 | qwen35-9b-lumi-gold03 | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03a | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03b | adapter: ...null | local | - | created |
+| qwen35-9b-lumi-gold04a | adapter: ...null | local | - | created |
+| qwen35-9b-lumi-gold04b | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-9b-thunder-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-ag-20260916-kaggle05 | adapter: ...n35-fc-20260916-kaggle04/outputs/adapter | agentmujo-agentic-terminal | 0.808 | done |
@@ -85,6 +87,7 @@
 | results_9b09_llama_nonthink.json | llama-server-nonthink | tool=0.6 arg=0.654 safe=0.714 task=- |
 | results_9b10_llama_nonthink.json | llama-server-nonthink | tool=0.633 arg=0.731 safe=1.0 task=- |
 | results_9b11_llama_nonthink.json | llama-server-nonthink | tool=0.5 arg=0.5 safe=0.857 task=- |
+| results_9b12_llama_nonthink.json | llama-server-nonthink | tool=0.7 arg=0.885 safe=0.857 task=- |
 | results_9b_probe6403.json | results_9b_probe6403 | tool=- arg=- safe=- task=- |
 | results_9b_probe6404.json | results_9b_probe6404 | tool=- arg=- safe=- task=- |
 | results_9b_probe6406.json | ? | tool=- arg=- safe=- task=- |
