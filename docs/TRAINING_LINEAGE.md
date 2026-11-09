@@ -602,3 +602,6 @@ akciju — restart bez provjere; NE trenira se protiv sigurnosti),
 (b) kapacitet. Sljedeca poluga NIJE jos SFT-a: DPO (2x pao na 9B),
 veci mix + full-tune (treba budzet), ili prihvatanje.
 Gold04 (tool 0.70/args 0.885, loop 0.80/strict 0.708) = FINALNI NAJBOLJI 9B.
+
+## Gold05 pushan na Hub (Q8 + adapter), kartica osvjezena
+Q8 + adapter + in-domain no-tool nalaz dokumentovan. SFT zatvoren.
