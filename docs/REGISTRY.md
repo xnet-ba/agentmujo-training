@@ -4,6 +4,7 @@
 
 | Job | Baza/adapter | Dataset | Loss | Status |
 |---|---|---|---|---|
+| qwen35-2b-lumi-gold01 | adapter: ...null | local | - | created |
 | qwen35-4b-jt01-20260924-kaggle41 | adapter: ...null | agentmujo-joint-01 | 1.146 | done |
 | qwen35-4b-jt02-20260924-kaggle42 | adapter: ...b-jt01-20260924-kaggle41/outputs/adapter | agentmujo-joint-01 | 0.727 | done |
 | qwen35-4b-jt03-20260924-kaggle43 | adapter: ...b-jt02-20260924-kaggle42/outputs/adapter | agentmujo-joint-01 | 0.623 | done |
@@ -67,6 +68,7 @@
 | Fajl | Profil | Ključne metrike |
 |---|---|---|
 | results_2bfast01_prod_nonthink.json | agentmujo-2b-agent-fast:latest-nonthink-agentloop | tool=0.733 arg=1.0 safe=1.0 task=0.917 |
+| results_2bgold01_llama_nonthink.json | llama-server-nonthink | tool=0.5 arg=0.462 safe=1.0 task=- |
 | results_4b01_prod_nonthink.json | agentmujo-4b-q8-nonthink | tool=0.867 arg=0.769 safe=1.0 task=- |
 | results_4b02_prod_nonthink.json | agentmujo-4b02-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
 | results_4b03_prod_nonthink.json | agentmujo-4b03-q8-nonthink | tool=0.9 arg=0.885 safe=1.0 task=- |
