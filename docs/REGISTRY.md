@@ -5,6 +5,7 @@
 | Job | Baza/adapter | Dataset | Loss | Status |
 |---|---|---|---|---|
 | qwen35-2b-lumi-gold01 | adapter: ...null | local | - | created |
+| qwen35-2b-lumi-joint01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-4b-jt01-20260924-kaggle41 | adapter: ...null | agentmujo-joint-01 | 1.146 | done |
 | qwen35-4b-jt02-20260924-kaggle42 | adapter: ...b-jt01-20260924-kaggle41/outputs/adapter | agentmujo-joint-01 | 0.727 | done |
 | qwen35-4b-jt03-20260924-kaggle43 | adapter: ...b-jt02-20260924-kaggle42/outputs/adapter | agentmujo-joint-01 | 0.623 | done |
@@ -14,6 +15,7 @@
 | qwen35-9b-gold-03 | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-dpo03 | adapter: ...s/qwen35-9b-lumi-gold04b/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-dpo04 | adapter: ...s/qwen35-9b-lumi-gold04b/outputs/adapter | local | - | created |
+| qwen35-9b-lumi-dpo06 | adapter: ...s/qwen35-9b-lumi-gold04b/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-gold03 | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03a | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03b | adapter: ...null | local | - | created |
@@ -96,6 +98,7 @@
 | results_9b12_llama_nonthink.json | llama-server-nonthink | tool=0.7 arg=0.885 safe=0.857 task=- |
 | results_9b13_llama_nonthink.json | llama-server-nonthink | tool=0.7 arg=0.846 safe=0.857 task=- |
 | results_9b14_llama_nonthink.json | llama-server-nonthink | tool=0.7 arg=0.808 safe=0.857 task=- |
+| results_9b15_llama_nonthink.json | llama-server-nonthink | tool=0.667 arg=0.885 safe=0.857 task=- |
 | results_9b_probe6403.json | results_9b_probe6403 | tool=- arg=- safe=- task=- |
 | results_9b_probe6404.json | results_9b_probe6404 | tool=- arg=- safe=- task=- |
 | results_9b_probe6406.json | ? | tool=- arg=- safe=- task=- |
@@ -135,6 +138,7 @@
 | results_deployed_q8_v04_think.json | agentmujo-q8-think:latest-think | tool=0.875 arg=0.9 safe=1.0 task=- |
 | results_dpo01_prod_nonthink.json | agentmujo-dpo01-q8-nonthink | tool=0.8 arg=0.846 safe=1.0 task=- |
 | results_dpo02_prod_nonthink.json | agentmujo-dpo02-q8-nonthink | tool=0.767 arg=0.846 safe=1.0 task=- |
+| results_gate_gold05_llama_nonthink.json | llama-server-nonthink | tool=0.667 arg=0.808 safe=0.857 task=- |
 | results_jt13_q8_v06_nonthink.json | agentmujo-jt13-q8-nonthink | tool=0.267 arg=0.192 safe=0.714 task=- |
 | results_jt16_prod_nonthink.json | agentmujo-jt16-q8-nonthink | tool=0.833 arg=0.846 safe=0.857 task=- |
 | results_jt17_prod_nonthink.json | agentmujo-jt17-q8-nonthink | tool=0.8 arg=0.846 safe=0.857 task=- |
