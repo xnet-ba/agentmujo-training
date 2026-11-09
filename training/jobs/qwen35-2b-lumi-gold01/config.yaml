@@ -1,0 +1,36 @@
+# 2B-LUMI-GOLD01 — subset SFT na BOS bazi (r16, 1 epoha, 4871 red).
+# Hipoteza: dialect-dense + ask + plain mix dize 2B v0.5 (gate tool 0.80).
+# Ako subset ne pomakne 2B, punih 60k nema smisla (stednja vremena).
+# 305 koraka stane u dev-g 3h (2B brzi od 9B). FRESH sa BOS baze.
+experiment_id: qwen35-2b-lumi-gold01
+mode: sft
+model_name: alphaedge-ai/Qwen3.5-2B-bos-32768
+model_revision: 2f89b8332c352d01adebd88bba5d8a2f7adf8bd6
+base_adapter: null
+dataset: local
+data_file: /scratch/project_465003647/agentmujo/gold_v5.jsonl
+split: train
+max_samples: null
+output_dir: /scratch/project_465003647/agentmujo/outputs/2b-lumi-gold01
+max_seq_length: 1024
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+num_train_epochs: 1
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 75
+save_total_limit: 2
+gradient_checkpointing: false
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optim: paged_adamw_8bit
+loss_type: nll
+seed: 37
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@667ce141c4605170746d0540b2ecb891e76e1c0f/data/splits/joint_v0.40/valid.jsonl
+eval_steps: 150
