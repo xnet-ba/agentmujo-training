@@ -620,3 +620,11 @@ Gate: tool 0.70 IDENTICAN gold04 (0 flipova per-case!), args 0.885->0.846,
 notool 0.25->0.50 (ciljani efekat), high 1.0->0.8, multi 0.8->0.75.
 Za razliku od DPO-01/02 (format, 0 efekta): behavior-DPO na instaliranom
 formatu radi. DPO postaje standardni korak iza SFT-a.
+
+## GOLD06 = NOVI NAJBOLJI 9B (loop tool 0.833 / strict 0.75, 2026-11-10)
+Behavior-DPO (20 parova) nad gold04: loop tool_selection 0.833 (30) —
+iznad gold04 (0.80) i 2B v0.5 (0.633), blizu 4B-DPO (0.767).
+Strict 0.75 > gold04 0.708; task_success 0.979.
+notool ostaje 0.0 u loopu (check-then-ask ponasanje), 0.5 single-shot.
+DPO potvrdjen kao standardni korak: SFT instalira format, DPO polira
+ponasanje. Sljedeci: veci DPO set (40-60 parova) ili gold07 SFT+DPO lanac.
