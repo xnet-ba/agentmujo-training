@@ -628,3 +628,13 @@ Strict 0.75 > gold04 0.708; task_success 0.979.
 notool ostaje 0.0 u loopu (check-then-ask ponasanje), 0.5 single-shot.
 DPO potvrdjen kao standardni korak: SFT instalira format, DPO polira
 ponasanje. Sljedeci: veci DPO set (40-60 parova) ili gold07 SFT+DPO lanac.
+
+## DPO ITERACIJA ZATVORENA — gold06 finalni najbolji 9B (2026-11-10)
+DPO-04 (60 parova, superset DPO-03): gate tool 0.70 (=, +1/-1 flip),
+args 0.846->0.808, notool 0.25 (bez pomaka). Veci DPO set NIJE donio
+nista novo: format je instaliran (nema sta uciti), ponasanje se vrti
+u krug (+013 listing fix, -024 apstinencija). DPO kao "standardni korak"
+POVUCEN — vrijedi samo ciljano (kao DPO-03 za notool 0.25->0.50), ne
+kao rutina. Gold06 = gold04 + DPO-03 ostaje vrh: gate 0.70, loop 0.833/0.75.
+Datoteke: 9b13=gold06 gate (9b13_gold05 sacuvan posebno zbog prebrisa),
+9b14=gold07.
