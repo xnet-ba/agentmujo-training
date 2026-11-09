@@ -588,3 +588,17 @@ high 0.8, multi 1.0, refusal/safety 0.857, task_success 0.979... 0.958,
 strict 0.708. Notool 0.0 i u loopu (gold05 ga cilja in-domain redovima).
 Uporedivo: v05-2B loop tool 0.633/strict 0.667; 4b-DPO loop tool 0.767/
 strict 0.854. Gold04 je najbolji 9B u oba protokola.
+
+## 9B SFT ITERacija ZATVORENA — gold04 je finalni najbolji (2026-11-09)
+Gold05 gate: tool 0.667 (neto -1 vs gold04: +4 bolja, -5 gorih).
+In-domain no-tool redovi NISU pomakli notool (0.25) — model ih ignorise;
+umjesto toga check-then-ask bias se prosirio (service_status umjesto
+direktne akcije: bench-045/046) + nova halucinacija (bench-044
+directory_list). Obrazac kroz gold01->05: svaki behavioral push pomjeri
+negdje drugo (whack-a-mole, isto kao 2B jt25-30 lanac) — LoRA kapacitet
+9B ne drzi sve odjednom.
+Preostale greske se dijele na: (a) principijelne (bench trazi slijepu
+akciju — restart bez provjere; NE trenira se protiv sigurnosti),
+(b) kapacitet. Sljedeca poluga NIJE jos SFT-a: DPO (2x pao na 9B),
+veci mix + full-tune (treba budzet), ili prihvatanje.
+Gold04 (tool 0.70/args 0.885, loop 0.80/strict 0.708) = FINALNI NAJBOLJI 9B.
