@@ -605,3 +605,11 @@ Gold04 (tool 0.70/args 0.885, loop 0.80/strict 0.708) = FINALNI NAJBOLJI 9B.
 
 ## Gold05 pushan na Hub (Q8 + adapter), kartica osvjezena
 Q8 + adapter + in-domain no-tool nalaz dokumentovan. SFT zatvoren.
+
+## 2B-GOLD01 negativan nalaz: subset koji lijeci 9B skodi 2B (2026-11-09)
+Isti gold05 mix (4871) na BOS bazi r16: gate tool 0.50/args 0.462 —
+slabije od v0.5 (0.80/0.808) i v0.4 (0.667/0.731). Uzrok: 2B vec ima
+dijalekt nativno iz joint treninga; uski subset brise sirinu (zaborav).
+Lekcija: ista data strategija ne vrijedi za obje baze — 9B treba
+koncentrisani dijalekt, 2B treba siroki joint mix. v0.5 ostaje produkcija;
+2B subset linija se NE nastavlja.
