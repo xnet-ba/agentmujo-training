@@ -1,8 +1,7 @@
-# 9B-DPO-03 — behavior preference (direktno > listing, plain > tool).
-# 60 parova (14 preciznih + 6 no-tool), baza gold04 adapter (r64 SFT).
-# Za razliku od DPO-01/02 (format parovi, 0 efekta), ovo cilja ponasanje
-# nakon instaliranog formata. beta 0.1, lr 5e-6, 3 epohe (mali set).
-experiment_id: qwen35-9b-dpo-04
+# 9B-DPO-04 — veci behavior set (60 parova: DPO-03 20 + 40 novih).
+# Baza: gold04 adapter (najbolji SFT). Cilj: notool 0.25->vise + zadrzati tool.
+# beta 0.1, lr 5e-6, 2 epohe (60/16 ~ 4 koraka/epoha).
+experiment_id: qwen35-9b-lumi-dpo04
 mode: dpo
 model_name: Qwen/Qwen3.5-9B
 model_revision: c20223623576
@@ -17,7 +16,7 @@ max_prompt_length: 1024
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 16
 learning_rate: 5.0e-6
-num_train_epochs: 3
+num_train_epochs: 2
 warmup_ratio: 0.05
 weight_decay: 0.0
 logging_steps: 1
