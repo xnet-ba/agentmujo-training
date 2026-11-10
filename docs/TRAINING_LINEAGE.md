@@ -648,3 +648,12 @@ ZAKLJUCAK CIJELOG 9B TRAGA: gold06 (SFT gold04 + DPO-03) je vrh —
 gate 0.70/0.846, loop 0.833/0.75. Dalji SFT i DPO se obustavljaju
 uz dokaze; sljedeci leveri bi bili: veci base model, full-tune,
 ili redizajn dijalekta — sve izvan sadasnjeg opsega.
+
+## 9B v1.0 PRODUKCIJA — gold06 live (2026-11-10)
+Odluka: gold06 (gold04 SFT + DPO-03/20) postaje prvi produkcijski 9B.
+Dokazi: gate tool 0.70/args 0.846, loop 0.833/strict 0.75 (najbolji 9B
+u oba protokola); 3 SFT + 2 DPO runde iza, sve commitovano, Q8+adapter
+na Hubu sa pinovanim revizijama (model 9385fd97).
+Ogranicenja u kartici: notool, check-then-ask, bez think-profila.
+SFT i DPO iteracije ostaju zatvorene; sljedeci korak samo uz novu
+hipotezu (veci base, full-tune, ili jaci DPO signal).
