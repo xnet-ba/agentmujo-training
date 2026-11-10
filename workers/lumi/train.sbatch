@@ -34,7 +34,7 @@ if [ ! -f "$PYLIBS/.pins-ok" ]; then
     "transformers==5.19.0" "trl==1.14.2" "peft==0.21.2" \
     "accelerate==1.15.0" "datasets==5.1.0" \
     "huggingface-hub>=0.25" safetensors pyyaml \
-  && rm -rf "$PYLIBS"/torch* "$PYLIBS"/nvidia* "$PYLIBS"/triton* \
+  && rm -rf "$PYLIBS"/torch* "$PYLIBS"/nvidia* "$PYLIBS"/triton* "$PYLIBS"/bitsandbytes* \
   && touch "$PYLIBS/.pins-ok"
 fi
 # Guard: mora biti ROCm torch iz kontejnera, ne PyPI.

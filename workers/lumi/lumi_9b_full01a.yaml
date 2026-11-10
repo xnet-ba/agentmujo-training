@@ -1,0 +1,35 @@
+# 9B-FULL-01 — pilot punog fine-tunea (bez LoRA) na LUMI GCD (64GB).
+# Hipoteza: LoRA kapacitet je plafon (whack-a-mole od gold04); puni SFT
+# bi mogao drzati vise ponasanja odjednom. Ista data kao gold04 (4246
+# dialect-dense redova) radi direktne usporedbe, FRESH sa baze.
+# bf16 + paged_adamw_8bit + grad ckpt (ROCm 7.2, provjereno radi).
+# 2x130 koraka (dev-g), resume izmedju; lr 1e-5 (konzervativno za full).
+experiment_id: qwen35-9b-lumi-full01a
+mode: full
+model_name: Qwen/Qwen3.5-9B
+model_revision: c20223623576
+base_adapter: null
+dataset: local
+data_file: /scratch/project_465003647/agentmujo/gold_v4.jsonl
+split: train
+max_samples: null
+output_dir: /scratch/project_465003647/agentmujo/outputs/9b-lumi-full01
+max_seq_length: 1024
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 0.00001
+num_train_epochs: 1
+warmup_ratio: 0.05
+weight_decay: 0.0
+logging_steps: 5
+save_steps: 65
+save_total_limit: 2
+gradient_checkpointing: true
+load_in_4bit: false
+optim: paged_adamw_8bit
+loss_type: nll
+seed: 37
+max_steps: 130
+resume_from_checkpoint: null
+eval_file: hf://datasets/shaban2024/agentmujo-joint-01@667ce141c4605170746d0540b2ecb891e76e1c0f/data/splits/joint_v0.40/valid.jsonl
+eval_steps: 65
