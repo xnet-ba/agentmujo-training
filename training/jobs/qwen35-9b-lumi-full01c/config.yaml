@@ -19,7 +19,7 @@ num_train_epochs: 1
 optim: paged_adamw_8bit
 output_dir: /scratch/project_465003647/agentmujo/outputs/9b-lumi-full01
 per_device_train_batch_size: 1
-resume_from_checkpoint: /scratch/project_465003647/agentmujo/training/jobs/qwen35-9b-lumi-full01b/outputs/checkpoints/checkpoint-150
+resume_from_checkpoint: /scratch/project_465003647/agentmujo/training/jobs/qwen35-9b-lumi-full01b/outputs/checkpoints/checkpoint-165
 save_steps: 50
 save_total_limit: 2
 seed: 37
