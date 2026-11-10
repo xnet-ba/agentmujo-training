@@ -657,3 +657,9 @@ na Hubu sa pinovanim revizijama (model 9385fd97).
 Ogranicenja u kartici: notool, check-then-ask, bez think-profila.
 SFT i DPO iteracije ostaju zatvorene; sljedeci korak samo uz novu
 hipotezu (veci base, full-tune, ili jaci DPO signal).
+
+## Spec-gate gold06: 0.667 — spec NE pomaze kad format postoji (2026-11-10)
+BS-spec na gold06: tool 0.667 (default 0.70), args 0.692 (default 0.846).
+Isti obrazac kao 2B (spec pomogao samo dok format nije postojao).
+Protokol ostaje default production prompt; spec se arhivira kao
+istorijski alat za formatless modele.
