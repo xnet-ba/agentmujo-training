@@ -1,7 +1,7 @@
 # Benchmark Lab deps — SAMO ono sto Kaggle T4 env nema.
 # torch/CUDA se NE instaliraju (preinstallirani).
 inspect-ai>=0.3
-inspect-evals>=1.0
+inspect-evals>=0.13  # 1.0 ne postoji (v11 dokaz: latest 0.13.1); pin po stvarnosti, ne po osjecaju
 openai>=1.0  # DeepInfra baseline preko openai-providera (base_url override)
 pandas>=2.0
 matplotlib>=3.8
