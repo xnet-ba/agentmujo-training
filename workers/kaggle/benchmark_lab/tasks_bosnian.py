@@ -73,8 +73,8 @@ def bosnian_bench(n: int = 200):
     def bs_scorer():
         async def score(state, target: Target):
             text = (state.output.completion or "").lower()
-            exp = (state.sample.metadata["ocekivano"] or "").lower()
-            ban = state.sample.metadata["zabranjeno"]
+            exp = (state.metadata["ocekivano"] or "").lower()
+            ban = state.metadata["zabranjeno"]
             if ban and ban.lower() in text and exp not in text:
                 return Score(value=0)
             return Score(value=1 if exp in text else 0)

@@ -41,7 +41,7 @@ def fc_bench(cases_path: str = "benchmark/cases_v0.5.jsonl"):
             text = state.output.completion or ""
             m = FUNC_RE.search(text)
             got = m.group(1).lower() if m else None
-            exp = state.sample.metadata["expected_tool"].lower()
+            exp = state.metadata["expected_tool"].lower()
             return Score(value=1 if got == exp else 0)
         return score
 
