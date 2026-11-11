@@ -48,11 +48,22 @@ for k, (repo, fn) in MODELS.items():
     local[k] = p  # /tmp, ne /kaggle/working — GGUF (10-20 GB) ne smije u output
     print(k, "->", p, flush=True)
 
-# server: Ollama (pip llama-cpp-python je CPU-only i bez [server] extraa —
-# zato je v1 pao). Ollama install ~1-2 min, CUDA radi out-of-the-box.
-subprocess.run(["bash", "-lc", "curl -fsSL https://ollama.com/install.sh | sh"], check=True)
+# server: Ollama binarni release (install.sh puca na Kaggleu — v6 dokaz).
+# Verzija preko GitHub API-ja (prazno = latest); pinovati nakon prvog zelenog runa.
+OLLAMA_VER = "__OLLAMA_VER__"
+import json as _json
+if not OLLAMA_VER:
+    _req = urllib.request.Request("https://api.github.com/repos/ollama/ollama/releases/latest",
+                                  headers={"User-Agent": "bench-lab"})
+    OLLAMA_VER = _json.load(urllib.request.urlopen(_req, timeout=30))["tag_name"]
+print("ollama:", OLLAMA_VER, flush=True)
+_tgz = "/tmp/ollama-linux-amd64.tgz"
+_url = "https://github.com/ollama/ollama/releases/download/" + OLLAMA_VER + "/ollama-linux-amd64.tgz"
+subprocess.run(["bash", "-lc", "curl -sSL " + _url + " -o " + _tgz + " && tar xzf " + _tgz
+                + " -C /tmp && chmod +x /tmp/bin/ollama && /tmp/bin/ollama --version"], check=True)
+OLLAMA = "/tmp/bin/ollama"
 ollog = open("/kaggle/working/ollama.log", "w")
-subprocess.Popen(["ollama", "serve"], stdout=ollog, stderr=subprocess.STDOUT)
+subprocess.Popen([OLLAMA, "serve"], stdout=ollog, stderr=subprocess.STDOUT)
 os.environ["OPENAI_BASE_URL"] = "http://127.0.0.1:11434/v1"
 os.environ["OPENAI_API_KEY"] = "ollama"
 
@@ -70,7 +81,7 @@ def ollama_up():
 
 def ensure_model(name, gguf):
     open("/kaggle/working/Modelfile", "w").write("FROM %s\n" % gguf)
-    r = subprocess.run(["ollama", "create", name, "-f", "/kaggle/working/Modelfile"],
+    r = subprocess.run([OLLAMA, "create", name, "-f", "/kaggle/working/Modelfile"],
                        capture_output=True, text=True)
     print((r.stdout + r.stderr)[-300:], flush=True)
     if r.returncode != 0:
@@ -152,6 +163,8 @@ def main() -> int:
     ap.add_argument("--model-b-file", default="")
     ap.add_argument("--model-b-label", default="challenger",
                     help="duel: drugi model u istom kernelu (npr. 4b-dpo01)")
+    ap.add_argument("--ollama-ver", default="",
+                    help="pin Ollama verzije (npr. v0.12.6); prazno = latest sa GitHub API-ja")
     ap.add_argument("--deepinfra-model", default="",
                     help="baseline preko DeepInfra (npr. Qwen/Qwen3.5-9B); prazno = skip, 0 troska")
     ap.add_argument("--kernel-id", default=CONFIG["kernel_id"])
@@ -165,6 +178,7 @@ def main() -> int:
                 .replace("__MODEL_B_FILE__", a.model_b_file)
                 .replace("__MODEL_B_LABEL__", a.model_b_label)
                 .replace("__DI_MODEL__", a.deepinfra_model)
+                .replace("__OLLAMA_VER__", a.ollama_ver)
                 .replace("__GGUF_REPO__", a.gguf_repo)
                 .replace("__GGUF_FILE__", a.gguf_file))
     # sve u try/except: traceback se pise u /kaggle/working/ERROR.txt
