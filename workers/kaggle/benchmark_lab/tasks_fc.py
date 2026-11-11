@@ -27,7 +27,7 @@ def load_fc_cases(cases_path: str | Path):
 def fc_bench(cases_path: str = "benchmark/cases_v0.5.jsonl"):
     from inspect_ai import task, Task
     from inspect_ai.solver import generate
-    from inspect_ai.scorer import Score, Target, scorer
+    from inspect_ai.scorer import Score, Target, accuracy, stderr, scorer
     from inspect_ai.dataset import Sample
 
     cases = load_fc_cases(cases_path)
@@ -35,7 +35,7 @@ def fc_bench(cases_path: str = "benchmark/cases_v0.5.jsonl"):
                       metadata={"expected_tool": c["expected_tool"]})
                for c in cases]
 
-    @scorer(metrics=[])
+    @scorer(metrics=[accuracy(), stderr()])
     def fc_scorer():
         async def score(state, target: Target):
             text = state.output.completion or ""

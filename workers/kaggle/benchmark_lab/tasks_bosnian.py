@@ -61,7 +61,7 @@ def bosnian_bench(n: int = 200):
     """Inspect task; import inspect_ai tek ovdje da modul radi i bez njega."""
     from inspect_ai import task, Task, dataset
     from inspect_ai.solver import generate
-    from inspect_ai.scorer import Score, Target, scorer
+    from inspect_ai.scorer import Score, Target, accuracy, stderr, scorer
     from inspect_ai.dataset import Sample
 
     samples = [Sample(input=s["prompt"], id=s["id"],
@@ -69,7 +69,7 @@ def bosnian_bench(n: int = 200):
                                 "zabranjeno": s["zabranjeno"]})
                for s in build_samples(n)]
 
-    @scorer(metrics=[])
+    @scorer(metrics=[accuracy(), stderr()])
     def bs_scorer():
         async def score(state, target: Target):
             text = (state.output.completion or "").lower()

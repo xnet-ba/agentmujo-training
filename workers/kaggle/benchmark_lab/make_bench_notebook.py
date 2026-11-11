@@ -111,6 +111,15 @@ from tasks_bosnian import bosnian_bench
 from tasks_fc import fc_bench
 
 LIMIT = __LIMIT__
+
+def _acc_of(log):
+    # metrics je dict[str, EvalMetric] (pydantic), ne plain dict — v12 dokaz
+    try:
+        m = (log.results.scores[0].metrics or {})
+        a = m.get("accuracy") if isinstance(m, dict) else None
+        return a.value if hasattr(a, "value") else a
+    except Exception:
+        return None
 TASKS = {"mmlu_pro": mmlu_pro, "gsm8k": gsm8k, "arc": arc_challenge,
          "ifeval": ifeval, "gpqa": gpqa_diamond, "bosnian": bosnian_bench,
          "fc": lambda: fc_bench("agentmujo-training/benchmark/cases_v0.5.jsonl")}
@@ -122,8 +131,7 @@ for name, path in local.items():
     for tname, mk in TASKS.items():
         logs = inspect_eval(mk(), model="openai/" + name, limit=LIMIT if tname != "bosnian" else 200,
                             log_dir=f"/kaggle/working/logs-{name}")
-        sc = logs[0].results.scores[0].metrics if logs and logs[0].results and logs[0].results.scores else {}
-        acc = sc.get("accuracy", {}).get("value", None) if isinstance(sc, dict) else None
+        acc = _acc_of(logs[0]) if logs else None
         all_rows.append({"model": name, "task": tname, "score": acc,
                          "secs": round(time.time() - t0, 1), "gpu_mem_gb": gpu_mem_gb()})
         print(f"[{name}/{tname}] {acc}", flush=True)
@@ -144,8 +152,7 @@ if DI_MODEL:
         for tname, mk in TASKS.items():
             _logs = inspect_eval(mk(), model=_di, limit=LIMIT if tname != "bosnian" else 200,
                                  log_dir="/kaggle/working/logs-deepinfra")
-            _sc = _logs[0].results.scores[0].metrics if _logs and _logs[0].results and _logs[0].results.scores else {}
-            _acc = _sc.get("accuracy", {}).get("value", None) if isinstance(_sc, dict) else None
+            _acc = _acc_of(_logs[0]) if _logs else None
             all_rows.append({"model": "deepinfra:" + DI_MODEL, "task": tname, "score": _acc,
                              "secs": round(time.time() - _t0, 1), "gpu_mem_gb": 0.0})
             print(f"[deepinfra/{tname}] {_acc}", flush=True)
