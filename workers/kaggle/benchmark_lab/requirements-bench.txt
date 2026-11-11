@@ -1,0 +1,8 @@
+# Benchmark Lab deps — SAMO ono sto Kaggle T4 env nema.
+# torch/CUDA se NE instaliraju (preinstallirani).
+inspect-ai>=0.3
+inspect-evals>=1.0
+llama-cpp-python>=0.3
+pandas>=2.0
+matplotlib>=3.8
+huggingface-hub>=0.25
