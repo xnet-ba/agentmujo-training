@@ -2,8 +2,9 @@
 # torch/CUDA se NE instaliraju (preinstallirani).
 inspect-ai>=0.3
 inspect-evals>=1.0
-llama-cpp-python>=0.3
+openai>=1.0  # DeepInfra baseline preko openai-providera (base_url override)
 pandas>=2.0
 matplotlib>=3.8
 huggingface-hub>=0.25
-openai>=1.0  # DeepInfra baseline preko openai-providera (base_url override)
+# Ollama se instalira u kernelu preko install.sh (CUDA radi out-of-the-box).
+# llama-cpp-python je namjerno izbacen: PyPI wheel je CPU-only i bez [server] extraa.

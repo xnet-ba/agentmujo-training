@@ -27,8 +27,8 @@ CONFIG = json.loads((Path(__file__).parent / "bench_lab.json").read_text())
 # Kernel ID se ne smislja rucno — uvijek iz bench_lab.json.
 
 RUN_CELL = r"""
-# 3. Model server (llama.cpp, OpenAI-kompatibilan) + Inspect evals
-import os, subprocess, time, json, glob
+# 3. Model server (Ollama + GGUF, OpenAI-kompatibilan) + Inspect evals
+import os, subprocess, time, json
 import urllib.request
 
 GGUF_REPO = "__GGUF_REPO__"
@@ -50,29 +50,35 @@ for k, (repo, fn) in MODELS.items():
     local[k] = dest
     print(k, "->", dest, flush=True)
 
-# server na 8000 (jedan model odjednom — T4 ima 16 GB)
-os.environ["OPENAI_BASE_URL"] = "http://127.0.0.1:8000/v1"
-os.environ["OPENAI_API_KEY"] = "sk-bench"
-os.environ["LLAMA_ARG_N_CTX"] = "4096"
+# server: Ollama (pip llama-cpp-python je CPU-only i bez [server] extraa —
+# zato je v1 pao). Ollama install ~1-2 min, CUDA radi out-of-the-box.
+subprocess.run(["bash", "-lc", "curl -fsSL https://ollama.com/install.sh | sh"], check=True)
+ollog = open("/kaggle/working/ollama.log", "w")
+subprocess.Popen(["ollama", "serve"], stdout=ollog, stderr=subprocess.STDOUT)
+os.environ["OPENAI_BASE_URL"] = "http://127.0.0.1:11434/v1"
+os.environ["OPENAI_API_KEY"] = "ollama"
 
-def start_server(gguf_path):
-    subprocess.run(["pkill", "-f", "llama_cpp.server"], capture_output=True)
-    time.sleep(3)
-    log = open("/kaggle/working/llama.log", "w")
-    subprocess.Popen(["python", "-m", "llama_cpp.server",
-                      "--model", gguf_path, "--port", "8000",
-                      "--n_ctx", "4096", "--n_gpu_layers", "-1"],
-                     stdout=log, stderr=subprocess.STDOUT)
-    for _ in range(60):
+def ollama_up():
+    for _ in range(30):
         time.sleep(10)
         try:
-            r = urllib.request.urlopen("http://127.0.0.1:8000/v1/models", timeout=5)
-            if r.status == 200:
-                print("server OK:", gguf_path, flush=True)
+            req = urllib.request.Request("http://127.0.0.1:11434/api/tags")
+            if urllib.request.urlopen(req, timeout=5).status == 200:
+                print("ollama OK", flush=True)
                 return
-        except Exception as e:
-            print("cekanje servera...", flush=True)
-    raise RuntimeError("llama server se nije digao (vidi llama.log)")
+        except Exception:
+            print("cekanje ollame...", flush=True)
+    raise RuntimeError("ollama se nije digla (vidi ollama.log)")
+
+def ensure_model(name, gguf):
+    open("/kaggle/working/Modelfile", "w").write("FROM %s\n" % gguf)
+    r = subprocess.run(["ollama", "create", name, "-f", "/kaggle/working/Modelfile"],
+                       capture_output=True, text=True)
+    print((r.stdout + r.stderr)[-300:], flush=True)
+    if r.returncode != 0:
+        raise RuntimeError("ollama create fail: " + (r.stderr or "")[-500:])
+
+ollama_up()
 
 # brzina + memorija
 import torch
@@ -97,10 +103,10 @@ TASKS = {"mmlu_pro": mmlu_pro, "gsm8k": gsm8k, "arc": arc_challenge,
 
 all_rows = []
 for name, path in local.items():
-    start_server(path)
+    ensure_model(name, path)
     t0 = time.time()
     for tname, mk in TASKS.items():
-        logs = inspect_eval(mk(), model="openai/tuned", limit=LIMIT if tname != "bosnian" else 200,
+        logs = inspect_eval(mk(), model="openai/" + name, limit=LIMIT if tname != "bosnian" else 200,
                             log_dir=f"/kaggle/working/logs-{name}")
         sc = logs[0].results.scores[0].metrics if logs and logs[0].results and logs[0].results.scores else {}
         acc = sc.get("accuracy", {}).get("value", None) if isinstance(sc, dict) else None
@@ -134,6 +140,9 @@ import pandas as pd
 df = pd.DataFrame(all_rows)
 df.to_csv("/kaggle/working/bench_results.csv", index=False)
 print(df.to_string())
+import shutil
+shutil.rmtree("/kaggle/working/models", ignore_errors=True)  # GGUF van outputa (9-10 GB)
+print("modeli obrisani iz workinga; ostaju csv/html/png + logovi")
 """
 
 
@@ -179,12 +188,12 @@ def main() -> int:
     cells = [
         {"cell_type": "markdown", "metadata": {}, "source": [
             "# AgentMujo Benchmark Lab (kagyl-gpu-tester)\n",
-            "Q8 GGUF → llama.cpp → Inspect AI (mmlu_pro, gsm8k, arc, ifeval, gpqa, bosnian-200, fc) → CSV/HTML.\n",
+            "Q8 GGUF → Ollama (CUDA) → Inspect AI (mmlu_pro, gsm8k, arc, ifeval, gpqa, bosnian-200, fc) → CSV/HTML.\n",
             f"Limit po tasku: {a.limit} (bosanski uvijek 200). Model B: {a.model_b_label or '-tuned-only-'}."]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Repo + deps (~6 min prvi put)\n",
             "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
-            "%pip install -q llama-cpp-python inspect-ai inspect-evals pandas matplotlib huggingface-hub\n",
+            "%pip install -q inspect-ai inspect-evals openai pandas matplotlib huggingface-hub\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 1. GPU preflight (T4 16 GB, Q8 staje; BF16 NE staje)\n",
