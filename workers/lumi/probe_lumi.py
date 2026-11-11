@@ -3,6 +3,7 @@
 Upotreba: python probe_lumi.py <adapter-dir> <out.json>
 """
 import json
+import os
 import sys
 import torch
 
@@ -48,10 +49,21 @@ model.eval()
 
 
 def gen(prompt, max_new=200):
-    text_in = tok.apply_chat_template(
-        [{"role": "system", "content": SYSTEM},
-         {"role": "user", "content": prompt}],
-        tokenize=False, add_generation_prompt=True)
+    msgs = [{"role": "system", "content": SYSTEM},
+            {"role": "user", "content": prompt}]
+    # PROBE_THINKING=1 ostavlja default (thinking); inace se thinking gasi
+    # da proba mjeri format-znanje, a ne thinking-naviku (Qwen3.5).
+    if os.environ.get("PROBE_THINKING", "0") == "1":
+        text_in = tok.apply_chat_template(
+            msgs, tokenize=False, add_generation_prompt=True)
+    else:
+        try:
+            text_in = tok.apply_chat_template(
+                msgs, tokenize=False, add_generation_prompt=True,
+                enable_thinking=False)
+        except TypeError:
+            text_in = tok.apply_chat_template(
+                msgs, tokenize=False, add_generation_prompt=True)
     inp = tok([text_in], return_tensors="pt").to(model.device)
     with torch.no_grad():
         out = model.generate(**inp, max_new_tokens=max_new, temperature=0.0,
@@ -60,24 +72,31 @@ def gen(prompt, max_new=200):
 
 
 fmt_ok = 0
+results = {"adapter": ADAPTER,
+           "thinking": os.environ.get("PROBE_THINKING", "0") == "1",
+           "format": [], "ask": [], "bosnian": []}
 for p in FORMAT_PROMPTS:
     t = gen(p)
     _, _, st = parse_call(t)
     ok = st == "ok"
     fmt_ok += ok
+    results["format"].append({"prompt": p, "ok": ok, "status": st,
+                              "text": t[:2000]})
     print(f"{'OK ' if ok else 'FAIL'} [{st}] :: {t[:110]!r}", flush=True)
 
 print("--- ASK (info) ---", flush=True)
 for p in ASK_PROMPTS:
     t = gen(p, 150)
     _, _, st = parse_call(t)
+    results["ask"].append({"prompt": p, "status": st, "text": t[:2000]})
     print(f"ASK [{st}] :: {t[:110]!r}", flush=True)
 
 print("--- BOSNIAN (info) ---", flush=True)
 for p in BOSNIAN_PROMPTS:
     t = gen(p, 150)
+    results["bosnian"].append({"prompt": p, "text": t[:2000]})
     print(f"BOS :: {t[:110]!r}", flush=True)
 
 print(f"\nFORMAT SCORE: {fmt_ok}/{len(FORMAT_PROMPTS)}")
-json.dump({"format": [fmt_ok, len(FORMAT_PROMPTS)]},
-          open(OUT, "w"), ensure_ascii=False)
+results["score"] = [fmt_ok, len(FORMAT_PROMPTS)]
+json.dump(results, open(OUT, "w"), ensure_ascii=False)
