@@ -57,9 +57,9 @@ if not OLLAMA_VER:
                                   headers={"User-Agent": "bench-lab"})
     OLLAMA_VER = _json.load(urllib.request.urlopen(_req, timeout=30))["tag_name"]
 print("ollama:", OLLAMA_VER, flush=True)
-_tgz = "/tmp/ollama-linux-amd64.tgz"
-_url = "https://github.com/ollama/ollama/releases/download/" + OLLAMA_VER + "/ollama-linux-amd64.tgz"
-subprocess.run(["bash", "-lc", "curl -sSL " + _url + " -o " + _tgz + " && tar xzf " + _tgz
+_tgz = "/tmp/ollama-linux-amd64.tar.zst"
+_url = "https://github.com/ollama/ollama/releases/download/" + OLLAMA_VER + "/ollama-linux-amd64.tar.zst"
+subprocess.run(["bash", "-lc", "curl -sSL " + _url + " -o " + _tgz + " && tar -I zstd -xf " + _tgz
                 + " -C /tmp && chmod +x /tmp/bin/ollama && /tmp/bin/ollama --version"], check=True)
 OLLAMA = "/tmp/bin/ollama"
 ollog = open("/kaggle/working/ollama.log", "w")
@@ -163,8 +163,8 @@ def main() -> int:
     ap.add_argument("--model-b-file", default="")
     ap.add_argument("--model-b-label", default="challenger",
                     help="duel: drugi model u istom kernelu (npr. 4b-dpo01)")
-    ap.add_argument("--ollama-ver", default="",
-                    help="pin Ollama verzije (npr. v0.12.6); prazno = latest sa GitHub API-ja")
+    ap.add_argument("--ollama-ver", default="v0.40.16",
+                    help="pin Ollama verzije (default v0.40.16, verificirano 2026-11-11)")
     ap.add_argument("--deepinfra-model", default="",
                     help="baseline preko DeepInfra (npr. Qwen/Qwen3.5-9B); prazno = skip, 0 troska")
     ap.add_argument("--kernel-id", default=CONFIG["kernel_id"])
