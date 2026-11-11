@@ -6,3 +6,4 @@ llama-cpp-python>=0.3
 pandas>=2.0
 matplotlib>=3.8
 huggingface-hub>=0.25
+openai>=1.0  # DeepInfra baseline preko openai-providera (base_url override)
