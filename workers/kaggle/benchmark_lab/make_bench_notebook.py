@@ -219,7 +219,7 @@ def main() -> int:
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Repo + deps (~6 min prvi put)\n",
             "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
-            "%pip install -q inspect-ai inspect-evals openai pandas matplotlib huggingface-hub zstandard\n",
+            "%pip install -q inspect-ai inspect-evals pandas matplotlib huggingface-hub zstandard openai>=3.4.0\n",
             "%pip install -q git+https://github.com/josejg/instruction_following_eval.git  # ifeval dep\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
