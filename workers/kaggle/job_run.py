@@ -419,6 +419,7 @@ def _train_dpo(cfg: dict, out: Path) -> dict:
         "gradient_accumulation_steps": cfg.get("gradient_accumulation_steps", 16),
         "learning_rate": cfg.get("learning_rate", 5e-6),
         "num_train_epochs": cfg.get("num_train_epochs", 1),
+        "max_steps": cfg.get("max_steps", -1),
         "warmup_ratio": cfg.get("warmup_ratio", 0.05),
         "weight_decay": cfg.get("weight_decay", 0.0),
         "logging_steps": cfg.get("logging_steps", 5),
@@ -441,7 +442,7 @@ def _train_dpo(cfg: dict, out: Path) -> dict:
     except TypeError:
         trainer = DPOTrainer(model=model, args=args, train_dataset=ds,
                              peft_config=peft_cfg, tokenizer=tok)
-    trainer.train()
+    trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
     trainer.save_model(str(out / "adapter"))
     tr = _summarize_history(trainer.state.log_history)
     metrics = {"mode": "dpo", **tr,
