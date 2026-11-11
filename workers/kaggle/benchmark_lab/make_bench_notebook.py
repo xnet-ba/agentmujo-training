@@ -44,11 +44,9 @@ if MODEL_B_REPO:
     MODELS[MODEL_B_LABEL or "challenger"] = (MODEL_B_REPO, MODEL_B_FILE)
 local = {}
 for k, (repo, fn) in MODELS.items():
-    p = hf_hub_download(repo, fn, local_dir="/kaggle/working/models")
-    dest = "/kaggle/working/models/%s-%s" % (k, fn)  # razlicita imena, T4 skida sekvencijalno
-    shutil.copy(p, dest)
-    local[k] = dest
-    print(k, "->", dest, flush=True)
+    p = hf_hub_download(repo, fn, local_dir="/kaggle/working/models/%s" % k)
+    local[k] = p  # direktno preuzeti put, bez kopije (dupla kopija puni Kaggle disk)
+    print(k, "->", p, flush=True)
 
 # server: Ollama (pip llama-cpp-python je CPU-only i bez [server] extraa —
 # zato je v1 pao). Ollama install ~1-2 min, CUDA radi out-of-the-box.
@@ -194,6 +192,7 @@ def main() -> int:
             "# 0. Repo + deps (~6 min prvi put)\n",
             "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
             "%pip install -q inspect-ai inspect-evals openai pandas matplotlib huggingface-hub\n",
+            "%pip install -q git+https://github.com/josejg/instruction_following_eval.git  # ifeval dep\n",
         ]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 1. GPU preflight (T4 16 GB, Q8 staje; BF16 NE staje)\n",

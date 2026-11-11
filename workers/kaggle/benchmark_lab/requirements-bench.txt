@@ -8,3 +8,4 @@ matplotlib>=3.8
 huggingface-hub>=0.25
 # Ollama se instalira u kernelu preko install.sh (CUDA radi out-of-the-box).
 # llama-cpp-python je namjerno izbacen: PyPI wheel je CPU-only i bez [server] extraa.
+# ifeval dep (nema PyPI): git+https://github.com/josejg/instruction_following_eval.git
