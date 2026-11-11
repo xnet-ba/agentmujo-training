@@ -44,8 +44,8 @@ if MODEL_B_REPO:
     MODELS[MODEL_B_LABEL or "challenger"] = (MODEL_B_REPO, MODEL_B_FILE)
 local = {}
 for k, (repo, fn) in MODELS.items():
-    p = hf_hub_download(repo, fn, local_dir="/kaggle/working/models/%s" % k)
-    local[k] = p  # direktno preuzeti put, bez kopije (dupla kopija puni Kaggle disk)
+    p = hf_hub_download(repo, fn, local_dir="/tmp/models/%s" % k)
+    local[k] = p  # /tmp, ne /kaggle/working — GGUF (10-20 GB) ne smije u output
     print(k, "->", p, flush=True)
 
 # server: Ollama (pip llama-cpp-python je CPU-only i bez [server] extraa —
@@ -139,8 +139,8 @@ df = pd.DataFrame(all_rows)
 df.to_csv("/kaggle/working/bench_results.csv", index=False)
 print(df.to_string())
 import shutil
-shutil.rmtree("/kaggle/working/models", ignore_errors=True)  # GGUF van outputa (9-10 GB)
-print("modeli obrisani iz workinga; ostaju csv/html/png + logovi")
+shutil.rmtree("/tmp/models", ignore_errors=True)  # oslobodi disk; u outputu ostaju csv/html/png/logovi
+print("modeli obrisani; ostaju csv/html/png + logovi")
 """
 
 
@@ -167,6 +167,15 @@ def main() -> int:
                 .replace("__DI_MODEL__", a.deepinfra_model)
                 .replace("__GGUF_REPO__", a.gguf_repo)
                 .replace("__GGUF_FILE__", a.gguf_file))
+    # sve u try/except: traceback se pise u /kaggle/working/ERROR.txt
+    # (mali output, moze se skinuti; modeli su u /tmp pa output ostaje lagan)
+    run_cell = ("import traceback as _tb\ntry:\n"
+                + "\n".join(("    " + ln if ln.strip() else ln)
+                             for ln in run_cell.splitlines())
+                + "\nexcept Exception:\n"
+                + "    open('/kaggle/working/ERROR.txt', 'w').write(_tb.format_exc())\n"
+                + "    print(open('/kaggle/working/ERROR.txt').read(), flush=True)\n"
+                + "    raise")
 
     report_cell = "\n".join([
         "# 4. Grafovi + HTML izvjestaj",
