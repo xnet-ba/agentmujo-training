@@ -21,13 +21,17 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 
+CONFIG = json.loads((Path(__file__).parent / "bench_lab.json").read_text())
+# Pravilo (pinovano): baseline poredjenje SAMO jednom, poslije samo tuned.
+# Kernel ID se ne smislja rucno — uvijek iz bench_lab.json.
+
 RUN_CELL = r"""
 # 3. Model server (llama.cpp, OpenAI-kompatibilan) + Inspect evals
 import os, subprocess, time, json, glob
 import urllib.request
 
-GGUF_REPO = "shaban2024/Qwen3.5-9B-BOS-Q8-NonThinking"
-GGUF_FILE = "model-q8-gold06.gguf"  # pin: v1.0 live Q8
+GGUF_REPO = "__GGUF_REPO__"
+GGUF_FILE = "__GGUF_FILE__"  # pin iz bench_lab.json; novi model = novi fajl
 BASE_GGUF_REPO = "shaban2024/Qwen3.5-9B-Base-Q8"  # samo uz --compare-base
 COMPARE = __COMPARE__
 
@@ -110,12 +114,18 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--limit", type=int, default=100)
-    ap.add_argument("--compare-base", action="store_true")
-    ap.add_argument("--kernel-id", default="admiragic/qwen35-bench-lab")
+    ap.add_argument("--compare-base", action="store_true",
+                    help="JEDNOM za baseline; poslije samo tuned (vidi bench_lab.json)")
+    ap.add_argument("--kernel-id", default=CONFIG["kernel_id"])
+    ap.add_argument("--gguf-repo", default=CONFIG["gguf_repo"])
+    ap.add_argument("--gguf-file", default=CONFIG["gguf_file"],
+                    help="novi model = samo promijeni fajl, kernel ostaje isti")
     a = ap.parse_args()
 
-    run_cell = RUN_CELL.replace("__LIMIT__", str(a.limit)).replace(
-        "__COMPARE__", "True" if a.compare_base else "False")
+    run_cell = (RUN_CELL.replace("__LIMIT__", str(a.limit))
+                .replace("__COMPARE__", "True" if a.compare_base else "False")
+                .replace("__GGUF_REPO__", a.gguf_repo)
+                .replace("__GGUF_FILE__", a.gguf_file))
 
     report_cell = "\n".join([
         "# 4. Grafovi + HTML izvjestaj",
