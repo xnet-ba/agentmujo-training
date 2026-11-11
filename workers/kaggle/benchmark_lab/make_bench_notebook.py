@@ -7,7 +7,8 @@ pandas agregacija -> results.csv + bench_report.html u /kaggle/working.
 
 Upotreba:
   python workers/kaggle/benchmark_lab/make_bench_notebook.py \
-    --out-dir /tmp/kaggle_bench --limit 100 [--compare-base]
+    --out-dir /tmp/kaggle_bench --limit 100 \
+    [--model-b-repo REPO --model-b-file FILE --model-b-label LABEL]
 
 Vrijeme generisanja lokalno: ~5 s. Vrijeme izvrsavanja na Kaggle T4:
   ~10 min setup + ~60-90 min eval (1 model, limit 100) po modelu.
@@ -32,16 +33,22 @@ import urllib.request
 
 GGUF_REPO = "__GGUF_REPO__"
 GGUF_FILE = "__GGUF_FILE__"  # pin iz bench_lab.json; novi model = novi fajl
-BASE_GGUF_REPO = "shaban2024/Qwen3.5-9B-Base-Q8"  # samo uz --compare-base
-COMPARE = __COMPARE__
+MODEL_B_REPO = "__MODEL_B_REPO__"  # prazno = samo tuned (politika poslije baselinea)
+MODEL_B_FILE = "__MODEL_B_FILE__"
+MODEL_B_LABEL = "__MODEL_B_LABEL__"
 
 from huggingface_hub import hf_hub_download
+import shutil
 MODELS = {"tuned": (GGUF_REPO, GGUF_FILE)}
-if COMPARE:
-    MODELS["base"] = (BASE_GGUF_REPO, GGUF_FILE)
+if MODEL_B_REPO:
+    MODELS[MODEL_B_LABEL or "challenger"] = (MODEL_B_REPO, MODEL_B_FILE)
+local = {}
 for k, (repo, fn) in MODELS.items():
     p = hf_hub_download(repo, fn, local_dir="/kaggle/working/models")
-    print(k, "->", p, flush=True)
+    dest = "/kaggle/working/models/%s-%s" % (k, fn)  # razlicita imena, T4 skida sekvencijalno
+    shutil.copy(p, dest)
+    local[k] = dest
+    print(k, "->", dest, flush=True)
 
 # server na 8000 (jedan model odjednom — T4 ima 16 GB)
 os.environ["OPENAI_BASE_URL"] = "http://127.0.0.1:8000/v1"
@@ -90,8 +97,7 @@ TASKS = {"mmlu_pro": mmlu_pro(), "gsm8k": gsm8k(), "arc": arc_challenge(),
          "fc": fc_bench("agentmujo-training/benchmark/cases_v0.5.jsonl")}
 
 all_rows = []
-for name, path in [("tuned", "/kaggle/working/models/" + GGUF_FILE)] + \
-        ([("base", "/kaggle/working/models/base-" + GGUF_FILE)] if COMPARE else []):
+for name, path in local.items():
     start_server(path)
     t0 = time.time()
     for tname, t in TASKS.items():
@@ -114,8 +120,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--limit", type=int, default=100)
-    ap.add_argument("--compare-base", action="store_true",
-                    help="JEDNOM za baseline; poslije samo tuned (vidi bench_lab.json)")
+    ap.add_argument("--model-b-repo", default="")
+    ap.add_argument("--model-b-file", default="")
+    ap.add_argument("--model-b-label", default="challenger",
+                    help="duel: drugi model u istom kernelu (npr. 4b-dpo01)")
     ap.add_argument("--kernel-id", default=CONFIG["kernel_id"])
     ap.add_argument("--gguf-repo", default=CONFIG["gguf_repo"])
     ap.add_argument("--gguf-file", default=CONFIG["gguf_file"],
@@ -123,7 +131,9 @@ def main() -> int:
     a = ap.parse_args()
 
     run_cell = (RUN_CELL.replace("__LIMIT__", str(a.limit))
-                .replace("__COMPARE__", "True" if a.compare_base else "False")
+                .replace("__MODEL_B_REPO__", a.model_b_repo)
+                .replace("__MODEL_B_FILE__", a.model_b_file)
+                .replace("__MODEL_B_LABEL__", a.model_b_label)
                 .replace("__GGUF_REPO__", a.gguf_repo)
                 .replace("__GGUF_FILE__", a.gguf_file))
 
@@ -146,7 +156,7 @@ def main() -> int:
         {"cell_type": "markdown", "metadata": {}, "source": [
             "# AgentMujo Benchmark Lab (kagyl-gpu-tester)\n",
             "Q8 GGUF → llama.cpp → Inspect AI (mmlu_pro, gsm8k, arc, ifeval, gpqa, bosnian-200, fc) → CSV/HTML.\n",
-            f"Limit po tasku: {a.limit} (bosanski uvijek 200). Compare-base: {a.compare_base}."]},
+            f"Limit po tasku: {a.limit} (bosanski uvijek 200). Model B: {a.model_b_label or '-tuned-only-'}."]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Repo + deps (~6 min prvi put)\n",
             "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
