@@ -663,3 +663,13 @@ BS-spec na gold06: tool 0.667 (default 0.70), args 0.692 (default 0.846).
 Isti obrazac kao 2B (spec pomogao samo dok format nije postojao).
 Protokol ostaje default production prompt; spec se arhivira kao
 istorijski alat za formatless modele.
+
+## Full-tune pilot: NEGATIVAN nalaz — gold06 ostaje v1.0 (2026-11-11)
+Puni SFT (302 koraka, eval 1.899 vs LoRA 2.025) NE prenosi se u ponasanje:
+gate full01 vs gold06 — tool 0.52<0.70, args 0.682<0.846, safety 0.6<0.857,
+refusal 0.5<?; bolji samo multi_step 1.0>0.75 i no_tool 1.0>0.50.
+Hipoteza o LoRA plafonu ODBIJENA za ovaj data-mix: full-tune je pojeo
+preciznost alata za chitchat/no-tool. Moguce: lr 1e-5 preagresivan za full
+tezine, ili dialect-dense subset bez dovoljno FC kontrasta.
+Sljedeci pravac (kad se LUMI vrati): DPO na gold06 (radi), ne veci full-tune.
+Q8: /tmp/opencode/model-q8-full01.gguf (block 32/32, --no-nextn konverzija).

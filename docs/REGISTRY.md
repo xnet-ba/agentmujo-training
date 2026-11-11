@@ -16,6 +16,9 @@
 | qwen35-9b-lumi-dpo03 | adapter: ...s/qwen35-9b-lumi-gold04b/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-dpo04 | adapter: ...s/qwen35-9b-lumi-gold04b/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-dpo06 | adapter: ...s/qwen35-9b-lumi-gold04b/outputs/adapter | local | - | created |
+| qwen35-9b-lumi-full01a | adapter: ...null | local | - | created |
+| qwen35-9b-lumi-full01b | adapter: ...null | local | - | created |
+| qwen35-9b-lumi-full01c | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03 | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03a | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold03b | adapter: ...null | local | - | created |
@@ -106,6 +109,7 @@
 | results_9b_prober64.json | results_9b_prober64 | tool=- arg=- safe=- task=- |
 | results_9b_probfmt.json | results_9b_probfmt | tool=- arg=- safe=- task=- |
 | results_9bg06_spec_llama_nonthink.json | llama-server-nonthink | tool=0.667 arg=0.692 safe=0.857 task=- |
+| results_9bgfull01_llama_nonthink.json | llama-server-nonthink | tool=0.52 arg=0.682 safe=0.6 task=- |
 | results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_4bdpo01_nonthink.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_9bgold02_nonthink.json | agentmujo-9b-gold02-nonthink-agentloop | tool=0.667 arg=1.0 safe=0.714 task=0.979 |
