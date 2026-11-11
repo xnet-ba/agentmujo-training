@@ -79,3 +79,41 @@ def test_loop_incomplete_recovers():
     tr = run("Cpu?", _eng(), chat_fn=lambda msgs: next(script))
     assert tr.stopped == "done"
     assert tr.steps[0]["policy"] == "incomplete"
+
+
+def test_parse_json_tool_fallback_09e():
+    # Stvarni 09e probe-izlazi (nonthink): semantika tacna, omotac JSON.
+    tool, args, status = parse_call(
+        'Provjeravam status servisa `nginx` koristeći alat `service_status`.\n\n'
+        '```json\n{\n  "tool": "service_status",\n  "arguments": {\n'
+        '    "service": "nginx"\n  }\n}\n```')
+    assert status == "ok" and tool == "service_status" and args == {"service": "nginx"}
+    tool, args, status = parse_call(
+        '```json\n{\n  "tool": "port_check",\n  "arguments": {\n    "port": 22\n  }\n}\n```')
+    assert status == "ok" and args == {"port": 22} and isinstance(args["port"], int)
+    tool, args, status = parse_call(
+        '```json\n{\n  "tool": "port_check",\n  "arguments": {\n    "port": "443"\n  }\n}\n```')
+    assert status == "ok" and args == {"port": 443} and isinstance(args["port"], int)
+
+
+def test_parse_json_tool_top_level_and_data_args():
+    # package_install: argument na top-levelu bez "arguments" kljuca.
+    tool, args, status = parse_call(
+        '```json\n{\n  "tool": "package_install",\n  "package": "htop"\n}\n```')
+    assert status == "ok" and tool == "package_install" and args == {"package": "htop"}
+    # memory_usage: status/data se ignorisu, argumenti prazni.
+    tool, args, status = parse_call(
+        '```json\n{\n  "tool": "memory_usage",\n  "status": "success",\n'
+        '  "data": {"free_mb": 4096}\n}\n```')
+    assert status == "ok" and tool == "memory_usage" and args == {}
+    # Los JSON blok ili ne-JSON sadrzaj ostaje "none", ne "ok".
+    assert parse_call('```json\n{neispravno}\n```')[2] == "none"
+    assert parse_call('```bash\nmemory_usage()\n```')[2] == "none"
+
+
+def test_parse_canonical_beats_json():
+    # Kad oba postoje, kanonski ima prednost (postojeci ugovor).
+    tool, args, status = parse_call(
+        '<tool_call><function=service_status><parameter=service>nginx</parameter></function></tool_call>\n'
+        '```json\n{"tool": "port_check", "arguments": {"port": 22}}\n```')
+    assert status == "ok" and tool == "service_status" and args == {"service": "nginx"}

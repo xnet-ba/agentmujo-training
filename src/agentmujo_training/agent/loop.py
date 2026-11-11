@@ -16,6 +16,7 @@ PARAM_RE = re.compile(r"<parameter=([a-z_][a-z0-9_]*)>(.*?)</parameter>", re.IGN
 OPEN_CALL_RE = re.compile(r"<tool_call>", re.IGNORECASE)
 CLOSE_CALL_RE = re.compile(r"</tool_call>", re.IGNORECASE)
 OPEN_FUNC_RE = re.compile(r"<function=", re.IGNORECASE)
+JSON_TOOL_RE = re.compile(r"```json\s*(\{.*\})\s*```", re.IGNORECASE | re.DOTALL)
 INT_ARGS = {"port", "lines", "limit", "timeout_s"}
 
 SYSTEM = (
@@ -57,6 +58,9 @@ def parse_call(text: str):
     has_func_eq = bool(OPEN_FUNC_RE.search(text))
     m = FUNC_RE.search(text)
     if not m and not has_open and not has_func_eq:
+        jtool, jargs = _parse_json_tool(text)
+        if jtool is not None:
+            return jtool, jargs, "ok"
         if PARAM_RE.search(text):
             return None, None, "malformed"
         return None, None, "none"
@@ -69,6 +73,37 @@ def parse_call(text: str):
         v = v.strip()
         args[k] = int(v) if k in INT_ARGS and v.isdigit() else v
     return m.group(1), args, "ok"
+
+
+def _parse_json_tool(text: str):
+    """Fallback za modele koji alat renderuju kao ```json {"tool":..}
+    umjesto kanonskog <tool_call> (vidjeno kod 9B DPO: semantika tacna,
+    omotac JSON). Vraca (tool, args) ili (None, None). Strogo: samo
+    ogradjeni blok sa string kljucem "tool"; ostalo je "none".
+    """
+    m = JSON_TOOL_RE.search(text or "")
+    if not m:
+        return None, None
+    try:
+        obj = json.loads(m.group(1))
+    except ValueError:
+        return None, None
+    if not isinstance(obj, dict):
+        return None, None
+    tool = obj.get("tool")
+    if not isinstance(tool, str) or not re.fullmatch(r"[a-z_][a-z0-9_]*", tool, re.IGNORECASE):
+        return None, None
+    raw = obj.get("arguments", obj.get("parameters"))
+    if raw is None:
+        raw = {k: v for k, v in obj.items()
+               if k not in ("tool", "status", "data", "result")}
+    if not isinstance(raw, dict):
+        return None, None
+    args: dict = {}
+    for k, v in raw.items():
+        v = v.strip() if isinstance(v, str) else v
+        args[k] = int(v) if k in INT_ARGS and isinstance(v, str) and v.isdigit() else v
+    return tool, args
 
 
 def chat_ollama(model: str, messages: list[dict], think: bool, max_tokens: int = 512) -> str:
