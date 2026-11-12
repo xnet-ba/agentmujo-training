@@ -21,6 +21,7 @@ export REPO=/scratch/project_465003647/agentmujo/repo
 LLAMACPP_BIN="$(dirname "$MODEL")/llama.cpp/build/bin"
 cd "$REPO" && git pull -q 2>/dev/null || echo "WARN: git pull nije uspio"
 "$LLAMACPP_BIN/llama-server" -m "$MODEL" --port 8899 -c 4096 \
+  --reasoning off \
   --n-gpu-layers 0 -t 32 > "$(dirname "$OUT")/bench_server.log" 2>&1 &
 SRV=$!
 for i in $(seq 1 60); do
