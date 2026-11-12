@@ -21,6 +21,7 @@ sys.path.insert(0, str(REPO / "benchmark"))
 from agentmujo_training.benchmark import load_cases, score_prediction  # noqa: E402
 import two_step_eval  # noqa: E402
 from two_step_eval import FUNC_RE, INT_ARGS  # noqa: E402
+from agentmujo_training.agent.loop import _parse_json_tool  # noqa: E402 (9B DPO: JSON omotac)
 import bench_prod  # noqa: E402  (postavlja produkcijski SYSTEM na two_step_eval.SYSTEM)
 import os as _os
 _SYSTEM_FILE = _os.environ.get("LLAMA_BENCH_SYSTEM_FILE")
@@ -43,14 +44,17 @@ def chat(endpoint: str, messages: list[dict], max_tokens: int, timeout: int = 60
 
 def parse(text: str):
     m = FUNC_RE.search(text or "")
-    if not m:
-        return None, None
-    args: dict = {}
-    import re as _re
-    for k, v in _re.findall(r"<parameter=([a-z_][a-z0-9_]*)>(.*?)</parameter>", text, _re.IGNORECASE | _re.DOTALL):
-        v = v.strip()
-        args[k] = int(v) if k in INT_ARGS and v.isdigit() else v
-    return m.group(1), args
+    if m:
+        args: dict = {}
+        import re as _re
+        for k, v in _re.findall(r"<parameter=([a-z_][a-z0-9_]*)>(.*?)</parameter>", text, _re.IGNORECASE | _re.DOTALL):
+            v = v.strip()
+            args[k] = int(v) if k in INT_ARGS and v.isdigit() else v
+        return m.group(1), args
+    jtool, jargs = _parse_json_tool(text)
+    if jtool is not None:
+        return jtool, jargs
+    return None, None
 
 
 def main() -> int:
