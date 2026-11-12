@@ -16,6 +16,9 @@ OUTDIR="${2:?upotreba: sbatch gguf.sbatch <merged-dir> <out-dir>}"
 LLAMACPP_REF="${LLAMACPP_REF:-87f9c82}"
 module purge
 module load Local-LAIF lumi-aif-singularity-bindings || true
+# Sistemski GCC 7.5 ne moze kompajlirati novi llama.cpp (AVX intrinsics):
+# native GCC 13.2 za CPU build.
+module load gcc-native/13.2
 export SIF=/appl/local/laifs/containers/lumi-multitorch-latest.sif
 export REPO=/scratch/project_465003647/agentmujo/repo
 mkdir -p "$OUTDIR"
@@ -27,7 +30,9 @@ if [ ! -d "$OUTDIR/llama.cpp" ]; then
   git clone --filter=blob:none https://github.com/ggml-org/llama.cpp.git "$OUTDIR/llama.cpp"
   (cd "$OUTDIR/llama.cpp" && git checkout "$LLAMACPP_REF")
 fi
-# Build van kontejnera (host toolchain + cmake); ROCm kontejner ne treba za CPU.
+# Build van kontejnera (host toolchain + cmake). Build dir se uvijek cisti
+# da cmake ne bi zadrzao stari compiler iz prethodnog pokusaja.
+rm -rf "$OUTDIR/llama.cpp/build"
 cmake -S "$OUTDIR/llama.cpp" -B "$OUTDIR/llama.cpp/build" \
   -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release > "$OUTDIR/cmake.log" 2>&1
 cmake --build "$OUTDIR/llama.cpp/build" --config Release -j 32 \
