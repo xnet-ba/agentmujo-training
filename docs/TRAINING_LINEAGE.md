@@ -673,3 +673,19 @@ preciznost alata za chitchat/no-tool. Moguce: lr 1e-5 preagresivan za full
 tezine, ili dialect-dense subset bez dovoljno FC kontrasta.
 Sljedeci pravac (kad se LUMI vrati): DPO na gold06 (radi), ne veci full-tune.
 Q8: /tmp/opencode/model-q8-full01.gguf (block 32/32, --no-nextn konverzija).
+
+## 9B DPO-v09: 1500 agentic parova — semantika DA, omotac NE (2026-11-11/12)
+Baza 09a/b/cpogresno postavljena na dpo03 (plain>tool DPO slomio format:
+proba 0/10 + thinking-navika). Usporedna proba: gold04b-ckpt302 daje
+10/10 kanonski — format netaknut na SFT bazi. Lanac rebaziran: 09d
+(max_steps 48, gold04b-302) + 09e (resume ckpt-48 do kraja epohe).
+Usputni bug-fix: job_run DPO ignorisao max_steps/resume_from_checkpoint
+(09a otisla punih 94 umjesto 32) — postuje se i resume, lanac radi.
+09e (puna epoha, loss 0.13->0.006): tool-selekcija tacna 7-9/10, ali
+renderuje JSON ```{"tool":..} umjesto <tool_call> — DPO ojacao semantiku,
+bazni prior drzi omotac. Odluka: ne jos GPU-a, nego runtime prati model:
+parse_call dobio JSON fallback (kanonski primaran, 11/11 testova; 09e
+0/10->7/10, gold04b bez regresije 10/10), llama_bench.py isti fallback.
+Merge+GGUF+bench pipeline spreman (merge.sbatch/gguf.sbatch/bench.sbatch,
+pin 87f9c82, --no-mtp, block-check 25->24): ceka LUMI (EFP cert odbijen).
+Preostali wartovi 09e: memory-hallucinacija brojkama, padezi, prose-ask.
