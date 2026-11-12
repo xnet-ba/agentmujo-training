@@ -31,7 +31,24 @@ else:
     SYSTEM = two_step_eval.SYSTEM
 
 
+_CHAT_THINK = [False]
+
+
 def chat(endpoint: str, messages: list[dict], max_tokens: int, timeout: int = 600) -> str:
+    think = _CHAT_THINK[0]
+    model = _os.environ.get("OLLAMA_MODEL", "")
+    if ":11434" in endpoint and model:
+        # Ollama native API: eksplicitan think prekidac (Qwen3.5 9B DPO
+        # inace odluta u thinking ili base-bash; vidi probe-server nalaz).
+        body = {"model": model, "messages": messages, "think": think,
+                "temperature": 0.0, "stream": False,
+                "options": {"temperature": 0.0, "num_predict": max_tokens}}
+        req = urllib.request.Request(
+            endpoint.rstrip("/") + "/api/chat",
+            data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            d = json.loads(r.read().decode())
+        return d.get("message", {}).get("content", "")
     body = {"messages": messages, "stream": False,
             "temperature": 0.0, "max_tokens": max_tokens}
     req = urllib.request.Request(
@@ -60,6 +77,7 @@ def parse(text: str):
 def main() -> int:
     endpoint, mode, cases_path, out_path = sys.argv[1:5]
     think = mode == "think"
+    _CHAT_THINK[0] = think
     results = []
     for c in load_cases(cases_path):
         t0 = time.time()
