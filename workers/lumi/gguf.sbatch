@@ -22,8 +22,10 @@ mkdir -p "$OUTDIR"
 cd "$REPO" && git pull -q 2>/dev/null || echo "WARN: git pull nije uspio"
 
 if [ ! -d "$OUTDIR/llama.cpp" ]; then
-  git clone --depth 1 --branch "$LLAMACPP_REF" \
-    https://github.com/ggerganov/llama.cpp.git "$OUTDIR/llama.cpp"
+  # Revizija je commit-hash, ne branch: clone pa fetch tocno tog SHA.
+  git clone --depth 1 https://github.com/ggerganov/llama.cpp.git "$OUTDIR/llama.cpp"
+  (cd "$OUTDIR/llama.cpp" && git fetch --depth 1 origin "$LLAMACPP_REF" \
+    && git checkout "$LLAMACPP_REF")
 fi
 # Build van kontejnera (host toolchain + cmake); ROCm kontejner ne treba za CPU.
 cmake -S "$OUTDIR/llama.cpp" -B "$OUTDIR/llama.cpp/build" \
