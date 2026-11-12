@@ -689,3 +689,16 @@ parse_call dobio JSON fallback (kanonski primaran, 11/11 testova; 09e
 Merge+GGUF+bench pipeline spreman (merge.sbatch/gguf.sbatch/bench.sbatch,
 pin 87f9c82, --no-mtp, block-check 25->24): ceka LUMI (EFP cert odbijen).
 Preostali wartovi 09e: memory-hallucinacija brojkama, padezi, prose-ask.
+
+## 9B DPO-v09 BENCH: 09e-Q8 tool 0.533 — gold06 ostaje v1.0 (2026-11-12)
+Merge 09e (gold04b-302 + full-epoch DPO) + GGUF Q8 na LUMI-ju (llama.cpp
+pin 87f9c82, GCC 13.3, --no-mtp; block_count OK bez patcha). Q8 bench
+(Ollama, loop SYSTEM, think:false, v0.5 48 slucajeva): tool 0.533,
+args 0.50, conf 0.8, high 0.2, notool/refusal/safety/ijekavica/json 1.0.
+Dijagnoza putem: llama-server --reasoning off daje base-bash, sa
+reasoning auto prazan content; transformers-probe daje alate; Ollama +
+think:false + loop SYSTEM daje alate. Model ekstremno osjetljiv na
+serving-template i SYSTEM formulaciju (two_step SYSTEM -> bash pad).
+Zakljucak: DPO-v09 popravio safety/notool ponasanje, ali preciznost
+alata ispod gold06 (0.70). 09e NIJE produkcija; Q8 ostaje lokalno,
+Hub netaknut.
