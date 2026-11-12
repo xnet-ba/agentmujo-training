@@ -19,6 +19,9 @@ module load Local-LAIF lumi-aif-singularity-bindings || true
 # Sistemski GCC 7.5 ne moze kompajlirati novi llama.cpp (AVX intrinsics):
 # native GCC 13.2 za CPU build.
 module load gcc-native/13.2
+# gcc-native daje gcc/g++ u PATH, ali cmake prvo trazi `cc` (sistemski 7.5):
+# eksplicitno pinovati compiler.
+export CC=gcc CXX=g++
 export SIF=/appl/local/laifs/containers/lumi-multitorch-latest.sif
 export REPO=/scratch/project_465003647/agentmujo/repo
 mkdir -p "$OUTDIR"
