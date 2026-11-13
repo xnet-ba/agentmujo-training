@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name=amj-probe-nt
+#SBATCH --account=project_465003647
+#SBATCH --partition=small-g
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=7
+#SBATCH --gpus-per-task=1
+#SBATCH --time=00:30:00
+#SBATCH --output=amj-probent-%j.out
+set -euo pipefail
+ADAPTER="${1:?upotreba: sbatch probe-notool.sbatch <adapter-dir> <out.json>}"
+OUT="${2:?upotreba: sbatch probe-notool.sbatch <adapter-dir> <out.json>}"
+module purge
+module load Local-LAIF lumi-aif-singularity-bindings
+export SIF=/appl/local/laifs/containers/lumi-multitorch-latest.sif
+export PYLIBS=/scratch/project_465003647/agentmujo/pylibs
+export SINGULARITYENV_HF_HUB_CACHE=/scratch/project_465003647/agentmujo/hfcache
+export SINGULARITYENV_PYTHONPATH="$PYLIBS:/repo/src"
+export SINGULARITYENV_PROBE_THINKING="${PROBE_THINKING:-0}"
+srun singularity exec -B /scratch/project_465003647/agentmujo/repo:/repo -B /scratch:/scratch "$SIF" python -u /repo/workers/lumi/probe_notool.py "$ADAPTER" "$OUT"
+echo PROBE_NT_DONE
