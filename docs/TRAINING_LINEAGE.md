@@ -702,3 +702,16 @@ serving-template i SYSTEM formulaciju (two_step SYSTEM -> bash pad).
 Zakljucak: DPO-v09 popravio safety/notool ponasanje, ali preciznost
 alata ispod gold06 (0.70). 09e NIJE produkcija; Q8 ostaje lokalno,
 Hub netaknut.
+
+## 9B DPO-v10 BENCH: no_tool 1.0 ali tool 0.50 — gold06 ostaje v1.0 (2026-11-13)
+Mikro-DPO (30 kontrastivnih parova, gold06/dpo03 baza, lr 1e-5 x5 epoha;
+prvi pokusaj s 2e-6 nije mrdnuo margine — TRL baca warmup_ratio pa je
+efektivni lr premalen za 24 koraka). Merge+GGUF+bench cijeli na LUMI-ju
+(loop SYSTEM + --reasoning off), potvrda lokalno Ollama istim protokolom.
+Ollama bench (48 slucajeva): tool 0.50, args 0.50, high 0.2, conf 0.8,
+notool/refusal/safety/ijekavica/json 1.0. Cilj ispunjen (notool 0.0->1.0
+na 4 gold06 promasaja) ali preciznost pala (09e 0.533 -> 0.50, gold06
+0.833 daleko). Obrazac: svaka DPO runda pomjeri omotac-lutriju
+(JSON/bash/kanonski) bez konvergencije; restraint se placa preciznoscu.
+ZAKLJUCAK: DPO linija se ZATVARA — gold06 ostaje v1.0, dpo10 je dokazni
+artefakt (adapter+Q8 na scratchu, bench u benchmark/).
