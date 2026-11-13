@@ -5,7 +5,7 @@ dataset: local
 experiment_id: qwen35-9b-lumi-dpo10
 gradient_accumulation_steps: 4
 gradient_checkpointing: true
-learning_rate: 2.0e-06
+learning_rate: 1.0e-05
 logging_steps: 1
 lora_alpha: 32
 lora_dropout: 0.05
@@ -17,7 +17,7 @@ max_seq_length: 1024
 mode: dpo
 model_name: Qwen/Qwen3.5-9B
 model_revision: c20223623576
-num_train_epochs: 3
+num_train_epochs: 5
 optim: paged_adamw_8bit
 output_dir: /scratch/project_465003647/agentmujo/outputs/9b-dpo-10
 per_device_train_batch_size: 1
