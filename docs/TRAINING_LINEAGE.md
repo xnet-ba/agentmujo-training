@@ -727,3 +727,14 @@ kanonski omotac pod SVIM sistemima (4x3 sonda). DPO na malim mixevima
 ne popravlja nego krhka ponasanje: gasi robustnost SFT-a. Fileovi:
 results_9bdpo11_llama_nonthink.json. Sljedeci 9B korak samo uz SFT
 hipotezu ili veci base — DPO se vise ne pokrece na 9B.
+
+## 9B SFT-v12 BENCH: tool 0.533 — SFT hipoteza nije probila (2026-11-13)
+SFT (ne DPO) mikro-repair na gold06 bazi, 36 uzoraka sa strukturiranim
+tool_calls, r16, lr 2e-5 x45 koraka: loss 1.9->1.64. Proba: format 8/10,
+no_tool 4/4 (najbolja proba do sad). LUMI bench (Q8, loop SYSTEM):
+tool 0.533, args 0.538, high 0.2, conf 0.6, notool/refusal/safety/
+ijekavica/json 1.0 — nivo 09e, daleko od gold06 (0.833/0.846).
+Zakljucak: ni SFT ni DPO na mikro-mixevima ne mogu vratiti gold06
+preciznost uz novo ponasanje; mali setovi samo premjestaju greske.
+9B SE STAVLJA NA CEKANJE: gold06 v1.0 ostaje; sljedeci korak tek uz
+veci data-mix (stotine, ne desetine uzoraka) ili veci base.
