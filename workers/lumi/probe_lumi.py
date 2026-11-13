@@ -6,12 +6,17 @@ import json
 import os
 import sys
 import torch
+from pathlib import Path
 
 sys.path.insert(0, "/scratch/project_465003647/agentmujo/repo/src")
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
-from agentmujo_training.agent.loop import SYSTEM, parse_call
+from agentmujo_training.agent.loop import SYSTEM as _DEFAULT_SYSTEM, parse_call
+
+# PROBE_SYSTEM_FILE: alternativni SYSTEM (npr. kratki) — inace loop.SYSTEM.
+_SYS_FILE = os.environ.get("PROBE_SYSTEM_FILE")
+SYSTEM = Path(_SYS_FILE).read_text(encoding="utf-8").strip() if _SYS_FILE else _DEFAULT_SYSTEM
 
 BASE = "Qwen/Qwen3.5-9B"
 ADAPTER, OUT = sys.argv[1], sys.argv[2]
