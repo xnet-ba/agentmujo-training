@@ -715,3 +715,15 @@ na 4 gold06 promasaja) ali preciznost pala (09e 0.533 -> 0.50, gold06
 (JSON/bash/kanonski) bez konvergencije; restraint se placa preciznoscu.
 ZAKLJUCAK: DPO linija se ZATVARA — gold06 ostaje v1.0, dpo10 je dokazni
 artefakt (adapter+Q8 na scratchu, bench u benchmark/).
+
+## 9B DPO-v11 BENCH: tool 0.567, kratki SYSTEM rusenje 0/10 — DPO linija ZATVORENA (2026-11-13)
+Mikro-mix v0.11 (36 parova iz taksonomije, baza gold06/dpo03, lr 5e-6 x6):
+loss 0.69->0.32, margine ~1.0. LUMI bench (llama-server, loop SYSTEM):
+tool 0.567, args 0.615, high 0.2, no_tool/refusal/safety/ijekavica/json 1.0.
+Bolje od 09e/dpo10 ali daleko od gold06 (0.833/0.846). Dodatni nalaz:
+dpo11 + KRATKI system (bez liste alata) = 0/10 cisti bash — alatno
+ponasanje postalo uvjetovano doslovnim promptom, dok gold06 drzi
+kanonski omotac pod SVIM sistemima (4x3 sonda). DPO na malim mixevima
+ne popravlja nego krhka ponasanje: gasi robustnost SFT-a. Fileovi:
+results_9bdpo11_llama_nonthink.json. Sljedeci 9B korak samo uz SFT
+hipotezu ili veci base — DPO se vise ne pokrece na 9B.
