@@ -20,6 +20,13 @@ export SIF=/appl/local/laifs/containers/lumi-multitorch-latest.sif
 export REPO=/scratch/project_465003647/agentmujo/repo
 LLAMACPP_BIN="$(dirname "$MODEL")/llama.cpp/build/bin"
 cd "$REPO" && git pull -q 2>/dev/null || echo "WARN: git pull nije uspio"
+# Produkcijski SYSTEM (loop.py) u fajl — bench koristi isti prompt kao
+# runtime/Ollama; two_step SYSTEM rusi 9B DPO u bash (dokazano 2026-11-12).
+srun singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
+  env PYTHONPATH="/repo/src" python -c \
+  "from agentmujo_training.agent.loop import SYSTEM; open('$OUT.system', 'w').write(SYSTEM)" \
+  && export LLAMA_BENCH_SYSTEM_FILE="$OUT.system" \
+  && export SINGULARITYENV_LLAMA_BENCH_SYSTEM_FILE="$OUT.system"
 "$LLAMACPP_BIN/llama-server" -m "$MODEL" --port 8899 -c 4096 \
   --reasoning off \
   --n-gpu-layers 0 -t 32 > "$(dirname "$OUT")/bench_server.log" 2>&1 &
