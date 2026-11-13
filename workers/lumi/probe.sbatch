@@ -21,6 +21,7 @@ export SINGULARITYENV_HF_HUB_CACHE=/scratch/project_465003647/agentmujo/hfcache
 export SINGULARITYENV_PYTHONPATH="$PYLIBS:/repo/src"
 export SINGULARITYENV_HF_HUB_OFFLINE=0
 export SINGULARITYENV_PROBE_THINKING="${PROBE_THINKING:-0}"
+export SINGULARITYENV_PROBE_SYSTEM_FILE="${PROBE_SYSTEM_FILE:-}"
 REPO=/scratch/project_465003647/agentmujo/repo
 cd "$REPO" && git pull -q 2>/dev/null || true
 srun --unbuffered singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
