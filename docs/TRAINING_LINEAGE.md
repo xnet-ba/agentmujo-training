@@ -738,3 +738,11 @@ Zakljucak: ni SFT ni DPO na mikro-mixevima ne mogu vratiti gold06
 preciznost uz novo ponasanje; mali setovi samo premjestaju greske.
 9B SE STAVLJA NA CEKANJE: gold06 v1.0 ostaje; sljedeci korak tek uz
 veci data-mix (stotine, ne desetine uzoraka) ili veci base.
+
+## 9B SFT-v12 fer bench (Ollama): tool 0.533 — potvrdjeno, kraj price (2026-11-14)
+Lokalni Ollama bench istim protokolom kao gold06/09e/dpo10 (loop SYSTEM,
+think:false, v0.5 48 slucajeva): tool 0.533, args 0.538, high 0.2,
+notool/refusal/safety/ijekavica/json 1.0. Identicno 09e (0.533/0.50) —
+LUMI llama-bench broj (0.533) nije bio artefakt harnessa. Zakljucak
+konacan: sve post-gold06 runde (DPO v09, dpo10, dpo11, SFT v12) stoje na
+0.50-0.57 prema gold06 0.833. 9B CLOSED, gold06 v1.0 ostaje.
