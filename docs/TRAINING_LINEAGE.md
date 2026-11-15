@@ -746,3 +746,13 @@ notool/refusal/safety/ijekavica/json 1.0. Identicno 09e (0.533/0.50) —
 LUMI llama-bench broj (0.533) nije bio artefakt harnessa. Zakljucak
 konacan: sve post-gold06 runde (DPO v09, dpo10, dpo11, SFT v12) stoje na
 0.50-0.57 prema gold06 0.833. 9B CLOSED, gold06 v1.0 ostaje.
+
+## Robustnost omotaca: dva loma (sonda 2026-11-15)
+Sistematska proba (loop vs kratki SYSTEM, nonthink):
+gold04b SFT: loop 10/10, kratki 10/10 (robustan).
+dpo03 (=gold06): loop 7/10, kratki drzi alate (cist chitchat).
+09e/dpo11/sft12: loop 7-8/10, kratki 0/10 cisti bash.
+Prvi lom (10->7, gubitak kanonskog omotaca) dolazi s DPO-03
+(plain>tool); drugi lom (gubitak kratki-SYSTEM robustnosti) s v09
+agentic DPO-om. Mikro-runde (dpo10/11, sft12) ne vracaju ni jedno.
+Fer Ollama bench dpo11: tool 0.533/args 0.577 — isto kao 09e/sft12.
