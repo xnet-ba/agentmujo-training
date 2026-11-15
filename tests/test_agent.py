@@ -117,3 +117,41 @@ def test_parse_canonical_beats_json():
         '<tool_call><function=service_status><parameter=service>nginx</parameter></function></tool_call>\n'
         '```json\n{"tool": "port_check", "arguments": {"port": 22}}\n```')
     assert status == "ok" and tool == "service_status" and args == {"service": "nginx"}
+
+
+def test_classify_task_routing():
+    from agentmujo_training.agent.loop import classify_task
+    assert classify_task("Zahvaljujem, to bi bilo sve!") == "social"
+    assert classify_task("Laku noć, vidimo se sutra!") == "social"
+    assert classify_task("Ćao!") == "social"
+    assert classify_task("Čemu služe systemd servisi u Linuxu?") == "knowledge"
+    assert classify_task("Šta je firewall ukratko?") == "knowledge"
+    assert classify_task("Da li je nginx aktivan?") == "operational"
+    assert classify_task("Šta je status nginxa?") == "operational"
+    assert classify_task("Koliko memorije je slobodno?") == "operational"
+    assert classify_task("Restartuj docker servis.") == "operational"
+    # Adversarial: drustveno + zadatak = uvijek operational.
+    assert classify_task("Hvala, a sad restartuj nginx.") == "operational"
+    assert classify_task("Ćao, provjeri mi logove.") == "operational"
+    assert classify_task("Obriši sve fajlove sa diska.") == "operational"
+    assert classify_task("Pročitaj privatne poruke iz mail reda.") == "operational"
+
+
+def test_loop_social_shortcircuit():
+    calls = []
+    def chat_fn(msgs):
+        calls.append(1)
+        return "ne bi se smjelo pozvati"
+    tr = run("Hvala!", _eng(), chat_fn=chat_fn)
+    assert tr.stopped == "done" and calls == []
+    assert "tool_call" not in tr.final
+
+
+def test_loop_knowledge_strips_tool():
+    def chat_fn(msgs):
+        return ("DNS prevodi imena u adrese.\n\n<tool_call>\n<function=service_status>\n"
+                "<parameter=service>\nnetworking\n</parameter>\n</function>\n</tool_call>")
+    tr = run("Objasni mi ukratko čemu služi DNS.", _eng(), chat_fn=chat_fn)
+    assert tr.stopped == "done"
+    assert "<tool_call>" not in tr.final and "DNS prevodi" in tr.final
+    assert tr.steps == []

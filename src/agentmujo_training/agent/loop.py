@@ -19,6 +19,67 @@ OPEN_FUNC_RE = re.compile(r"<function=", re.IGNORECASE)
 JSON_TOOL_RE = re.compile(r"```json\s*(\{.*\})\s*```", re.IGNORECASE | re.DOTALL)
 INT_ARGS = {"port", "lines", "limit", "timeout_s"}
 
+# --- Chitchat/knowledge guard: ne-alatski prompti ne smiju proizvesti poziv.
+# Klasifikacija je konzervativna: sve sto lici na operativni zadatak ide
+# normalnim putem (model+policy+executor). Samo cisti pozdrav/zahvala/pozdrav
+# i definicijska pitanja bez operativnih tokena idu precicom.
+_SOCIAL_RE = re.compile(
+    r"^([cć]ao|zdravo|dobar dan|dobro jutro|dobro vece|dobro veče|selam|pozdrav|"
+    r"hvala( ti| puno| najljepsa| najljepša| lijepa)?|zahvaljujem( ti)?"
+    r"(,?\s*to ?bi bilo sve)?|dovidenja|doviđenja|laku noc|laku noć"
+    r"(,?\s*vidimo se sutra)?|vidimo se( sutra)?)\s*[!.,]*$", re.IGNORECASE)
+# Redoslijed provjere u classify_task: 1) imperativ/destruktivno -> operational,
+# 2) definicijsko pitanje BEZ state-rijeci -> knowledge, 3) operativna imenica
+# ili marker -> operational, 4) social, 5) labave drustvene rijeci, inace operational.
+_OPERATIONAL_VERB_RE = re.compile(
+    r"(restartuj|restart|startuj|stop|provjeri|instaliraj|deinstaliraj|prikaz|"
+    r"izlistaj|ugasi|upali|obrisi|ukloni|postavi|pokreni|kreiraj|procitaj|"
+    r"daj|otvori|zatvori|promijeni|azuriraj|ocisti|rm\s|chmod|reboot|"
+    r"drop|mkfs|dd\s+if=|systemctl|terminal|komand)",
+    re.IGNORECASE)
+_OPERATIONAL_NOUN_RE = re.compile(
+    r"(nginx|apache|redis|mysql|postgres|docker|ssh|port\s+\d+|:\d+|"
+    r"/var|/tmp|/home|\.log|\.conf|memorij|disk|proces|fajl|datotek|"
+    r"paket|mrez|server|baz[aeu]|kontejner|log(ova|ove|u)?|"
+    r"aktivan|aktivan|neaktivan|pada|pao|gresk|error|failed|stao|"
+    r"status|stanje)",
+    re.IGNORECASE)
+_KNOWLEDGE_RE = re.compile(
+    r"^\s*(cemu sluze|čemu služe|objasni(\s+mi)?|kako radi|"
+    r"zasto sluzi|zašto služi|sta znaci|šta znači|što znači|"
+    r"sta je(?! status| stanje)|šta je(?! status| stanje)|"
+    r"što je(?! status| stanje)|sto je(?! status| stanje))\b",
+    re.IGNORECASE)
+
+_SOCIAL_REPLY = ("Pozdrav! Tu sam kad zatreba provjera servisa ili logova.")
+
+
+def classify_task(task: str) -> str:
+    """social | knowledge | operational. Konzervativno: sumnja ide na operational."""
+    t = (task or "").strip()
+    if _OPERATIONAL_VERB_RE.search(t):
+        return "operational"
+    if _KNOWLEDGE_RE.search(t):
+        return "knowledge"
+    if _OPERATIONAL_NOUN_RE.search(t):
+        return "operational"
+    if _SOCIAL_RE.match(t):
+        return "social"
+    # Pozdrav/zahvala u slobodnoj formi bez operativnih tokena.
+    if re.search(r"(hvala|zahval|pozdrav|laku no[cć]|dovidenja|doviđenja|vidimo se|\bcao\b|\bzdravo\b)",
+                 t, re.IGNORECASE):
+        return "social"
+    return "operational"
+
+
+def _strip_tool_blocks(text: str) -> str:
+    """Uklanja <tool_call> i fenced tool-blokove; ostaje proza."""
+    t = re.sub(r"<tool_call>.*?</tool_call>", "", text or "",
+               flags=re.IGNORECASE | re.DOTALL)
+    t = re.sub(r"```(?:json|bash)[\s\S]*?```", "", t,
+               flags=re.IGNORECASE)
+    return t.strip()
+
 SYSTEM = (
     "Ti si AgentMujo, asistent za administraciju Linux servera. "
     "Odgovaraj na bosanskom jeziku (ijekavica). "
@@ -133,6 +194,24 @@ def run(task: str, engine, model: str = "agentmujo-2b-agent-fast:latest", think:
     logf = open(log_path, "a", encoding="utf-8") if log_path else None
     try:
         messages = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": task}]
+        # Chitchat precica: bez modelskog poziva, bez alata.
+        if classify_task(task) == "social":
+            trace.final = _SOCIAL_REPLY
+            trace.stopped = "done"
+            return trace
+        if classify_task(task) == "knowledge":
+            # Jedan modelski poziv, uzmi prozu, alat se nikad ne izvrsava.
+            try:
+                text = _chat(messages)
+            except Exception as e:
+                trace.stopped = f"error: {e}"
+                return trace
+            prose = _strip_tool_blocks(text)
+            if prose:
+                trace.final = prose
+                trace.stopped = "done"
+                return trace
+            # Model dao samo poziv bez proze — padni nazad na normalni tok.
         for _ in range(max_steps):
             if _time.time() - t_start > max_wall_s:
                 trace.stopped = "timeout"
