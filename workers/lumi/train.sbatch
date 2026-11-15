@@ -20,12 +20,18 @@ export PYLIBS=/scratch/project_465003647/agentmujo/pylibs
 export REPO=/scratch/project_465003647/agentmujo/repo
 export PYTHONPATH="$PYLIBS:${PYTHONPATH:-}"
 export HF_HUB_CACHE=/scratch/project_465003647/agentmujo/hfcache
+# datasets-lib i tmp fajlovi NE smiju na Lustre-home (20G, puca kad se
+# napuni tudjim keshevima): sve na scratch.
+export HF_DATASETS_CACHE=/scratch/project_465003647/agentmujo/hfds
+export TMPDIR=/scratch/project_465003647/agentmujo/tmp
+export SINGULARITYENV_HF_DATASETS_CACHE="$HF_DATASETS_CACHE"
+export SINGULARITYENV_TMPDIR="$TMPDIR"
 # Kontejneru eksplicitno proslijediti env (SINGULARITYENV_*): obicni
 # `env VAR=` prefix se ne prenosi pouzdano — bez ovoga HF skida 18GB model
 # ispocetka u container-HOME i visi satima (vidjeno: 2.5h bez pomaka).
 export SINGULARITYENV_HF_HUB_CACHE="$HF_HUB_CACHE"
 export SINGULARITYENV_PYTHONPATH="$PYLIBS:/repo/src"
-mkdir -p "$PYLIBS" "$HF_HUB_CACHE"
+mkdir -p "$PYLIBS" "$HF_HUB_CACHE" "$HF_DATASETS_CACHE" "$TMPDIR"
 # Pylibs (samo prvi put / kad se promijene pinovi):
 # Kontejnerov ROCm torch (2.11) se NE smije pregaziti — PyPI torch bi
 # shadowao ROCm i slomio CUDA. Zato se torch* brise iz pylibs nakon installa.
