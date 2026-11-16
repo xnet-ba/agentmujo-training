@@ -9,11 +9,15 @@
 #SBATCH --time=04:00:00
 #SBATCH --output=amj-merge-%j.out
 # LUMI merge: baza (pinovana revizija, HF cache) + LoRA adapter -> pune tezine.
-# Upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir>
+# Upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]
+#   baza izostavljena -> Qwen/Qwen3.5-9B (SFT adapteri).
+#   baza zadana (npr. merged-joint07) -> DPO adapteri trenirani nad merge_and_unload
+#   modelom (vidi job_run.py:409); merge MORA na isti merged-base inace se gubi SFT loza.
 set -euo pipefail
-ADAPTER="${1:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir>}"
-REVISION="${2:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir>}"
-OUTDIR="${3:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir>}"
+ADAPTER="${1:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
+REVISION="${2:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
+OUTDIR="${3:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
+BASE="${4:-Qwen/Qwen3.5-9B}"
 module purge
 module load Local-LAIF lumi-aif-singularity-bindings
 export SIF=/appl/local/laifs/containers/lumi-multitorch-latest.sif
@@ -26,6 +30,6 @@ cd "$REPO"
 git pull -q 2>/dev/null || echo "WARN: git pull nije uspio"
 srun --unbuffered singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
   env PYTHONPATH="$PYLIBS" python -u /repo/quantization/merge_adapter.py \
-    --base Qwen/Qwen3.5-9B --revision "$REVISION" \
+    --base "$BASE" ${REVISION:+--revision "$REVISION"} \
     --adapter "$ADAPTER" --out "$OUTDIR"
 echo MERGE_DONE
