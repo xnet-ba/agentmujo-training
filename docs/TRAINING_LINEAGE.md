@@ -756,3 +756,11 @@ Prvi lom (10->7, gubitak kanonskog omotaca) dolazi s DPO-03
 (plain>tool); drugi lom (gubitak kratki-SYSTEM robustnosti) s v09
 agentic DPO-om. Mikro-runde (dpo10/11, sft12) ne vracaju ni jedno.
 Fer Ollama bench dpo11: tool 0.533/args 0.577 — isto kao 09e/sft12.
+
+## 9B DPO-v13 BENCH: tool 0.50 — mikro-plateau 0.50-0.57 potvrdjen cetvrti put (2026-11-16)
+131 kanonski par, 4B recept (1 epoha, lr 5e-6, 9 koraka), loss ravan 0.67.
+LUMI bench (Q8, loop SYSTEM): tool 0.50, args 0.462, notool/refusal/
+safety/ijekavica/json 1.0. Cetvrti uzastopni mikro-run na istom plafonu
+(09e 0.533, dpo10 0.50, dpo11 0.567, sft12 0.533, dpo13 0.50).
+ZAKLJUCAK KONACAN: post-gold06 mikro-trening ne pomjera iglu;
+gold06 v1.0 ostaje. Sljedeci 9B korak samo uz veci base ili redizajn.
