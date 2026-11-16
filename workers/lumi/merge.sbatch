@@ -15,7 +15,7 @@
 #   modelom (vidi job_run.py:409); merge MORA na isti merged-base inace se gubi SFT loza.
 set -euo pipefail
 ADAPTER="${1:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
-REVISION="${2:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
+REVISION="${2:-}"
 OUTDIR="${3:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
 BASE="${4:-Qwen/Qwen3.5-9B}"
 module purge
