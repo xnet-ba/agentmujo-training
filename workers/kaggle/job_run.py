@@ -139,10 +139,17 @@ def _summarize_history(log_history: list[dict]) -> dict:
 
 
 def _resolve_adapter(path: str) -> str:
-    """Vrati dir sa adapter_config.json; ako zadana putanja ne postoji,
-    pretrazi /kaggle/input/**/outputs/adapter (kernel output mount varira)."""
+    """Vrati dir sa adapter_config.json; podrzano:
+    - lokalna putanja,
+    - hf://REPO (snapshot_download sa Huba, npr. privatni adapter repo),
+    - fallback: pretraga /kaggle/input/**/outputs/adapter."""
     import glob as _glob
     from pathlib import Path as _P
+    if path.startswith("hf://"):
+        from huggingface_hub import snapshot_download
+        dl = snapshot_download(repo_id=path[5:])
+        print(f"INFO: adapter hf {path} -> {dl}")
+        return dl
     if (_P(path) / "adapter_config.json").exists():
         return path
     cands = sorted(_glob.glob("/kaggle/input/**/outputs/adapter", recursive=True))
