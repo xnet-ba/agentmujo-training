@@ -1,0 +1,9 @@
+{
+  "job_id": "qwen35-9b-lumi-joint08",
+  "status": "done",
+  "started_at": "2026-11-17T13:55:27+00:00",
+  "gpu": "AMD Instinct MI250X",
+  "error": null,
+  "cuda": null,
+  "finished_at": "2026-11-17T14:17:43+00:00"
+}
