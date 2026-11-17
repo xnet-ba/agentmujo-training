@@ -38,3 +38,6 @@ Particije: `dev-g` (test, max 1 job, 3h, 8 idle u novembru),
 Projekt: `project_465003647`, user `susterre`,
 storage `/project/...` (trajno) i `/scratch/...` (poslovi).
 EFP cert na Oracleu vazi ~10h — planirati poslove unutar prozora.
+VAZNO (spool zamka, vidjeno 2x 2026-11-17): Slurm spooluje skriptu u trenutku
+submita — `git pull` UNUTAR joba dolazi prekasno. Zato uvijek prvo
+`git pull` na scratch repou PA TEK ONDA `sbatch` (inace se vrti stara skripta).
