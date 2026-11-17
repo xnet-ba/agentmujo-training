@@ -81,3 +81,7 @@ def execute(tool: str, arguments: dict[str, Any] | None, decision,
                           "" if r.returncode == 0 else (r.stderr or "")[-500:])
     except subprocess.TimeoutExpired:
         return ExecResult(False, "", False, f"timeout {timeout_s}s")
+    except FileNotFoundError as e:
+        # Binar ne postoji u ovom okruzenju (npr. systemctl u kontejneru):
+        # alat greska, ne crash cijelog loopa (guard_eval na LUMI, 2026-11-17).
+        return ExecResult(False, "", False, f"nema binara: {e.filename}")

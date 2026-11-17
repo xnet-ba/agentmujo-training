@@ -42,6 +42,13 @@ cmake --build "$OUTDIR/llama.cpp/build" --config Release -j 32 \
   --target llama-quantize llama-server > "$OUTDIR/build.log" 2>&1
 echo "BUILD_DONE llamacpp=$LLAMACPP_REF"
 
+# Trimmed 32k baze (bosanske) imaju drugaciji tokenizer-hash od upstreama:
+# bez patcha convert puca sa "BPE pre-tokenizer was not recognized".
+# (idempotentno; za netrimovane baze no-op). Vidi quantization/patch_llamacpp_vocab.py.
+srun --unbuffered singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
+  env PYTHONPATH="$PYLIBS" python -u /repo/quantization/patch_llamacpp_vocab.py \
+    "$OUTDIR/llama.cpp" > "$OUTDIR/vocab_patch.log" 2>&1 || true
+
 srun --unbuffered singularity exec -B "$REPO:/repo" -B /scratch:/scratch "$SIF" \
   env PYTHONPATH="/repo/src" python -u "$OUTDIR/llama.cpp/convert_hf_to_gguf.py" \
     "$MERGED" --outfile "$OUTDIR/model-f16.gguf" --outtype f16 --no-mtp
