@@ -1,0 +1,9 @@
+{
+  "job_id": "qwen35-2b-lumi-dpo01",
+  "status": "done",
+  "started_at": "2026-11-17T11:42:25+00:00",
+  "gpu": "AMD Instinct MI250X",
+  "error": null,
+  "cuda": null,
+  "finished_at": "2026-11-17T12:07:16+00:00"
+}
