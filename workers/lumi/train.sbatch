@@ -24,6 +24,14 @@ export HF_HUB_CACHE=/scratch/project_465003647/agentmujo/hfcache
 # napuni tudjim keshevima): sve na scratch.
 export HF_DATASETS_CACHE=/scratch/project_465003647/agentmujo/hfds
 export TMPDIR=/scratch/project_465003647/agentmujo/tmp
+# Triton/Inductor/XDG keševi NE smiju na Lustre-home (20G, pun tudjim keshevima):
+# inace DPO/SFT padne sa "Disk quota exceeded: ~/.triton/cache" (vidjeno 2026-11-17).
+export TRITON_CACHE_DIR=/scratch/project_465003647/agentmujo/tmp/triton
+export TORCHINDUCTOR_CACHE_DIR=/scratch/project_465003647/agentmujo/tmp/inductor
+export XDG_CACHE_HOME=/scratch/project_465003647/agentmujo/tmp/xdg
+export SINGULARITYENV_TRITON_CACHE_DIR="$TRITON_CACHE_DIR"
+export SINGULARITYENV_TORCHINDUCTOR_CACHE_DIR="$TORCHINDUCTOR_CACHE_DIR"
+export SINGULARITYENV_XDG_CACHE_HOME="$XDG_CACHE_HOME"
 export SINGULARITYENV_HF_DATASETS_CACHE="$HF_DATASETS_CACHE"
 export SINGULARITYENV_TMPDIR="$TMPDIR"
 # Kontejneru eksplicitno proslijediti env (SINGULARITYENV_*): obicni
