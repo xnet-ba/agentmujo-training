@@ -38,8 +38,20 @@ fi
 rm -rf "$OUTDIR/llama.cpp/build"
 cmake -S "$OUTDIR/llama.cpp" -B "$OUTDIR/llama.cpp/build" \
   -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release > "$OUTDIR/cmake.log" 2>&1
-cmake --build "$OUTDIR/llama.cpp/build" --config Release -j 32 \
-  --target llama-quantize llama-server > "$OUTDIR/build.log" 2>&1
+if ! cmake --build "$OUTDIR/llama.cpp/build" --config Release -j 32 \
+  --target llama-quantize llama-server > "$OUTDIR/build.log" 2>&1; then
+  # Fallback (2026-11-17): svjezi clone zna pucati na llama-ui assetima
+  # (HF stamp mismatch) — preuzmi build iste pine iz najnovijeg siblinga.
+  echo "BUILD pao, trazim sibling build pine $LLAMACPP_REF..."
+  REF="$(ls -dt /scratch/project_465003647/agentmujo/gguf-*/llama.cpp/build/bin/llama-server 2>/dev/null | head -n 1)"
+  if [ -n "$REF" ] && [ -x "$REF" ]; then
+    rm -rf "$OUTDIR/llama.cpp/build"
+    cp -r "$(dirname "$(dirname "$REF")")" "$OUTDIR/llama.cpp/build"
+    echo "BUILD preuzet iz $(dirname "$REF")"
+  else
+    echo "BUILD_FAIL: nema sibling builda"; exit 1
+  fi
+fi
 echo "BUILD_DONE llamacpp=$LLAMACPP_REF"
 
 # Trimmed 32k baze (bosanske) imaju drugaciji tokenizer-hash od upstreama:
