@@ -14,8 +14,15 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os as _os
 import platform
 from pathlib import Path
+
+# Single-process TRL run: Kaggle daje 2xT4, a SFTTrainer odbija DataParallel.
+# Pinuj prvi GPU PRIJE torch/CUDA inita (torchrun/accelerate launch izuzeti).
+if (_os.environ.get("RANK", "0") == "0" and not _os.environ.get("WORLD_SIZE")
+        and "CUDA_VISIBLE_DEVICES" not in _os.environ):
+    _os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 def _utcnow() -> str:
