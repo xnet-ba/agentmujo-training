@@ -4,8 +4,17 @@
 
 | Job | Baza/adapter | Dataset | Loss | Status |
 |---|---|---|---|---|
+| qwen35-2b-dpo-20261117 | adapter: ...hf://shaban2024/qwen35-2b-fc-r6-adapter | agentmujo-dpo-01 | - | created |
+| qwen35-2b-fc-20261116 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | created |
+| qwen35-2b-fc-20261116-r2 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | created |
+| qwen35-2b-fc-20261116-r3 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | created |
+| qwen35-2b-fc-20261117-r4 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | created |
+| qwen35-2b-fc-20261117-r5 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | created |
+| qwen35-2b-fc-20261117-r6 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | 0.584 | done |
+| qwen35-2b-lumi-dpo01 | adapter: ...hf://shaban2024/qwen35-2b-fc-r6-adapter | local | 0.238 | done |
 | qwen35-2b-lumi-gold01 | adapter: ...null | local | - | created |
 | qwen35-2b-lumi-joint01 | adapter: ...null | agentmujo-joint-01 | - | created |
+| qwen35-2b-smoke-20261116 | Qwen3.5-2B-bos-32768 | agentmujo-function-calling | - | created |
 | qwen35-4b-jt01-20260924-kaggle41 | adapter: ...null | agentmujo-joint-01 | 1.146 | done |
 | qwen35-4b-jt02-20260924-kaggle42 | adapter: ...b-jt01-20260924-kaggle41/outputs/adapter | agentmujo-joint-01 | 0.727 | done |
 | qwen35-4b-jt03-20260924-kaggle43 | adapter: ...b-jt02-20260924-kaggle42/outputs/adapter | agentmujo-joint-01 | 0.623 | done |
@@ -24,6 +33,9 @@
 | qwen35-9b-lumi-dpo10 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-dpo11 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-dpo13 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
+| qwen35-9b-lumi-dpo14 | adapter: ...s/qwen35-9b-lumi-joint07/outputs/adapter | local | 0.28 | done |
+| qwen35-9b-lumi-dpo15 | adapter: ...obs/qwen35-9b-lumi-dpo14/outputs/adapter | local | 0.358 | done |
+| qwen35-9b-lumi-dpo16 | adapter: ...obs/qwen35-9b-lumi-dpo15/outputs/adapter | local | 0.266 | done |
 | qwen35-9b-lumi-full01a | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-full01b | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-full01c | adapter: ...null | local | - | created |
@@ -34,7 +46,8 @@
 | qwen35-9b-lumi-gold04b | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold05a | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-gold05b | adapter: ...null | local | - | created |
-| qwen35-9b-lumi-joint07 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
+| qwen35-9b-lumi-joint07 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | 1.405 | done |
+| qwen35-9b-lumi-joint08 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | 1.096 | done |
 | qwen35-9b-lumi-sft12 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-9b-thunder-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
@@ -84,6 +97,8 @@
 
 | Fajl | Profil | Ključne metrike |
 |---|---|---|
+| results_2b_dpo01_llama_nonthink.json | llama-server-nonthink | tool=0.0 arg=0.0 safe=1.0 task=- |
+| results_2b_r6_spec_local.json | llama-server-nonthink | tool=0.8 arg=0.846 safe=1.0 task=- |
 | results_2bfast01_prod_nonthink.json | agentmujo-2b-agent-fast:latest-nonthink-agentloop | tool=0.733 arg=1.0 safe=1.0 task=0.917 |
 | results_2bgold01_llama_nonthink.json | llama-server-nonthink | tool=0.5 arg=0.462 safe=1.0 task=- |
 | results_4b01_prod_nonthink.json | agentmujo-4b-q8-nonthink | tool=0.867 arg=0.769 safe=1.0 task=- |
@@ -124,9 +139,11 @@
 | results_9b_probfmt.json | results_9b_probfmt | tool=- arg=- safe=- task=- |
 | results_9bdpo11_llama_nonthink.json | llama-server-nonthink-dpo11-q8 | tool=0.567 arg=0.615 safe=1.0 task=- |
 | results_9bdpo13_llama_nonthink.json | llama-server-nonthink-dpo13-q8 | tool=0.5 arg=0.462 safe=1.0 task=- |
+| results_9bdpo16_llama_nonthink.json | llama-server-nonthink | tool=0.679 arg=0.76 safe=0.5 task=- |
 | results_9bg06_spec_llama_nonthink.json | llama-server-nonthink | tool=0.667 arg=0.692 safe=0.857 task=- |
 | results_9bgfull01_llama_nonthink.json | llama-server-nonthink | tool=0.52 arg=0.682 safe=0.6 task=- |
 | results_9bgold06_ollama_nonthink.json | ollama-nonthink-gold06-q8 | tool=0.833 arg=0.846 safe=0.857 task=- |
+| results_9bjoint08_llama_nonthink.json | llama-server-nonthink | tool=0.867 arg=0.846 safe=0.714 task=- |
 | results_9bsft12_llama_nonthink.json | llama-server-nonthink-sft12-q8 | tool=0.533 arg=0.538 safe=1.0 task=- |
 | results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_4bdpo01_nonthink.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
