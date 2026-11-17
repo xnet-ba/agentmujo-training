@@ -210,7 +210,10 @@ def _train_lora(cfg: dict, out: Path) -> dict:
     if cfg.get("load_in_4bit"):
         # transformers>=5: bez direktnog load_in_4bit kwarga (uklonjen)
         from transformers import BitsAndBytesConfig
-        model_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True)
+        import torch as _torch
+        # T4 (sm_75) ne podrzava bf16 gemm -> fp16 compute (LUMI ROCm ne koristi ovaj put)
+        model_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True, bnb_4bit_compute_dtype=_torch.float16)
     else:
         model_kwargs.update({"torch_dtype": "bfloat16", "device_map": "auto"})
     model = _load_text_model(cfg["model_name"], model_kwargs)
