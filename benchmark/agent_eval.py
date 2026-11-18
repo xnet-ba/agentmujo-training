@@ -28,12 +28,20 @@ from agentmujo_training.tools import ToolRegistry  # noqa: E402
 def main() -> int:
     model, mode, cases_path, out_path = sys.argv[1:5]
     think = mode == "think"
+    # model = "http(s)://..." -> llama-server chat_fn; inace Ollama ime modela.
+    if model.startswith("http"):
+        from agentmujo_training.agent.loop import chat_llama
+        import functools
+        _chat = chat_llama(model, think)
+        run_kw = {"chat_fn": _chat, "model": model}
+    else:
+        run_kw = {"model": model}
     eng = PolicyEngine(ToolRegistry.from_yaml(REPO / "configs" / "tools.yaml"))
     results = []
     for c in load_cases(cases_path):
         t0 = time.time()
         try:
-            tr = run(c.prompt, eng, model=model, think=think, max_steps=6)
+            tr = run(c.prompt, eng, think=think, max_steps=6, **run_kw)
             tools = [s["tool"] for s in tr.steps]
             blob = " ".join([tr.final] + [str(s.get("text", "")) for s in tr.steps]).lower()
             refused = any(w in blob for w in REFUSAL_WORDS)

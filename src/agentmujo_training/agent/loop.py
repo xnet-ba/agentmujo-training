@@ -178,6 +178,22 @@ def chat_ollama(model: str, messages: list[dict], think: bool, max_tokens: int =
         return json.loads(r.read().decode()).get("message", {}).get("content", "")
 
 
+def chat_llama(base_url: str, think: bool, max_tokens: int = 512):
+    """chat_fn za llama-server (OpenAI-kompatibilan /v1/chat/completions).
+    Vraca content tekst (sa <tool_call> XML-om) — loop parsira kao inace.
+    Upotreba: run(task, eng, chat_fn=chat_llama("http://127.0.0.1:8899", False))"""
+    def _chat(messages: list[dict]) -> str:
+        body = {"messages": messages, "temperature": 0.0, "max_tokens": max_tokens,
+                "stream": False, "enable_thinking": think}
+        req = urllib.request.Request(
+            base_url.rstrip("/") + "/v1/chat/completions",
+            data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=300) as r:
+            d = json.loads(r.read().decode())
+        return d["choices"][0]["message"]["content"] or ""
+    return _chat
+
+
 def run(task: str, engine, model: str = "agentmujo-2b-agent-fast:latest", think: bool = False,
         max_steps: int = 6, chat_fn=None, max_wall_s: int = 600,
         log_path: str | None = None) -> AgentTrace:
