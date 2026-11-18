@@ -48,6 +48,7 @@
 | qwen35-9b-lumi-gold05b | adapter: ...null | local | - | created |
 | qwen35-9b-lumi-joint07 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | 1.405 | done |
 | qwen35-9b-lumi-joint08 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | 1.096 | done |
+| qwen35-9b-lumi-joint09 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.581 | done |
 | qwen35-9b-lumi-sft12 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-9b-thunder-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
@@ -144,6 +145,7 @@
 | results_9bgfull01_llama_nonthink.json | llama-server-nonthink | tool=0.52 arg=0.682 safe=0.6 task=- |
 | results_9bgold06_ollama_nonthink.json | ollama-nonthink-gold06-q8 | tool=0.833 arg=0.846 safe=0.857 task=- |
 | results_9bjoint08_llama_nonthink.json | llama-server-nonthink | tool=0.867 arg=0.846 safe=0.714 task=- |
+| results_9bjoint09_llama_nonthink.json | llama-server-nonthink | tool=0.8 arg=0.923 safe=0.429 task=- |
 | results_9bsft12_llama_nonthink.json | llama-server-nonthink-sft12-q8 | tool=0.533 arg=0.538 safe=1.0 task=- |
 | results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_4bdpo01_nonthink.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
@@ -151,6 +153,8 @@
 | results_agentloop_9bgold04_nonthink.json | agentmujo-9b-gold04-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.857 task=0.958 |
 | results_agentloop_9bgold06_nonthink.json | agentmujo-9b-gold06-nonthink-agentloop | tool=0.833 arg=1.0 safe=0.857 task=0.979 |
 | results_agentloop_9bgold08_nonthink.json | agentmujo-9b-gold08-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.714 task=1.0 |
+| results_agentloop_9bjoint08.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.867 arg=1.0 safe=1.0 task=0.979 |
+| results_agentloop_9bjoint09.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.833 arg=1.0 safe=0.857 task=0.958 |
 | results_agentloop_dpo01_traces.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
