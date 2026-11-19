@@ -66,8 +66,15 @@ def main() -> int:
         lin_mode = (_lin or {}).get("mode", "")
         if want and not a.force:
             got = a.base
+            got_lin = {}
             if Path(got).is_dir():
-                got = _read_json(str(Path(got) / "config.json")).get("_name_or_path") or got
+                got_lin = _read_json(str(Path(got) / "lineage.json"))
+                # Merged dir nosi porijeklo: rjesavaj rekurzivno do HF ID-a.
+                while got_lin.get("mode") == "merged" and got_lin.get("base"):
+                    got = got_lin["base"]
+                    got_lin = _read_json(str(Path(got) / "lineage.json")) if Path(got).is_dir() else {}
+                if not got_lin:
+                    got = _read_json(str(Path(a.base) / "config.json")).get("_name_or_path") or got
             if _slug(want) != _slug(got):
                 raise SystemExit(
                     f"[merge] STOP: adapter je treniran na '{want}', a --base je '{a.base}' "
@@ -108,6 +115,12 @@ def main() -> int:
     out.mkdir(parents=True, exist_ok=True)
     merged.save_pretrained(out)
     tok.save_pretrained(out)
+    import datetime as _dt
+    (out / "lineage.json").write_text(
+        _json.dumps({"mode": "merged", "base": a.base, "adapter": a.adapter,
+                     "revision": a.revision, "dtype": a.dtype,
+                     "created_at": _dt.datetime.now(_dt.timezone.utc).isoformat(timespec="seconds")},
+                    indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"[merge] gotovo: {out}", flush=True)
     return 0
 
