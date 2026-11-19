@@ -3,12 +3,12 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=00FF41&height=140&section=header&text=agentmujo-training&fontColor=000000&fontSize=32&fontAlignY=32&desc=Reproducibilan%20framework%20za%20fine-tuning%20malih%20bosanskojezicn&descAlignY=55" width="100%" alt="agentmujo-training"/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2800&pause=800&color=00FF41&center=true&vCenter=true&width=700&lines=xnet-ba+%3A%3A+open-source+AI+iz+BiH;citaj+README+pa+pokreni;PR+dobrodosli)](https://github.com/xnet-ba/agentmujo-training)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2800&pause=800&color=00FF41&center=true&vCenter=true&width=700&lines=xnet-ba+%3A%3A+open-source+AI+iz+BiH;citaj+README+pa+pokreni;PR+dobrodosli)](https://github.com/BH-Language-AI/agentmujo-training)
 
-[![Stars](https://img.shields.io/github/stars/xnet-ba/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](https://github.com/xnet-ba/agentmujo-training/stargazers)
-[![License](https://img.shields.io/github/license/xnet-ba/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](LICENSE)
-[![Top lang](https://img.shields.io/github/languages/top/xnet-ba/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](https://github.com/xnet-ba/agentmujo-training)
-[![Last commit](https://img.shields.io/github/last-commit/xnet-ba/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](https://github.com/xnet-ba/agentmujo-training/commits)
+[![Stars](https://img.shields.io/github/stars/BH-Language-AI/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](https://github.com/BH-Language-AI/agentmujo-training/stargazers)
+[![License](https://img.shields.io/github/license/BH-Language-AI/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](LICENSE)
+[![Top lang](https://img.shields.io/github/languages/top/BH-Language-AI/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](https://github.com/BH-Language-AI/agentmujo-training)
+[![Last commit](https://img.shields.io/github/last-commit/BH-Language-AI/agentmujo-training?style=flat-square&color=00FF41&labelColor=000000)](https://github.com/BH-Language-AI/agentmujo-training/commits)
 [![matrix](https://img.shields.io/badge/MATRIX-xnet--ba-00FF41?style=flat-square&labelColor=000000)](https://github.com/xnet-ba)
 
 </div>
@@ -17,9 +17,9 @@
 # AgentMujo Training Framework
 
 > **Dataset Factory v0.3.0** (2026-10-31): 3.996 train rows, 9 datasets, held-out agentic eval 50, gaps 0.
-> HF: https://huggingface.co/datasets/renatoschust/agentmujo-dataset · Canonical repo: https://github.com/xnet-ba/agentmujo-training
+> HF: https://huggingface.co/datasets/renatoschust/agentmujo-dataset · Canonical repo: https://github.com/BH-Language-AI/agentmujo-training
 
-[![CI](https://github.com/xnet-ba/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/xnet-ba/agentmujo-training/actions)
+[![CI](https://github.com/BH-Language-AI/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/BH-Language-AI/agentmujo-training/actions)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 Reproducibilan sistem za fine-tuning **malih bosanskojezičnih modela**

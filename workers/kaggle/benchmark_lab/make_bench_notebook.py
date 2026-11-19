@@ -225,7 +225,7 @@ def main() -> int:
             f"Limit po tasku: {a.limit} (bosanski uvijek 200). Model B: {a.model_b_label or '-tuned-only-'}."]},
         {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [
             "# 0. Repo + deps (~6 min prvi put)\n",
-            "!git clone -q https://github.com/xnet-ba/agentmujo-training.git\n",
+            "!git clone -q https://github.com/BH-Language-AI/agentmujo-training.git\n",
             "%pip install -q \"inspect-ai>=0.3\" \"inspect-evals>=0.13\" pandas matplotlib \"huggingface-hub>=0.25\" zstandard\n",
             "!pip install -q --upgrade --force-reinstall --no-deps \"openai>=3.4.0\"\n",
             "!python -c \"import openai; print('openai:', openai.__version__)\"\n",
