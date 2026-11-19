@@ -10,9 +10,12 @@
 #SBATCH --output=amj-merge-%j.out
 # LUMI merge: baza (pinovana revizija, HF cache) + LoRA adapter -> pune tezine.
 # Upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]
-#   baza izostavljena -> Qwen/Qwen3.5-9B (SFT adapteri).
-#   baza zadana (npr. merged-joint07) -> DPO adapteri trenirani nad merge_and_unload
-#   modelom (vidi job_run.py:409); merge MORA na isti merged-base inace se gubi SFT loza.
+#   baza izostavljena -> Qwen/Qwen3.5-9B (SFT adapteri, ukljucujuci NASTAVKE:
+#   continued-LoRA vec sadrzi cijelu lozu (dpo03>joint08>joint09...), merge
+#   uvijek na CISTU bazu. Merge nastavka na merged-bazu DUPLO broji staru
+#   lozu -> brbljanje/hallucinirani alati (vidjeno joint10/joint11, 2026-11-19).
+#   baza zadana (npr. merged-joint07) -> SAMO DPO adapteri trenirani nad
+#   merge_and_unload modelom (vidi job_run.py:409); DPO LoRA je svjeza delta.
 set -euo pipefail
 ADAPTER="${1:?upotreba: sbatch merge.sbatch <adapter-dir> <revision> <out-dir> [baza]}"
 REVISION="${2:-}"
