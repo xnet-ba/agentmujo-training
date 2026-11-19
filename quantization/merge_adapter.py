@@ -23,11 +23,71 @@ def main() -> int:
                     help="pinovana HF revizija baze (mora odgovarati trening bazi)")
     ap.add_argument("--rm-base-after-load", action="store_true",
                     help="obrisi --base dir nakon ucitavanja u RAM (stednja diska; samo za jednokratne dir-ove, NIKAD za HF cache)")
+    ap.add_argument("--force", action="store_true",
+                    help="preskoci provjeru podudaranja baze adaptera (samo za rucne izuzetke)")
     a = ap.parse_args()
 
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import PeftModel
+
+    # Guard (2026-11-19): adapter nosi base_model_name_or_path iz treninga +
+    # lineage.json (mode + merge_rule). Pogresna baza = tiha katastrofa
+    # (joint10/11 double-count: tool 0.867->0.167; 2B-DPO missing-r6: tool 0.8->0.0).
+    # Pravilo: SFT nastavak -> CISTA baza (continued-LoRA nosi cijelu lozu);
+    # DPO (merge_and_unload prije treninga) -> STACKED merged-base.
+    import json as _json
+    import re as _re
+
+    def _read_json(p):
+        try:
+            return _json.loads(Path(p).read_text())
+        except Exception:
+            return {}
+
+    def _slug(s):
+        return _re.sub(r"[^a-z0-9]", "", str(s).lower().split("/")[-1])
+
+    try:
+        _ap = a.adapter
+        if "/" in _ap and not Path(_ap).is_dir():
+            try:
+                from huggingface_hub import hf_hub_download as _dl
+                _ap = _dl(_ap, "adapter_config.json")
+                _lin = None  # Hub adapteri: osloni se na slug provjeru
+            except Exception:
+                _ap = None
+                _lin = {}
+        else:
+            _lin = _read_json(str(Path(_ap) / "lineage.json"))
+            _ap = str(Path(_ap) / "adapter_config.json")
+        _acfg = _read_json(_ap) if _ap else {}
+        want = _acfg.get("base_model_name_or_path") or ""
+        lin_mode = (_lin or {}).get("mode", "")
+        if want and not a.force:
+            got = a.base
+            if Path(got).is_dir():
+                got = _read_json(str(Path(got) / "config.json")).get("_name_or_path") or got
+            if _slug(want) != _slug(got):
+                raise SystemExit(
+                    f"[merge] STOP: adapter je treniran na '{want}', a --base je '{a.base}' "
+                    f"(rijeseno '{got}'). Uz --force zaobilazis provjeru.")
+            is_local_base = Path(a.base).is_dir()
+            if lin_mode == "sft" and is_local_base:
+                raise SystemExit(
+                    f"[merge] STOP: SFT nastavak (lineage mode=sft) nosi cijelu lozu — "
+                    f"merge MORA na CISTU bazu, ne na lokalni '{a.base}' "
+                    f"(double-count brbljanje, joint10/11). Uz --force zaobilazis.")
+            if lin_mode == "dpo" and not is_local_base:
+                raise SystemExit(
+                    f"[merge] STOP: DPO adapter (lineage mode=dpo) je svjeza delta nad "
+                    f"merged-baseom — merge MORA na lokalni merged dir, ne na cistu '{a.base}' "
+                    f"(gubitak loze, 2B-DPO slucaj). Uz --force zaobilazis.")
+            print(f"[merge] baza OK: adapter<->{want} (lineage mode={lin_mode or '?'})", flush=True)
+    except SystemExit:
+        raise
+    except Exception as e:
+        print(f"[merge] WARN: provjera baze nije uspjela ({e}) — nastavljam", flush=True)
 
     dtype = torch.bfloat16 if a.dtype == "bfloat16" else torch.float32
     print(f"[merge] baza: {a.base} | adapter: {a.adapter} | dtype: {a.dtype}", flush=True)

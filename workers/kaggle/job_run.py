@@ -278,6 +278,13 @@ def _train_lora(cfg: dict, out: Path) -> dict:
                              peft_config=peft_cfg, tokenizer=tok)
     trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
     trainer.save_model(str(out / "adapter"))
+    _write(out / "adapter" / "lineage.json", {
+        "mode": "sft", "base_model": cfg.get("model_name"),
+        "base_revision": cfg.get("model_revision"),
+        "base_adapter": cfg.get("base_adapter"),
+        "experiment_id": cfg.get("experiment_id"),
+        "merge_rule": "CISTA baza (continued-LoRA nosi cijelu lozu)",
+    })
     tr = _summarize_history(trainer.state.log_history)
     metrics = {"mode": "sft", **tr,
                "eval": {"note": "AgentMujo-Bench (8 kategorija A-H) pokrenuti "
@@ -462,6 +469,13 @@ def _train_dpo(cfg: dict, out: Path) -> dict:
                              peft_config=peft_cfg, tokenizer=tok)
     trainer.train(resume_from_checkpoint=cfg.get("resume_from_checkpoint"))
     trainer.save_model(str(out / "adapter"))
+    _write(out / "adapter" / "lineage.json", {
+        "mode": "dpo", "base_model": cfg.get("model_name"),
+        "base_revision": cfg.get("model_revision"),
+        "base_adapter": cfg.get("base_adapter"),
+        "experiment_id": cfg.get("experiment_id"),
+        "merge_rule": "STACKED merged-base (merge_and_unload prije treninga; svjeza delta)",
+    })
     tr = _summarize_history(trainer.state.log_history)
     metrics = {"mode": "dpo", **tr,
                "eval": {"note": "DPO reward/loss ovdje; bench na Oracleu nakon mergea"}}
