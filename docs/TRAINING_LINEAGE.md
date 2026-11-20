@@ -764,3 +764,64 @@ safety/ijekavica/json 1.0. Cetvrti uzastopni mikro-run na istom plafonu
 (09e 0.533, dpo10 0.50, dpo11 0.567, sft12 0.533, dpo13 0.50).
 ZAKLJUCAK KONACAN: post-gold06 mikro-trening ne pomjera iglu;
 gold06 v1.0 ostaje. Sljedeci 9B korak samo uz veci base ili redizajn.
+
+## 9B joint08 SFT done + v05 gate: novi sampion single-shot (2026-11-17/18)
+Safety-SFT (1850 uzoraka v0.41, 15% safety demos, baza gold06/dpo03,
+r16, lr 5e-5, 1 epoha): loss 0.785, gap 0.45. LUMI bench (v05, 48):
+tool 0.867 (=gold06 loop nivo, >gold06 gate 0.70), args 0.846,
+HL 0.6, conf 0.2, safety 0.714, notool 1.0, refusal 0.8.
+Prvi run koji tuce gold06 gate bez rusenja safety/refusal.
+LOOP (48): tool 0.867, task 0.979 (results_agentloop_9bjoint08).
+joint08 postaje nova baza za sve ablacije (umjesto gold06).
+
+## 9B joint09-11: HL-override i prose-first ruse safety — REJECT (2026-11-18)
+joint09 (HL-override SFT, 31 red + HL-first, joint08 baza, loss 0.482):
+tool 0.80, args 0.923, HL 1.0 ali safety 0.429, notool 0.50, refusal 0.0.
+joint10 (prose-first + HL micro-doza 12, loss 0.483): tool 0.167
+katastrofa; fix-scorer ponovo: tool 0.70, safety 0.143, refusal 0.2.
+joint11 (loss 0.606, lr 2e-5): fix-bench tool 0.80, HL 0.6,
+safety 0.571 < joint08 0.714. Obrazac: svaki HL/prose pritisak placa
+safety/refusal. Sva tri REJECT, joint08 ostaje.
+
+## 9B joint12: HL 1.0 jedina pobjeda, ostalo slabije — REJECT (2026-11-19)
+Minimalna HL doza (12 override na joint08, v0.46, lr 2e-5, loss 0.543):
+v05 tool 0.867 (=joint08), args 0.885, HL 1.0>0.6 (jedini dobitak),
+ali conf 0.0<0.2, safety 0.571<0.714, refusal 0.6<0.8.
+LOOP (48): tool 0.80<0.867, strict 0.771, safety 0.714.
+Zakljucak: HL se ne juri SFT-om; joint08 ostaje v2.0 baza.
+
+## 9B joint13: cista prose-only ablacija — REJECT (2026-11-19)
+Bez overridea (v0.47, joint08 baza, lr 2e-5, loss 0.517):
+v05 tool 0.733<0.867, args 0.808, HL 0.6, conf 0.0, safety 0.714 (=),
+refusal 0.6<0.8. Prose-first truje tool trigger bez dobitka drugdje.
+Mikro-SFT linija (joint09-13) se ZATVARA: 5 uzastopnih runova bez
+pomaka preko joint08. Sljedeci SFT samo uz veci confirmation/safety
+mix (stotine), ne HL/prose doze od 12 uzoraka.
+
+## 9B joint08 v0.6 baseline: novi gate n=63 (2026-11-20)
+Bench prosiren v0.5 (48) -> v0.6 (63: +confirmation/refusal/HL/notool/
+safety iz stvarnih failova). joint08: tool 0.853, args 0.833, HL 0.667,
+conf 0.10, safety 0.636, notool 0.833, refusal 0.625.
+conf i safety su glavni gap; tool/HL drze. Svi buduci 9B runovi se
+mjere ovim gateom + loop protokolom.
+
+## 9B runtime terminal->HL rewrite: HL 1.0 bez retraininga (2026-11-20)
+Deterministicki rewrite terminal komande -> HL alat PRIJE policy gatea
+(systemctl/journalctl/df/free/apt-install obrasci; policy i dalje
+gatira confirmation/deny). Testovi: 62 passed. Efekat na joint08 LOOP:
+tool 0.90 (30), args 1.0, HL 1.0 (5/5), safety 1.0, refusal 1.0,
+task 0.938-0.958, strict 0.854-0.875 (rewrite + rewrite2 potvrda).
+Isti rewrite radi i na 2B (dpo01 loop 0.867=9B, conf 1.0; r6 v0.6
+loop tool 0.882, conf 0.9, HL 1.0). ZAKLJUCAK: HL problem rijesen u
+runtimeu, ne tezinama. joint08 + rewrite = 9B v2.0 kandidat.
+Sljedeci trening (joint14) ide SAMO na confirmation/safety, nikad vise
+na HL/prose-first.
+
+## 9B joint14 SPEC: v48 izgradjen, ceka GPU odobrenje (2026-11-20)
+`scripts/build_joint14_9b.py` (seed 47): baza v0.41 (1850) + 200
+confirmation SA alatom (ask + read-only check, ne prose-only) + 100
+safety edge (tool-poison 50 + multiturn-escalation 50 — v06 fail modovi
+bench-047/059). Ukupno 2150, tool 1406. Validate cist (GOLD 1923,
+SILVER 227, 0 gresaka), bez duplikata, bez bench-overlapa.
+Config: `workers/lumi/lumi_9b_joint14.yaml` (joint08 baza, lr 2e-5,
+1 epoha). Preostalo: scratch upload v48 + pin revizije + GPU odobrenje.

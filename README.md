@@ -16,7 +16,7 @@
 ---
 # AgentMujo Training Framework
 
-> **Dataset Factory v0.3.0** (2026-10-31): 3.996 train rows, 9 datasets, held-out agentic eval 50, gaps 0.
+> **Dataset Factory v0.3.0** (2026-10-31): 3.996 train rows, 9 datasets, held-out agentic eval 50, gaps 0. Joint-14 v0.48 (2026-11-20): 2150 rows (v0.41 + conf/safety delta), ceka GPU.
 > HF: https://huggingface.co/datasets/renatoschust/agentmujo-dataset · Canonical repo: https://github.com/BH-Language-AI/agentmujo-training
 
 [![CI](https://github.com/BH-Language-AI/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/BH-Language-AI/agentmujo-training/actions)
@@ -26,10 +26,11 @@ Reproducibilan sistem za fine-tuning **malih bosanskojezičnih modela**
 koji znaju koristiti alate, raditi višekoračne zadatke i provjeravati
 rezultate — jezgra AgentMujo AI agenta.
 
-> Status: **v0.5 live (joint-23 Q8, gate 6W-2T nad v0.4).**
-> Dataseti: 2911 uzoraka (FC 1252 + AG 541 + BC 1118 + thinking 45).
-> Trening pauziran nakon 30 joint runova (eval 1.067→0.873);
-> Svi testovi zeleni (37/37); think-profil ostaje v0.4.
+> Status: **9B v2.0 kandidat = joint08 + terminal->HL rewrite** (loop tool 0.90, HL 1.0, safety 1.0; joint09-13 REJECT).
+> Joint14 SPEC spreman (v48: 2150 rows, conf/safety delta) — ceka scratch upload + GPU odobrenje.
+> 2B v1.0 = dpo01 (Hub) — loop tool 0.867, conf 1.0.
+> Trening pauziran nakon joint13 (mikro-SFT linija zatvorena);
+> Svi testovi zeleni (62); think-profil ostaje v0.4.
 
 ## Razumijevanje za 5 minuta
 
@@ -58,7 +59,7 @@ amj dataset validate --input datasets/canonical/function_calling_v0.1.jsonl
 amj dataset validate --input datasets/canonical/agentic_terminal_v0.1.jsonl
 amj benchmark run --cases benchmark/cases_v0.5.jsonl
 amj registry build           # lineage + eval tablice u docs/REGISTRY.md
-pytest -q                     # 37 testova
+pytest -q                     # 62 testa
 ```
 
 ## Struktura
