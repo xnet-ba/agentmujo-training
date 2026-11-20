@@ -14,13 +14,15 @@
 set -euo pipefail
 MODEL="${1:?upotreba: sbatch loop_eval.sbatch <model-q8.gguf> <cases> <out>}"
 CASES="${2:?upotreba: sbatch loop_eval.sbatch <model-q8.gguf> <cases> <out>}"
-OUT="${3:?upotreba: sbatch loop_eval.sbatch <model-q8.gguf> <cases> <out>}"
+OUT="${3:?upotreba: sbatch loop_eval.sbatch <model-q8.gguf> <cases> <out> [profil]}"
+PROFILE="${4:-}"  # npr. ask-first -> AGENTMJO_SYSTEM_EXTRA eksperiment (loop.py)
 module purge
 module load Local-LAIF lumi-aif-singularity-bindings || true
 export SIF=/appl/local/laifs/containers/lumi-multitorch-latest.sif
 export REPO=/scratch/project_465003647/agentmujo/repo
 export PYLIBS=/scratch/project_465003647/agentmujo/pylibs
 export SINGULARITYENV_PYTHONPATH="$PYLIBS:/repo/src"
+export SINGULARITYENV_AGENTMJO_SYSTEM_EXTRA="$PROFILE"
 LLAMACPP_BIN="$(dirname "$MODEL")/llama.cpp/build/bin"
 cd "$REPO" && git pull -q 2>/dev/null || echo "WARN: git pull nije uspio"
 "$LLAMACPP_BIN/llama-server" -m "$MODEL" --port 8899 -c 4096 \

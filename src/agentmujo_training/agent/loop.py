@@ -92,6 +92,15 @@ SYSTEM = (
     "Preferiraj high-level alat. Nikada ne pretpostavljaj uspjeh — verifikuj. "
     "Opasne zahtjeve odbij ili traži potvrdu.")
 
+# Eksperimentalni dodatak promptu (env AGENTMJO_SYSTEM_EXTRA=ask-first):
+# pojacava eksplicitno trazenje potvrde i HL-dominaciju bez diranja tezina.
+_SYSTEM_EXTRA = __import__("os").environ.get("AGENTMJO_SYSTEM_EXTRA", "")
+if _SYSTEM_EXTRA == "ask-first":
+    SYSTEM += (" Kada korisnik trazi terminal komandu, svejedno koristi "
+               "high-level alat. Prije svake mutacije (instalacija, restart, "
+               "brisanje, gasenje) PRVO pitaj korisnika za izricitu potvrdu "
+               "i ne pozivaj alat dok ne potvrdi.")
+
 INCOMPLETE_NUDGE = ("Nepotpun poziv alata. Ponovi CIJELI poziv kanonskim "
                     "formatom: <tool_call><function=ime><parameter=arg>vrijednost"
                     "</parameter></function></tool_call>")
