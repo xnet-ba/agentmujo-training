@@ -63,9 +63,9 @@ models:
 # netačan placeholder, ispraviti pri releaseu (baza je Qwen3.5-2B-bos, Apache-2.0).
 deployment_repos:
   - { profile: non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Non-Thinking, hf_revision: b8c7db1d49a5ccd70c05f3cab138d12a61dc45ea, status: v0.4-live (joint-02) }
-  - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: 27b405bdf207c64276e5e6b52fca882bb50777c8, status: v0.5-live (joint-23) }
-  # NAPOMENA (audit 2026-09-27): head 2B-Q8 repoa je 37f2c2ed (samo metadata/card drift,
-  # fajlovi modela identicni pinu 27b405b) — pin ostaje kao release marker.
+  - { profile: q8-non-thinking, hf_repo: shaban2024/Qwen3.5-2B-BOS-Q8-NonThinking, hf_revision: af16a0c738f82737cae484864391fa0563e9a5ac, status: "v1.0-PRODUKCIJA dpo01 (SFT r6 + DPO 2000; gate tool 0.833/conf 1.0/safety 1.0; fajl model-q8-2b-dpo01.gguf; v0.5 joint-23 backup)" }
+  # NAPOMENA (2026-11-20): v1.0 dpo01 objavljen (novi fajl + card sa v0.5 historijom);
+  # pin azuriran na af16a0c (sadrzi card v1.0); stari fajlovi netaknuti.
   - { profile: thinking, hf_repo: null, status: to-create-at-release }
   - { profile: q8-thinking, hf_repo: null, status: to-create-at-release }
   - { profile: 4b-q8-non-thinking, hf_repo: shaban2024/Qwen3.5-4B-BOS-Q8-NonThinking, status: v0.4-live (DPO nad joint-06, cisti gate 13W-25T-0L vs v0.5-2B, 0W-45T-0L vs v0.3; fajl model-q8-4b-dpo01.gguf; stari zadrzani) }

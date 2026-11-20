@@ -49,6 +49,10 @@
 | qwen35-9b-lumi-joint07 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | 1.405 | done |
 | qwen35-9b-lumi-joint08 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | 1.096 | done |
 | qwen35-9b-lumi-joint09 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.581 | done |
+| qwen35-9b-lumi-joint10 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.603 | done |
+| qwen35-9b-lumi-joint11 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.683 | done |
+| qwen35-9b-lumi-joint12 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.669 | done |
+| qwen35-9b-lumi-joint13 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.688 | done |
 | qwen35-9b-lumi-sft12 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-9b-thunder-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
@@ -99,7 +103,9 @@
 | Fajl | Profil | Ključne metrike |
 |---|---|---|
 | results_2b_dpo01_llama_nonthink.json | llama-server-nonthink | tool=0.0 arg=0.0 safe=1.0 task=- |
+| results_2b_dpo01fix_llama_nonthink.json | llama-server-nonthink | tool=0.833 arg=0.731 safe=1.0 task=- |
 | results_2b_r6_spec_local.json | llama-server-nonthink | tool=0.8 arg=0.846 safe=1.0 task=- |
+| results_2b_r6_v06_llama_nonthink.json | llama-server-nonthink | tool=0.824 arg=0.833 safe=0.909 task=- |
 | results_2bfast01_prod_nonthink.json | agentmujo-2b-agent-fast:latest-nonthink-agentloop | tool=0.733 arg=1.0 safe=1.0 task=0.917 |
 | results_2bgold01_llama_nonthink.json | llama-server-nonthink | tool=0.5 arg=0.462 safe=1.0 task=- |
 | results_4b01_prod_nonthink.json | agentmujo-4b-q8-nonthink | tool=0.867 arg=0.769 safe=1.0 task=- |
@@ -144,8 +150,14 @@
 | results_9bg06_spec_llama_nonthink.json | llama-server-nonthink | tool=0.667 arg=0.692 safe=0.857 task=- |
 | results_9bgfull01_llama_nonthink.json | llama-server-nonthink | tool=0.52 arg=0.682 safe=0.6 task=- |
 | results_9bgold06_ollama_nonthink.json | ollama-nonthink-gold06-q8 | tool=0.833 arg=0.846 safe=0.857 task=- |
-| results_9bjoint08_llama_nonthink.json | llama-server-nonthink | tool=0.867 arg=0.846 safe=0.714 task=- |
+| results_9bjoint08_llama_nonthink.json | llama-server-nonthink+rescored-v06 | tool=0.867 arg=0.846 safe=0.714 task=- |
+| results_9bjoint08_v06_llama_nonthink.json | llama-server-nonthink | tool=0.853 arg=0.833 safe=0.636 task=- |
 | results_9bjoint09_llama_nonthink.json | llama-server-nonthink | tool=0.8 arg=0.923 safe=0.429 task=- |
+| results_9bjoint10_llama_nonthink.json | llama-server-nonthink | tool=0.167 arg=0.0 safe=0.429 task=- |
+| results_9bjoint10fix_llama_nonthink.json | llama-server-nonthink | tool=0.7 arg=0.808 safe=0.143 task=- |
+| results_9bjoint11fix_llama_nonthink.json | llama-server-nonthink | tool=0.8 arg=0.808 safe=0.571 task=- |
+| results_9bjoint12_llama_nonthink.json | llama-server-nonthink | tool=0.867 arg=0.885 safe=0.571 task=- |
+| results_9bjoint13_llama_nonthink.json | llama-server-nonthink | tool=0.733 arg=0.808 safe=0.714 task=- |
 | results_9bsft12_llama_nonthink.json | llama-server-nonthink-sft12-q8 | tool=0.533 arg=0.538 safe=1.0 task=- |
 | results_agentloop_4b03_nonthink.json | agentmujo-4b03-q8-nonthink-agentloop | tool=0.7 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_4bdpo01_nonthink.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
@@ -155,6 +167,7 @@
 | results_agentloop_9bgold08_nonthink.json | agentmujo-9b-gold08-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.714 task=1.0 |
 | results_agentloop_9bjoint08.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.867 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_9bjoint09.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.833 arg=1.0 safe=0.857 task=0.958 |
+| results_agentloop_9bjoint12.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.714 task=0.917 |
 | results_agentloop_dpo01_traces.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |
