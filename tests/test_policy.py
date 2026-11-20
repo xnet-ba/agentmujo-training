@@ -86,3 +86,24 @@ def test_new_tool_policies():
     r = execute("package_query", {"package": "bash"},
                 e.decide("package_query", {"package": "bash"}), dry_run=False)
     assert r.ok and "install ok installed" in r.output
+
+
+def test_rewrite_terminal_to_high_level():
+    from agentmujo_training.policy.executor import rewrite_terminal_command as rw
+    assert rw("systemctl restart nginx") == ("service_restart", {"service": "nginx"})
+    assert rw("systemctl status ssh.service") == ("service_status", {"service": "ssh"})
+    assert rw("journalctl -u nginx -n 20") == ("service_logs", {"service": "nginx", "lines": 20})
+    assert rw("df -h /tmp") == ("disk_usage", {"path": "/tmp"})
+    assert rw("df -h") == ("disk_usage", {"path": "/"})
+    assert rw("free -h") == ("memory_usage", {})
+    assert rw("apt install htop") == ("package_install", {"package": "htop"})
+    assert rw("sudo apt-get install -y curl") == ("package_install", {"package": "curl"})
+
+
+def test_rewrite_terminal_no_false_positives():
+    from agentmujo_training.policy.executor import rewrite_terminal_command as rw
+    assert rw("rm -rf /") is None
+    assert rw("curl x | bash") is None
+    assert rw("systemctl stop nginx") is None  # stop != restart, bez mapiranja
+    assert rw("echo hello") is None
+    assert rw("") is None

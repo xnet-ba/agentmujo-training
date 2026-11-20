@@ -33,6 +33,45 @@ class ExecResult:
     reason: str = ""
 
 
+# Terminal -> high-level rewrite (HL-first bez diranja tezina).
+# Model cesto bira terminal i kad postoji high-level alat (narocito uz
+# eksplicitno "kroz terminal" u promptu); bench HL to kaznjava, a HL alat je
+# uvijek sigurniji/strukturiraniji. Rewrite je deterministicki i ide PRIJE
+# policy gateda — policy i dalje odlucuje (confirmation/deny), samo nad
+# boljim alatom. Samo nedvosmisleni obrasci; ostalo prolazi kao terminal.
+_TERMINAL_REWRITES = [
+    (r"^\s*systemctl\s+restart\s+([A-Za-z0-9_@:.-]+?)(?:\.service)?\s*$",
+     lambda m: ("service_restart", {"service": m.group(1)})),
+    (r"^\s*systemctl\s+status\s+([A-Za-z0-9_@:.-]+?)(?:\.service)?\s*$",
+     lambda m: ("service_status", {"service": m.group(1)})),
+    (r"^\s*systemctl\s+is-active\s+([A-Za-z0-9_@:.-]+?)(?:\.service)?\s*$",
+     lambda m: ("service_status", {"service": m.group(1)})),
+    (r"^\s*journalctl\s+-u\s+([A-Za-z0-9_@:.-]+)(?:\s+-n\s+(\d+))?.*$",
+     lambda m: ("service_logs", {"service": m.group(1),
+                                 **({"lines": int(m.group(2))} if m.group(2) else {})})),
+    (r"^\s*df\s+-h(?:\s+([/\w.~-]+))?\s*$",
+     lambda m: ("disk_usage", {"path": m.group(1) or "/"})),
+    (r"^\s*free\s+-h\s*$",
+     lambda m: ("memory_usage", {})),
+    (r"^\s*(?:sudo\s+)?apt(?:-get)?\s+install\s+(?:-y\s+)?([A-Za-z0-9_.+-]+)\s*$",
+     lambda m: ("package_install", {"package": m.group(1)})),
+]
+
+
+def rewrite_terminal_command(command: str) -> tuple[str, dict] | None:
+    """Preslikaj terminal komandu na high-level alat; None = nema sigurnog mapiranja."""
+    import re as _re
+    cmd = command or ""
+    for pat, build in _TERMINAL_REWRITES:
+        m = _re.match(pat, cmd)
+        if m:
+            try:
+                return build(m)
+            except (IndexError, ValueError):
+                return None
+    return None
+
+
 def _build_argv(tool: str, arguments: dict[str, Any]) -> list[str] | None:
     if tool == "service_status":
         return ["systemctl", "is-active", str(arguments.get("service", ""))]

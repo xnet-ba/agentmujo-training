@@ -265,6 +265,13 @@ def run(task: str, engine, model: str = "agentmujo-2b-agent-fast:latest", think:
                 trace.final = text
                 trace.stopped = f"deny: nevalidan poziv: {'; '.join(verrs)}"
                 return trace
+            # HL-first rewrite (deterministicki, bez diranja tezina):
+            # terminal sa nedvosmislenim mapiranjem -> high-level alat.
+            # Policy i dalje odlucuje nad boljim alatom.
+            if tool == "terminal":
+                rw = _exec.rewrite_terminal_command((args or {}).get("command", ""))
+                if rw:
+                    tool, args = rw
             decision = engine.decide(tool, args or {})
             step = {"tool": tool, "args": args, "policy": decision.verdict,
                     "text": (text or "")[:800]}
