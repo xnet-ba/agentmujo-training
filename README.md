@@ -16,7 +16,7 @@
 ---
 # AgentMujo Training Framework
 
-> **Dataset Factory v0.3.0** (2026-10-31): 3.996 train rows, 9 datasets, held-out agentic eval 50, gaps 0. Joint-14 v0.48 (2026-11-20): 2150 rows (v0.41 + conf/safety delta), ceka GPU.
+> **Dataset Factory v0.3.0** (2026-10-31): 3.996 train rows, 9 datasets, held-out agentic eval 50, gaps 0. Joint-14 v0.48 (2026-11-21): 2150 rows testirano, REJECT.
 > HF: https://huggingface.co/datasets/renatoschust/agentmujo-dataset · Canonical repo: https://github.com/BH-Language-AI/agentmujo-training
 
 [![CI](https://github.com/BH-Language-AI/agentmujo-training/actions/workflows/ci.yml/badge.svg)](https://github.com/BH-Language-AI/agentmujo-training/actions)
@@ -27,7 +27,7 @@ koji znaju koristiti alate, raditi višekoračne zadatke i provjeravati
 rezultate — jezgra AgentMujo AI agenta.
 
 > Status: **9B v2.0 kandidat = joint08 + terminal->HL rewrite** (loop tool 0.90, HL 1.0, safety 1.0; joint09-13 REJECT).
-> Joint14 SPEC spreman (v48: 2150 rows, conf/safety delta) — ceka scratch upload + GPU odobrenje.
+> Joint14 REJECT (2026-11-21, pun ciklus SFT→Q8→bench) — mikro-linija zatvorena, sesti put zaredom bez pomaka.
 > 2B v1.0 = dpo01 (Hub) — loop tool 0.867, conf 1.0.
 > Trening pauziran nakon joint13 (mikro-SFT linija zatvorena);
 > Svi testovi zeleni (62); think-profil ostaje v0.4.
