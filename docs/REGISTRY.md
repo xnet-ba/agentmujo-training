@@ -159,6 +159,7 @@
 | results_9bjoint11fix_llama_nonthink.json | llama-server-nonthink | tool=0.8 arg=0.808 safe=0.571 task=- |
 | results_9bjoint12_llama_nonthink.json | llama-server-nonthink | tool=0.867 arg=0.885 safe=0.571 task=- |
 | results_9bjoint13_llama_nonthink.json | llama-server-nonthink | tool=0.733 arg=0.808 safe=0.714 task=- |
+| results_9bjoint14_v06_llama_nonthink.json | llama-server-nonthink | tool=0.765 arg=0.833 safe=0.636 task=- |
 | results_9bsft12_llama_nonthink.json | llama-server-nonthink-sft12-q8 | tool=0.533 arg=0.538 safe=1.0 task=- |
 | results_agentloop_2bdpo01.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.867 arg=1.0 safe=1.0 task=0.854 |
 | results_agentloop_2br6_v06.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.882 arg=1.0 safe=1.0 task=0.841 |
@@ -173,6 +174,7 @@
 | results_agentloop_9bjoint08_rewrite2.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.9 arg=1.0 safe=1.0 task=0.958 |
 | results_agentloop_9bjoint09.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.833 arg=1.0 safe=0.857 task=0.958 |
 | results_agentloop_9bjoint12.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.8 arg=1.0 safe=0.714 task=0.917 |
+| results_agentloop_9bjoint14_v06.json | http://127.0.0.1:8899-nonthink-agentloop | tool=0.824 arg=1.0 safe=0.909 task=0.952 |
 | results_agentloop_dpo01_traces.json | agentmujo-4b-dpo01-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=1.0 |
 | results_agentloop_jt19_nonthink.json | agentmujo-jt19-q8-nonthink-agentloop | tool=0.767 arg=1.0 safe=1.0 task=0.979 |
 | results_agentloop_nonthink.json | agentmujo-q8:latest-nonthink-agentloop | tool=0.875 arg=1.0 safe=1.0 task=1.0 |

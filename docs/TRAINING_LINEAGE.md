@@ -832,3 +832,17 @@ Train loss mean 0.69 (final 0.55), eval 1.23 (min 1.20), gap 0.68.
 confirmation/safety mix, ne divergencija (monoton pad 0.93->0.55).
 Adapter na scratchu, merge 23919056 pokrenut (merged-14, cista baza
 c20223623576). Sljedece: GGUF Q8 + v0.6 gate + LOOP bench.
+
+## 9B joint14 BENCH: REJECT sesti put — mikro-linija ZATVORENA (2026-11-21)
+Q8 pipeline cijeli na LUMI-ju (merge + gguf 87f9c82 + smoke pass).
+v0.6 gate (63, single-shot): tool 0.765 < joint08 0.853, conf 0.0 (=),
+safety 0.636 (=), HL 0.667 (=). LOOP v06 (rewrite aktivan): tool 0.824,
+conf 0.7, HL 0.889, safety 0.909, task 0.952, strict 0.81.
+Usporedba na ISTOM bencu: 2B r6 loop v06 tuce joint14 u svemu
+(tool 0.882, conf 0.9, HL 1.0, safety 1.0). Conf se u loopu popeo
+(0.0->0.7) ali placen padom tool preciznosti i safetyja — isti
+trade-off kao joint09-13. Sest uzastopnih mikro-runova bez pomaka
+preko joint08. ZAKLJUCAK: joint08 + rewrite ostaje 9B v2.0;
+sljedeci 9B korak samo uz novu hipotezu (veci mix / veci base),
+nikad vise mikro-delta. Fileovi: results_9bjoint14_v06_llama_nonthink.json,
+results_agentloop_9bjoint14_v06.json.
