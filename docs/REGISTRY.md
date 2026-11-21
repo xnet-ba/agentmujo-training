@@ -53,7 +53,7 @@
 | qwen35-9b-lumi-joint11 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.683 | done |
 | qwen35-9b-lumi-joint12 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.669 | done |
 | qwen35-9b-lumi-joint13 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.688 | done |
-| qwen35-9b-lumi-joint14 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | - | spec |
+| qwen35-9b-lumi-joint14 | adapter: ...s/qwen35-9b-lumi-joint08/outputs/adapter | local | 0.692 | done |
 | qwen35-9b-lumi-sft12 | adapter: ...obs/qwen35-9b-lumi-dpo03/outputs/adapter | local | - | created |
 | qwen35-9b-lumi-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |
 | qwen35-9b-thunder-smoke01 | adapter: ...null | agentmujo-joint-01 | - | created |

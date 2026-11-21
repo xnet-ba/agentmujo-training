@@ -825,3 +825,10 @@ bench-047/059). Ukupno 2150, tool 1406. Validate cist (GOLD 1923,
 SILVER 227, 0 gresaka), bez duplikata, bez bench-overlapa.
 Config: `workers/lumi/lumi_9b_joint14.yaml` (joint08 baza, lr 2e-5,
 1 epoha). Preostalo: scratch upload v48 + pin revizije + GPU odobrenje.
+
+## 9B joint14 SFT GOTOV (2026-11-21, LUMI MI250X, ~19 min, 135 koraka)
+Train loss mean 0.69 (final 0.55), eval 1.23 (min 1.20), gap 0.68.
+ visi train loss od joint12/13 (0.54/0.52) — ocekivano: tezi
+confirmation/safety mix, ne divergencija (monoton pad 0.93->0.55).
+Adapter na scratchu, merge 23919056 pokrenut (merged-14, cista baza
+c20223623576). Sljedece: GGUF Q8 + v0.6 gate + LOOP bench.
